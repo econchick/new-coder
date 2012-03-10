@@ -74,8 +74,3 @@ class WSRSDaemon(Daemon):
         else:
             reactor.connectTCP(settings.HOST, settings.PORT, factory)
         reactor.run()
-
-
-if __name__ == '__main__':
-    bot = WSRSDaemon('./pid.pid')
-    bot.start()
