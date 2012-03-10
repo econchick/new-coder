@@ -7,14 +7,19 @@ from bot import WSRSDaemon
 
 class BotRunner(object):
 
-    PID_FILE = "./pid.pid"
+    PID_FILE = "./wsrs.pid"
 
     def start(self):
         bot = WSRSDaemon(self.PID_FILE)
         bot.start()
 
     def stop(self):
-        pid_file = open(self.PID_FILE)
+        try:
+            pid_file = open(self.PID_FILE)
+        except IOError:
+            print "pid file '%s' not found; perhaps the process is not running"\
+                % (self.PID_FILE)
+            return
         pid = pid_file.read()
         pid_file.close()
         os.kill(int(pid), signal.SIGHUP)

@@ -1,3 +1,4 @@
+import logging
 
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol, ssl
@@ -7,28 +8,32 @@ import quotation_selector
 import settings
 
 
+logging.basicConfig(filename='./wsrsbot.log', level=logging.DEBUG)
+
+
 class WhatSheReallySaidBot(irc.IRCClient):
     password = settings.PASSWORD
     nickname = settings.NICKNAME
 
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
-        print "connectionMade"
+        logging.info("connectionMade")
 
     def connectionLost(self, reason):
         irc.IRCClient.connectionLost(self, reason)
-        print "connectionLost"
+        logging.info("connectionLost")
 
     # callbacks for events
 
     def signedOn(self):
         """Called when bot has successfully signed on to server."""
-        print "Signed on"
+        logging.info("Signed on")
         self.join(self.factory.channel)
 
     def joined(self, channel):
         """This will get called when the bot joins the channel."""
-        print "[%s has joined %s]" % (self.nickname, self.factory.channel)
+        logging.info("[%s has joined %s]"
+            % (self.nickname, self.factory.channel))
 
     def privmsg(self, user, channel, msg):
         """This will get called when the bot receives a message."""
@@ -42,7 +47,7 @@ class WhatSheReallySaidBot(irc.IRCClient):
         if trigger_found:
             quote = self.factory.quotation.select()
             self.msg(channel, quote)
-            print "sent message:\n\t%s" % (quote)
+            logging.info("sent message:\n\t%s" % (quote))
 
 
 class WhatSheReallySaidBotFactory(protocol.ClientFactory):
@@ -57,11 +62,11 @@ class WhatSheReallySaidBotFactory(protocol.ClientFactory):
         return p
 
     def clientConnectionLost(self, connector, reason):
-        print "connection lost, reconnecting"
+        logging.info("connection lost, reconnecting")
         connector.connect()
 
     def clientConnectionFailed(self, connector, reason):
-        print "connection failed: %s" % (reason)
+        logging.info("connection failed: %s" % (reason))
         reactor.stop()
 
 
