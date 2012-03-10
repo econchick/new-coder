@@ -11,3 +11,7 @@ CHANNEL = "#channel_name"
 TRIGGERS = (
     "that's what she said",
     )
+
+# Process settings
+PID_FILE = "./talkbackbot.pid"
+LOG_FILE = "./talkbackbot.log"
