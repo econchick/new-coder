@@ -22,7 +22,8 @@ Usage
     # Activate your virtualenv
     . bin/activate
 
-    # Edit the settings.py file to connect to your server
+    # Copy settings.py.EXAMPLE to settings.py and edit to suit yourself
+    cp settings.py.EXAMPLE settings.py
 
     # Run the bot
     python bot.py
