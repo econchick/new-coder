@@ -68,8 +68,11 @@ class WhatSheReallySaidBotFactory(protocol.ClientFactory):
 class WSRSDaemon(Daemon):
     def run(self):
         factory = WhatSheReallySaidBotFactory(settings.CHANNEL)
-        reactor.connectSSL(settings.HOST, settings.PORT, factory,
-            ssl.ClientContextFactory())
+        if settings.USE_SSL:
+            reactor.connectSSL(settings.HOST, settings.PORT, factory,
+                ssl.ClientContextFactory())
+        else:
+            reactor.connectTCP(settings.HOST, settings.PORT, factory)
         reactor.run()
 
 

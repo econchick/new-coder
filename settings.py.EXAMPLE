@@ -1,7 +1,8 @@
 # IRC settings
 HOST = "irc.freenode.net"
 PORT = 6667
-PASSWORD = "server_password"
+USE_SSL = False
+PASSWORD = "server_password" # Server password, set to None if not needed
 NICKNAME = "whatshereallysaid"
 
 CHANNEL = "#channel_name"
