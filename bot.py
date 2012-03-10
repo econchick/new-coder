@@ -1,6 +1,8 @@
+
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol, ssl
 
+from daemon import Daemon
 import quotation_selector
 import settings
 
@@ -63,8 +65,14 @@ class WhatSheReallySaidBotFactory(protocol.ClientFactory):
         reactor.stop()
 
 
+class WSRSDaemon(Daemon):
+    def run(self):
+        factory = WhatSheReallySaidBotFactory(settings.CHANNEL)
+        reactor.connectSSL(settings.HOST, settings.PORT, factory,
+            ssl.ClientContextFactory())
+        reactor.run()
+
+
 if __name__ == '__main__':
-    factory = WhatSheReallySaidBotFactory(settings.CHANNEL)
-    reactor.connectSSL(settings.HOST, settings.PORT, factory,
-        ssl.ClientContextFactory())
-    reactor.run()
+    bot = WSRSDaemon('./pid.pid')
+    bot.start()
