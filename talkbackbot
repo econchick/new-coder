@@ -1,4 +1,4 @@
-#!./talkbackenv/bin/python
+#!./tbenv/bin/python
 import sys
 
 from bot_runner import BotRunner
@@ -7,7 +7,12 @@ from talkbackbot import TalkBackBotFactory
 
 
 if __name__ == '__main__':
-    command = sys.argv[1]
+    command = ""
+    try:
+        command = sys.argv[1]
+    except IndexError:
+        print "No command specified, try start or stop"
+        exit(1)
     runner = BotRunner(settings.PID_FILE, TalkBackBotFactory)
     try:
         method = getattr(runner, command)

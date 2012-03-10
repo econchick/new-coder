@@ -10,8 +10,8 @@ Installation
 
 ::
 
-    virtualenv talkbackenv --no-site-packages
-    . talkbackenv/bin/activate
+    virtualenv tbenv --no-site-packages
+    . tbenv/bin/activate
     pip install -r requirements.txt
 
 
@@ -21,7 +21,7 @@ Usage
 ::
 
     # Activate your virtualenv
-    . talkbackenv/bin/activate
+    . tbenv/bin/activate
 
     # Copy settings.py.EXAMPLE to settings.py and edit to suit yourself
     cp settings.py.EXAMPLE settings.py
