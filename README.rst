@@ -1,9 +1,9 @@
-WSRS - What She Really Said
+TalkBackBot
 ================================
 
 Are you tired of "That's what she said" jokes? Then this bot is for you!
-It will join a channel under the nickname "whatshereallysaid" and respond to
-the configured trigger phrases with a quotation from a notable woman.
+It will join a specified channel and respond to the configured trigger phrases
+with what she really said, i.e. a quotation from a notable woman.
 
 Installation
 ------------
@@ -26,5 +26,8 @@ Usage
     cp settings.py.EXAMPLE settings.py
 
     # Run the bot
-    python bot.py
+    ./talkbackbot start
+
+    # Stop the bot
+    ./talkbackbot stop
 

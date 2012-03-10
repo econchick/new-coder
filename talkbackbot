@@ -1,0 +1,16 @@
+#!./bin/python
+import sys
+
+from bot_runner import BotRunner
+import settings
+from talkbackbot import TalkBackBotFactory
+
+
+if __name__ == '__main__':
+    command = sys.argv[1]
+    runner = BotRunner(settings.PID_FILE, TalkBackBotFactory)
+    try:
+        method = getattr(runner, command)
+        method()
+    except AttributeError:
+        print "Unknown command '%s'; try start or stop" % (command)

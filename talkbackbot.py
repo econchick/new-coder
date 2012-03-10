@@ -3,15 +3,14 @@ import logging
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol, ssl
 
-from daemon import Daemon
 import quotation_selector
 import settings
 
 
-logging.basicConfig(filename='./wsrsbot.log', level=logging.DEBUG)
+logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
 
 
-class WhatSheReallySaidBot(irc.IRCClient):
+class TalkBackBot(irc.IRCClient):
     password = settings.PASSWORD
     nickname = settings.NICKNAME
 
@@ -50,14 +49,14 @@ class WhatSheReallySaidBot(irc.IRCClient):
             logging.info("sent message:\n\t%s" % (quote))
 
 
-class WhatSheReallySaidBotFactory(protocol.ClientFactory):
+class TalkBackBotFactory(protocol.ClientFactory):
 
     def __init__(self, channel):
         self.channel = channel
         self.quotation = quotation_selector.QuotationSelector()
 
     def buildProtocol(self, addr):
-        p = WhatSheReallySaidBot()
+        p = TalkBackBot()
         p.factory = self
         return p
 
@@ -68,14 +67,3 @@ class WhatSheReallySaidBotFactory(protocol.ClientFactory):
     def clientConnectionFailed(self, connector, reason):
         logging.info("connection failed: %s" % (reason))
         reactor.stop()
-
-
-class WSRSDaemon(Daemon):
-    def run(self):
-        factory = WhatSheReallySaidBotFactory(settings.CHANNEL)
-        if settings.USE_SSL:
-            reactor.connectSSL(settings.HOST, settings.PORT, factory,
-                ssl.ClientContextFactory())
-        else:
-            reactor.connectTCP(settings.HOST, settings.PORT, factory)
-        reactor.run()
