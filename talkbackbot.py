@@ -1,9 +1,9 @@
 import logging
 
 from twisted.words.protocols import irc
-from twisted.internet import reactor, protocol, ssl
+from twisted.internet import reactor, protocol
 
-import quotation_selector
+from quotation_selector import QuotationSelector
 import settings
 
 
@@ -53,7 +53,7 @@ class TalkBackBotFactory(protocol.ClientFactory):
 
     def __init__(self, channel):
         self.channel = channel
-        self.quotation = quotation_selector.QuotationSelector()
+        self.quotation = QuotationSelector(settings.QUOTES_FILE)
 
     def buildProtocol(self, addr):
         p = TalkBackBot()

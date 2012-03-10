@@ -4,11 +4,11 @@ import time
 
 class QuotationSelector(object):
 
-    def __init__(self):
+    def __init__(self, quotes_filename):
         random.seed(time.localtime())
-        quotes_file = open('quotes.txt')
+        quotes_file = open(quotes_filename)
         self.quotes = quotes_file.readlines()
 
     def select(self):
         index = random.randint(0, len(self.quotes) - 1)
-        return self.quotes[index]
+        return self.quotes[index].strip()

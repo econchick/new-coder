@@ -1,4 +1,4 @@
-#!./bin/python
+#!./talkbackenv/bin/python
 import sys
 
 from bot_runner import BotRunner
