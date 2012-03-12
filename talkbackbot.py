@@ -13,6 +13,7 @@ logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
 class TalkBackBot(irc.IRCClient):
     password = settings.PASSWORD
     nickname = settings.NICKNAME
+    realname = settings.REALNAME
 
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)

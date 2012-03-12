@@ -4,6 +4,7 @@ PORT = 6667
 USE_SSL = False
 PASSWORD = "server_password" # Server password, set to None if not needed
 NICKNAME = "whatshereallysaid"
+REALNAME = "bot: provides quotations from notable women"
 
 CHANNEL = "#channel_name"
 
