@@ -1,11 +1,10 @@
-
 import random
-import time
+
 
 class QuotationSelector(object):
 
     def __init__(self, quotes_filename):
-        random.seed(time.localtime())
+        random.seed()
         quotes_file = open(quotes_filename)
         self.quotes = quotes_file.readlines()
 
