@@ -1,3 +1,5 @@
+coverage
+Mock
 nose
 pyopenssl
 twisted

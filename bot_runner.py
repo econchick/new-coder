@@ -14,7 +14,7 @@ class BotDaemon(Daemon):
         self.factory = bot_factory
 
     def run(self):
-        factory = self.factory(settings.CHANNEL)
+        factory = self.factory(settings)
         if settings.USE_SSL:
             reactor.connectSSL(settings.HOST, settings.PORT, factory,
                 ssl.ClientContextFactory())
@@ -44,3 +44,7 @@ class BotRunner(object):
         pid_file.close()
         os.kill(int(pid), signal.SIGHUP)
         os.remove(self.pid_file)
+        
+    def restart(self):
+        self.stop()
+        self.start()

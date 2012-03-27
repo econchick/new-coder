@@ -4,16 +4,9 @@ from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
 
 from quotation_selector import QuotationSelector
-import settings
-
-
-logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
 
 
 class TalkBackBot(irc.IRCClient):
-    password = settings.PASSWORD
-    nickname = settings.NICKNAME
-    realname = settings.REALNAME
 
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
@@ -37,29 +30,39 @@ class TalkBackBot(irc.IRCClient):
 
     def privmsg(self, user, channel, msg):
         """This will get called when the bot receives a message."""
-
+        
         trigger_found = False
-        for trigger in settings.TRIGGERS:
-            if msg.lower().find(trigger) >= 0:
-                trigger_found = True
-                break
+        send_to = channel
+        if self.factory.settings.NICKNAME.startswith(channel) or \
+                channel.startswith(self.factory.settings.NICKNAME):
+            trigger_found = True
+            send_to = user.split('!')[0]
+        else:
+            for trigger in self.factory.settings.TRIGGERS:
+                if msg.lower().find(trigger) >= 0:
+                    trigger_found = True
+                    break
 
         if trigger_found:
             quote = self.factory.quotation.select()
-            self.msg(channel, quote)
-            logging.info("sent message:\n\t%s" % (quote))
+            self.msg(send_to, quote)
+            logging.info("sent message to %s:\n\t%s" % (send_to, quote))
 
 
 class TalkBackBotFactory(protocol.ClientFactory):
 
-    def __init__(self, channel):
-        self.channel = channel
-        self.quotation = QuotationSelector(settings.QUOTES_FILE)
+    def __init__(self, settings):
+        self.settings = settings
+        self.channel = self.settings.CHANNEL
+        self.quotation = QuotationSelector(self.settings.QUOTES_FILE)
 
     def buildProtocol(self, addr):
-        p = TalkBackBot()
-        p.factory = self
-        return p
+        bot = TalkBackBot()
+        bot.factory = self
+        bot.password = self.settings.PASSWORD
+        bot.nickname = self.settings.NICKNAME
+        bot.realname = self.settings.REALNAME
+        return bot
 
     def clientConnectionLost(self, connector, reason):
         logging.info("connection lost, reconnecting")

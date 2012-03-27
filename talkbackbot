@@ -1,9 +1,12 @@
 #!./tbenv/bin/python
+import logging
 import sys
 
 from bot_runner import BotRunner
 import settings
 from talkbackbot import TalkBackBotFactory
+
+logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
 
 
 if __name__ == '__main__':
