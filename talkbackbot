@@ -1,4 +1,4 @@
-#!./tbenv/bin/python
+#!/usr/bin/env python
 import logging
 import sys
 
@@ -21,4 +21,4 @@ if __name__ == '__main__':
         method = getattr(runner, command)
         method()
     except AttributeError:
-        print "Unknown command '%s'; try start or stop" % (command)
+        print "Unknown command '%s'; try start, stop, or restart" % (command)
