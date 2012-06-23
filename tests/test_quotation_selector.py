@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from quotation_selector import QuotationSelector
+from talkback.quotation_selector import QuotationSelector
 
 class TestQuotationSelector(unittest.TestCase):
 

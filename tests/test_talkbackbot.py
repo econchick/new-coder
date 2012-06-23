@@ -1,8 +1,7 @@
-import os
 import unittest
 import mock
 
-from talkbackbot import TalkBackBotFactory
+from talkback.bot import TalkBackBotFactory
 import test_settings
 
 class TestTalkBackBot(unittest.TestCase):

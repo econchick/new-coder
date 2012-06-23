@@ -2,7 +2,6 @@
 HOST = "test.example.com"
 PORT = 6667
 USE_SSL = False
-PASSWORD = None
 NICKNAME = "shesaidbot"
 REALNAME = "bot: provides quotations from notable women"
 
@@ -14,6 +13,5 @@ TRIGGERS = (
     )
 
 # Process settings
-PID_FILE = "./talkbackbot.pid"
 LOG_FILE = "./talkbackbot.log"
 QUOTES_FILE = "tests/test_quote.txt"
