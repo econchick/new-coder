@@ -31,8 +31,11 @@ Usage
     cp settings.py.EXAMPLE settings.py
 
     # Run the bot
-    ./talkbackbot start
+    twistd twsrs
 
     # Stop the bot
-    ./talkbackbot stop
+    kill `cat twistd.pid`
+
+    # Run unit tests
+    nosetests
 

@@ -59,7 +59,6 @@ class TalkBackBotFactory(protocol.ClientFactory):
     def buildProtocol(self, addr):
         bot = TalkBackBot()
         bot.factory = self
-        bot.password = self.settings.PASSWORD
         bot.nickname = self.settings.NICKNAME
         bot.realname = self.settings.REALNAME
         return bot
