@@ -1,19 +1,18 @@
 #!/usr/bin/env python
 import logging
 
-import settings
-from talkbackbot import TalkBackBotFactory
-
-logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
-
-
-from zope.interface import implements
-
 from twisted.python import usage
 from twisted.plugin import IPlugin
 from twisted.application.service import IServiceMaker
 from twisted.application import internet
 from twisted.internet import ssl
+
+from zope.interface import implements
+
+import settings
+from talkback.bot import TalkBackBotFactory
+
+logging.basicConfig(filename=settings.LOG_FILE, level=logging.DEBUG)
 
 
 class Options(usage.Options):
