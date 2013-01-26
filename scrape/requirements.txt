@@ -1,0 +1,9 @@
+SQLAlchemy==0.8.0b2
+Scrapy==0.16.4
+Twisted==12.3.0
+lxml==3.1beta1
+psycopg2==2.4.6
+pyOpenSSL==0.13
+requests==1.1.0
+w3lib==1.2
+zope.interface==4.0.3
