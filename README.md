@@ -19,7 +19,7 @@ Directory layout:
 	│   │   ├── tutorial_docs/
 	│   ├── lib/
 	│   │   ├── full_source/
-	│   │   ├── tutorial_sourse/
+	│   │   ├── tutorial_source/
 	│   ├─── tests/
 	│   │   ├── full_tests/
 	│   │   ├── tutorial_tests/
