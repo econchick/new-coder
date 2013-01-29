@@ -16,6 +16,7 @@ I highly recommend both virtualenv and virtualenvwrapper to manage the
 environments for your different python projects.
 
 ::
+
     # Create a virtualenv
     mkvirtualenv talkbackbot
 
