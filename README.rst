@@ -12,16 +12,16 @@ http://womenshistory.about.com/library/qu/blqulist.htm
 Setup
 ------------
 
-::
+I highly recommend both virtualenv and virtualenvwrapper to manage the
+environments for your different python projects.
 
-I highly recommend both virtualenv and virtualenvwrapper. If you have them
-installed, you can create a sandbox for talkbackbot as simply as:
+::
+    # Create a virtualenv
     mkvirtualenv talkbackbot
 
-To install requirements:
+    # Install requirements
     workon talkbackbot
     pip install -r requirements.txt
-
 
 Usage
 -----
