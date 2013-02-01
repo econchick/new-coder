@@ -156,7 +156,6 @@ Pioneers may be picturesque figures, but they are often rather lonely ones. ~ Na
 Why, I don't even know the difference between a king and a knave. ~ Nancy Astor
 One reason I don't drink is that I want to know when I am having a good time. ~ Nancy Astor
 My vigor, vitality and cheek repel me -- I am the kind of woman I would run from. ~ Nancy Astor
-One reason I don't drink is that I want to know when I am having a good time. ~ Nancy Astor
 The only thing I like about rich people is their money. ~ Nancy Astor
 The penalty for success is to be bored by the people who used to snub you. ~ Nancy Astor
 A fool without fear is sometimes wiser than an angel with fear. ~ Nancy Astor
@@ -225,7 +224,6 @@ A crown, if it hurts us, is not worth wearing. ~ Pearl Bailey
 There is a way to look at the past. Don't hide from it. It will not catch you if you don't repeat it. ~ Pearl Bailey
 To talk to someone who does not listen is enough to tense the devil. ~ Pearl Bailey
 When you're young, the silliest notions seem the greatest achievements. ~ Pearl Bailey
-You never find yourself until you face the truth. ~ Pearl Bailey
 The first and worst of all frauds is to cheat one's self. All sin is easy after that. ~ Pearl Bailey
 People see God every day, they just don't recognize him. ~ Pearl Bailey
 Hungry people cannot be good at learning or producing anything, except perhaps violence. ~ Pearl Bailey
@@ -448,14 +446,14 @@ One distressing thing is the way men react to women who assert their equality: t
 ... rhetoric never won a revolution yet. ~ Shirley Chisholm
 Tremendous amounts of talent are being lost to our society just because that talent wears a skirt. ~ Shirley Chisholm
 Service is the rent we pay for the privilege of living on this earth. (attributed -- also attributed to Marian Wright Edelman) ~ Shirley Chisholm
-The truth you believe and cling to makes you unavailable to hear anything new. ~ Pema Chodron
-We work on ourselves in order to help others, but also we help others in order to work on ourselves. ~ Pema Chodron
-If we learn to open our hearts, anyone, including the people who drive us crazy, can be our teacher. ~ Pema Chodron
-There's a reason you can learn from everything: you have basic wisdom, basic intelligence, and basic goodness. ~ Pema Chodron
-Compassionate action starts with seeing yourself when you start to make yourself right and when you start to make yourself wrong. At that point you could just contemplate the fact that there is a larger alternative to either of those, a more tender, shaky kind of place where you could live. - ~ Pema Chodron
-When you begin to touch your heart or let your heart be touched, you begin to discover that it's bottomless, that it doesn't have any resolution, that this heart is huge, vast, and limitless. You begin to discover how much warmth and gentleness is there, as well as how much space. ~ Pema Chodron
-A further sign of health is that we don't become undone by fear and trembling, but we take it as a message that it's time to stop struggling and look directly at what's threatening us. ~ Pema Chodron
-Gloriousness and wretchedness need each other. One inspires us, the other softens us. ~ Pema Chodron
+The truth you believe and cling to makes you unavailable to hear anything new. ~ Pema Chödrön
+We work on ourselves in order to help others, but also we help others in order to work on ourselves. ~ Pema Chödrön
+If we learn to open our hearts, anyone, including the people who drive us crazy, can be our teacher. ~ Pema Chödrön
+There's a reason you can learn from everything: you have basic wisdom, basic intelligence, and basic goodness. ~ Pema Chödrön
+Compassionate action starts with seeing yourself when you start to make yourself right and when you start to make yourself wrong. At that point you could just contemplate the fact that there is a larger alternative to either of those, a more tender, shaky kind of place where you could live. - ~ Pema Chödrön
+When you begin to touch your heart or let your heart be touched, you begin to discover that it's bottomless, that it doesn't have any resolution, that this heart is huge, vast, and limitless. You begin to discover how much warmth and gentleness is there, as well as how much space. ~ Pema Chödrön
+A further sign of health is that we don't become undone by fear and trembling, but we take it as a message that it's time to stop struggling and look directly at what's threatening us. ~ Pema Chödrön
+Gloriousness and wretchedness need each other. One inspires us, the other softens us. ~ Pema Chödrön
 There cannot be true democracy unless women's voices are heard. There cannot be true democracy unless women are given the opportunity to take responsibility for their own lives. There cannot be true democracy unless all citizens are able to participate fully in the lives of their country. ~ Hillary Rodham Clinton
 The challenges of change are always hard. It is important that we begin to unpack those challenges that confront this nation and realize that we each have a role that requires us to change and become more responsible for shaping our own future. ~ Hillary Rodham Clinton
 The challenge now is to practice politics as the art of making what appears to be impossible, possible. ~ Hillary Rodham Clinton
@@ -753,7 +751,6 @@ Love has nothing to do with what you are expecting to get -- only what you are e
 Sometimes I wonder if men and women really suit each other. Perhaps they should live next door and just visit now and then. ~ Katharine Hepburn
 Marriage is a series of desperate arguments people feel passionately about. ~ Katharine Hepburn
 If you want to sacrifice the admiration of many men for the criticism of one, go ahead, get married. ~ Katharine Hepburn
-One of the major reasons women who know give for the absolute necessity of an ERA [ ~ Barbara Honegger
 In my early days I was a sepia Hedy Lamarr. Now I'm black and a woman, singing my own way. ~ Lena Horne
 I was unique in that I was a kind of black that white people could accept. I was their daydream. I had the worst kind of acceptance because it was never for how great I was or what I contributed. It was because of the way I looked. ~ Lena Horne
 Always be smarter than the people who hire you. ~ Lena Horne
@@ -835,7 +832,7 @@ I never intended to become a run-of-the-mill person. ~ Barbara Jordan
 A spirit of harmony can only survive if each of us remembers, when bitterness and self-interest seem to prevail, that we share a common destiny. ~ Barbara Jordan
 One thing is clear to me: We, as human beings, must be willing to accept people who are different from ourselves. ~ Barbara Jordan
 If you're going to play the game properly you'd better know every rule. ~ Barbara Jordan
-If you are politically inclined, you may be President of the United States.
+If you are politically inclined, you may be President of the United States. ~ Barbara Jordan
 All my growth and development led me to believe that if you really do the right thing, and if you play by the rules, and if you've got good enough, solid judgment and common sense, that you're going to be able to do whatever you want to do with your life. ~ Barbara Jordan
 We cannot improve on the system of government handed down to us by the founders of the Republic, but we can find new ways to implement that system and realize our destiny. (from her 1976 speech at the Democratic National Convention ~ Barbara Jordan
 Just remember the world is not a playground but a schoolroom. Life is not a holiday but an education. One eternal lesson for us all: to teach us how better we should love. ~ Barbara Jordan
@@ -1106,33 +1103,33 @@ I stand at the altar of the murdered men, and, while I live, I fight their cause
 Asceticism is the trifling of an enthusiast with his power, a puerile coquetting with his selfishness or his vanity, in the absence of any sufficiently great object to employ the first or overcome the last. [1857] ~ Florence Nightingale
 No man, not even a doctor, ever gives any other definition of what a nurse should be than this -- 'devoted and obedient.' This definition would do just as well for a porter. It might even do for a horse. It would not do for a policeman. [1859] ~ Florence Nightingale
 You ask me why I do not write something.... I think one's feelings waste themselves in words, they ought all to be distilled into actions and into actions which bring results. ~ Florence Nightingale
-There came a time when the risk to remain tight in the bud was more painful than the risk it took to blossom. ~ Anais Nin
-We don't see things as they are, we see them as we are. ~ Anais Nin
-Life shrinks or expands according to one's courage. ~ Anais Nin
-Living never wore one out so much as the effort not to live. ~ Anais Nin
-Each friend represents a world in us, a world possibly not born until they arrive, and it is only by this meeting that a new world is born. ~ Anais Nin
-Ordinary life does not interest me. I seek only the high moments. I am in accord with the surrealists, searching for the marvelous. ~ Anais Nin
-We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another. ~ Anais Nin
-There are very few human beings who receive the truth, complete and staggering, by instant illumination. Most of them acquire it fragment by fragment, on a small scale, by successive developments, cellularly, like a laborious mosaic. ~ Anais Nin
-Anxiety is love's greatest killer. It makes one feel as you might when a drowning man holds unto you. You want to save him, but you know he will strangle you with his panic. ~ Anais Nin
-I write emotional algebra. ~ Anais Nin
-We write to taste life twice, in the moment, and in retrospection. ~ Anais Nin
-To write is to descend, to excavate, to go underground. ~ Anais Nin
-I am in a beautiful prison from which I can only escape by writing. ~ Anais Nin
-My diary is a mirror telling the story of a dreamer who, a long long time ago went through life the way one reads a book. ~ Anais Nin
-The poet is one who is able to keep the fresh vision of the child alive. ~ Anais Nin
-The final lesson a writer learns is that everything can nourish the writer. The dictionary, a new word, a voyage, an encounter, a talk on the street, a book, a phrase learned. ~ Anais Nin
-I have the right to love many people at once and to change my prince often. ~ Anais Nin
-What I cannot love, I overlook. ~ Anais Nin
-Dreams are necessary to life. ~ Anais Nin
-Dreams have helped me to live. ~ Anais Nin
-Eroticism is one of the basic means of self-knowledge, as indispensible as poetry. ~ Anais Nin
-We don't have a language for the senses. Feelings are images, sensations are like musical sounds. ~ Anais Nin
-The body is an instrument which only gives off music when it is used as a body. Always an orchestra, and just as music traverses walls, so sensuality traverses the body and reaches up to ecstasy. ~ Anais Nin
-Jazz is the music of the body. ~ Anais Nin
-Don't let one cloud obliterate the whole sky. ~ Anais Nin
-Love never dies a natural death. It dies because we don't know how to replenish its source. It dies of blindness and errors and betrayals. It dies of illness and wounds; it dies of weariness, of witherings, of tarnishings. ~ Anais Nin
-I postpone death by living, by suffering, by error, by risking, by giving, by loving. ~ Anais Nin
+There came a time when the risk to remain tight in the bud was more painful than the risk it took to blossom. ~ Anaïs Nin
+We don't see things as they are, we see them as we are. ~ Anaïs Nin
+Life shrinks or expands according to one's courage. ~ Anaïs Nin
+Living never wore one out so much as the effort not to live. ~ Anaïs Nin
+Each friend represents a world in us, a world possibly not born until they arrive, and it is only by this meeting that a new world is born. ~ Anaïs Nin
+Ordinary life does not interest me. I seek only the high moments. I am in accord with the surrealists, searching for the marvelous. ~ Anaïs Nin
+We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another. ~ Anaïs Nin
+There are very few human beings who receive the truth, complete and staggering, by instant illumination. Most of them acquire it fragment by fragment, on a small scale, by successive developments, cellularly, like a laborious mosaic. ~ Anaïs Nin
+Anxiety is love's greatest killer. It makes one feel as you might when a drowning man holds unto you. You want to save him, but you know he will strangle you with his panic. ~ Anaïs Nin
+I write emotional algebra. ~ Anaïs Nin
+We write to taste life twice, in the moment, and in retrospection. ~ Anaïs Nin
+To write is to descend, to excavate, to go underground. ~ Anaïs Nin
+I am in a beautiful prison from which I can only escape by writing. ~ Anaïs Nin
+My diary is a mirror telling the story of a dreamer who, a long long time ago went through life the way one reads a book. ~ Anaïs Nin
+The poet is one who is able to keep the fresh vision of the child alive. ~ Anaïs Nin
+The final lesson a writer learns is that everything can nourish the writer. The dictionary, a new word, a voyage, an encounter, a talk on the street, a book, a phrase learned. ~ Anaïs Nin
+I have the right to love many people at once and to change my prince often. ~ Anaïs Nin
+What I cannot love, I overlook. ~ Anaïs Nin
+Dreams are necessary to life. ~ Anaïs Nin
+Dreams have helped me to live. ~ Anaïs Nin
+Eroticism is one of the basic means of self-knowledge, as indispensible as poetry. ~ Anaïs Nin
+We don't have a language for the senses. Feelings are images, sensations are like musical sounds. ~ Anaïs Nin
+The body is an instrument which only gives off music when it is used as a body. Always an orchestra, and just as music traverses walls, so sensuality traverses the body and reaches up to ecstasy. ~ Anaïs Nin
+Jazz is the music of the body. ~ Anaïs Nin
+Don't let one cloud obliterate the whole sky. ~ Anaïs Nin
+Love never dies a natural death. It dies because we don't know how to replenish its source. It dies of blindness and errors and betrayals. It dies of illness and wounds; it dies of weariness, of witherings, of tarnishings. ~ Anaïs Nin
+I postpone death by living, by suffering, by error, by risking, by giving, by loving. ~ Anaïs Nin
 The true face of the unions is not now a man in a hard hat as much as it is a woman in a classroom or in cleaning smocks. ~ Karen Nussbaum
 If we continue the way we are going, market forces will not solve the pay gap until 2050. That means my youngest daughter's youngest daughter can expect equal pay. ~ Karen Nussbaum
 Every individual is capable of extraordinary things, but no one can accomplish anything by themselves. Working women should count, but the only way we'll make that true is if we work together. ~ Karen Nussbaum
@@ -1527,8 +1524,8 @@ My grandfather once told me that there were two kinds of people: those who do th
 Martyrdom does not end something, it is only a beginning. ~ Indira Gandhi
 You cannot shake hands with a clenched fist. ~ Indira Gandhi
 There are moments in history when brooding tragedy and its dark shadows can be lightened by recalling great moments of the past. ~ Indira Gandhi
-There exists no politician in India daring enough to attempt to explain to the masses that cows can be eaten.  ~ Indira Gandhi
-I would say our greatest achievement is to have survived as a free and democratic nation.
+There exists no politician in India daring enough to attempt to explain to the masses that cows can be eaten. ~ Indira Gandhi
+I would say our greatest achievement is to have survived as a free and democratic nation. ~ Indira Gandhi
 I don't mind if my life goes in the service of the nation. If I die today every drop of my blood will invigorate the nation. (said the night before she was assassinated) ~ Indira Gandhi
 To bear many children is considered not only a religious blessing but also an investment. The greater their number, some Indians reason, the more alms they can beg. ~ Indira Gandhi
 The greatest danger to our future is apathy. ~ Jane Goodall
@@ -1547,15 +1544,15 @@ Change happens by listening and then starting a dialogue with the people who are
 We can't leave people in abject poverty, so we need to raise the standard of living for 80% of the world's people, while bringing it down considerably for the 20% who are destroying our natural resources. ~ Jane Goodall
 Anyone who tries to improve the lives of animals invariably comes in for criticism from those who believe such efforts are misplaced in a world of suffering humanity. ~ Jane Goodall
 In what terms should we think of these beings, nonhuman yet possessing so very many human-like characteristics? How should we treat them? Surely we should treat them with the same consideration and kindness as we show to other humans; and as we recognize human rights, so too should we recognize the rights of the great apes? Yes. ~ Jane Goodall
-I am a Black Feminist. I mean I recognize that my power as well as my primary oppressions come as a result of my blackness as well as my womaness, and therefore my struggles on both of these fronts are inseparable.
+I am a Black Feminist. I mean I recognize that my power as well as my primary oppressions come as a result of my blackness as well as my womaness, and therefore my struggles on both of these fronts are inseparable. ~ Audre Lorde
 For the master's tools will never dismantle the master's house. They may allow us temporarily to beat him at his own game, but they will never enable us to bring about genuine change. And this fact is only threatening to those women who still define the master's house as their only source of support. ~ Audre Lorde
 Without community, there is no liberation. ~ Audre Lorde
-When I dare to be powerful -- to use my strength in the service of my vision, then it becomes less and less important whether I am afraid.
+When I dare to be powerful -- to use my strength in the service of my vision, then it becomes less and less important whether I am afraid. ~ Audre Lorde
 I am deliberate and afraid of nothing. ~ Audre Lorde
 Who I am is what fulfills me and what fulfills the vision I have of a world. ~ Audre Lorde
 Even the smallest victory is never to be taken for granted. Each victory must be applauded. ~ Audre Lorde
 Revolution is not a onetime event. ~ Audre Lorde
-I have come to believe over and over again that what is most important to me must be spoken, made verbal and shared, even at the risk of having it bruised or misunderstood.
+I have come to believe over and over again that what is most important to me must be spoken, made verbal and shared, even at the risk of having it bruised or misunderstood. ~ Audre Lorde
 Life is very short and what we have to do must be done in the now. ~ Audre Lorde
 We are powerful because we have survived. ~ Audre Lorde
 If I didn't define myself for myself, I would be crunched into other people's fantasies for me and eaten alive. ~ Audre Lorde
@@ -1607,7 +1604,6 @@ A new idea is rarely born like Venus attended by graces. More commonly it's mode
 The real writer is one who really writes. Talent is an invention like phlogiston after the fact of fire. Work is its own cure. You have to like it better than being loved. ~ Marge Piercy
 With my poems, I finally won even my mother. The longest wooing of my life. ~ Marge Piercy
 I mourn in grey, grey as the sleeted wind the bled shades of twilight, gunmetal, battleships, industrial paint. ~ Marge Piercy
-The real writer is one who really writes. Talent is an invention like phlogiston after the fact of fire. Work is its own cure. You have to like it better than being loved. ~ Marge Piercy
 Sleeping together is a euphemism for people, but tantamount to marriage with cats. ~ Marge Piercy
 One is not born, but rather becomes, a woman. ~ Simone de Beauvoir
 Man is defined as a human being and a woman as a female - whenever she behaves as a human being she is said to imitate the male. ~ Simone de Beauvoir
@@ -1640,4 +1636,4 @@ I am one of those who think like Nobel, that humanity will draw more good than e
 There are sadistic scientists who hurry to hunt down errors instead of establishing the truth. ~ Marie Curie
 When one studies strongly radioactive substances special precautions must be taken. Dust, the air of the room, and one's clothes, all become radioactive. ~ Marie Curie
 After all, science is essentially international, and it is only through lack of the historical sense that national qualities have been attributed to it. ~ Marie Curie
-I have no dress except the one I wear every day. If you are going to be kind enough to give me one, please let it be practical and dark so that I can put it on afterwards to go to the laboratory. (about a wedding dress)  ~ Marie Curie
+I have no dress except the one I wear every day. If you are going to be kind enough to give me one, please let it be practical and dark so that I can put it on afterwards to go to the laboratory. (about a wedding dress) ~ Marie Curie
