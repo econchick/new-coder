@@ -55,6 +55,6 @@ Within your terminal:
 * Open the desired file (parse.py, graph.py, or map.py) in a text editor
 * Edit the `my_file` variable to the full path of your csv file
 * Save and return to your terminal
-*`(DataVizProject) $ python [parse.py | graph.py | map.py ]`
+* `(DataVizProject) $ python [parse.py | graph.py | map.py ]`
 
 
