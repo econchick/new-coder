@@ -1,4 +1,5 @@
-#! -*- coding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 """
 Data Visualization Project
@@ -8,40 +9,46 @@ JSON, save to a database, and visualize in graph form.
 
 Part I: Taking data from a CSV/Excel file, and return it into a format
 that is easier for Python to play with.
+
+Copyright (c) 2013 E. Lynn Root
+Distributed under the zlib png license. See LICENSE for details.
 """
 
 import csv
 
 
 # Put the full path to your CSV/Excel file here
-my_file = "/Users/lynnroot/MyDev/new-coder/dataviz/lib/data/sample_sfpd_incident_all.csv"
+MY_FILE = "../data/sample_sfpd_incident_all.csv"
 
 
 def parse(raw_file, delimiter):
-    """Parses raw CSV file to JSON-like objects"""
+    """Parses a raw CSV file to a JSON-like object"""
 
-    # open a CSV file with the appropriate delimiter (comma, tab, other char)
-    csv_data = csv.reader(open(raw_file), delimiter=delimiter)
+    # Open CSV file
+    opened_file = open(raw_file)
 
-    # set up an empty list
+    # Read CSV file
+    csv_data = csv.reader(opened_file, delimiter=delimiter)
+
+    # Setup an empty list
     parsed_data = []
 
-    # skip over the first line of the file for the headers
+    # Skip over the first line of the file for the headers
     fields = csv_data.next()
 
-    # iterate over each row of the csv file, zip together field -> value
+    # Iterate over each row of the csv file, zip together field -> value
     for row in csv_data:
-        parsed_data += [dict(zip(fields, row))]
+        parsed_data.append(dict(zip(fields, row)))
 
     return parsed_data
 
 
 def main():
     # Call our parse function and give it the needed parameters
-    parsed_data = parse(my_file, ",")
+    new_data = parse(MY_FILE, ",")
 
     # Let's see what the data looks like!
-    print parsed_data
+    print new_data
 
 
 if __name__ == "__main__":
