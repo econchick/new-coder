@@ -39,7 +39,8 @@ Just to show the ease of virtualenv and virtualenvwrapper:
 * `(DataVizProject) $ deactivate` You've deactivated your virtual environment. You will not have access to those packages we've downloaded until we reactivate the virtual environment again.
 * `$ workon DataVizProject` The virtual environment now is reactivated. The packages you previously installed are now accessible. You should see (DataVizProject) before your prompt again.
 * `(DataVizProject) $ pip freeze` This will show you the installed packages in this virtual environment.
-* **Don't forget** to [deactivate](#virtual-env-practice) your virtual environment after you're all done!
+
+**Don't forget** to [deactivate](#virtual-env-practice) your virtual environment after you're all done!
 
 #### Full Source
 Within your terminal:
