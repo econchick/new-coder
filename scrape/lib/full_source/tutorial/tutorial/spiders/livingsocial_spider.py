@@ -34,7 +34,14 @@ class LivingSocialSpider(BaseSpider):
                    'price': './/a/div[@class="bd"]/p[@class="meta"]/span[@class="price"]/text()'}
 
     def parse(self, response):
-        """Default callback used by Scrapy to process downloaded responses"""
+        """
+        Default callback used by Scrapy to process downloaded responses
+
+        Testing contracts:
+        @url http://www.livingsocial.com/cities/1719-newyork-citywide
+        @returns items 1 
+        @scrapes title link
+        """
         hxs = HtmlXPathSelector(response)
 
         # iterate over deals

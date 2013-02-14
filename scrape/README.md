@@ -11,6 +11,11 @@ Within your terminal:
 * Edit settings.py and set your database settings
 * `(WebScraperProj) $ scrapy crawl livingsocial`
 
+#### Running tests
+Within your terminal:
+
+* `(WebScraperProj) $ cd new-coder/scrape/lib/full_source/tutorial/tutorial`
+* `(WebScraperProj) $ scrapy check livingsocial`
 
 ### TODOs
 * write code.
