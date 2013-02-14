@@ -12,11 +12,12 @@ Direct run will create the table.
 
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
-from  sqlalchemy.engine.url import URL
+from sqlalchemy.engine.url import URL
 import settings
 
 
 DeclarativeBase = declarative_base()
+
 
 def db_connect():
     """
@@ -24,6 +25,7 @@ def db_connect():
     Returns sqlalchemy engine instance
     """
     return create_engine(URL(**settings.DATABASE))
+
 
 def create_deals_table(engine):
     """"""

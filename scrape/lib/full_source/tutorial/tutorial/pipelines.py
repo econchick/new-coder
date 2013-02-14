@@ -16,7 +16,10 @@ from models import Deals, db_connect, create_deals_table
 class LivingSocialPipeline(object):
     """Livingsocial pipeline for storing scraped items in the database"""
     def __init__(self):
-        """Initializes database connection and sessionmaker, creates deals table"""
+        """
+           Initializes database connection and sessionmaker, 
+           creates deals table
+        """
         engine = db_connect()
         create_deals_table(engine)
         self.Session = sessionmaker(bind=engine)
