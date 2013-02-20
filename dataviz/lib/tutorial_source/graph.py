@@ -28,7 +28,7 @@ def parse(raw_file, delimiter):
     parsed_data = []
     fields = csv_data.next()
     for row in csv_data:
-        parsed_data += [dict(zip(fields, row))]
+        parsed_data.append(dict(zip(fields, row)))
 
     return parsed_data
 
