@@ -376,7 +376,7 @@ def visualize_days():
     #in the parsed data, and count how many incidents happen on each day of the week
     counter = Counter(item["DayOfWeek"] for item in data_file)
 ```
-7. Notice, within Counter(...) we have an interesting loop construct, `item ["DayOfWeek"] for item in data_file`. This is called a list comprehension. You can read it as, "count every dictionary value of every dictionary key set to 'DayOfWeek' for every line item in data_file." 
+7. Notice, within Counter(...) we have an interesting loop construct, `item ["DayOfWeek"] for item in data_file`. This is called a list comprehension. You can read it as, "count every dictionary value of every dictionary key set to 'DayOfWeek' for every line item in data_file." A list comprehension just a for-loop put in a more elegant, "Pythonic" way. **Challenge yourself:** write out a for-loop for our `counter` variable.
 
 ##### Visualize Type Function
 
