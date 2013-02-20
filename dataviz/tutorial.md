@@ -190,7 +190,10 @@ So you've written the parse function and your `parse.py` file looks like [mine](
 6. The output from the `(DataVizProject) $ python parse.py` should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn't have to be exact data, but the structure of {"key": "value"} should look familiar):
 
 ```
-	'ARRESTED, BOOKED'},{'Category': 'OTHER OFFENSES', 'IncidntNum': '030204238', 'DayOfWeek': 'Tuesday', 'Descript': 'OBSCENE PHONE CALLS(S)', 'PdDistrict': 'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': '18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
+	'ARRESTED, BOOKED'},{'Category': 'OTHER OFFENSES', 'IncidntNum': '030204238',
+	'DayOfWeek': 'Tuesday', 'Descript': 'OBSCENE PHONE CALLS(S)', 'PdDistrict':
+	'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': 
+	'18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
 ```
 7. You see this output because in the ` def main()` function, you explicitly say `print new_data` which feeds to the output of the Terminal. You could, for instance, not print the `new_data` variable, and just pass the `new_data` variable to another function. Coincidently, that's what [Part II](#part-ii-graphing) and [Part III](#part-iii-map-plotting) are about!
 
@@ -198,6 +201,7 @@ So you've written the parse function and your `parse.py` file looks like [mine](
 
 Play around with parse.py within your Python interpreter itself:
 1. Make sure you're in your `MySourceFiles` directory, then start the Python interpreter from there:
+
 ```bash
 	(DataVizProject) $ python
 	Python 2.7.2 (default, Jun 20 2012, 16:23:33)
@@ -205,13 +209,17 @@ Play around with parse.py within your Python interpreter itself:
 	Type "help", "copyright", "credits" or "license" for more information.
 	>>>
 ```
+
 2. Next, import your parse.py file into the interpreter. Notice there is no need to include the .py portion when importing:
+
 ```bash
 	>>> import parse
 	>>>
 ```
+
 3. If all things go well with `import parse` you should just see the `>>>` prompt. If there's an error, perhaps you are not in the correct directory from two steps ago.
 4. Play with the following commands. Notice to access any object defined in parse.py (object meaning a variable, function, etc), you must preface it with `parse`:
+
 ```bash
 	>>> parse.MY_FILE
 	'../data/sample_sfpd_incident_all.csv'
@@ -223,7 +231,9 @@ Play around with parse.py within your Python interpreter itself:
 	>>> type(copy_my_file)
 	<type: 'str'>
 ```
+
 5. So we made a what seems like a copy. Not so! check it out:
+
 ```bash
 	>>> id(copy_my_file)
 	4404350288
@@ -231,9 +241,11 @@ Play around with parse.py within your Python interpreter itself:
 	4404350288
 	>>>
 ```
+
 6. Those numbers from calling the `id()` function reflect where the variable is saved in the computer's memory.  Since they are the _same_ number, Python has set up a pointer from copy_my_file to the same location that parse.MY_FILE was saved. No need to allocate new memory for the same variable.
 
 7. Let's play with the parser function a bit:
+
 ```bash
 	>>> new_data = parse.parse(copy_my_file, ",")
 	>>> type(new_data)
@@ -257,6 +269,7 @@ Play around with parse.py within your Python interpreter itself:
 	OBSCENE PHONE CALLS(S)
 	>>>
 ```
+
 8. Here we checked ot the type of data that gets returned back to use from the parse function, as well as ways to simply check out what is the contents of the parsed data.
 9. You can continue to play around; try `>>> help(parse.parse)` to see our docstring, see what happens if you feed the parse function a different file, delimiter, or just a different variable. Challenge yourself to see if you can create a new file to save the parsed data, rather than just a variable.  The example in the [python docs](http://docs.python.org/2/library/stdtypes.html#file.close) may help.
 
