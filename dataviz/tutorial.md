@@ -170,27 +170,27 @@ it will call the `main()` function. By doing the name == main check, you can hav
 So you've written the parse function and your `parse.py` file looks like [mine](https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py). Now what?  Let's run it and parse some d*mn files!
 1. Be sure to have your virtualenv activated that you created earlier in [setup](#setup). Your terminal prompt should look something like this:
 ```bash
-(DataVizProject) $
+	(DataVizProject) $
 ```
 2. Within the `new-coder/dataviz/lib/` directory, let's make a directory for the python files you are writing with the bash command `mkdir <Directory_Name>`. The `ls` command will show you the list of what the current directory (new-coder/dataviz/lib/) contains, and should show your new directory.  The `pwd` command shows you where exactly you are in the terminal (your path may be different). Finally, `cd` into your new directory:
 ```bash
-(DataVizProject) $ mkdir MySourceFiles
-(DataVizProject) $ ls
-data    full_source    MySourceFiles    tutorial_source
-(DataVizProject) $ pwd
-Users/lynnroot/MyProjects/new-coder/dataviz/lib
-(DataVizProject) $ cd MySourceFiles
+	(DataVizProject) $ mkdir MySourceFiles
+	(DataVizProject) $ ls
+	data    full_source    MySourceFiles    tutorial_source
+	(DataVizProject) $ pwd
+	Users/lynnroot/MyProjects/new-coder/dataviz/lib
+	(DataVizProject) $ cd MySourceFiles
 ```
 3. Go ahead and save your copy of parse.py into MySourceFiles (through Save As within your text editor). You should see the file in the directory if you return to your Terminal and type `ls`.
 4. To run the python code, you have to tell the Terminal to execute the parse.py file with python:
 ```bash
-(DataVizProject) $ python parse.py
+	(DataVizProject) $ python parse.py
 ```
 5. If you got a Traceback, or an error message, compare your parse.py file with new-coder/dataviz/lib/tutorial_source/parse.py. Perhaps a typo, or perhaps you don't have your virtualenv setup.
 6. The output from the `(DataVizProject) $ python parse.py` should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn't have to be exact data, but the structure of {"key": "value"} should look familiar):
 
 ```
-'ARRESTED, BOOKED'},{'Category': 'OTHER OFFENSES', 'IncidntNum': '030204238', 'DayOfWeek': 'Tuesday', 'Descript': 'OBSCENE PHONE CALLS(S)', 'PdDistrict': 'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': '18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
+	'ARRESTED, BOOKED'},{'Category': 'OTHER OFFENSES', 'IncidntNum': '030204238', 'DayOfWeek': 'Tuesday', 'Descript': 'OBSCENE PHONE CALLS(S)', 'PdDistrict': 'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': '18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
 ```
 7. You see this output because in the ` def main()` function, you explicitly say `print new_data` which feeds to the output of the Terminal. You could, for instance, not print the `new_data` variable, and just pass the `new_data` variable to another function. Coincidently, that's what [Part II](#part-ii-graphing) and [Part III](#part-iii-map-plotting) are about!
 
@@ -199,63 +199,63 @@ Users/lynnroot/MyProjects/new-coder/dataviz/lib
 Play around with parse.py within your Python interpreter itself:
 1. Make sure you're in your `MySourceFiles` directory, then start the Python interpreter from there:
 ```bash
-(DataVizProject) $ python
-Python 2.7.2 (default, Jun 20 2012, 16:23:33)
-[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>>
+	(DataVizProject) $ python
+	Python 2.7.2 (default, Jun 20 2012, 16:23:33)
+	[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+	Type "help", "copyright", "credits" or "license" for more information.
+	>>>
 ```
 2. Next, import your parse.py file into the interpreter. Notice there is no need to include the .py portion when importing:
 ```bash
->>> import parse
->>>
+	>>> import parse
+	>>>
 ```
 3. If all things go well with `import parse` you should just see the `>>>` prompt. If there's an error, perhaps you are not in the correct directory from two steps ago.
 4. Play with the following commands. Notice to access any object defined in parse.py (object meaning a variable, function, etc), you must preface it with `parse`:
 ```bash
->>> parse.MY_FILE
-'../data/sample_sfpd_incident_all.csv'
->>> type(parse.MY_FILE)
-<type: 'str'>
->>> copy_my_file = parse.MY_FILE
->>> copy_my_file
-'../data/sample_sfpd_incident_all.csv'
->>> type(copy_my_file)
-<type: 'str'>
+	>>> parse.MY_FILE
+	'../data/sample_sfpd_incident_all.csv'
+	>>> type(parse.MY_FILE)
+	<type: 'str'>
+	>>> copy_my_file = parse.MY_FILE
+	>>> copy_my_file
+	'../data/sample_sfpd_incident_all.csv'
+	>>> type(copy_my_file)
+	<type: 'str'>
 ```
 5. So we made a what seems like a copy. Not so! check it out:
 ```bash
->>> id(copy_my_file)
-4404350288
->>> id(parse.MY_FILE)
-4404350288
->>>
+	>>> id(copy_my_file)
+	4404350288
+	>>> id(parse.MY_FILE)
+	4404350288
+	>>>
 ```
 6. Those numbers from calling the `id()` function reflect where the variable is saved in the computer's memory.  Since they are the _same_ number, Python has set up a pointer from copy_my_file to the same location that parse.MY_FILE was saved. No need to allocate new memory for the same variable.
 
 7. Let's play with the parser function a bit:
 ```bash
->>> new_data = parse.parse(copy_my_file, ",")
->>> type(new_data)
-<type: 'list'>
->>> type(new_data[0])
-<type: 'dict'>
->>> type(new_data[0]["DayOfWeek"])
-<type: 'str'>
->>> new_data[0].keys()
-['Category', 'IncidntNum', 'DayOfWeek', 'Descript', 'PdDistrict', 'Y', 'Location', 'Time', 'Date', 'X', 'Resolution']
->>> new_data[0].values()
-['FRAUD', '030203898', 'Tuesday', 'FORGERY, CREDIT CARD', 'NORTHERN', '37.8014488257836', '2800 Block of VAN NESS AV', '16:30', '02/18/2003', '-122.424612993055', 'NONE']
->>> for dict_item in new_data:
-...   print dict_item["Descript"]
-...
-DRIVERS LICENSE, SUSPENDED OR REVOKED
-LOST PROPERTY
-POSS OF LOADED FIREARM
-<--snip-->
-BATTERY
-OBSCENE PHONE CALLS(S)
->>>
+	>>> new_data = parse.parse(copy_my_file, ",")
+	>>> type(new_data)
+	<type: 'list'>
+	>>> type(new_data[0])
+	<type: 'dict'>
+	>>> type(new_data[0]["DayOfWeek"])
+	<type: 'str'>
+	>>> new_data[0].keys()
+	['Category', 'IncidntNum', 'DayOfWeek', 'Descript', 'PdDistrict', 'Y', 'Location', 'Time', 'Date', 'X', 'Resolution']
+	>>> new_data[0].values()
+	['FRAUD', '030203898', 'Tuesday', 'FORGERY, CREDIT CARD', 'NORTHERN', '37.8014488257836', '2800 Block of VAN NESS AV', '16:30', '02/18/2003', '-122.424612993055', 'NONE']
+	>>> for dict_item in new_data:
+	...   print dict_item["Descript"]
+	...
+	DRIVERS LICENSE, SUSPENDED OR REVOKED
+	LOST PROPERTY
+	POSS OF LOADED FIREARM
+	<--snip-->
+	BATTERY
+	OBSCENE PHONE CALLS(S)
+	>>>
 ```
 8. Here we checked ot the type of data that gets returned back to use from the parse function, as well as ways to simply check out what is the contents of the parsed data.
 9. You can continue to play around; try `>>> help(parse.parse)` to see our docstring, see what happens if you feed the parse function a different file, delimiter, or just a different variable. Challenge yourself to see if you can create a new file to save the parsed data, rather than just a variable.  The example in the [python docs](http://docs.python.org/2/library/stdtypes.html#file.close) may help.
