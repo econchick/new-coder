@@ -173,6 +173,7 @@ So you've written the parse function and your `parse.py` file looks like [mine](
 	(DataVizProject) $
 ```
 2. Within the `new-coder/dataviz/lib/` directory, let's make a directory for the python files you are writing with the bash command `mkdir <Directory_Name>`. The `ls` command will show you the list of what the current directory (new-coder/dataviz/lib/) contains, and should show your new directory.  The `pwd` command shows you where exactly you are in the terminal (your path may be different). Finally, `cd` into your new directory:
+
 ```bash
 	(DataVizProject) $ mkdir MySourceFiles
 	(DataVizProject) $ ls
@@ -181,11 +182,14 @@ So you've written the parse function and your `parse.py` file looks like [mine](
 	Users/lynnroot/MyProjects/new-coder/dataviz/lib
 	(DataVizProject) $ cd MySourceFiles
 ```
+
 3. Go ahead and save your copy of parse.py into MySourceFiles (through Save As within your text editor). You should see the file in the directory if you return to your Terminal and type `ls`.
 4. To run the python code, you have to tell the Terminal to execute the parse.py file with python:
+
 ```bash
 	(DataVizProject) $ python parse.py
 ```
+
 5. If you got a Traceback, or an error message, compare your parse.py file with new-coder/dataviz/lib/tutorial_source/parse.py. Perhaps a typo, or perhaps you don't have your virtualenv setup.
 6. The output from the `(DataVizProject) $ python parse.py` should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn't have to be exact data, but the structure of {"key": "value"} should look familiar):
 
@@ -195,6 +199,7 @@ So you've written the parse function and your `parse.py` file looks like [mine](
 	'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': 
 	'18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
 ```
+
 7. You see this output because in the ` def main()` function, you explicitly say `print new_data` which feeds to the output of the Terminal. You could, for instance, not print the `new_data` variable, and just pass the `new_data` variable to another function. Coincidently, that's what [Part II](#part-ii-graphing) and [Part III](#part-iii-map-plotting) are about!
 
 #### Explore further
