@@ -25,6 +25,7 @@ Within your terminal
 * `$ mkdir Projects && cd Projects` to create a new 'Projects' folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.
 * `$ git clone https://github.com/econchick/new-coder.git` This clones the New Coder project into the directory you're currently in, which is Projects (unless you named it something else).
 * `$ cd new-coder/dataviz` Change into the Data Viz project.
+* Make sure you've installed [virtualenv-wrapper](http://pypi.python.org/pypi/virtualenvwrapper) and followed the steps above from [Initial Requirements](#initial-requirements) to set up your Terminal correctly.  More information can be find at virtualenv-wrapper's [docs](http://virtualenvwrapper.readthedocs.org/en/latest/).
 * `$ mkvirtualenv DataVizProj` Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.
 * `(DataVizProject) $ pip install -r requirements.txt` Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.
 
@@ -164,3 +165,195 @@ if __name__ == "__main__":
 		main()
 ```
 it will call the `main()` function. By doing the name == main check, you can have that code only execute when you want to run the module as a program (via the command line) and not have it execute when someone just wants to import the `parse()` function itself.
+
+#### Putting it to action
+So you've written the parse function and your `parse.py` file looks like [mine](https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py). Now what?  Let's run it and parse some d*mn files!
+1. Be sure to have your virtualenv activated that you created earlier in [setup](#setup). Your terminal prompt should look something like this:
+```bash
+(DataVizProject) $
+```
+2. Within the `new-coder/dataviz/lib/` directory, let's make a directory for the python files you are writing with the bash command `mkdir <Directory_Name>`. The `ls` command will show you the list of what the current directory (new-coder/dataviz/lib/) contains, and should show your new directory.  The `pwd` command shows you where exactly you are in the terminal (your path may be different). Finally, `cd` into your new directory:
+```bash
+(DataVizProject) $ mkdir MySourceFiles
+(DataVizProject) $ ls
+data    full_source    MySourceFiles    tutorial_source
+(DataVizProject) $ pwd
+Users/lynnroot/MyProjects/new-coder/dataviz/lib
+(DataVizProject) $ cd MySourceFiles
+```
+3. Go ahead and save your copy of parse.py into MySourceFiles (through Save As within your text editor). You should see the file in the directory if you return to your Terminal and type `ls`.
+4. To run the python code, you have to tell the Terminal to execute the parse.py file with python:
+```bash
+(DataVizProject) $ python parse.py
+```
+5. If you got a Traceback, or an error message, compare your parse.py file with new-coder/dataviz/lib/tutorial_source/parse.py. Perhaps a typo, or perhaps you don't have your virtualenv setup.
+6. The output from the `(DataVizProject) $ python parse.py` should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn't have to be exact data, but the structure of {"key": "value"} should look familiar):
+
+```
+'ARRESTED, BOOKED'},{'Category': 'OTHER OFFENSES', 'IncidntNum': '030204238', 'DayOfWeek': 'Tuesday', 'Descript': 'OBSCENE PHONE CALLS(S)', 'PdDistrict': 'PARK', 'Y': '37.7773636900243', 'Location': '800 Block of CENTRAL AV', 'Time': '18:59', 'Date': '02/18/2003', 'X': '-122.445006858202', 'Resolution': 'NONE'}]
+```
+7. You see this output because in the ` def main()` function, you explicitly say `print new_data` which feeds to the output of the Terminal. You could, for instance, not print the `new_data` variable, and just pass the `new_data` variable to another function. Coincidently, that's what [Part II](#part-ii-graphing) and [Part III](#part-iii-map-plotting) are about!
+
+#### Explore further
+
+Play around with parse.py within your Python interpreter itself:
+1. Make sure you're in your `MySourceFiles` directory, then start the Python interpreter from there:
+```bash
+(DataVizProject) $ python
+Python 2.7.2 (default, Jun 20 2012, 16:23:33)
+[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+2. Next, import your parse.py file into the interpreter. Notice there is no need to include the .py portion when importing:
+```bash
+>>> import parse
+>>>
+```
+3. If all things go well with `import parse` you should just see the `>>>` prompt. If there's an error, perhaps you are not in the correct directory from two steps ago.
+4. Play with the following commands. Notice to access any object defined in parse.py (object meaning a variable, function, etc), you must preface it with `parse`:
+```bash
+>>> parse.MY_FILE
+'../data/sample_sfpd_incident_all.csv'
+>>> type(parse.MY_FILE)
+<type: 'str'>
+>>> copy_my_file = parse.MY_FILE
+>>> copy_my_file
+'../data/sample_sfpd_incident_all.csv'
+>>> type(copy_my_file)
+<type: 'str'>
+```
+5. So we made a what seems like a copy. Not so! check it out:
+```bash
+>>> id(copy_my_file)
+4404350288
+>>> id(parse.MY_FILE)
+4404350288
+>>>
+```
+6. Those numbers from calling the `id()` function reflect where the variable is saved in the computer's memory.  Since they are the _same_ number, Python has set up a pointer from copy_my_file to the same location that parse.MY_FILE was saved. No need to allocate new memory for the same variable.
+
+7. Let's play with the parser function a bit:
+```bash
+>>> new_data = parse.parse(copy_my_file, ",")
+>>> type(new_data)
+<type: 'list'>
+>>> type(new_data[0])
+<type: 'dict'>
+>>> type(new_data[0]["DayOfWeek"])
+<type: 'str'>
+>>> new_data[0].keys()
+['Category', 'IncidntNum', 'DayOfWeek', 'Descript', 'PdDistrict', 'Y', 'Location', 'Time', 'Date', 'X', 'Resolution']
+>>> new_data[0].values()
+['FRAUD', '030203898', 'Tuesday', 'FORGERY, CREDIT CARD', 'NORTHERN', '37.8014488257836', '2800 Block of VAN NESS AV', '16:30', '02/18/2003', '-122.424612993055', 'NONE']
+>>> for dict_item in new_data:
+...   print dict_item["Descript"]
+...
+DRIVERS LICENSE, SUSPENDED OR REVOKED
+LOST PROPERTY
+POSS OF LOADED FIREARM
+<--snip-->
+BATTERY
+OBSCENE PHONE CALLS(S)
+>>>
+```
+8. Here we checked ot the type of data that gets returned back to use from the parse function, as well as ways to simply check out what is the contents of the parsed data.
+9. You can continue to play around; try `>>> help(parse.parse)` to see our docstring, see what happens if you feed the parse function a different file, delimiter, or just a different variable. Challenge yourself to see if you can create a new file to save the parsed data, rather than just a variable.  The example in the [python docs](http://docs.python.org/2/library/stdtypes.html#file.close) may help.
+
+### Part II: Graphing
+
+**Module Location:** `new-coder/dataviz/lib/tutorial_source/graph.py`
+
+#### Module Setup
+
+- Simililar as before, when you upoen up `graph.py`, you'll see the language and encoding setup, as well as an introduction to the module itself. 
+- [Lines 14 - 18](https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/graph.py#14) are the libraries we import. Notice how the import statements are in alphabetical order. The general rule of ordering imports, in alphabetical order:
+	1. Standard Library modules
+	2. External/third party packages/modules
+	3. Internal/self-written modules
+
+#### Review: Parse Function
+
+- Once again, you see the `MY_FILE` as a global variable that points to the sample data file that's included in the repository. 
+- In a quick review of [Part I: Parse](#the-parse-function) - tutorial comments removed - we see that the `parse()` function still takes in two parameters: `raw_file` and `delimiter`. The process of the `parse()` function is as follows:
+	1. Open the raw file.
+	2. Read the CSV file with the appropriate delimiter.
+	3. Initialize an empty list which will be returned by the function.
+	4. Grab the first row of the CSV file, the headers/column names, and assign them to the `fields` variable, which will be a list.
+	5. Iterate over each row in the CSV file, mapping column headers -> row values, and add to our list we initialized in step 3.
+	6. Return the `parsed_data` variable.
+
+#### Visualize Functions
+Let's first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we're working with:
+
+```JSON
+	{
+	'Category'   : 'ASSAULT', 
+	'IncidntNum' : '030204181', 
+	'DayOfWeek'  : 'Tuesday', 
+	'Descript'   : 'BATTERY', 
+	'PdDistrict' : 'CENTRAL', 
+	'Y'          : '37.7981847618287', 
+	'Location'   : '300 Block of COLUMBUS AV', 
+	'Time'       : '18:15', 
+	'Date'       : '02/18/2003', 
+	'X'          : '-122.407069627873', 
+	'Resolution' : 'ARREST, BOOKED'
+	},
+```
+
+By looking at a snippet of data, we can understand how we can play/visualize it.  The kind of data we are working with is where one entry equals an incident that the San Francisco Police recorded. The following two functions are just two ways of playing with the data, but note that these functions are specific to _our_ data.
+
+**Disclaimer**: As with understanding statistics, correlation does _not_ mean causation.  This is a small sample size, not current, and it's from the point of view of officers reporting incidents.  Take everything with a grain of salt!
+
+##### Visualize Days Function
+1. As we read from the docstring, this will give us a visualization of data by the day of the week.  For instance, are SF policy officers more likely to file incidents on Monday versus a Tuesday? Or, tongue-in-cheek, should you stay in your house Friday night versus Sunday morning?
+2. You'll also notice that the `def visualize_days()` function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: `def visualize_days(parsed_data)`.
+3. Let's walk through this function like we did the parse function.  Below is the walk through of comments for the code that we will want to write:
+```python
+def visualize_days():
+    """Visualize data by day of week"""
+    # grab our parsed data that we parsed earlier
+
+    # make a new variable, 'counter', from iterating through each line of data in the parsed data, and count how many incidents happen on each day of the week
+
+    # separate the x-axis data (the days of the week) from the 'counter' variable from the y-axis data (the number of incidents for each day)
+
+    # with that y-axis data, assign it to a matplotlib plot instance
+
+    # make a tuple of labels to be assigned to the x-axis
+
+    # create the amount of ticks needed for our x-axis, and assign the tuple from earlier for labeling the x-axis
+
+    # show the plot!
+```
+4. Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Like so:
+```python
+def visualize_days():
+    """Visualize data by day of week"""
+    # grab our parsed data that we parsed earlier
+    data_file = parse(MY_FILE, ",")
+```
+5. Notice how we assign data_file to our parse function, and the parameters we feed through our parse functions are `MY_FILE` and a comma-delimiter. Because we know the parse function returns `parsed_data`, we can expect that `data_file` will be that exact return value.
+6. This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported Counter from the module, collections. This is demonstrative of Python's powerful standard library. Here, Counter behaves very similarly to Python's dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our `data_file` variable (since it's just a list of dictionaries) by "DayOfWeek". What the Counter does is everytime it sees the "DayOfWeek" key set to a value of "Monday", it will give it a tally; same with "DayOfWeek" key set to "Tuesday", etc. This works great for very well structured data.
+
+```python
+def visualize_days():
+    """Visualize data by day of week"""
+    # grab our parsed data that we parsed earlier
+    data_file = parse(MY_FILE, ",")
+    # make a new variable, 'counter', from iterating through each line of data
+    #in the parsed data, and count how many incidents happen on each day of the week
+    counter = Counter(item["DayOfWeek"] for item in data_file)
+```
+7. Notice, w
+
+##### Visualize Type Function
+
+### Part III: Map Plotting
+
+### Extended
+
+#### Real-life Usage
+
+#### Where to go from here
