@@ -148,6 +148,9 @@ def parse(raw_file, delimiter):
 
 	    return parsed_data
 ```
+
+**TODO** Add clearer text of what `parsed_data.append(dict(zip(fields, row)))` does. Remove the magic! :D
+
 #### Using the new Parse function
 Let's define a `main()` function to call our new `parse()` function:
 ```python
@@ -289,6 +292,11 @@ Play around with parse.py within your Python interpreter itself:
 	1. Standard Library modules
 	2. External/third party packages/modules
 	3. Internal/self-written modules
+- When importing, we can also give the object we're importing whatever name we want because we're lazy programmers. When we `import matplotlib.pyplot as plt` we're essentially renaming the `pyplot` object (which FYI is `<type: 'module'>`) of `matplotlib` as `plt`. You don't have to name it plt, but it's a handy trick when you want to access different objects that the `pyplot` module has, as you'll see later.
+
+#### Intro to numpy & matplotlib
+
+**TODO**
 
 #### Review: Parse Function
 
@@ -300,11 +308,12 @@ Play around with parse.py within your Python interpreter itself:
 	4. Grab the first row of the CSV file, the headers/column names, and assign them to the `fields` variable, which will be a list.
 	5. Iterate over each row in the CSV file, mapping column headers -> row values, and add to our list we initialized in step 3.
 	6. Return the `parsed_data` variable.
+- We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
 
 #### Visualize Functions
 Let's first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we're working with:
 
-```JSON
+```bash
 	{
 	'Category'   : 'ASSAULT', 
 	'IncidntNum' : '030204181', 
@@ -345,15 +354,18 @@ def visualize_days():
 
     # show the plot!
 ```
-4. Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Like so:
+4. Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our `graph.py` file so we can easily access it's parsing-abilities! Like so:
+
 ```python
 def visualize_days():
     """Visualize data by day of week"""
     # grab our parsed data that we parsed earlier
     data_file = parse(MY_FILE, ",")
 ```
+
 5. Notice how we assign data_file to our parse function, and the parameters we feed through our parse functions are `MY_FILE` and a comma-delimiter. Because we know the parse function returns `parsed_data`, we can expect that `data_file` will be that exact return value.
-6. This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported Counter from the module, collections. This is demonstrative of Python's powerful standard library. Here, Counter behaves very similarly to Python's dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our `data_file` variable (since it's just a list of dictionaries) by "DayOfWeek". What the Counter does is everytime it sees the "DayOfWeek" key set to a value of "Monday", it will give it a tally; same with "DayOfWeek" key set to "Tuesday", etc. This works great for very well structured data.
+
+6. This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported Counter from the module `collections`. This is demonstrative of Python's powerful standard library. Here, Counter behaves very similarly to Python's dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our `data_file` variable (since it's just a list of dictionaries), grabbing each key labelled "DayOfWeek". What the Counter does is everytime it sees the "DayOfWeek" key set to a value of "Monday", it will give it a tally; same with "DayOfWeek" key set to "Tuesday", etc. This works great for very well structured data.
 
 ```python
 def visualize_days():
@@ -364,7 +376,7 @@ def visualize_days():
     #in the parsed data, and count how many incidents happen on each day of the week
     counter = Counter(item["DayOfWeek"] for item in data_file)
 ```
-7. Notice, w
+7. Notice, within Counter(...) we have an interesting loop construct, `item ["DayOfWeek"] for item in data_file`. This is called a list comprehension. You can read it as, "count every dictionary value of every dictionary key set to 'DayOfWeek' for every line item in data_file." 
 
 ##### Visualize Type Function
 
