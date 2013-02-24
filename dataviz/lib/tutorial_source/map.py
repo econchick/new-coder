@@ -14,34 +14,21 @@ format. The last function then uses these to helper-functions to create
 a KML file for upload.
 """
 
-import csv
 import xml.dom.minidom
 
-
-my_file = "/Users/lynnroot/MyDev/new-coder/dataviz/lib/data/sample_sfpd_incident_all.csv"
-
-
-def parse(raw_file, delimiter):
-    """Parses raw CSV file to JSON-like objects"""
-    csv_data = csv.reader(open(raw_file), delimiter=delimiter)
-    parsed_data = []
-    fields = csv_data.next()
-    for row in csv_data:
-        parsed_data += [dict(zip(fields, row))]
-
-    return parsed_data
+import parse as p
 
 
 def create_document(title, description=''):
     """Create the overall KML document."""
 
-    # Initial XML doc
+    # Initialization of an XML doc
     doc = xml.dom.minidom.Document()
 
-    # Define as a KML-type XML talk
+    # Define as a KML-type XML doc
     kml = doc.createElement('kml')
 
-    # Pull in common attributes
+    # Pull in common attributes and set it for our doc
     kml.setAttribute('xmlns', 'http://www.opengis.net/kml/2.2')
     doc.appendChild(kml)
 
@@ -95,7 +82,7 @@ def create_gmap(data_file):
     upload the file and see the data.
     """
 
-    # Initialize a new KML doc with our previously-defined
+    # Create a new KML doc with our previously-defined
     # create_document() function
     kml_doc = create_document("Crime map", "Plots of Recent SF Crime")
 
@@ -106,16 +93,18 @@ def create_gmap(data_file):
     # Iterate over our data to create KML document
     for line in data_file:
         # Parses the data into a dictionary
-        coordinates = {'longitude': line['X'], 'latitude': line['Y'],
-                       'name': line['Category'], 'description':
-                       line['Descript'], 'date': line['Date']}
+        placemark_info = {'longitude': line['X'],
+                       'latitude': line['Y'],
+                       'name': line['Category'],
+                       'description': line['Descript'],
+                       'date': line['Date']}
 
         # Avoid null values for lat/long
-        if coordinates['longitude'] == "0":
+        if placemark_info['longitude'] == "0":
             continue
 
         # Calls create_placemark() to parse line of data into KML-format
-        placemark = create_placemark(coordinates)
+        placemark = create_placemark(placemark_info)
 
         # Adds the placemark we just created to the KML doc
         document.appendChild(placemark.documentElement)
@@ -127,7 +116,7 @@ def create_gmap(data_file):
 
 
 def main():
-    data = parse(my_file, ",")
+    data = p.parse(p.MY_FILE, ",")
 
     return create_gmap(data)
 
