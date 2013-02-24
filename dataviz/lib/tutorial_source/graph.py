@@ -82,9 +82,8 @@ def visualize_type():
     # Assign data to a bar plot
     plt.bar(xlocations, counter.values(), width=width)
 
-    # Assign labels and tick location to x- and y-axis
+    # Assign labels and tick location to x-axis
     plt.xticks(xlocations + width / 2, labels, rotation=90)
-    plt.yticks(range(0, max(counter.values()), 5))
 
     # Give some more room so the labels aren't cut off in the graph
     plt.subplots_adjust(bottom=0.4)
