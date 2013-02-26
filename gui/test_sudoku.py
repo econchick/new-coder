@@ -1,14 +1,14 @@
-import unittest2
+import unittest
 from sudoku import Sudoku, LEVELS
 
 PUZZLE = '056807900900024815008010600090073001000000502000081000002100307600740050741300206'
 SOLUTION = '156837924973624815428915673895273461317496582264581739582169347639742158741358296'
 MAX_EMPTY_CELLS_DEBUG = LEVELS['debug']
 MAX_EMPTY_CELLS_N00B = LEVELS['n00b']
-MAX_EMPTY_CELLS_L33t = LEVELS['l33t']
+MAX_EMPTY_CELLS_L33T = LEVELS['l33t']
 
 
-class TestSudoku(unittest2.TestCase):
+class TestSudoku(unittest.TestCase):
     def test_solve(self):
         # Setup
         sudoku = Sudoku(puzzle=PUZZLE)
@@ -30,6 +30,7 @@ class TestSudoku(unittest2.TestCase):
         # Verify
         empty_cells = sudoku.puzzle.count('0')
         self.assertLessEqual(empty_cells, MAX_EMPTY_CELLS_DEBUG)
+        self.assertEqual(sudoku.solution, SOLUTION)
 
         # Run
         sudoku.solve()
@@ -47,6 +48,7 @@ class TestSudoku(unittest2.TestCase):
         # Verify
         empty_cells = sudoku.puzzle.count('0')
         self.assertLessEqual(empty_cells, MAX_EMPTY_CELLS_N00B)
+        self.assertEqual(sudoku.solution, SOLUTION)
 
         # Run
         sudoku.solve()
@@ -63,7 +65,8 @@ class TestSudoku(unittest2.TestCase):
 
         # Verify
         empty_cells = sudoku.puzzle.count('0')
-        self.assertLessEqual(empty_cells, MAX_EMPTY_CELLS_L33t)
+        self.assertLessEqual(empty_cells, MAX_EMPTY_CELLS_L33T)
+        self.assertEqual(sudoku.solution, SOLUTION)
 
         # Run
         sudoku.solve()
@@ -73,4 +76,4 @@ class TestSudoku(unittest2.TestCase):
 
 
 if __name__ == '__main__':
-    unittest2.main()
+    unittest.main()

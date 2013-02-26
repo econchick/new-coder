@@ -75,6 +75,7 @@ class Sudoku(object):
         # the puzzle from the previous recursive call is our best puzzle.
         if self.solution != orig_solution:
             self.puzzle = temp_puzzle
+            self.solution = orig_solution
             return
 
         # If we have reached the maximum number of empty cells for our chosen
