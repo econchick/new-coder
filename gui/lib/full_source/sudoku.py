@@ -1,3 +1,4 @@
+import argparse
 import sys
 import random
 
@@ -17,30 +18,39 @@ class SudokuError(Exception):
     pass
 
 
-def parse_arguments(argv):
+def check_negative(value):
+    """
+    Checks if value is a positive integer.
+    Throws ArgumentTypeError if not.
+    """
+    ivalue = int(value)
+    if ivalue < 0:
+        raise argparse.ArgumentTypeError("%s is an invalid positive int value"
+                                         % value)
+    return ivalue
+
+
+def parse_arguments():
     """
     Parses arguments of the form:
         sudoku.py <level name> [board number]
     Where `level name` must be in the LEVELS list and `board number` must be
     a positive integer.
     """
-    if len(argv) == 2:
-        level_name, board_number = argv[1], -1
-    elif len(argv) == 3:
-        try:
-            level_name, board_number = argv[1], int(argv[2])
-            assert board_number >= 0
-        except (ValueError, AssertionError):
-            raise SudokuError("Board number must be a positive integer.")
-    else:
-        raise SudokuError("Wrong number of arguments.")
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument("level",
+                            help="Level name.",
+                            type=str,
+                            choices=LEVELS,
+                            nargs='?')
+    arg_parser.add_argument("--board",
+                            help="Board number. Must be a positive integer.",
+                            type=check_negative,
+                            default=-1)
 
-    if level_name not in LEVELS:
-        raise SudokuError(
-            "Wrong level name. Valid choices are: " + ",".join(LEVELS)
-        )
-
-    return level_name, board_number
+    # Returns a dictionary of keys = argument flag, and value = argument
+    args = vars(arg_parser.parse_args())
+    return args['level'], args['board']
 
 
 class SudokuUI(Frame):
@@ -132,8 +142,8 @@ class SudokuUI(Frame):
         if self.game.game_over:
             return
         x, y = event.x, event.y
-        if (x > MARGIN and x < WIDTH - MARGIN and
-            y > MARGIN and y < HEIGHT - MARGIN):
+        if (MARGIN < x < WIDTH - MARGIN and
+            MARGIN < y < HEIGHT - MARGIN):
             self.canvas.focus_set()
             row, col = (y - MARGIN) / SIDE, (x - MARGIN) / SIDE
             if (row, col) == (self.row, self.col):
@@ -251,14 +261,7 @@ class SudokuGame(object):
 
 
 if __name__ == '__main__':
-    try:
-        level_name, board_number = parse_arguments(sys.argv)
-    except SudokuError, e:
-        print "Usage: python sudoku.py [level name] [board number]"
-        if DEBUG:
-            raise e
-        else:
-            sys.exit(1)
+    level_name, board_number = parse_arguments()
 
     try:
         with open('%s.sudoku' % level_name, 'r') as boards_file:
