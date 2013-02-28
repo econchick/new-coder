@@ -87,53 +87,62 @@ class SudokuUI(Frame):
         self.canvas.bind("<Key>", self.__key_pressed)
 
     def __draw_grid(self):
+        """
+        Draws grid divided with blue lines into squares 3x3
+        """
         for i in xrange(10):
-            self.canvas.create_line(
-                MARGIN + i * SIDE, MARGIN,
-                MARGIN + i * SIDE, HEIGHT - MARGIN,
-                fill="blue" if i % 3 == 0 else "gray"
-            )
+            color = "blue" if i % 3 == 0 else "gray"
 
-            self.canvas.create_line(
-                MARGIN, MARGIN + i * SIDE,
-                WIDTH - MARGIN, MARGIN + i * SIDE,
-                fill="blue" if i % 3 == 0 else "gray"
-            )
+            x0 = MARGIN + i * SIDE
+            y0 = MARGIN
+            x1 = MARGIN + i * SIDE
+            y1 = HEIGHT - MARGIN
+            self.canvas.create_line(x0, y0, x1, y1, fill=color)
+
+            x0 = MARGIN
+            y0 = MARGIN + i * SIDE
+            x1 = WIDTH - MARGIN
+            y1 = MARGIN + i * SIDE
+            self.canvas.create_line(x0, y0, x1, y1, fill=color)
 
     def __draw_puzzle(self):
         self.canvas.delete("numbers")
         for i in xrange(9):
             for j in xrange(9):
                 answer = self.game.answer[i][j]
-                original = self.game.puzzle[i][j]
                 if answer != 0:
+                    x = MARGIN + j * SIDE + SIDE / 2
+                    y = MARGIN + i * SIDE + SIDE / 2
+                    original = self.game.puzzle[i][j]
+                    color = "black" if answer == original else "slate gray"
                     self.canvas.create_text(
-                        MARGIN + j * SIDE + SIDE / 2,
-                        MARGIN + i * SIDE + SIDE / 2,
-                        text=answer, tags="numbers",
-                        fill="black" if answer == original else "slate gray"
+                        x, y, text=answer, tags="numbers", fill=color
                     )
 
     def __draw_cursor(self):
         self.canvas.delete("cursor")
         if self.row >= 0 and self.col >= 0:
+            x0 = MARGIN + self.col * SIDE + 1
+            y0 = MARGIN + self.row * SIDE + 1
+            x1 = MARGIN + (self.col + 1) * SIDE - 1
+            y1 = MARGIN + (self.row + 1) * SIDE - 1
             self.canvas.create_rectangle(
-                MARGIN + self.col * SIDE + 1,
-                MARGIN + self.row * SIDE + 1,
-                MARGIN + (self.col + 1) * SIDE - 1,
-                MARGIN + (self.row + 1) * SIDE - 1,
+                x0, y0, x1, y1,
                 outline="red", tags="cursor"
             )
 
     def __draw_victory(self):
+        # create oval
+        x0 = y0 = MARGIN + SIDE * 2
+        x1 = y1 = MARGIN + SIDE * 7
         self.canvas.create_oval(
-            MARGIN + SIDE * 2, MARGIN + SIDE * 2,
-            MARGIN + SIDE * 7, MARGIN + SIDE * 7,
+            x0, y0, x1, y1,
             tags="victory", fill="dark orange", outline="orange"
         )
+        # create text
+        x = y = MARGIN + 4 * SIDE + SIDE / 2
         self.canvas.create_text(
-            MARGIN + 4 * SIDE + SIDE / 2,
-            MARGIN + 4 * SIDE + SIDE / 2,
+            x, y,
             text="You win!", tags="victory",
             fill="white", font=("Arial", 32)
         )
@@ -145,7 +154,11 @@ class SudokuUI(Frame):
         if (MARGIN < x < WIDTH - MARGIN and
             MARGIN < y < HEIGHT - MARGIN):
             self.canvas.focus_set()
+
+            # get row and col numbers from x,y coordinates
             row, col = (y - MARGIN) / SIDE, (x - MARGIN) / SIDE
+
+            # if cell was selected already - deselect it
             if (row, col) == (self.row, self.col):
                 self.row, self.col = -1, -1
             elif self.game.puzzle[row][col] == 0:
