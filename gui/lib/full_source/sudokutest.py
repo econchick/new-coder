@@ -113,25 +113,25 @@ class TestSudokuGameCheckers(unittest.TestCase):
         game.start(-1)
 
         for p in [xrange(1, 10), reversed(xrange(1, 10))]:
-            self.assertTrue(game.check_block(p))
+            self.assertTrue(game._SudokuGame__check_block(p))
 
     def test_check_block_doesnt_accept_incorrect_sequences(self):
         game = sudoku.SudokuGame(self.boards_file)
         game.start(-1)
         for p in [xrange(0, 9), reversed(xrange(0, 9))]:
-            self.assertFalse(game.check_block(p))
+            self.assertFalse(game._SudokuGame__check_block(p))
 
     def test_check_row_only_accepts_correct_rows(self):
         game = sudoku.SudokuGame(self.boards_file)
         game.start(0)
         for row in xrange(9):
-            self.assertEqual(game.check_row(row), row % 2 != 0)
+            self.assertEqual(game._SudokuGame__check_row(row), row % 2 != 0)
 
     def test_check_column_only_accepts_correct_columns(self):
         game = sudoku.SudokuGame(self.boards_file)
         game.start(1)
         for column in xrange(9):
-            self.assertEqual(game.check_column(column), column % 2 != 0)
+            self.assertEqual(game._SudokuGame__check_column(column), column % 2 != 0)
 
     def test_check_square_only_accepts_correct_squares(self):
         game = sudoku.SudokuGame(self.boards_file)
@@ -139,7 +139,7 @@ class TestSudokuGameCheckers(unittest.TestCase):
         for row in xrange(3):
             for column in xrange(3):
                 self.assertEqual(
-                    game.check_square(row, column), column != 2
+                    game._SudokuGame__check_square(row, column), column != 2
                 )
 
 
@@ -149,6 +149,7 @@ class TestSudokuGameSetAnswerToPuzzle(unittest.TestCase):
         game = sudoku.SudokuGame(boards_file)
         game.game_over = True
         game.answer = [range(1, 10)] * 9
+        game.start(-1)
 
         game.set_answer_to_puzzle()
         self.assertFalse(game.game_over)

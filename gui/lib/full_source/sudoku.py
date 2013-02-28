@@ -64,9 +64,9 @@ class SudokuUI(Frame):
 
         self.row, self.col = -1, -1
 
-        self.initUI()
+        self.__initUI()
 
-    def initUI(self):
+    def __initUI(self):
         self.parent.title("Sudoku")
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(
@@ -76,17 +76,17 @@ class SudokuUI(Frame):
         self.canvas.pack(fill=BOTH, side=TOP)
         clear_button = Button(
             self, text="Clear answers",
-            command=self.clear_answers
+            command=self.__clear_answers
         )
         clear_button.pack(fill=BOTH, side=BOTTOM)
 
-        self.draw_grid()
-        self.draw_puzzle()
+        self.__draw_grid()
+        self.__draw_puzzle()
 
-        self.canvas.bind("<Button-1>", self.cell_clicked)
-        self.canvas.bind("<Key>", self.key_pressed)
+        self.canvas.bind("<Button-1>", self.__cell_clicked)
+        self.canvas.bind("<Key>", self.__key_pressed)
 
-    def draw_grid(self):
+    def __draw_grid(self):
         for i in xrange(10):
             self.canvas.create_line(
                 MARGIN + i * SIDE, MARGIN,
@@ -100,7 +100,7 @@ class SudokuUI(Frame):
                 fill="blue" if i % 3 == 0 else "gray"
             )
 
-    def draw_puzzle(self):
+    def __draw_puzzle(self):
         self.canvas.delete("numbers")
         for i in xrange(9):
             for j in xrange(9):
@@ -114,7 +114,7 @@ class SudokuUI(Frame):
                         fill="black" if answer == original else "slate gray"
                     )
 
-    def draw_cursor(self):
+    def __draw_cursor(self):
         self.canvas.delete("cursor")
         if self.row >= 0 and self.col >= 0:
             self.canvas.create_rectangle(
@@ -125,7 +125,7 @@ class SudokuUI(Frame):
                 outline="red", tags="cursor"
             )
 
-    def draw_victory(self):
+    def __draw_victory(self):
         self.canvas.create_oval(
             MARGIN + SIDE * 2, MARGIN + SIDE * 2,
             MARGIN + SIDE * 7, MARGIN + SIDE * 7,
@@ -138,7 +138,7 @@ class SudokuUI(Frame):
             fill="white", font=("Arial", 32)
         )
 
-    def cell_clicked(self, event):
+    def __cell_clicked(self, event):
         if self.game.game_over:
             return
         x, y = event.x, event.y
@@ -153,29 +153,28 @@ class SudokuUI(Frame):
         else:
             self.row, self.col = -1, -1
 
-        self.draw_cursor()
+        self.__draw_cursor()
 
-    def key_pressed(self, event):
+    def __key_pressed(self, event):
         if self.game.game_over:
             return
         if self.row >= 0 and self.col >= 0 and event.char in "1234567890":
             self.game.answer[self.row][self.col] = int(event.char)
             self.col, self.row = -1, -1
-            self.draw_puzzle()
-            self.draw_cursor()
+            self.__draw_puzzle()
+            self.__draw_cursor()
             if self.game.check_win():
-                self.draw_victory()
+                self.__draw_victory()
 
-    def clear_answers(self):
+    def __clear_answers(self):
         self.game.set_answer_to_puzzle()
         self.canvas.delete("victory")
-        self.draw_puzzle()
+        self.__draw_puzzle()
 
 
-class SudokuGame(object):
+class SudokuBoard(object):
     """
-    A Sudoku game, in charge of storing the state of the board and checking
-    wether the puzzle is completed.
+    Simple class for initializing sudoku board
     """
     def __init__(self, boards_file):
         self.boards = [[]]
@@ -191,7 +190,7 @@ class SudokuGame(object):
 
             self.boards[-1].append([])
 
-            for c in line.strip():
+            for c in line:
                 if c not in "1234567890":
                     raise SudokuError(
                         "Valid characters for a sudoku puzzle must be in 0-9"
@@ -204,16 +203,19 @@ class SudokuGame(object):
                 "Each sudoku puzzle must be 9 lines long"
             )
 
-        self.puzzle = self.boards[random.randrange(len(self.boards))]
-        self.set_answer_to_puzzle()
+    def get_boards(self):
+        return self.boards
 
-    def set_answer_to_puzzle(self):
-        self.game_over = False
-        self.answer = []
-        for i in xrange(9):
-            self.answer.append([])
-            for j in xrange(9):
-                self.answer[i].append(self.puzzle[i][j])
+
+class SudokuGame(object):
+    """
+    A Sudoku game, in charge of storing the state of the board and checking
+    wether the puzzle is completed.
+    """
+    def __init__(self, boards_file):
+        self.boards_file = boards_file
+        board = SudokuBoard(boards_file)
+        self.boards = board.get_boards()
 
     def start(self, board_number):
         if board_number == -1:
@@ -225,39 +227,47 @@ class SudokuGame(object):
         self.puzzle = self.boards[board_number]
         self.set_answer_to_puzzle()
 
-    def check_block(self, block):
+    def set_answer_to_puzzle(self):
+        self.game_over = False
+        self.answer = []
+        for i in xrange(9):
+            self.answer.append([])
+            for j in xrange(9):
+                self.answer[i].append(self.puzzle[i][j])
+
+    def check_win(self):
+        for row in xrange(9):
+            if not self.__check_row(row):
+                return False
+        for column in xrange(9):
+            if not self.__check_column(column):
+                return False
+        for row in xrange(3):
+            for column in xrange(3):
+                if not self.__check_square(row, column):
+                    return False
+        self.game_over = True
+        return True
+
+    def __check_block(self, block):
         return set(block) == set(range(1, 10))
 
-    def check_row(self, row):
-        return self.check_block(self.answer[row])
+    def __check_row(self, row):
+        return self.__check_block(self.answer[row])
 
-    def check_column(self, column):
-        return self.check_block(
+    def __check_column(self, column):
+        return self.__check_block(
             [self.answer[row][column] for row in xrange(9)]
         )
 
-    def check_square(self, row, column):
-        return self.check_block(
+    def __check_square(self, row, column):
+        return self.__check_block(
             [
                 self.answer[r][c]
                 for r in xrange(row * 3, (row + 1) * 3)
                 for c in xrange(column * 3, (column + 1) * 3)
             ]
         )
-
-    def check_win(self):
-        for row in xrange(9):
-            if not self.check_row(row):
-                return False
-        for column in xrange(9):
-            if not self.check_column(column):
-                return False
-        for row in xrange(3):
-            for column in xrange(3):
-                if not self.check_square(row, column):
-                    return False
-        self.game_over = True
-        return True
 
 
 if __name__ == '__main__':
