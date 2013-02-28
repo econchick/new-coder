@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% if site.feed %}
+    <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>{{ site.title }}</title>
+        {% if site.subtitle %}<subtitle>{{ site.subtitle }}</subtitle>{% endif %}
+        <link rel="alternate" href="{{ get_url(absolute = true) }}" />
+        <link rel="self" href="{{ get_url('feed.xml', true) }}" type="application/atom+xml" />
+        <id>{{ get_url(absolute = true) }}</id>
+        <updated>{{ none|date('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+        
+        <author>
+            <name>{{ site.author }}</name>
+            {% if site.email %}<email>{{ site.email }}</email>{% endif %}
+            <uri>{{ get_url(absolute = true) }}</uri>
+        </author>
+        
+        {% for post in posts %}
+            <entry>
+                <title>{{ post.title|escape }}</title>
+                <link rel="alternate" href="{{ get_url(post.url, true) }}" type="text/html" />
+                <id>{{ get_url(post.url, true) }}</id>
+                <updated>{{ post.timestamp|date('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+                
+                {% if post.excerpt %}<summary type="html">{{ post.excerpt|absolutize|escape }}</summary>{% endif %}
+                <content type="html">{{ post.content|absolutize|escape }}</content>
+            </entry>
+        {% endfor %}
+    </feed>
+{% else %}
+    <!DOCTYPE disabled [<!ELEMENT disabled EMPTY>]>
+    <disabled/>
+{% endif %}

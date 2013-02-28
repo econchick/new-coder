@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+{% if site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
+{% if site.description %}<meta name="description" content="{{ site.description }}">{% endif %}
+<meta name="generator" content="mynt v{{ site.version }}">
+
+<link rel="shortcut icon" href="{{ get_asset('images/favicon.ico') }}" type="image/x-icon">
+
+{% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml">{% endif %}
+
+<link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" type="text/css">
+{% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.css') }}" type="text/css">{% endif %}
+
+{% if site.analytics %}
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ site.analytics }}']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+{% endif %}

@@ -1,0 +1,40 @@
+//
+// IMPORTS
+//
+@import compass/css3/shared
+
+
+//
+// MIXINS
+//
+
+// CLEAR FIX
+@mixin clearfix
+    &:before, &:after
+        content: ''
+        display: table
+    
+    &:after
+        clear: both
+
+// VENDOR PREFIXES
+@mixin border-radius($radius, $corner: false)
+    @if $corner
+        @include experimental(border-#{$corner}-radius, $radius, not -moz, -webkit, not -o, not -ms, not -khtml, official)
+    @else
+        @include experimental(border-radius, $radius, not -moz, -webkit, not -o, not -ms, not -khtml, official)
+
+@mixin box-shadow($one, $two: false, $three: false, $four: false, $five: false)
+    $shadows: compact($one, $two, $three, $four, $five)
+    
+    @include experimental(box-shadow, $shadows, not -moz, -webkit, not -o, not -ms, not -khtml, official)
+
+@mixin opacity($opacity)
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity} * 100)'
+    filter: alpha(opacity=#{$opacity} * 100)
+    opacity: $opacity
+
+@mixin transition($one, $two: false, $three: false, $four: false, $five: false)
+    $transitions: compact($one, $two, $three, $four, $five)
+    
+    @include experimental(transition, $transitions, -moz, -webkit, -o, -ms, not -khtml, official)

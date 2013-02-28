@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% for post in posts %}
+        {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
+        <div class="item">
+            <div class="header">
+                <h1><a href="{{ get_url(post.url) }}">{{ post.title }}</a></h1>
+                <h2>{{ post.date }}{% if post.tags %} <span>&raquo;</span> {% for tag in post.tags %}<a href="{{ get_url(tags[tag].url) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</h2>
+            </div>
+            
+            <div class="body">
+                <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
+            </div>
+            
+            <div class="footer">
+                <p><a href="{{ get_url(post.url) }}">Continue Reading</a></p>
+            </div>
+        </div>
+    {% endfor %}
+    
+    {% if site.post_limit and posts|length > site.post_limit %}
+        <div class="pagination">
+            <p><a href="{{ get_url('archives/') }}">Read Older Posts</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+base_url: /
+domain:
+title: New Coder
+subtitle: Five Life Jackets to Throw at the New Coder
+posts_url: /<title>/
+
+analytics:
+feed: false
+social:
+    github: econchick
+    twitter: roguelynn
+
+archive_layout: archive.html
+archives_url: /archives/
+jinja:
+    extensions:
+        - jinja2.ext.loopcontrols
+tag_layout: tag.html
+tags_url: /tutorials/
