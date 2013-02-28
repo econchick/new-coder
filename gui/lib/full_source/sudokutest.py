@@ -1,43 +1,55 @@
+import argparse
 import unittest
+import sys
 
 import sudoku
 
 
 class TestParseArguments(unittest.TestCase):
     def test_it_parses_arguments(self):
-        level_name, board_number = sudoku.parse_arguments(
-            ['sudoku.py', 'l33t', '5']
-        )
+        sys.argv = ['sudoku.py', '--level', 'l33t', '--board', '5']
+        level_name, board_number = sudoku.parse_arguments()
         self.assertEqual(level_name, 'l33t')
         self.assertEqual(board_number, 5)
 
     def test_it_works_when_missing_board_number(self):
-        level_name, board_number = sudoku.parse_arguments(
-            ['sudoku.py', 'l33t']
-        )
+        sys.argv = ['sudoku.py', '--level', 'l33t']
+        level_name, board_number = sudoku.parse_arguments()
         self.assertEqual(level_name, 'l33t')
         self.assertEqual(board_number, -1)
 
     def test_it_doesnt_work_when_missing_level_name(self):
-        self.assertRaises(
-            sudoku.SudokuError,
-            sudoku.parse_arguments, ['sudoku.py']
-        )
+        sys.argv = ['sudoku.py']
+        try:
+            self.assertRaises(
+                argparse.ArgumentError,
+                sudoku.parse_arguments
+            )
+        except SystemExit: # argparse performs sys.exit with error
+            pass
 
     def test_it_doesnt_work_for_invalid_level_names(self):
         for invalid_name in ['l00t', 'n33b', '']:
-            self.assertRaises(
-                sudoku.SudokuError,
-                sudoku.parse_arguments, ['sudoku.py', invalid_name]
-            )
+            sys.argv = ['sudoku.py', '--level', invalid_name]
+            try:
+                self.assertRaises(
+                    argparse.ArgumentError,
+                    sudoku.parse_arguments
+                )
+            except SystemExit: # argparse performs sys.exit with error
+                pass
 
     def test_it_doesnt_work_for_invalid_board_numbers(self):
         for invalid_board_number in ['-1', 'x']:
-            self.assertRaises(
-                sudoku.SudokuError,
-                sudoku.parse_arguments,
-                ['sudoku.py', 'n00b', invalid_board_number]
-            )
+            sys.argv = ['sudoku.py', '--level', 'n00b',
+                        '--board', invalid_board_number]
+            try:
+                self.assertRaises(
+                    argparse.ArgumentError,
+                    sudoku.parse_arguments
+                )
+            except SystemExit: # argparse performs sys.exit with error
+                pass
 
 
 class TestSudokuGameInit(unittest.TestCase):

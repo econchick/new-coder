@@ -38,11 +38,11 @@ def parse_arguments():
     a positive integer.
     """
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("level",
+    arg_parser.add_argument("--level",
                             help="Level name.",
                             type=str,
                             choices=LEVELS,
-                            nargs='?')
+                            required=True)
     arg_parser.add_argument("--board",
                             help="Board number. Must be a positive integer.",
                             type=check_negative,
