@@ -17,6 +17,38 @@
   background-color: #5f664c;
 }
 
+@font-face {
+  font-family: "edmondsans bold";
+  src: url('../fonts/edmondsans/edmondsans-medium-webfont-webfont.eot');
+  src: url('../fonts/edmondsans/edmondsans-medium-webfont-webfont.eot?#iefix') format('eot'), url('../fonts/edmondsans/edmondsans-bold-webfont.woff') format('woff'), url('../fonts/edmondsans/edmondsans-bold-webfont.ttf') format('truetype'), url('../fonts/edmondsans/edmondsans-bold-webfont.otf') format('opentype'), url('../fonts/edmondsans/edmondsans-bold-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: "edmondsans medium";
+  src: url('../fonts/edmondsans/edmondsans-medium-webfont.eot');
+  src: url('../fonts/edmondsans/edmondsans-medium-webfont.eot?#iefix') format('eot'), url('../fonts/edmondsans/edmondsans-medium-webfont.woff') format('woff'), url('../fonts/edmondsans/edmondsans-medium-webfont.ttf') format('truetype'), url('../fonts/edmondsans/edmondsans-medium-webfont.otf') format('opentype'), url('../fonts/edmondsans/edmondsans-medium-webfont.svg') format('svg');
+  font-weight: 500;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: "edmondsans regular";
+  src: url('../fonts/edmondsans/edmondsans-regular-webfont.eot');
+  src: url('../fonts/edmondsans/edmondsans-regular-webfont.eot?#iefix') format('eot'), url('../fonts/edmondsans/edmondsans-regular-webfont.woff') format('woff'), url('../fonts/edmondsans/edmondsans-regular-webfont.ttf') format('truetype'), url('../fonts/edmondsans/edmondsans-regular-webfont.otf') format('opentype'), url('../fonts/edmondsans/edmondsans-regular-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: "mission script";
+  src: url('../fonts/mission/mission-script-webfont.eot');
+  src: url('../fonts/mission/mission-script-webfont.eot?#iefix') format('eot'), url('../fonts/mission/mission-script-webfont.woff') format('woff'), url('../fonts/mission/mission-script-webfont.ttf') format('truetype'), url('../fonts/mission/mission-script-webfont.otf') format('opentype'), url('../fonts/mission/mission-script-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: regular;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -27,8 +59,8 @@
 body {
   background-color: #F5F1E9;
   color: #198583;
-  font-family: "Myriad Pro", myriad-pro, Geneva, Verdana, sans-serif;
-  font-size: 18px;
+  font-family: edmondsans regular, sans-serif;
+  font-size: 20px;
 }
 
 blockquote, dl, ol, p, pre, table, ul {
@@ -92,9 +124,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 15px 0px 15px 0px;
   color: #0D4544;
   text-shadow: 1px 1px 0px #cccccc;
-  font-family: "Myriad Pro", myriad-pro, Geneva, Verdana, sans-serif;
-  font-style: bold;
-  font-weight: normal;
+  font-family: edmondsans bold;
+  font-variant: small-caps;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit;
@@ -109,32 +140,31 @@ h2, h3 {
 }
 
 h4, h5, h6 {
-  font-family: "Arial", "Helvetica", sans-serif;
+  font-family: edmondans medium;
   font-style: normal;
   font-weight: bold;
   text-transform: uppercase;
 }
 
 h5, h6 {
-  font-size: 12px;
+  font-size: 20px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 35px;
 }
 
 h2 {
   margin-top: 25px;
-  font-size: 24px;
-  text-transform: small-caps;
+  font-size: 27px;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 h6 {
