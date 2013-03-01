@@ -16,9 +16,9 @@ ITEM_PIPELINES = ['tutorial.pipelines.LivingSocialPipeline']
 DATABASE = {'drivername': 'postgres',
             'host': 'localhost',
             'port': '5432',
-            'username': 'root',
+            'username': 'lynnroot',
             'password': 'root',
-            'database': 'test'}
+            'database': 'scrape'}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
