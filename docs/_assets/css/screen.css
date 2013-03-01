@@ -288,7 +288,7 @@ small a {
 }
 #nav li {
   float: left;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 #nav li:before {
   padding-right: 0px;
@@ -308,7 +308,7 @@ small a {
 }
 #nav a {
   color: #333333;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -462,8 +462,8 @@ div.code td.linenos pre {
   overflow: hidden;
   /* top left corner */
   position: absolute;
-  left: -4em;
-  top: 4em;
+  left: -3.5em;
+  top: 3em;
   /* 45 deg ccw rotation */
   -moz-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
