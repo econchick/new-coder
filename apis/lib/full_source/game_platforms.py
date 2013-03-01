@@ -21,7 +21,6 @@ import datetime
 import argparse
 import requests
 import hashlib
-import unittest
 import logging
 
 
@@ -34,9 +33,6 @@ def main():
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
-    if opts.test:
-        unittest.main(argv=['prog name'])
-        return
 
     # Now that this whole bulk is out of the way, let's create a timeline
     timeline_id = create_timeline(opts.dipity_api_key, opts.dipity_api_secret,
@@ -71,8 +67,6 @@ def parse_args():
         help="API key used to communicate with Dipity's API")
     argparser.add_argument('--dipity-api-secret', required=True,
         help="API secret used to communicate with Dipity's API")
-    argparser.add_argument('--test', action='store_true', default=False,
-        help="Execute unittests")
     argparser.add_argument('--debug', action='store_true', default=False,
         help="Verbose log output")
     argparser.add_argument("--timeline-name", default="Video game platforms",
@@ -205,34 +199,6 @@ def parse_giantbomb_date(dt):
     object.
     """
     return datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
-
-
-################################################################################
-# Unittests
-################################################################################
-
-
-class DipitySignatureTests(unittest.TestCase):
-    def test_no_parameters(self):
-        hash = hashlib.md5()
-        hash.update('123')
-        digest = hash.hexdigest()
-        self.assertEquals(digest, create_dipity_signature({}, '123'))
-
-    def test_with_parameters(self):
-        hash = hashlib.md5()
-        hash.update('123p1v1p2v2')
-        digest = hash.hexdigest()
-        self.assertEquals(digest, create_dipity_signature(
-            {'p2': 'v2', 'p1': 'v1'},
-            '123'))
-
-
-class GiantbombDateTests(unittest.TestCase):
-    def test_release_date_parsing(self):
-        inp = "1985-10-21 00:00:00"
-        expected = datetime.datetime(1985, 10, 21, 0, 0, 0)
-        self.assertEquals(expected, parse_giantbomb_date(inp))
 
 
 if __name__ == '__main__':
