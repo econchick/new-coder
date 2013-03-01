@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+
+{% set title = 'Tutorials' %}
+
+{% block content %}
+    <h2>Tutorials</h2>
+        <dl class="archives">
+            {% for post in posts %}
+                {% if 'dataviz' in post.tags %}
+                    <dt><a href="{{ get_url("/tutorials/dataviz") }}">Data Visualization</a></dt>
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)|replace('/tags/', '/tutorials/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if 'api' in post.tags %}
+                    <dt><a href="{{ get_url("/tutorials/apis") }}">APIs</a></dt>
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)| replace('/tags/', '/tutorials/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if 'scrape' in post.tags %}
+                    <dt><a href="{{ get_url("/tutorials/scrape") }}">Web Scrapping</a></dt>
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)| replace('/tags/', '/tutorials/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if 'networks' in post.tags %}
+                    <dt><a href="{{ get_url("/tutorials/network") }}">Networks</a></dt>
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)| replace('/tags/', '/tutorials/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if 'gui' in post.tags %}
+                    <dt><a href="{{ get_url("/tutorials/gui") }}">GUI</a></dt>
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)| replace('/tags/', '/tutorials/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+            {% endfor %}
+        </dl>
+{% endblock %}
