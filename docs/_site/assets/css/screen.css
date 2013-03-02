@@ -49,6 +49,14 @@
   font-style: regular;
 }
 
+@font-face {
+  font-family: 'Glyphicons';
+  src: url('../fonts/glyphicons-regular.eot');
+  src: url('../fonts/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-regular.woff') format('woff'), url('../fonts/glyphicons-regular.ttf') format('truetype'), url('../fonts/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -492,17 +500,17 @@ div.code td.linenos pre {
   overflow: hidden;
   /* top left corner */
   position: absolute;
-  left: -3.5em;
+  right: -3.5em;
   top: 3em;
   /* 45 deg ccw rotation */
-  -moz-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
   /* shadow */
   -moz-box-shadow: 0 0 1em #888;
   -webkit-box-shadow: 0 0 1em #888;
 }
 .ribbon a {
-  border: 1px solid #faa;
+  border: 1px solid #F5F1E9;
   color: #fff;
   display: block;
   font-weight: bold;
@@ -514,4 +522,25 @@ div.code td.linenos pre {
   text-decoration: none;
   /* shadow */
   /*text-shadow: 0 0 0.5em #444;*/
+}
+.glyphicons {
+  display: inline-block;
+  position: relative;
+  padding: 5px 0 5px 35px;
+  color: rgb(0, 84, 132);
+  text-decoration: none;
+  *display: inline;
+  *zoom: 1;
+}
+.glyphicons i:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font: 24px/1em 'Glyphicons';
+  font-style: normal;
+  color: rgb(0, 84, 132);
+}
+
+.glyphicons.life_preserver i:before {
+  content: "\e308";
 }

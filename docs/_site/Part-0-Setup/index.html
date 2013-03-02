@@ -30,20 +30,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/archives/">Archives</a></li>
+                <li><a href="/contact/">Need help? Want to say hi?</a></li>
             </ul>
-            
-            
-                <ul id="social">
-                    
-                    
-                    <li><a href="https://github.com/econchick"><img src="/assets/images/social/github.png" width="16" height="16" alt="GitHub"></a></li>
-                    
-                    
-                    
-                    
-                    <li><a href="https://twitter.com/#!/roguelynn"><img src="/assets/images/social/twitter.png" width="16" height="16" alt="Twitter"></a></li>
-                </ul>
             
         </div>
         
@@ -53,6 +41,7 @@
         </div>
 
         <div id="content">
+            <i class="glyphicons life_preserver"></i>
             
     <div class="item">
         <div class="header">
@@ -60,11 +49,15 @@
         </div>
         
         <div class="body">
-            <p>Initial setup for our Network/IRC Bot Tutorial</p>
+            <p>Walkthrough of scraping a webpage and saving it to a database.</p>
 <h3>Initial Requirements:</h3>
 <ul>
 <li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
-<li><a href="http://git-scm.com/downloads">git</a></li>
+<li><a href="http://www.postgresql.org/download/">PostgreSQL</a>
+
+<ul>
+<li>If you have a Mac, I highly suggest installing Postgres through <a href="http://postgresapp.com/">Postgres.app</a> for simple setup.</li>
+</ul></li>
 <li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
 
 <ul>
@@ -93,13 +86,13 @@
 <p>Within your terminal:</p>
 
 <ul>
-<li><code>$ cd</code> to get to your &#39;Home&#39; directory</li>
-<li><code>$ mkdir Projects &amp;&amp; cd Projects</code> to create a new &#39;Projects&#39; folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.</li>
-<li><code>$ git clone https://github.com/econchick/new-coder.git</code> This clones the New Coder project into the directory you&#39;re currently in, which is Projects (unless you named it something else).</li>
-<li><code>$ cd new-coder/network</code> Change into the Data Viz project.</li>
+<li><code>$ cd new-coder/scrape</code> Change into the Web Scraping project.</li>
 <li>Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
-<li><code>$ mkvirtualenv NetworkProj</code> Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.</li>
-<li><code>(NetworkProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+<li><p><code>$ mkvirtualenv ScrapeProj</code> Make a virtual environment specific to your Data Viz project. You should see (ScrapeProj) before your prompt, now:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div></li>
+<li><p><code>(ScrapeProj) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</p></li>
 </ul>
 
         </div>
