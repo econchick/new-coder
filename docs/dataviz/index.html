@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+        <dl class="archives">
+            <h2><a href="{{ get_url("/dataviz") }}">Data Visualization</a></h2>
+            {% for post in posts %}
+                {% if 'DataViz' in post.tags %}
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url)|replace('/posts/', '/dataviz/', 1) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+            {% endfor %}
+        </dl>
+{% endblock %}
