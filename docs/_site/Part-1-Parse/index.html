@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw at the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+
+
+    
+    <title>Part 1: Parse &ndash; New Coder</title>
+</head>
+
+<body>
+    <div class="ribbon">
+      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
+    </div>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/archives/">Archives</a></li>
+            </ul>
+            
+            
+                <ul id="social">
+                    
+                    
+                    <li><a href="https://github.com/econchick"><img src="/assets/images/social/github.png" width="16" height="16" alt="GitHub"></a></li>
+                    
+                    
+                    
+                    
+                    <li><a href="https://twitter.com/#!/roguelynn"><img src="/assets/images/social/twitter.png" width="16" height="16" alt="Twitter"></a></li>
+                </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New Coder</a></h1>
+            <h2>Five Life Jackets to Throw at the New Coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h1>Part 1: Parse</h1>
+        </div>
+        
+        <div class="body">
+            <p>Walkthrough of parsing our sample data.</p>
+<h3>Module Setup</h3>
+<p><strong>Module Location:</strong> <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py">new-coder/dataviz/lib/tutorial_source/parse.py</a></p>
+
+<p>Open up <code>parse.py</code>.</p>
+
+<p>Notice the first two lines - the first defines the type of language (Python)<br>
+that this file is, and that the Python interpreter should use UTF-8 encoding as<br>
+opposed to ASCII (default), Latin-1, or other encodings.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py#4">Lines 4 - 15</a> is an introduction to the module, as well as any copyright and/or license information.</p>
+
+<p>In order to read a CSV/Excel file, we have to import the csv module from Python&#39;s standard library.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code><a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py#21">MY_FILE</a></code> is defining a global - notice how it&#39;s all caps. Included in this repo is a sample file to which this variable is assigned.</p>
+<h3>The Parse Function</h3>
+<p>In defining the function, we know that we want to give it the CSV file, as well as the delimiter in which the CSV file uses to delimit each element/column.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We also know that we want to return a <a href="http://en.wikipedia.org/wiki/JSON">JSON</a>-like object. A JSON file/object is just a collection of dictionaries, much like Python&#39;s dictionary.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Let&#39;s be good coders and write a documentation-string (doc-string) for future folks that may read our code. Notice the triple-quotes:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>What we have now is a pretty good skeleton - we know what parameters the function will take (<code>raw_file</code> and <code>delimiter</code>), what it is supposed to do (our &quot;&quot;&quot;doc-string&quot;&quot;&quot;), and what it will return, <code>parsed_data</code>. Notice how the parameters and the return value is descriptive in itself.</p>
+
+<p>Let&#39;s sketch out, with comments, how we want this function to take a raw file and give us the format that we want. First, let&#39;s open the file, and the read the file, then build the parsed_data element.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
+
+    <span class="c"># Open CSV file</span>
+
+    <span class="c"># Read CSV file</span>
+
+    <span class="c"># Build a data structure to return parsed_data</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Thankfully, there are a lot of built-in methods that Python has that we can use to do all the steps that we&#39;ve outlined with our comments.  The first one we&#39;ll use is <code>open()</code> and pass <code>raw_file</code> to it, which we got from defining our own parameters in the <code>parse()</code> function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>So we&#39;ve told Python to open the file, now we have to read the file. We have to use the CSV module that we <a href="#module-setup">imported earlier</a>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Here, <code>csv.reader()</code> is a function of the CSV module. We gave it two parameters: opened_file, and delimiter. It&#39;s easy to get confused when parameters and variables share names. In <code>delimiter=delimiter</code>, the first &#39;delimiter&#39; is referring to the parameter that <code>csv.reader()</code> needs; the second &#39;delimiter&#39; refers to the parameter that our <code>parse()</code> function takes in.</p>
+
+<p>Just to quickly put these two lines in our <code>parse()</code> function: </p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
+
+    <span class="c"># Open CSV file</span>
+    <span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
+
+    <span class="c"># Read CSV file</span>
+    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+
+    <span class="c"># Build a data structure to return parsed_data</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Note:</strong> For the curious - the csv_data object, in Python terms, is now a generator. In simple terms, this means we can iterate over each element in csv_data later.</p>
+
+<p>Alright - the building of the data structure might seem tricky. The best way to start off is to set up an empty Python list to our <code>parsed_data</code> variable so we can add every row of data that we will parse through.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Good - we have a good data structure to add to. Now let&#39;s first address our column headers that came with the CSV file. They will be the first row, and we&#39;ll asign them to the variable <code>fields</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">fields</span> <span class="o">=</span> <span class="n">csv_data</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Note:</strong> For the curious - we were able to call the .next() method on csv_data because it is a generator.</p>
+
+<p>Let&#39;s loop over each row now that we have the headers properly taken care of. With each loop, we will add a dictionary that maps a field (those column headers) to the value in the CSV cell.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_data</span><span class="p">:</span>
+    <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Here, we iterated over each row in the csv_data item.  With each loop, we appended to the list,<code>parsed_data</code> a dictionary.  We use Python&#39;s built-in <code>zip()</code> function to zip together field -&gt; value to make our dictionary of every row.</p>
+
+<p>Now let&#39;s put the function together:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-like object&quot;&quot;&quot;</span>
+    <span class="c"># Open CSV file</span>
+    <span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
+    <span class="c"># Read CSV file</span>
+    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+    <span class="c"># Setup an empty list</span>
+    <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c"># Skip over the first line of the file for the headers</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">csv_data</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="c"># Iterate over each row of the csv file, zip together field -&gt; value</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_data</span><span class="p">:</span>
+        <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>TODO</strong> Add clearer text of what <code>parsed_data.append(dict(zip(fields, row)))</code> does. Remove the magic! :D</p>
+<h3>Using the new Parse function</h3>
+<p>Let&#39;s define a <code>main()</code> function to call our new <code>parse()</code> function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># Call our parse function and give it the needed parameters</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+    <span class="c"># Let&#39;s see what the data looks like!</span>
+    <span class="k">print</span> <span class="n">new_data</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We called our function <code>parse()</code> and gave it the <code>MY_FILE</code> global variable that we defined at the beginning, as well as the delimiter <code>&quot;,&quot;</code>.  We assign the function to the variable <code>new_data</code> since the <code>parse()</code> function will return a <code>parsed_data</code> object. Last - we print <code>new_data</code> to see our list of dictionaries!<br>
+<br /><br>
+One final bit - when running a Python file from the command line, Python will execute all of the code found on it. Since the following bit is True,</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>it will call the <code>main()</code> function. By doing the name == main check, you can have that code only execute when you want to run the module as a program (via the command line) and not have it execute when someone just wants to import the <code>parse()</code> function itself.</p>
+<h3>Putting it to action</h3>
+<p>So you&#39;ve written the parse function and your <code>parse.py</code> file looks like <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py">mine</a>. Now what?  Let&#39;s run it and parse some d*mn files!</p>
+
+<p>Be sure to have your virtualenv activated that you created earlier in <a href="#setup">setup</a>. Your terminal prompt should look something like this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Within the <code>new-coder/dataviz/lib/</code> directory, let&#39;s make a directory for the python files you are writing with the bash command <code>mkdir &lt;Directory_Name&gt;</code>. The <code>ls</code> command will show you the list of what the current directory (new-coder/dataviz/lib/) contains, and should show your new directory.  The <code>pwd</code> command shows you where exactly you are in the terminal (your path may be different).Finally, <code>cd</code> into your new directory:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>mkdir MySourceFiles
+<span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>ls
+data    full_source    MySourceFiles    tutorial_source
+<span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span><span class="nb">pwd</span>
+Users/lynnroot/MyProjects/new-coder/dataviz/lib
+<span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>MySourceFiles
+</pre></div>
+</td></tr></table></div></div>
+<p>Go ahead and save your copy of parse.py into MySourceFiles (through Save As within your text editor). You should see the file in the directory if you return to your Terminal and type <code>ls</code>.</p>
+
+<p>To run the python code, you have to tell the Terminal to execute the parse.py file with python:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>python parse.py
+</pre></div>
+</td></tr></table></div></div>
+<p>If you got a Traceback, or an error message, compare your parse.py file with new-coder/dataviz/lib/tutorial_source/parse.py. Perhaps a typo, or perhaps you don&#39;t have your virtualenv setup.</p>
+
+<p>The output from the <code>(DataVizProject) $ python parse.py</code> should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn&#39;t have to be exact data, but the structure of {&quot;key&quot;: &quot;value&quot;} should look familiar):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="err">&#39;ARRESTED,</span> <span class="err">BOOKED&#39;},</span><span class="p">{</span><span class="err">&#39;Category&#39;:</span> <span class="err">&#39;OTHER</span> <span class="err">OFFENSES&#39;,</span> <span class="err">&#39;IncidntNum&#39;:</span> <span class="err">&#39;030204238&#39;,</span>
+<span class="err">&#39;DayOfWeek&#39;:</span> <span class="err">&#39;Tuesday&#39;,</span> <span class="err">&#39;Descript&#39;:</span> <span class="err">&#39;OBSCENE</span> <span class="err">PHONE</span> <span class="err">CALLS(S)&#39;,</span> <span class="err">&#39;PdDistrict&#39;:</span>
+<span class="err">&#39;PARK&#39;,</span> <span class="err">&#39;Y&#39;:</span> <span class="err">&#39;37.7773636900243&#39;,</span> <span class="err">&#39;Location&#39;:</span> <span class="err">&#39;800</span> <span class="err">Block</span> <span class="err">of</span> <span class="err">CENTRAL</span> <span class="err">AV&#39;,</span> <span class="err">&#39;Time&#39;:</span> 
+<span class="err">&#39;18:59&#39;,</span> <span class="err">&#39;Date&#39;:</span> <span class="err">&#39;02/18/2003&#39;,</span> <span class="err">&#39;X&#39;:</span> <span class="err">&#39;-122.445006858202&#39;,</span> <span class="err">&#39;Resolution&#39;:</span> <span class="err">&#39;NONE&#39;</span><span class="p">}</span><span class="err">]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>You see this output because in the <code>def main()</code> function, you explicitly say <code>print new_data</code> which feeds to the output of the Terminal. You could, for instance, not print the <code>new_data</code> variable, and just pass the <code>new_data</code> variable to another function. Coincidently, that&#39;s what <a href="#part-ii-graphing">Part II</a> and <a href="#part-iii-map-plotting">Part III</a> are about!</p>
+<h3>Explore further</h3>
+<p>Play around with parse.py within your Python interpreter itself. Make sure you&#39;re in your <code>MySourceFiles</code> directory, then start the Python interpreter from there:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p>To exit out of the Python shell, press <code>CTRL-D</code>.</p>
+
+<p>Next, import your parse.py file into the interpreter. Notice there is no need to include the .py portion when importing:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>&gt;&gt;&gt; import parse
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p>If all things go well with <code>import parse</code> you should just see the <code>&gt;&gt;&gt;</code> prompt. If there&#39;s an error, perhaps you are not in the correct directory from two steps ago.</p>
+
+<p>Play with the following commands. Notice to access any object defined in parse.py (object meaning a variable, function, etc), you must preface it with <code>parse</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre>&gt;&gt;&gt; parse.MY_FILE
+<span class="s1">&#39;../data/sample_sfpd_incident_all.csv&#39;</span>
+&gt;&gt;&gt; <span class="nb">type</span><span class="o">(</span>parse.MY_FILE<span class="o">)</span>
+&lt;<span class="nb">type</span>: <span class="s1">&#39;str&#39;</span>&gt;
+&gt;&gt;&gt; <span class="nv">copy_my_file</span> <span class="o">=</span> parse.MY_FILE
+&gt;&gt;&gt; copy_my_file
+<span class="s1">&#39;../data/sample_sfpd_incident_all.csv&#39;</span>
+&gt;&gt;&gt; <span class="nb">type</span><span class="o">(</span>copy_my_file<span class="o">)</span>
+&lt;<span class="nb">type</span>: <span class="s1">&#39;str&#39;</span>&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p>So we made a what seems like a copy. Not so! check it out:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>&gt;&gt;&gt; id<span class="o">(</span>copy_my_file<span class="o">)</span>
+4404350288
+&gt;&gt;&gt; id<span class="o">(</span>parse.MY_FILE<span class="o">)</span>
+4404350288
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p>Those numbers from calling the <code>id()</code> function reflect where the variable is saved in the computer&#39;s memory.  Since they are the <em>same</em> number, Python has set up a pointer from <code>copy_my_file</code> to the same location that <code>parse.MY_FILE</code>was saved. No need to allocate new memory for the same variable.</p>
+
+<p>Let&#39;s play with the parser function a bit:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre>&gt;&gt;&gt; <span class="nv">new_data</span> <span class="o">=</span> parse.parse<span class="o">(</span>copy_my_file, <span class="s2">&quot;,&quot;</span><span class="o">)</span>
+&gt;&gt;&gt; <span class="nb">type</span><span class="o">(</span>new_data<span class="o">)</span>
+&lt;<span class="nb">type</span>: <span class="s1">&#39;list&#39;</span>&gt;
+&gt;&gt;&gt; <span class="nb">type</span><span class="o">(</span>new_data<span class="o">[</span>0<span class="o">])</span>
+&lt;<span class="nb">type</span>: <span class="s1">&#39;dict&#39;</span>&gt;
+&gt;&gt;&gt; <span class="nb">type</span><span class="o">(</span>new_data<span class="o">[</span>0<span class="o">][</span><span class="s2">&quot;DayOfWeek&quot;</span><span class="o">])</span>
+&lt;<span class="nb">type</span>: <span class="s1">&#39;str&#39;</span>&gt;
+&gt;&gt;&gt; new_data<span class="o">[</span>0<span class="o">]</span>.keys<span class="o">()</span>
+<span class="o">[</span><span class="s1">&#39;Category&#39;</span>, <span class="s1">&#39;IncidntNum&#39;</span>, <span class="s1">&#39;DayOfWeek&#39;</span>, <span class="s1">&#39;Descript&#39;</span>, <span class="s1">&#39;PdDistrict&#39;</span>, <span class="s1">&#39;Y&#39;</span>, <span class="s1">&#39;Location&#39;</span>, <span class="s1">&#39;Time&#39;</span>, <span class="s1">&#39;Date&#39;</span>, <span class="s1">&#39;X&#39;</span>, <span class="s1">&#39;Resolution&#39;</span><span class="o">]</span>
+&gt;&gt;&gt; new_data<span class="o">[</span>0<span class="o">]</span>.values<span class="o">()</span>
+<span class="o">[</span><span class="s1">&#39;FRAUD&#39;</span>, <span class="s1">&#39;030203898&#39;</span>, <span class="s1">&#39;Tuesday&#39;</span>, <span class="s1">&#39;FORGERY, CREDIT CARD&#39;</span>, <span class="s1">&#39;NORTHERN&#39;</span>, <span class="s1">&#39;37.8014488257836&#39;</span>, <span class="s1">&#39;2800 Block of VAN NESS AV&#39;</span>, <span class="s1">&#39;16:30&#39;</span>, <span class="s1">&#39;02/18/2003&#39;</span>, <span class="s1">&#39;-122.424612993055&#39;</span>, <span class="s1">&#39;NONE&#39;</span><span class="o">]</span>
+&gt;&gt;&gt; <span class="k">for </span>dict_item in new_data:
+...   print dict_item<span class="o">[</span><span class="s2">&quot;Descript&quot;</span><span class="o">]</span>
+...
+DRIVERS LICENSE, SUSPENDED OR REVOKED
+LOST PROPERTY
+POSS OF LOADED FIREARM
+&lt;--snip--&gt;
+BATTERY
+OBSCENE PHONE CALLS<span class="o">(</span>S<span class="o">)</span>
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p>Here we checked ot the type of data that gets returned back to use from the parse function, as well as ways to simply check out what is the contents of the parsed data.</p>
+
+<p>You can continue to play around; try <code>&gt;&gt;&gt; help(parse.parse)</code> to see our docstring, see what happens if you feed the parse function a different file, delimiter, or just a different variable. Challenge yourself to see if you can create a new file to save the parsed data, rather than just a variable.  The example in the <a href="http://docs.python.org/2/library/stdtypes.html#file.close">python docs</a> may help.</p>
+
+<p><a href="/Part-2-Graph">Continue on to Part 2: Graphing &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>Copyright &copy; 2013 Lynn Root &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

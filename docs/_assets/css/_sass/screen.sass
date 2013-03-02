@@ -1,0 +1,485 @@
+@import base
+
+
+//
+// WEBKIT SCROLLBARS
+//
+::-webkit-scrollbar
+    width: 8px
+    height: 8px
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+    display: none
+    
+    width: 0px
+    height: 0px
+
+::-webkit-scrollbar-track:corner-present, ::-webkit-scrollbar-track-piece, ::-webkit-scrollbar-corner, ::-webkit-resizer
+    background-color: #77805F
+
+::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal
+    background-color: #5F664C
+
+
+//
+// RESET
+//
+*
+    margin: 0px
+    padding: 0px
+    
+    border-width: 0px
+    outline: invert none 0px
+
+
+//
+// BASE ELEMENTS
+//
+body
+    background-color: #FAFAFA
+    
+    color: #404040
+    font:
+        family: 'Arial', 'Helvetica', sans-serif
+        size: 14px
+
+blockquote, dl, ol, p, pre, table, ul
+    margin: 15px 0px 15px 0px
+
+blockquote
+    overflow: hidden
+    
+    margin-left: 35px
+    padding: 0px 15px 0px 15px
+    
+    background-color: #F2F2F2
+    border: 1px solid #D9D9D9
+    +box-shadow(0px 0px 0px 2px #F7F7F7)
+    
+    color: #737373
+    font-style: italic
+
+dd, dt
+    & > :first-child
+        margin-top: 0px
+    
+    & > :last-child
+        margin-bottom: 0px
+
+dd
+    margin:
+        top: 10px
+        left: 140px
+    
+    & + &
+        margin-top: 5px
+    
+    dt:first-child + &
+        margin-top: 0px
+
+dl
+    overflow: hidden
+    
+    dl
+        margin:
+            top: 0px
+            bottom: 0px
+
+dt
+    clear: left
+    float: left
+    
+    margin-top: 10px
+    
+    width: 125px
+    
+    font-weight: bold
+    text-align: right
+    
+    & + &
+        margin-top: 5px
+    
+    &:first-child
+        margin-top: 0px
+
+h1, h2, h3, h4, h5, h6
+    margin: 15px 0px 15px 0px
+    
+    color: #0D0D0D
+    text-shadow: 1px 1px 0px #CCCCCC
+    font:
+        family: 'Georgia', serif
+        style: italic
+        weight: normal
+    
+    a
+        color: inherit
+        
+        &:hover
+            text-decoration: none
+
+h2, h3
+    padding-bottom: 5px
+    
+    border-bottom: 1px solid #E6E6E6
+
+h4, h5, h6
+    font:
+        family: 'Arial', 'Helvetica', sans-serif
+        style: normal
+        weight: bold
+    text-transform: uppercase
+
+h5, h6
+    font-size: 12px
+
+h1
+    font-size: 28px
+
+h2
+    margin-top: 25px
+    
+    font-size: 24px
+
+h3
+    font-size: 20px
+
+h4
+    font-size: 14px
+
+h6
+    color: #595959
+    text-shadow: 1px 1px 0px #D9D9D9
+
+li
+    margin-top: 3px
+    
+    ol > &:before, ul > &:before
+        padding-right: 8px
+        
+        color: #1A1A1A
+    
+    ol > &
+        counter-increment: item
+        
+        &:before
+            content: counter(item, decimal) '.'
+    
+    ul > &:before
+        content: '\2022'
+    
+    ul.unstyled > &:before
+        padding-right: 0px
+        
+        content: none
+
+ol, ul
+    margin-left: 35px
+    list-style:
+        image: none
+        position: inside
+        type: none
+    
+    ol, ul
+        margin:
+            top: 0px
+            bottom: 0px
+
+ol
+    counter-reset: item
+
+p
+    line-height: 20px
+    text-align: justify
+
+pre, code
+    font:
+        family: 'Envy Code R', monospace
+        size: 10pt
+
+pre
+    padding: 5px
+    
+    background-color: #2B2E23
+    
+    color: #B2B99E
+    
+    code
+        padding: 0px
+        
+        background-color: transparent
+        border-width: 0px
+        +box-shadow(none)
+        
+        color: inherit
+
+table
+    border: 1px solid #D9D9D9
+    border-bottom-width: 0px
+    border-collapse: collapse
+    +box-shadow(0px 0px 0px 2px #F7F7F7)
+
+td, th
+    padding: 10px
+    
+    border-bottom: 1px solid #D9D9D9
+    border-left: 1px dotted #D9D9D9
+    
+    &:first-child
+        border-left-width: 0px
+    
+    & > :first-child
+        margin-top: 0px
+    
+    & > :last-child
+        margin-bottom: 0px
+    
+    & > *
+        margin: 10px 0px 10px 0px
+    
+    tbody tr:nth-child(2n) &
+        background-color: #F2F2F2
+
+th
+    font-weight: bold
+    text-align: center
+    
+    tbody &
+        text-align: right
+    
+    thead &
+        background-color: #F2F2F2
+
+ul
+    &.unstyled
+        margin-left: 0px
+
+a
+    color: #5E8000
+    text-decoration: none
+    
+    &:hover
+        text-decoration: underline
+
+code
+    padding: 0px 2px 0px 2px
+    
+    background-color: #E6E6E6
+    border: 1px solid #D9D9D9
+    +box-shadow(0px 0px 0px 2px #F2F2F2)
+    
+    white-space: pre
+
+small
+    display: block
+    
+    color: #8C8C8C
+    font:
+        size: 10px
+        style: italic
+    text-transform: uppercase
+    
+    a
+        color: #4D4D4D
+
+
+//
+// EVERYTHING ELSE
+//
+#container
+    margin: 0px auto 0px auto
+    
+    width: 900px
+
+// NAV
+#nav
+    +clearfix
+    
+    li
+        float: left
+        
+        margin-top: 10px
+        
+        &:before
+            padding-right: 0px
+            
+            content: ''
+        
+        & + li
+            margin-left: 8px
+            padding-left: 8px
+            
+            border-left: 1px solid #D9D9D9
+    
+    ul
+        float: left
+        
+        margin: 0px
+    
+    a, img
+        display: block
+    
+    a
+        color: #333333
+        font:
+            size: 12px
+            weight: bold
+        text-transform: uppercase
+        
+        &:hover
+            color: #000000
+            text-decoration: none
+    
+    img
+        +opacity(0.75)
+        
+        &:hover
+            +opacity(1)
+    
+    #social
+        float: right
+        
+        li
+            margin-top: 9px
+
+// HEADER
+#header
+    margin: 40px 0px 40px 0px
+    
+    h1, h2
+        margin: 0px
+        padding: 0px
+    
+    h1
+        font:
+            size: 36px
+            weight: bold
+    
+    h2
+        border-bottom-width: 0px
+        
+        color: #8C8C8C
+        font-weight: normal
+        text:
+            shadow: none
+            transform: none
+
+// CONTENT
+div.item
+    & + &
+        div.header h1
+            margin-top: 25px
+            padding-top: 25px
+            
+            border-top: 1px solid #E6E6E6
+    
+    div.header
+        h1, h2
+            margin: 0px
+            padding: 0px
+        
+        h2
+            border-bottom-width: 0px
+            
+            color: #8C8C8C
+            font:
+                family: 'Arial', 'Helvetica', sans-serif
+                size: 12px
+                weight: normal
+            text:
+                shadow: none
+                transform: uppercase
+            
+            a
+                color: #4D4D4D
+                
+                &:hover
+                    text-decoration: underline
+            
+            span
+                position: relative
+                top: -2px
+    
+    div.footer
+        font:
+            size: 12px
+            weight: bold
+        text-transform: uppercase
+
+div.pagination
+    margin-top: 25px
+    
+    border-top: 1px dotted #D9D9D9
+    
+    p
+        font:
+            size: 12px
+            style: italic
+            weight: bold
+        text:
+            align: center
+            transform: uppercase
+    
+    a
+        color: #4D4D4D
+
+dl.archives
+    & > dt a
+        color: #4D4D4D
+        font:
+            size: 18px
+            style: italic
+        line-height: 18px
+    
+    dd
+        margin-left: 75px
+    
+    dt
+        width: 50px
+        
+        color: #8C8C8C
+        font:
+            size: 12px
+            style: italic
+            weight: normal
+        text-transform: uppercase
+    
+    small
+        margin-top: 2px
+        
+        span
+            position: relative
+            top: -1px
+
+// FOOTER
+#footer
+    margin: 40px 0px 15px 0px
+    
+    font-size: 12px
+    color: #737373
+    text-transform: uppercase
+
+// PYGMENTS
+div.code
+    margin: 15px 0px 15px 0px
+    
+    pre, table
+        margin: 0px
+    
+    table, td
+        border-width: 0px
+    
+    table
+        +box-shadow(none)
+    
+    td
+        padding: 0px
+    
+    & > div
+        overflow: auto
+        
+        background-color: #2B2E23
+    
+    td.linenos
+        pre
+            background-color: #3C4030
