@@ -37,4 +37,9 @@ Notice I had to include the semicolon there.  This is pretty much all the raw SQ
 
 Our `settings.py` file only has 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
 
+<<<<<<< HEAD
 For right now, we'll only address the `DATABASE` variable 
+=======
+For right now, we'll only address the `DATABASE` variable, and return to our `settings.py` file for further explanation.
+
+>>>>>>> alex
