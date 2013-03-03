@@ -39,7 +39,7 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder<i class="glyphicons-icon life_preserver"></i></a></h1>
+            <h1><a href="/">New Coder</a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
@@ -59,7 +59,181 @@
 
 <p>We will define one class, <code>LivingSocialSpider</code> with common attributes, like <code>name</code> and <code>url</code>. We&#39;ll also define one function within our <code>LivingSocialSpider</code> class.</p>
 
-<p>First </p>
+<p>First we&#39;ll setup our <code>LivingSocialSpider</code> class with attributes (variables that are defined within a class, also referred to as fields).  We&#39;ll inherit from scrapy&#39;s <code>BaseSpider</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scrapy.spider</span> <span class="kn">import</span> <span class="n">BaseSpider</span>
+
+<span class="kn">from</span> <span class="nn">tutorial.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
+
+<span class="k">class</span> <span class="nc">LivingSOcialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York Page&quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;livingsocial&quot;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;livingsocial.com&quot;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;http://www.livingsocial.com/cities/1719-newyork-citywide&quot;</span><span class="p">]</span>
+
+    <span class="n">deals_list_xpath</span> <span class="o">=</span> <span class="s">&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</span>
+    <span class="n">item_fields</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/h1/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;link&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/@href&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/h2/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;category&#39;</span><span class="p">:</span> <span class="s">&#39;.//@data-categories&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;location&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;hd&quot;]/div[@class=&quot;meta&quot;]/span/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;original_price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/p[@class=&quot;meta&quot;]/span[@class=&quot;original-price&quot;]/del/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/p[@class=&quot;meta&quot;]/span[@class=&quot;price&quot;]/text()&#39;</span><span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>I&#39;ve chosen to not build out the scaffolding with comments, but to throw this at you instead.  Let&#39;s walk it through.</p>
+
+<p>The first few variables are self-explanatory: the <code>name</code> defines the name of the Spider, the <code>allowed_domains</code> list the base-URLs for the allowed domains for the spider to crawl, and the <code>start_urls</code> is a list of URLs for the spider to start crawling from.  All subsequent URLs will start from the data that the spider downloads from the <code>start_urls</code>.</p>
+
+<p>Next, scrapy uses XPath selectors to extract data from a website - they select certain parts of the HTML data based on a given XPath. As said in <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors">their documentation</a>, &quot;XPath is a language for selecting nodes in XML documents, which can also be used with HTML.&quot; You may read more about XPath selectors in <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors">their docs</a>.</p>
+
+<p>We basically tell scrapy where to start looking for information based on a defined Xpath.  Let&#39;s navigate to our <a href="http://www.livingsocial.com/cities/1719-newyork-citywide">LivingSocial</a> site and right-click to &quot;View Source&quot;:</p>
+
+<p><img src="https://www.dropbox.com/s/nzwav6rat685luy/Screen%20Shot%202013-03-02%20at%2012.53.03%20PM.png" alt="View Source of LivingSocial"></p>
+
+<p>I mean - look at that mess. We need to give the spider a little guidance.</p>
+
+<p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &quot;unstyled cities-items&quot;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>. </p>
+
+<p>Try it out: within your &quot;View Source&quot; page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see <img src="https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png" alt=""> (highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
+
+<p>Next – the <code>item_fields</code>. This should look similar – it&#39;s a dictionary of all of our items we defined in <code>Items.py</code> earlier (and imported above), with the associated values as <em>their</em> XPaths, relative to <code>deals_list_xpath</code>.  The <code>.//</code> before the location means it is relative to <code>deals_list_xpath</code>. The Spider would only grab data from those paths if the <code>deals_list_xpath</code> preceded it.</p>
+
+<p>Okay – next is the actual <code>parse()</code> function.  We have to add a few more import statements from scrapy to make use of XPaths.  Our import statements, including the new ones, are now:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scrapy.spider</span> <span class="kn">import</span> <span class="n">BaseSpider</span>
+<span class="kn">from</span> <span class="nn">scrapy.selector</span> <span class="kn">import</span> <span class="n">HtmlXPathSelector</span>
+<span class="kn">from</span> <span class="nn">scrapy.contrib.loader</span> <span class="kn">import</span> <span class="n">XPathItemLoader</span>
+<span class="kn">from</span> <span class="nn">scrapy.contrib.loader.processor</span> <span class="kn">import</span> <span class="n">Join</span><span class="p">,</span> <span class="n">MapCompose</span>
+
+<span class="kn">from</span> <span class="nn">tutorial.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We&#39;re using the HtmlXPathSelector – this will handle the response of when we request a webpage, and give us the ability to select certain parts of that response, defined by our <code>deals_list_xpath</code> field.  For understanding of scrapy&#39;s handling of responses, read <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html#what-just-happened-under-the-hood">what happens under the hood</a>.</p>
+
+<p>We&#39;re also using XPathItemLoader to load data into our <code>item_fields</code>.</p>
+
+<p>Lastly, we import <code>Join</code> and <code>MapCompose</code> for processing our data. <code>MapCompose()</code> will help the input processing of our data, and will be used to help clean up the data that we extract. The <code>Join()</code> will help the output processing of our data, and will join together the elements that we process.  A better explanation for these two functions can be found in their <a href="http://doc.scrapy.org/en/0.16/topics/loaders.html#scrapy.contrib.loader.processor.Join">documentation</a>.</p>
+
+<p>Here&#39;s what our <code>parse()</code> function looks like:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York page&quot;&quot;&quot;</span>
+<span class="c"># snip</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">hxs</span> <span class="o">=</span> <span class="n">HtmlXPathSelector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="c"># iterate over deals</span>
+        <span class="k">for</span> <span class="n">qxs</span> <span class="ow">in</span> <span class="n">hxs</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deals_list_xpath</span><span class="p">):</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">XPathItemLoader</span><span class="p">(</span><span class="n">LivingSocialDeal</span><span class="p">(),</span> <span class="n">selector</span><span class="o">=</span><span class="n">qxs</span><span class="p">)</span>
+
+            <span class="c"># define processors</span>
+            <span class="n">loader</span><span class="o">.</span><span class="n">default_input_processor</span> <span class="o">=</span> <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">)</span>
+            <span class="n">loader</span><span class="o">.</span><span class="n">default_output_processor</span> <span class="o">=</span> <span class="n">Join</span><span class="p">()</span>
+
+            <span class="c"># iterate over fields and add xpaths to the loader</span>
+            <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">xpath</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="n">loader</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">xpath</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_item</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We&#39;ll go through this line-by-line again.  As an aside, the <code>parse()</code> function is actually referred to as a <strong>method</strong>, as it is a method of the <code>LivingSocialSpider</code> class.</p>
+
+<p>The <code>parse()</code> method takes in one parameter: <code>response</code>. Hey, wait – what about this <code>self</code> thing – looks like two parameters!</p>
+
+<p>Each instance method (in this case, <code>parse()</code> is an instance method) receives a reference to itself as its first argument. It’s conventionally called “self”.  The explicit self allows the coder to do some fun – for example:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="o">...</span>   <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">s</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">C</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
+<span class="n">Hello</span><span class="err">!</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>TODO</strong> For the curious, brief intro to static + class methods (versus instance methods)</p>
+
+<p>The <code>response</code> parameter is what the spider gets back in return after making a request to the Living Social site. We are parsing that response with our XPaths.</p>
+
+<p>First, we will instantiate <code>HtmlXPathSelector()</code> by giving it the parameter, <code>response</code> and assigning it to the variable <code>selector</code>.  We&#39;ll be able access <code>HtmlXPathSelector()</code>&#39;s method, <code>select()</code> to grab the exact data we want using the xpaths we defined before.</p>
+
+<p>Now, since there are multiple deals within one page,</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">for</span> <span class="n">deal</span> <span class="ow">in</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deals_list_xpath</span><span class="p">):</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>we&#39;ll iterate over each deal we find from the <code>deals_list_xpath</code>, and then we load them so we can process the data:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">loader</span> <span class="o">=</span> <span class="n">XPathItemLoader</span><span class="p">(</span><span class="n">LivingSocialDeal</span><span class="p">(),</span> <span class="n">selector</span><span class="o">=</span><span class="n">deal</span><span class="p">)</span>
+
+    <span class="c"># define processors</span>
+    <span class="n">loader</span><span class="o">.</span><span class="n">default_input_processor</span> <span class="o">=</span> <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">)</span>
+    <span class="n">loader</span><span class="o">.</span><span class="n">default_output_processor</span> <span class="o">=</span> <span class="n">Join</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Here we grab the deal and pass it into XPathItemLoader through the <code>selector</code> parameter, along with the <code>LivingSocialSpider()</code> class, and assign the <code>loader</code> variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within <code>Join()</code>, the data items are just joined by a space, and is helpful for when we have multi-line data.</p>
+
+<p>We then iterate over each key and value of <code>items_fields</code> and add a the specific data piece&#39;s xpath to the loader.</p>
+
+<p>Finally, with each deal, we process each data parcel by calling <code>load_item()</code>, which will grab each item field, &#39;title&#39;, &#39;link&#39;, etc, for each deal, get its xpath, process its data with the input &amp; output processer.  We finally then <code>yield</code> each item, then move on to the next deal that we find:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># iterate over fields and add xpaths to the loader</span>
+    <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">xpath</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">loader</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">xpath</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_item</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>For the curious</strong>, the <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore. </p>
+
+<p>We&#39;ve now implemented our Spider based off of our Items that we are seeking.</p>
+
+<p><a href="/Part-3-Setting-up-SQLAlchemy">Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;</a></p>
 
         </div>
     </div>

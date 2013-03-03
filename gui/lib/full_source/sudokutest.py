@@ -25,7 +25,7 @@ class TestParseArguments(unittest.TestCase):
                 argparse.ArgumentError,
                 sudoku.parse_arguments
             )
-        except SystemExit: # argparse performs sys.exit with error
+        except SystemExit:  # argparse performs sys.exit with error
             pass
 
     def test_it_doesnt_work_for_invalid_level_names(self):
@@ -36,7 +36,7 @@ class TestParseArguments(unittest.TestCase):
                     argparse.ArgumentError,
                     sudoku.parse_arguments
                 )
-            except SystemExit: # argparse performs sys.exit with error
+            except SystemExit:  # argparse performs sys.exit with error
                 pass
 
     def test_it_doesnt_work_for_invalid_board_numbers(self):
@@ -48,7 +48,7 @@ class TestParseArguments(unittest.TestCase):
                     argparse.ArgumentError,
                     sudoku.parse_arguments
                 )
-            except SystemExit: # argparse performs sys.exit with error
+            except SystemExit:  # argparse performs sys.exit with error
                 pass
 
 
