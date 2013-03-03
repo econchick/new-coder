@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw at the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+
+
+    
+    <title>Part 1: Sudoku Board Setup &ndash; New Coder</title>
+</head>
+
+<body>
+    <div class="ribbon">
+      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
+    </div>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New Coder</a></h1>
+            <h2>Five Life Jackets to Throw at the New Coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Part 1: Sudoku Board Setup</h2>
+        </div>
+        
+        <div class="body">
+            <p>Walkthrough of setting up our Sudoku Board using Tkinter.</p>
+<h3>Planning out our Sudoku game</h3>
+<p>When thinking of Sudoku, we know that we must have some logic to automatically check the math of our input numbers to see if every horizontal row and vertical column, as well 3x3 box, contains all digits from 1 through 9. This is the logic of the game.</p>
+
+<p>When running our Sudoku game, we want to take in arguments of the level of came that we want to play (n00b, l33t, or debug), as well as the board number we wish to play (if any).  We will need to have a function that parses these arguments.</p>
+
+<p>Of course, we&#39;ll need a visual interface to play the game - a GUI (Graphical User Interface). We&#39;ll need to create a separate class for drawing our Sudoku board, and we will use the Tkinter library.</p>
+
+<p>Last, we&#39;ll write some tests to make sure we&#39;ve covered the initialization of the Sudoku board, the logic of the Sudoku, etc.</p>
+<h3>Defining application specific errors</h3>
+<p>We define our own Exception because we want to create error handling that&#39;s specific to our Sudoku applcation, rather than file I/O exceptions, or database exceptions, etc. This is all we need to create our own exception:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SudokuError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An application specific error.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>In the future, we will use this error class and pass our own error message when we try to catch any errors when creating our Sudoku game.</p>
+<h3>Parsing Command-line Arguments</h3>
+<p>Python&#39;s standard library has an <code>argparse</code> module that will help us capture command-line arguments and assign them to the appropriate variables.</p>
+
+<p>``python<br>
+import argparse</p>
+
+<p>def parse_arguments():<br>
+    &quot;&quot;&quot;<br>
+    Parses arguments of the form:<br>
+        sudoku.py <level name> [board number]<br>
+    Where <code>level name</code> must be in the LEVELS list and <code>board number</code> must be<br>
+    a positive integer.<br>
+    &quot;&quot;&quot;<br>
+    arg_parser = argparse.ArgumentParser()<br>
+    arg_parser.add_argument(&quot;--level&quot;,<br>
+                            help=&quot;Level name.&quot;,<br>
+                            type=str,<br>
+                            choices=LEVELS,<br>
+                            required=True)<br>
+    arg_parser.add_argument(&quot;--board&quot;,<br>
+                            help=&quot;Board number. Must be a positive integer.&quot;,<br>
+                            type=check_negative,<br>
+                            default=-1)</p>
+<pre><code># Returns a dictionary of keys = argument flag, and value = argument
+args = vars(arg_parser.parse_args())
+return args[&#39;level&#39;], args[&#39;board&#39;]
+</code></pre><pre><code>
+You can read more about Python&#39;s argparse module by working through this [howto](http://docs.python.org/2/howto/argparse.html). Basically, `argparse` allows us to define the usage of arguments for the command line, as well as setting up how many arguments to expect (`add_argument`), the flags for the arguments (`--level`), defaults (`default=-1`), etc, as well as returning the exact parsed argument we want, `args[&#39;level&#39;]` and `args[&#39;board&#39;]`.
+
+You&#39;ll notice in the second argument, `--board`, callese the `check_negative` function. This is just to check in case a user passes a negative number for a board number (only positive numbers are allowed):
+
+```python
+def check_negative(value):
+    &#34;&#34;&#34;
+    Checks if value is a positive integer.
+    Throws ArgumentTypeError if not.
+    &#34;&#34;&#34;
+    ivalue = int(value)
+    if ivalue &lt; 0:
+        raise argparse.ArgumentTypeError(&#34;%s is an invalid positive int value&#34;
+                                         % value)
+    return ivalue
+</code></pre><h3>User Interface Setup</h3>
+<p>Now we&#39;ll actually setup the board that the user will interact with.  Since we are using Tkinter, we&#39;ll need to import some objects to help us draw the board:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">Tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">Canvas</span><span class="p">,</span> <span class="n">Frame</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">BOTH</span><span class="p">,</span> <span class="n">TOP</span><span class="p">,</span> <span class="n">BOTTOM</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We&#39;ll also define some global variables for our UI class beforehand:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">Tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">Canvas</span><span class="p">,</span> <span class="n">Frame</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">BOTH</span><span class="p">,</span> <span class="n">TOP</span><span class="p">,</span> <span class="n">BOTTOM</span>
+
+<span class="n">MARGIN</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c"># Pixels around the board</span>
+<span class="n">SIDE</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c"># Width of every board cell.</span>
+<span class="n">WIDTH</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">=</span> <span class="n">MARGIN</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">SIDE</span> <span class="o">*</span> <span class="mi">9</span>  <span class="c"># Width and height of the whole board</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We&#39;ll now define a class for our UI, <code>SudokuUI(Frame)</code>, and go through each function.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SudokuUI</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Tkinter UI, responsible for drawing the board and accepting user input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">game</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">game</span> <span class="o">=</span> <span class="n">game</span>
+        <span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">col</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__initUI</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We inherit from Tkinter&#39;s <code>Frame</code> class, and initiallize the board</p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>Copyright &copy; 2013 Lynn Root &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

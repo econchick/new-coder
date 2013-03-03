@@ -12,6 +12,10 @@ This tutorial is meant to push you out of the Excel mindset just a little bit, a
 
 **TODO**
 
+### Goals
+
+**TODO** what should folks expect to learn from this tutorial
+
 ### Intro to Numpy and matplotlib
 
 **TODO**
@@ -27,3 +31,5 @@ Wiki has a pretty readable [explanation](http://en.wikipedia.org/wiki/XML) of XM
 Both KML and XML, as well as HTML and XHTML, follow the [DOM](http://en.wikipedia.org/wiki/Document_Object_Model) convention, Document Object Model. It's basically how you interact with different objects through defined functions.
 
 As you are starting to realize the awesomeness of Python, you can assume there is an `xml` module in the standard library. How convenient!  Python's `xml.dom` module uses the DOM convention and gives us access to functions that HTML, XML, and KML will understand when we build our own KML document.
+
+[Continue on to Part 0: Setup for DataViz &rarr;]( {{ get_url("Part-0-Setup-for-DataViz/")}})

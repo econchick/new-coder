@@ -7,7 +7,7 @@
                 {% if 'Network' in post.tags %}
                     <dd>
                         <dl>
-                            <dd><a href="{{ get_url(post.url) }}">{{ post.title }} - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</a></dd>
+                            <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a> - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</dd>
                         </dl>
                     </dd>
                 {% endif %}
