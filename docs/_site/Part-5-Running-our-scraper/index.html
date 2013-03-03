@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw at the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+
+
+    
+    <title>Part 5: Running our Scraper &ndash; New Coder</title>
+</head>
+
+<body>
+    <div class="ribbon">
+      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
+    </div>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New Coder</a></h1>
+            <h2>Five Life Jackets to Throw at the New Coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h1>Part 5: Running our Scraper</h1>
+        </div>
+        
+        <div class="body">
+            <p>Putting all the pieces together to scrape our data.</p>
+<h3>scrapy.cfg file</h3>
+<p>Scrapy needs a config file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for scrapy:</p>
+<pre><code>scrapy.cfg
+living_social/
+    __init__.py
+    items.py
+    models.py
+    pipelines.py
+    settings.py
+    spiders/
+        __init__.py
+        livingsocial_spider.py
+</code></pre>
+<p>This file contains the name of the python module that defines the project settings:</p>
+<pre><code>[settings]
+default = living_social.settings
+</code></pre><h3>Manually run the scraper</h3>
+<p>Within your terminal, with your ScrapeProj virtualenv activated:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>new-coder/scrape/lib/full_source/living_social
+<span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span>scrapy crawl livingsocial
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, to see the data that&#39;s saved into the database, start up Postgres and enter these commands:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>psql -h localhost
+psql <span class="o">(</span>9.1.4, server 9.1.3<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
+
+<span class="nv">lynnroot</span><span class="o">=</span><span class="c"># \connect scrape</span>
+psql <span class="o">(</span>9.1.4, server 9.1.3<span class="o">)</span>
+You are now connected to database <span class="s2">&quot;scrape&quot;</span> as user <span class="s2">&quot;lynnroot&quot;</span>.
+<span class="nv">scrape</span><span class="o">=</span><span class="c"># select * from deals;</span>
+ id | title | description | link | location | category | original_price | price
+----+-------+-------------+------+----------+----------+----------------+-------
+<span class="o">(</span>0 rows<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Try a few of these select queries:</p>
+
+<p><strong>TODO</strong> Add example queries when I have data into database.</p>
+<h3>Hook up to a Cron job</h3>
+<p>It&#39;d be pretty annoying if we had to manually run this script regularly.  This is where cron jobs come in.</p>
+
+<p>We&#39;ll first create a bash script that simulates what we would do if we were to run scrapy manually.  There is a sample one in the <code>new-coder/scrape/living_social/</code> directory called <code>scrape.sh</code>. Edit the bash scripe to where your <code>(ScrapeProj)</code> virtualenv is as well as where your scraper root directory is (where the <code>scrapy.cfg</code> file lies).</p>
+
+<p>Next, within your terminal, type:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>crontab -e
+</pre></div>
+</td></tr></table></div></div>
+<p>to edit your crontab file.  This opens up the editor for your cron tab.  Add a line:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh
+</pre></div>
+</td></tr></table></div></div>
+<p>This says that ever day at hour 13 (1pm, relative to your local machine time), run the <code>scrapy.sh</code> script.  To schedule your cron job at a different time, check out Wiki&#39;s <a href="http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions">overview</a>.</p>
+
+<p><strong>NOTE:</strong> The cron job will run automatically for whenever you schedule it to run (in this example, daily at 1pm). But! It will only run when your computer is on (not hibernate/sleep or powered off), and in particular with this script, connected to the internet.  To run the cron job regardless of the state your computer is in, you would host the scraper code + the bash script and cron job on a separate server (either your own, or a company&#39;s) that will always be &#39;on&#39;.  You can host your own cron jobs on <a href="http://openshift.redhat.com">OpenShift</a>.</p>
+
+<p><strong>TODO</strong> Extended, Real Life Usage, Where to Go from Here</p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>Copyright &copy; 2013 Lynn Root &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>
