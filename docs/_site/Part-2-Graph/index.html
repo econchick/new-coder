@@ -13,7 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
 
 
     
@@ -36,12 +39,11 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder</a></h1>
+            <h1><a href="/">New Coder<i class="glyphicons-icon life_preserver"></i></a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
         <div id="content">
-            <i class="glyphicons life_preserver"></i>
             
     <div class="item">
         <div class="header">
@@ -76,8 +78,6 @@
 </ol></li>
 <li>When importing, we can also give the object we&#39;re importing whatever name we want because we&#39;re lazy programmers. When we <code>import matplotlib.pyplot as plt</code> we&#39;re essentially renaming the <code>pyplot</code> object (which FYI is <code>&lt;type: &#39;module&#39;&gt;</code>) of <code>matplotlib</code> as <code>plt</code>. You don&#39;t have to name it plt, but it&#39;s a handy trick when you want to access different objects that the <code>pyplot</code> module has, as you&#39;ll see later.</li>
 </ul>
-<h3>Intro to Numpy and matplotlib</h3>
-<p><strong>TODO</strong></p>
 <h3>Review of Parse Function</h3>
 <ul>
 <li>Once again, you see the <code>MY_FILE</code> as a global variable that points to the sample data file that&#39;s included in the repository. </li>
@@ -127,6 +127,8 @@
 <p><strong>Disclaimer</strong>: As with understanding statistics, correlation does <em>not</em> mean causation.  This is a small sample size, not current, and it&#39;s from the point of view of officers reporting incidents.  Take everything with a grain of salt!</p>
 <h4>Visualize Days Function</h4>
 <p>As we read from the docstring, this will give us a visualization of data by the day of the week.  For instance, are SF policy officers more likely to file incidents on Monday versus a Tuesday? Or, tongue-in-cheek, should you stay in your house Friday night versus Sunday morning?</p>
+
+<p><i class="glyphicons-icon charts"></i></p>
 
 <p>You&#39;ll also notice that the <code>def visualize_days()</code> function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: <code>def visualize_days(parsed_data)</code>.</p>
 
@@ -379,6 +381,8 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 <p>Remember that <code>CTRL+D</code> exits out of the Python shell and brings you back to where you were in the terminal. </p>
 <h4>Visualize Type Function</h4>
 <p>The next function that we will walk through, <code>visualize_type()</code>, is constructed very similarly, but takes advantage of how you can manipulate the size and image of the graph. I will not rehash familiar/repetitive lines of code since a lot is similar to <code>visualize_days()</code>.</p>
+
+<p><i class="glyphicons-icon stats"></i></p>
 
 <p>Starting with our comment outline and function scaffolding:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1

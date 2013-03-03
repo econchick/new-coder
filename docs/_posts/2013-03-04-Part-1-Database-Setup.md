@@ -1,16 +1,11 @@
 ---
 layout: post.html
-title: "Part 1: Database Setup"
+title: "Part 2: Database Setup"
 tags: [scrape]
 ---
 
 Walkthrough of scraping a webpage and saving it to a database.
 
-### About Postgres
-
-Postgres is a very popular database that is free and open source. Other popular databases include MySql, MS SQL, and MongoDB.  Which database you choose depends on what you'll need it for.
-
-To learn why Postgres is go great, [Craig Kerstiens](http://twitter.com/craigkerstiens) of Heroku wrote up a nice [explanation](http://www.craigkerstiens.com/2012/04/30/why-postgres/).
 
 ### Create a Database
 
@@ -37,9 +32,4 @@ Notice I had to include the semicolon there.  This is pretty much all the raw SQ
 
 Our `settings.py` file only has 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
 
-<<<<<<< HEAD
 For right now, we'll only address the `DATABASE` variable 
-=======
-For right now, we'll only address the `DATABASE` variable, and return to our `settings.py` file for further explanation.
-
->>>>>>> alex

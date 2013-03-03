@@ -9,67 +9,72 @@
         {% if 'begin' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>I. <a href="{{ get_url("/dataviz") }}">Data Visualization</a></h2>
+    <h2>I. <a href="{{ get_url("dataviz/") }}">Data Visualization</a></h2>
     {% for post in posts %}
         {% if 'intro-dataviz' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
+                    <dd><a href="{{ get_url(post.url)}}">Let's begin &rarr;</a></dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>II. <a href="{{ get_url("/api") }}">APIs</a></h2>
+    <h2>II. <a href="{{ get_url("api/") }}">APIs</a></h2>
     {% for post in posts %}
         {% if 'intro-api' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
+                    <dd><a href="{{ get_url(post.url)}}">Let's begin &rarr;</a></dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>III. <a href="{{ get_url("/scrape") }}">Web Scrapping</a></h2>
+    <h2>III. <a href="{{ get_url("scrape/") }}">Web Scrapping</a></h2>
     {% for post in posts %}
         {% if 'intro-scrape' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
+                    <dd><a href="{{ get_url(post.url)}}">Let's begin &rarr;</a></dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>IV. <a href="{{ get_url("/networks") }}">Networks</a></h2>
+    <h2>IV. <a href="{{ get_url("networks/") }}">Networks</a></h2>
     {% for post in posts %}
         {% if 'intro-network' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
+                    <dd><a href="{{ get_url(post.url)}}">Let's begin &rarr;</a></dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>V. <a href="{{ get_url("/gui") }}">GUI</a></h2>
+    <h2>V. <a href="{{ get_url("gui/") }}">GUI</a></h2>
     {% for post in posts %}
         {% if 'intro-gui' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.content }}</dd>
+                    <dd>{{ post.excerpt }}</dd>
+                    <dd><a href="{{ get_url(post.url)}}">Let's begin &rarr;</a></dd>
                 </dl>
             </dd>
         {% endif %}

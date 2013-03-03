@@ -13,7 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
 
 
     
@@ -36,12 +39,11 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder</a></h1>
+            <h1><a href="/">New Coder<i class="glyphicons-icon life_preserver"></i></a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
         <div id="content">
-            <i class="glyphicons life_preserver"></i>
             
     <div class="item">
         <div class="header">
@@ -50,16 +52,6 @@
         
         <div class="body">
             <p>Walkthrough of plotting our sample data on Google Maps.</p>
-
-<p>It&#39;d be kind of cool to place all the coordinates in our data on a map, wouldn&#39;t it?  Google Maps allows folks to upload KML-type documents, which is essentially a type of an XML document for displaying geographic-related data.  </p>
-
-<p>Google has a great KML <a href="https://developers.google.com/kml/documentation/">intro</a> and <a href="https://developers.google.com/kml/documentation/kml_tut">tutorial</a> for those interested. </p>
-
-<p>Wiki has a pretty readable <a href="http://en.wikipedia.org/wiki/XML">explanation</a> of XML, and w3 has a simple <a href="http://www.w3schools.com/xml/">tutorial</a> if you want to learn more (<em>side comment</em>: w3 is not the greatest for learning front-end related web development, but fine for quick references). </p>
-
-<p>Both KML and XML, as well as HTML and XHTML, follow the <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> convention, Document Object Model. It&#39;s basically how you interact with different objects through defined functions.</p>
-
-<p>As you are starting to realize the awesomeness of Python, you can assume there is an <code>xml</code> module in the standard library. How convenient!  Python&#39;s <code>xml.dom</code> module uses the DOM convention and gives us access to functions that HTML, XML, and KML will understand when we build our own KML document.</p>
 
 <p><strong>Module Location:</strong> <code>new-coder/dataviz/lib/tutorial_source/map.py</code></p>
 <h3>Module Setup</h3>
@@ -213,8 +205,12 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>You see that <code>(language)</code> is specified to be a string with the s, and <code>(number)</code> is a decimal specified by the d.  The <code>03</code> in front of the d refers to number of digits (3) and with zeros padding the number. More information can be read in the Python <a href="http://docs.python.org/2/library/stdtypes.html#string-formatting-operations">docs</a>.</p>
-<h3>Create GMap!</h3>
-<p>Now on to the good stuff.  The function <code>create_gmap(data_file)</code> uses the two helper functions to build a KML document with our data.  Again with our initial comment setup:</p>
+
+<p>Create GMap!</p>
+
+<p>Now on to the good stuff.  The function <code>create_gmap(data_file)</code> uses the two helper functions to build a KML document with our data.  </p>
+
+<p>Again with our initial comment setup:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
