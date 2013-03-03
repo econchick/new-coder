@@ -14,7 +14,7 @@ from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import Join, MapCompose
 
-from tutorial.items import LivingSocialDeal
+from living_social.items import LivingSocialDeal
 
 
 class LivingSocialSpider(BaseSpider):
