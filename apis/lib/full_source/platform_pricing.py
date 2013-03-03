@@ -45,7 +45,14 @@ class CpiData(object):
     """
 
     def __init__(self):
+        # Each year available to the dataset will end up as a simple key-value
+        # pair within this dict. We don't really need any order here so going
+        # with a plain old dictionary is the best approach.
         self.year_cpi = {}
+
+        # Later on we will also remember the first and the last year we
+        # have found in the dataset to handle years prior or after the
+        # documented time span.
         self.last_year = None
         self.first_year = None
 
@@ -81,15 +88,28 @@ class CpiData(object):
         """
         Loads CPI data from a given file-like object.
         """
+        # When iterating over the data file we will need a handful of temporary
+        # variables:
         reached_dataset = False
         current_year = None
         year_cpi = []
         for line in fp:
+            # The actual content of the file starts with a header line
+            # starting with the string "DATE ". Until we reach this line
+            # we can skip ahead.
             if not reached_dataset:
                 if line.startswith("DATE "):
                     reached_dataset = True
                 continue
+
+            # Each line ends with a new-line character which we strip here
+            # to make the data easier usable.
             data = line.rstrip().split()
+
+            # While we are dealing with calendar data the format is simple
+            # enough that we don't really need a full date-parser. All we
+            # want is the year which can be extracted by simple string
+            # splitting:
             year = int(data[0].split("-")[0])
             cpi = float(data[1])
 
@@ -112,6 +132,10 @@ class CpiData(object):
             self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
 
     def get_adapted_price(self, price, year, current_year=None):
+        """
+        Returns the adapted price from a given year compared to what current
+        year has been specified.
+        """
         if current_year is None:
             current_year = datetime.datetime.now().year
         # If our data range doesn't provide a CPI for the given year, use
@@ -142,13 +166,23 @@ class GiantbombApi(object):
 
     def get_platforms(self, sort=None, filter=None, field_list=None):
         """
-        This yields platforms matching the given criteria. If no limit is
-        specified, this will return *all* platforms.
+        Generator yielding platforms matching the given criteria. If no limit
+        is specified, this will return *all* platforms.
         """
         incomplete_result = True
         num_total_results = None
         num_fetched_results = 0
         counter = 0
+
+        # The API itself allows us to filter the data returned either
+        # by requesting only a subset of data elements or a subset with each
+        # data element (like only the name, the price and the release date).
+        #
+        # The following lines also do value-format conversions from what's
+        # common in Python (lists, dictionaries) into what the API requires.
+        # This is especially apparent with the filter-parameter where we
+        # need to convert a dictionary of criteria into a comma-seperated
+        # list of key:value pairs.
         params = {}
         if filter is not None:
             params['filter'] = filter
@@ -157,13 +191,26 @@ class GiantbombApi(object):
         if field_list is not None:
             params['field_list'] = ','.join(field_list)
         if filter is not None:
-            filters = ','.join(['{0}:{1}'.format(*itm)
-                                for itm in filter.iteritems()])
-            params['filter'] = filters
+            parsed_filters = []
+            for key, value in filter.iteritems():
+                parsed_filters.append('{0}:{1}'.format(key, value))
+            params['filter'] = ','.join(parsed_filters)
+
+        # Last but not least we append our API key to the list of parameters
+        # and tell the API that we would like to have our data being returned
+        # as JSON.
         params['api_key'] = self.api_key
         params['format'] = 'json'
 
         while incomplete_result:
+            # Giantbomb's limit for items in a result set for this API is 100
+            # items. But given that there are more than 100 platforms in their
+            # database we will have to fetch them in more than one call.
+            #
+            # Most APIs that have such limits (and most do) offer a way to
+            # page through result sets using either a "page" or (as is here
+            # the case) an "offset" parameter which allows you to "skip" a
+            # certain number of items.
             params['offset'] = num_fetched_results
             result = requests.get(self.base_url + '/platforms/',
                                   params=params)
@@ -183,6 +230,11 @@ class GiantbombApi(object):
                 if 'original_price' in item and item['original_price']:
                     item['original_price'] = float(item['original_price'])
 
+                # The "yield" keyword is what makes this a generator.
+                # Implementing this method as generator has the advantage
+                # that we can stop fetching of further data from the server
+                # dynamically from the outside by simply stop iterating over
+                # the generator.
                 yield item
                 counter += 1
 
@@ -192,6 +244,9 @@ def generate_plot(platforms, output_file):
     Generates a bar chart out of the given platforms and writes the output
     into the specified file as PNG image.
     """
+    # First off we need to convert the platforms in a format that can be
+    # attached to the 2 axis of our bar chart. "labels" will become the
+    # x-axis and "values" the value of each label on the y-axis:
     labels = []
     values = []
     for platform in platforms:
@@ -199,12 +254,14 @@ def generate_plot(platforms, output_file):
         adapted_price = platform['adapted_price']
         price = platform['original_price']
 
-        # Skip prices higher than 2000 USD
+        # Skip prices higher than 2000 USD simply because it would make the
+        # output unusable.
         if price > 2000:
             continue
 
         # If the name of the platform is too long, replace it with the
-        # abbreviation
+        # abbreviation. list.insert(0, val) inserts val at the beginning of
+        # the list.
         if len(name) > 15:
             name = platform['abbreviation']
         labels.insert(0, u"{0}\n$ {1}\n$ {2}".format(name, price,
@@ -220,7 +277,8 @@ def generate_plot(platforms, output_file):
     ax = fig.add_subplot(1, 1, 1)
     ax.bar(ind, values, width, align='center')
 
-    # Format the X and Y axis labels
+    # Format the X and Y axis labels. Also set the ticks on the x-axis slightly
+    # farther apart and give then a slight tilting effect.
     plt.ylabel('Adapted price')
     plt.xlabel('Year / Console')
     ax.set_xticks(ind + 0.3)
@@ -243,6 +301,10 @@ def generate_csv(platforms, output_file):
     for p in platforms:
         dataset.append([p['abbreviation'], p['name'], p['year'],
                         p['original_price'], p['adapted_price']])
+
+    # If the output_file is a string it represents a path to a file which
+    # we will have to open first for writing. Otherwise we just assume that
+    # it is already a file-like object and write the data into it.
     if isinstance(output_file, basestring):
         with open(output_file, 'w+') as fp:
             fp.write(dataset.csv)
@@ -312,16 +374,17 @@ def main():
 
     cpi_data = CpiData()
     gb_api = GiantbombApi(opts.giantbomb_api_key)
-    if os.path.exists(opts.cpi_file):
-        with open(opts.cpi_file) as fp:
-            cpi_data.load_from_file(fp)
-    else:
-        cpi_data.load_from_url(opts.cpi_data_url, save_as_file=opts.cpi_file)
 
     print ("Disclaimer: This script uses data provided by FRED, Federal"
            " Reserve Economic Data, from the Federal Reserve Bank of St. Louis"
            " and Giantbomb.com:\n- {0}\n- http://www.giantbomb.com/api/\n"
            .format(CPI_DATA_URL))
+
+    if os.path.exists(opts.cpi_file):
+        with open(opts.cpi_file) as fp:
+            cpi_data.load_from_file(fp)
+    else:
+        cpi_data.load_from_url(opts.cpi_data_url, save_as_file=opts.cpi_file)
 
     platforms = []
     counter = 0
