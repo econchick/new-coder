@@ -8,10 +8,10 @@
 
 BOT_NAME = 'tutorial'
 
-SPIDER_MODULES = ['tutorial.spiders']
-NEWSPIDER_MODULE = 'tutorial.spiders'
+SPIDER_MODULES = ['living_social.spiders']
+NEWSPIDER_MODULE = 'living_social.spiders'
 
-ITEM_PIPELINES = ['tutorial.pipelines.LivingSocialPipeline']
+ITEM_PIPELINES = ['living_social.pipelines.LivingSocialPipeline']
 
 DATABASE = {'drivername': 'postgres',
             'host': 'localhost',

@@ -17,17 +17,17 @@ class LivingSocialPipeline(object):
     """Livingsocial pipeline for storing scraped items in the database"""
     def __init__(self):
         """
-           Initializes database connection and sessionmaker, 
-           creates deals table
+        Initializes database connection and sessionmaker.
+        Creates deals table.
         """
         engine = db_connect()
         create_deals_table(engine)
         self.Session = sessionmaker(bind=engine)
 
-    def process_item(self, item, spider):
+    def save_item(self, item):
         """
+        Save deals in the database.
         This method is called for every item pipeline component.
-        Saves deals in the database
         """
         session = self.Session()
         deal = Deals(**item)

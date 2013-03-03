@@ -10,9 +10,10 @@ Database models part - defines table for storing scraped data.
 Direct run will create the table.
 """
 
-from sqlalchemy import *
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine.url import URL
+
 import settings
 
 

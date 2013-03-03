@@ -12,7 +12,7 @@ Scrapy item part - defines container for scraped data.
 from scrapy.item import Item, Field
 
 
-class LivingSocialItem(Item):
+class LivingSocialDeal(Item):
     """Livingsocial container (dictionary-like object) for scraped data"""
     title = Field()
     description = Field()

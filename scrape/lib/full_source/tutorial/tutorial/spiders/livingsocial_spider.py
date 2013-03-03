@@ -9,13 +9,12 @@ save to a database (postgres).
 Scrapy spider part - it actually performs scraping.
 """
 
-import re
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import Join, MapCompose
 
-from tutorial.items import LivingSocialItem
+from tutorial.items import LivingSocialDeal
 
 
 class LivingSocialSpider(BaseSpider):
@@ -39,14 +38,14 @@ class LivingSocialSpider(BaseSpider):
 
         Testing contracts:
         @url http://www.livingsocial.com/cities/1719-newyork-citywide
-        @returns items 1 
+        @returns items 1
         @scrapes title link
         """
-        hxs = HtmlXPathSelector(response)
+        selector = HtmlXPathSelector(response)
 
         # iterate over deals
-        for qxs in hxs.select(self.deals_list_xpath):
-            loader = XPathItemLoader(LivingSocialItem(), selector=qxs)
+        for deal in selector.select(self.deals_list_xpath):
+            loader = XPathItemLoader(LivingSocialDeal(), selector=deal)
 
             # define processors
             loader.default_input_processor = MapCompose(unicode.strip)
