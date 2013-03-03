@@ -30,7 +30,6 @@ import datetime
 import requests
 import logging
 import tablib
-import urllib2
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -59,11 +58,17 @@ class CpiData(object):
         After fetching the file this implementation uses load_from_file
         internally.
         """
-        fp = urllib2.urlopen(url)
+        # We don't really know how much data we are going to get here, so
+        # it is recommended to just keep as little data as possible in memory
+        # at all times. Since python-requests supports gzip-compression by
+        # default and decoding these chunks on their own isn't that easy,
+        # we just disable gzip with the empty "Accept-Encoding" header.
+        fp = requests.get(url, stream=True,
+                          headers={'Accept-Encoding': None}).raw
         if save_as_file is None:
             return self.load_from_file(fp)
         else:
-            with open(save_as_file, 'w+') as out:
+            with open(save_as_file, 'wb+') as out:
                 while True:
                     buffer = fp.read(81920)
                     if not buffer:
@@ -230,7 +235,7 @@ def generate_csv(platforms, output_file):
     """
     Writes the given platforms into a CSV file specified by the output_file
     parameter.
-    
+
     The output_file can either be the path to a file or a file-like object.
     """
     dataset = tablib.Dataset(headers=['Abbreviation', 'Name', 'Year', 'Price',
@@ -313,7 +318,10 @@ def main():
     else:
         cpi_data.load_from_url(opts.cpi_data_url, save_as_file=opts.cpi_file)
 
-    print ("Disclaimer: This script uses data provided by FRED, Federal Reserve Economic Data, from the Federal Reserve Bank of St. Louis and Giantbomb.com:\n- " + CPI_DATA_URL + "\n- http://www.giantbomb.com/api/\n")
+    print ("Disclaimer: This script uses data provided by FRED, Federal"
+           " Reserve Economic Data, from the Federal Reserve Bank of St. Louis"
+           " and Giantbomb.com:\n- {0}\n- http://www.giantbomb.com/api/\n"
+           .format(CPI_DATA_URL))
 
     platforms = []
     counter = 0
