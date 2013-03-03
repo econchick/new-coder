@@ -31,6 +31,14 @@ class LivingSocialPipeline(object):
         """
         session = self.Session()
         deal = Deals(**item)
-        session.add(deal)
-        session.commit()
+
+        try:
+            session.add(deal)
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
         return item
