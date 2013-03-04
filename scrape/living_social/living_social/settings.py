@@ -6,10 +6,9 @@
 #     http://doc.scrapy.org/topics/settings.html
 #
 
-BOT_NAME = 'tutorial'
+BOT_NAME = 'livingsocial'
 
 SPIDER_MODULES = ['living_social.spiders']
-NEWSPIDER_MODULE = 'living_social.spiders'
 
 ITEM_PIPELINES = ['living_social.pipelines.LivingSocialPipeline']
 
@@ -17,8 +16,5 @@ DATABASE = {'drivername': 'postgres',
             'host': 'localhost',
             'port': '5432',
             'username': 'lynnroot',
-            'password': 'root',
+            'password': '',
             'database': 'scrape'}
-
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'tutorial (+http://www.yourdomain.com)'

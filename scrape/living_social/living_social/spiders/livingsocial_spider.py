@@ -40,6 +40,7 @@ class LivingSocialSpider(BaseSpider):
         @url http://www.livingsocial.com/cities/1719-newyork-citywide
         @returns items 1
         @scrapes title link
+        
         """
         selector = HtmlXPathSelector(response)
 

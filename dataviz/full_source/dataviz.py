@@ -1,4 +1,4 @@
-#! -*- coding: utf-8 -*-
+#!/usr/bin/env python
 
 """
 Data Visualization Project
@@ -43,12 +43,14 @@ def visualize_days(data_file):
     counter = Counter(item["DayOfWeek"] for item in data_file)
 
     # Separate out the counter to order it correctly when plotting.
-    data_list = [
-                  counter["Monday"], counter["Tuesday"],
-                  counter["Wednesday"], counter["Thursday"],
-                  counter["Friday"], counter["Saturday"],
-                  counter["Sunday"]
-                ]
+    data_list = [counter["Monday"],
+                 counter["Tuesday"],
+                 counter["Wednesday"],
+                 counter["Thursday"],
+                 counter["Friday"],
+                 counter["Saturday"],
+                 counter["Sunday"]
+                 ]
     day_list = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 
     # Assign the data to a plot
@@ -126,8 +128,11 @@ def create_document(title, description=''):
 
 def create_placemark(address):
     """Generate the KML Placemark for a given address.
+
     This is the function that takes the info from the
-    file we parse at the end of this script"""
+    file we parse at the end of this script.
+
+    """
 
     # Create an initial XML document
     doc = xml.dom.minidom.Document()
@@ -153,11 +158,12 @@ def create_placemark(address):
 
 
 def create_gmap(data_file):
-    """
-    Creates Google Maps KML Doc.
+    """Creates Google Maps KML Doc.
+
     Returns a KML file to be uploaded at maps.google.com.
     Navigate to 'My places' -> 'Create Map' -> 'Import' to
     upload the file and see the data.
+
     """
 
     # Initialize a new KML doc with our previously-defined
@@ -171,8 +177,12 @@ def create_gmap(data_file):
     # Iterate over our data to create KML document
     for line in data_file:
         # Parses the data into a dictionary
-        coordinates = {'longitude': line['X'], 'latitude': line['Y'], 'name': line['Category'],
-        'description': line['Descript'], 'date': line['Date']}
+        coordinates = {'longitude': line['X'],
+                       'latitude': line['Y'],
+                       'name': line['Category'],
+                       'description': line['Descript'],
+                       'date': line['Date']
+                       }
 
         # Avoid null values for lat/long
         if coordinates['longitude'] == "0":
