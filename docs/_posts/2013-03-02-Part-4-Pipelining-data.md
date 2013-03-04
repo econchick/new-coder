@@ -6,6 +6,8 @@ tags: [scrape]
 
 Pipelining our scraped data into our Postgres database.
 
+**TODO** add commit/rollback intro
+
 ### Setup our Pipeline
 
 We've setup our spider to crawl and parse the HTML, and we've set up our database to take the parse data. Now we have to connect the two together through a pipeline.

@@ -4,6 +4,13 @@
         <dl class="archives">
             <h2><a href="{{ get_url("/api") }}">APIs</a></h2>
             {% for post in posts %}
+                {% if 'intro-api' in post.tags %}
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
                 {% if 'api' in post.tags %}
                     <dd>
                         <dl>

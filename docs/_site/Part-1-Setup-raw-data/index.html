@@ -39,7 +39,7 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder</a></h1>
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
@@ -57,32 +57,106 @@
 </td></tr></table></div></div>
 <p>You might be curious as to why we&#39;re importing a <code>print_function</code>, and why it&#39;s from <code>__future__</code>.  This is a gentle introduction of the differences between Python 2.x and Python 3.x.  In Python 3, <code>print()</code> is a function, while in Python 2, <code>print</code> is a keyword. For now, the difference is just that using <code>print</code> requires paretheses around what you are printing.</p>
 <h3>CPI data</h3>
-<p>First, we&#39;ll grab the CPI data from the FRED.  We&#39;ll create a CPI class to initialize the CPI data, load data from the URL, load data from a file, and <br>
-```python<br>
-import argparse<br>
-import datetime<br>
-import os<br>
-import logging<br>
-import urllib2</p>
+<p>First, we&#39;ll grab the CPI data from the FRED.  This is where we&#39;ll use the <code>requests</code> library:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>And we&#39;ll be grabbing data from a specific URL, so let&#39;s create a global variable first:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">CPI_DATA_URL</span> <span class="o">=</span> <span class="s">&#39;http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt&#39;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, we should create a CPI class to initialize the CPI data, load data from the URL, load data from a file, and get the adapted price.</p>
+<h1>TODO: add intro to classes!</h1>
+<p>The scaffolding for our <code>class CPIData()</code> is as follows:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">CPIData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstraction of the CPI data provided by FRED. </span>
 
-<p>import matplotlib.pyplot as plt<br>
-import numpy as np<br>
-import requests<br>
-import tablib</p>
+<span class="sd">    This stores internally only one value per year.</span>
 
-<p>CPI_DATA_URL = &#39;<a href="http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt">http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt</a>&#39;</p>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<p>class CpiData(object):<br>
-    &quot;&quot;&quot;<br>
-    Abstraction of the CPI data provided by FRED. This stores internally only<br>
-    one value per year.<br>
-    &quot;&quot;&quot;</p>
-<pre><code>def __init__(self):
-    self.year_cpi = {}
-    self.last_year = None
-    self.first_year = None
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span> <span class="o">=</span> <span class="bp">None</span>
 
-def load_from_url(self, url, save_as_file=None):
+    <span class="k">def</span> <span class="nf">load_from_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">save_as_file</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads data from a given url. </span>
+
+<span class="sd">        The downloaded file can also be saved into a location for later </span>
+<span class="sd">        re-use with the &quot;save_as_file&quot; parameter specifying a filename.</span>
+
+<span class="sd">        After fetching the file this implementation uses load_from_file</span>
+<span class="sd">        internally.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">load_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads CPI data from a given file-like object.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_adapted_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">current_year</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the adapted price from a given year compared to what current</span>
+<span class="sd">        year has been specified.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>We first initialize our <code>CPIData</code> class with <code>year_cpi</code>, <code>last_year</code>, and <code>first_year</code>, as these are all common attributes for a piece of CPI data.</p>
+<h1>TODO intro to dunders</h1><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c"># Each year available to the dataset will end up as a simple key-value</span>
+    <span class="c"># pair within this dict. We don&#39;t really need any order here so going</span>
+    <span class="c"># with a plain old dictionary is the best approach.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c"># Later on we will also remember the first and the last year we</span>
+    <span class="c"># have found in the dataset to handle years prior or after the</span>
+    <span class="c"># documented time span.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, we define a function that will take in a url, and where/what to save our output file as.  Comments are inline to help you walk through:</p>
+<pre><code>def load_from_url(self, url, save_as_file=None):
     &#34;&#34;&#34;
     Loads data from a given url. The downloaded file can also be saved
     into a location for later re-use with the &#34;save_as_file&#34; parameter
@@ -91,11 +165,22 @@ def load_from_url(self, url, save_as_file=None):
     After fetching the file this implementation uses load_from_file
     internally.
     &#34;&#34;&#34;
-    fp = urllib2.urlopen(url)
+    # We don&#39;t really know how much data we are going to get here, so
+    # it is recommended to just keep as little data as possible in memory
+    # at all times. Since python-requests supports gzip-compression by
+    # default and decoding these chunks on their own isn&#39;t that easy,
+    # we just disable gzip with the empty &#34;Accept-Encoding&#34; header.
+    fp = requests.get(url, stream=True,
+                      headers={&#39;Accept-Encoding&#39;: None}).raw
+
+    # If we did not pass in a save_as_file parameter, we just return the
+    # raw data we got from the previous line.
     if save_as_file is None:
         return self.load_from_file(fp)
+
+    # Else, we write to the desired file.
     else:
-        with open(save_as_file, &#39;w+&#39;) as out:
+        with open(save_as_file, &#39;wb+&#39;) as out:
             while True:
                 buffer = fp.read(81920)
                 if not buffer:
@@ -103,277 +188,146 @@ def load_from_url(self, url, save_as_file=None):
                 out.write(buffer)
         with open(save_as_file) as fp:
             return self.load_from_file(fp)
-
-def load_from_file(self, fp):
-    &#34;&#34;&#34;
-    Loads CPI data from a given file-like object.
-    &#34;&#34;&#34;
-    reached_dataset = False
-    current_year = None
-    year_cpi = []
-    for line in fp:
-        if not reached_dataset:
-            if line.startswith(&#34;DATE &#34;):
-                reached_dataset = True
-            continue
-        data = line.rstrip().split()
-        year = int(data[0].split(&#34;-&#34;)[0])
-        cpi = float(data[1])
-
-        if self.first_year is None:
-            self.first_year = year
-        self.last_year = year
-
-        # The moment we reach a new year, we have to reset the CPI data
-        # and calculate the average CPI of the current_year.
-        if current_year != year:
-            if current_year is not None:
-                self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
-            year_cpi = []
-            current_year = year
-        year_cpi.append(cpi)
-
-    # We have to do the calculation once again for the last year in the
-    # dataset.
-    if current_year is not None and current_year not in self.year_cpi:
-        self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
-
-def get_adapted_price(self, price, year, current_year=None):
-    if current_year is None:
-        current_year = datetime.datetime.now().year
-    # If our data range doesn&#39;t provide a CPI for the given year, use
-    # the edge data.
-    if year &lt; self.first_year:
-        year = self.first_year
-    elif year &gt; self.last_year:
-        year = self.last_year
-
-    year_cpi = self.year_cpi[year]
-    current_cpi = self.year_cpi[current_year]
-
-    return float(price) / year_cpi * current_cpi
 </code></pre>
-<p>class GiantbombApi(object):<br>
-    &quot;&quot;&quot;<br>
-    Very simple implementation of the Giantbomb API that only offers the<br>
-    GET /platforms/ call as a generator.</p>
-<pre><code>Note that this implementation only exposes of the API what we really need.
-&#34;&#34;&#34;
+<p>After we&#39;ve grabbed the data from the URL, we then pass it to our function, <code>load_from_file()</code>.  Comments inline:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">load_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads CPI data from a given file-like object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># When iterating over the data file we will need a handful of temporary</span>
+    <span class="c"># variables:</span>
+    <span class="n">reached_dataset</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">current_year</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">year_cpi</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="c"># The actual content of the file starts with a header line</span>
+        <span class="c"># starting with the string &quot;DATE &quot;. Until we reach this line</span>
+        <span class="c"># we can skip ahead.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">reached_dataset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;DATE &quot;</span><span class="p">):</span>
+                <span class="n">reached_dataset</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">continue</span>
 
-base_url = &#39;http://www.giantbomb.com/api&#39;
+        <span class="c"># Each line ends with a new-line character which we strip here</span>
+        <span class="c"># to make the data easier usable.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-def __init__(self, api_key):
-    self.api_key = api_key
+        <span class="c"># While we are dealing with calendar data the format is simple</span>
+        <span class="c"># enough that we don&#39;t really need a full date-parser. All we</span>
+        <span class="c"># want is the year which can be extracted by simple string</span>
+        <span class="c"># splitting:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">cpi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-def get_platforms(self, sort=None, filter=None, field_list=None):
-    &#34;&#34;&#34;
-    This yields platforms matching the given criteria. If no limit is
-    specified, this will return *all* platforms.
-    &#34;&#34;&#34;
-    incomplete_result = True
-    num_total_results = None
-    num_fetched_results = 0
-    counter = 0
-    params = {}
-    if filter is not None:
-        params[&#39;filter&#39;] = filter
-    if sort is not None:
-        params[&#39;sort&#39;] = sort
-    if field_list is not None:
-        params[&#39;field_list&#39;] = &#39;,&#39;.join(field_list)
-    if filter is not None:
-        filters = &#39;,&#39;.join([&#39;{0}:{1}&#39;.format(*itm)
-                            for itm in filter.iteritems()])
-        params[&#39;filter&#39;] = filters
-    params[&#39;api_key&#39;] = self.api_key
-    params[&#39;format&#39;] = &#39;json&#39;
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span> <span class="o">=</span> <span class="n">year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="n">year</span>
 
-    while incomplete_result:
-        params[&#39;offset&#39;] = num_fetched_results
-        result = requests.get(self.base_url + &#39;/platforms/&#39;,
-                              params=params)
-        result = result.json()
-        if num_total_results is None:
-            num_total_results = int(result[&#39;number_of_total_results&#39;])
-        num_fetched_results += int(result[&#39;number_of_page_results&#39;])
-        if num_fetched_results &gt;= num_total_results:
-            incomplete_result = False
-        for item in result[&#39;results&#39;]:
-            logging.debug(&#34;Yielding platform {0} of {1}&#34;.format(
-                counter + 1,
-                num_total_results))
+        <span class="c"># The moment we reach a new year, we have to reset the CPI data</span>
+        <span class="c"># and calculate the average CPI of the current_year.</span>
+        <span class="k">if</span> <span class="n">current_year</span> <span class="o">!=</span> <span class="n">year</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_year</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">[</span><span class="n">current_year</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span>
+            <span class="n">year_cpi</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">current_year</span> <span class="o">=</span> <span class="n">year</span>
+        <span class="n">year_cpi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cpi</span><span class="p">)</span>
 
-            # Since this is supposed to be an abstraction, we also convert
-            # values here into a more useful format where appropriate.
-            if &#39;original_price&#39; in item and item[&#39;original_price&#39;]:
-                item[&#39;original_price&#39;] = float(item[&#39;original_price&#39;])
+    <span class="c"># We have to do the calculation once again for the last year in the</span>
+    <span class="c"># dataset.</span>
+    <span class="k">if</span> <span class="n">current_year</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">current_year</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">[</span><span class="n">current_year</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>For the last portion of our <code>class CPIData()</code>, we need to define a method to return the CPI price from a specific year when needed.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_adjusted_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">current_year</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the price of a purchased item from a given year compared to </span>
+<span class="sd">    what current year has been specified.</span>
 
-            yield item
-            counter += 1
-</code></pre>
-<p>def generate_plot(platforms, output_file):<br>
-    &quot;&quot;&quot;<br>
-    Generates a bar chart out of the given platforms and writes the output<br>
-    into the specified file as PNG image.<br>
-    &quot;&quot;&quot;<br>
-    labels = []<br>
-    values = []<br>
-    for platform in platforms:<br>
-        name = platform[&#39;name&#39;]<br>
-        adapted_price = platform[&#39;adapted_price&#39;]<br>
-        price = platform[&#39;original_price&#39;]</p>
-<pre><code>    # Skip prices higher than 2000 USD
-    if price &gt; 2000:
-        continue
+<span class="sd">    This essentially is the calculated inflation for an item.</span>
 
-    # If the name of the platform is too long, replace it with the
-    # abbreviation
-    if len(name) &gt; 15:
-        name = platform[&#39;abbreviation&#39;]
-    labels.insert(0, u&#34;{0}\n$ {1}\n$ {2}&#34;.format(name, price,
-                                                 round(adapted_price, 2)))
-    values.insert(0, adapted_price)
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">current_year</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">current_year</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">year</span>
+    <span class="c"># If our data range doesn&#39;t provide a CPI for the given year, use</span>
+    <span class="c"># the edge data.</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span><span class="p">:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span>
+    <span class="k">elif</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span><span class="p">:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span>
 
-# Let&#39;s define the width of each bar and the size of the resulting graph.
-width = 0.3
-ind = np.arange(len(values))
-fig = plt.figure(figsize=(len(labels) * 1.8, 10))
+    <span class="n">year_cpi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">[</span><span class="n">year</span><span class="p">]</span>
+    <span class="n">current_cpi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">[</span><span class="n">current_year</span><span class="p">]</span>
 
-# Generate a subplot and put our values onto it.
-ax = fig.add_subplot(1, 1, 1)
-ax.bar(ind, values, width, align=&#39;center&#39;)
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="o">/</span> <span class="n">year_cpi</span> <span class="o">*</span> <span class="n">current_cpi</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>In review, we&#39;ve essentially defined the container, our <code>CPIData</code> class, to handle the the processing of our CPI data.  We initialize each field for a piece of CPI data in <code>__init__</code>, we define how to load data from a given URL (of which we define as a global variable, <code>CPI_DATA_URL</code> before we defined our class), we define how to load and parse that data that we just grabbed from the URL and saved, and lastly, we define a method to grab the price for a given year (adjusted if we didn&#39;t grab that specific year from the FRED earlier).</p>
 
-# Format the X and Y axis labels
-plt.ylabel(&#39;Adapted price&#39;)
-plt.xlabel(&#39;Year / Console&#39;)
-ax.set_xticks(ind + 0.3)
-ax.set_xticklabels(labels)
-fig.autofmt_xdate()
-plt.grid(True)
-
-plt.savefig(output_file, dpi=72)
-</code></pre>
-<p>def generate_csv(platforms, output_file):<br>
-    &quot;&quot;&quot;<br>
-    Writes the given platforms into a CSV file specified by the output_file<br>
-    parameter.</p>
-<pre><code>The output_file can either be the path to a file or a file-like object.
-&#34;&#34;&#34;
-dataset = tablib.Dataset(headers=[&#39;Abbreviation&#39;, &#39;Name&#39;, &#39;Year&#39;, &#39;Price&#39;,
-                                  &#39;Adapted price&#39;])
-for p in platforms:
-    dataset.append([p[&#39;abbreviation&#39;], p[&#39;name&#39;], p[&#39;year&#39;],
-                    p[&#39;original_price&#39;], p[&#39;adapted_price&#39;]])
-if isinstance(output_file, basestring):
-    with open(output_file, &#39;w+&#39;) as fp:
-        fp.write(dataset.csv)
-else:
-    output_file.write(dataset.csv)
-</code></pre>
-<p>def is_valid_dataset(platform):<br>
-    &quot;&quot;&quot;<br>
-    Filters out datasets that we can&#39;t use since they are either lacking<br>
-    a release date or an original price. For rendering the output we also<br>
-    require the name and abbreviation of the platform<br>
-    &quot;&quot;&quot;<br>
-    if &#39;release_date&#39; not in platform or not platform[&#39;release_date&#39;]:<br>
-        logging.warn(u&quot;{0} has no release date&quot;.format(platform[&#39;name&#39;]))<br>
-        return False<br>
-    if &#39;original_price&#39; not in platform or not platform[&#39;original_price&#39;]:<br>
-        logging.warn(u&quot;{0} has no original price&quot;.format(platform[&#39;name&#39;]))<br>
-        return False<br>
-    if &#39;name&#39; not in platform or not platform[&#39;name&#39;]:<br>
-        logging.warn(u&quot;No platform name found for given dataset&quot;)<br>
-        return False<br>
-    if &#39;abbreviation&#39; not in platform or not platform[&#39;abbreviation&#39;]:<br>
-        logging.warn(u&quot;{0} has no abbreviation&quot;.format(platform[&#39;name&#39;]))<br>
-        return False<br>
-    return True</p>
-
-<p>def parse<em>args():<br>
-    parser = argparse.ArgumentParser()<br>
-    parser.add_argument(&#39;--giantbomb-api-key&#39;, required=True,<br>
-                        help=&#39;API key provided by Giantbomb.com&#39;)<br>
-    parser.add_argument(&#39;--cpi-file&#39;,<br>
-                        default=os.path.join(os.path.dirname(</em><em>file</em>_),<br>
-                                             &#39;CPIAUCSL.txt&#39;),<br>
-                        help=&#39;Path to file containing the CPI data (also acts&#39;<br>
-                             &#39; as target file if the data has to be downloaded&#39;<br>
-                             &#39;first).&#39;)<br>
-    parser.add_argument(&#39;--cpi-data-url&#39;, default=CPI_DATA_URL,<br>
-                        help=&#39;URL which should be used as CPI data source&#39;)<br>
-    parser.add_argument(&#39;--debug&#39;, default=False, action=&#39;store_true&#39;,<br>
-                        help=&#39;Increases the output level.&#39;)<br>
-    parser.add_argument(&#39;--csv-file&#39;,<br>
-                        help=&#39;Path to CSV file which should contain the data&#39;<br>
-                             &#39;output&#39;)<br>
-    parser.add_argument(&#39;--plot-file&#39;,<br>
-                        help=&#39;Path to the PNG file which should contain the&#39;<br>
-                             &#39;data output&#39;)<br>
-    parser.add_argument(&#39;--limit&#39;, type=int,<br>
-                        help=&#39;Number of recent platforms to be considered&#39;)<br>
-    opts = parser.parse_args()<br>
-    if not (opts.plot_file or opts.csv_file):<br>
-        parser.error(&quot;You have to specify either a --csv-file or --plot-file!&quot;)<br>
-    return opts</p>
-
-<p>def main():<br>
-    &quot;&quot;&quot;<br>
-    This function handles the actual logic of this script.<br>
-    &quot;&quot;&quot;<br>
-    opts = parse_args()</p>
-<pre><code>if opts.debug:
-    logging.basicConfig(level=logging.DEBUG)
-else:
-    logging.basicConfig(level=logging.INFO)
-
-cpi_data = CpiData()
-gb_api = GiantbombApi(opts.giantbomb_api_key)
-if os.path.exists(opts.cpi_file):
-    with open(opts.cpi_file) as fp:
-        cpi_data.load_from_file(fp)
-else:
-    cpi_data.load_from_url(opts.cpi_data_url, save_as_file=opts.cpi_file)
-
-print (&#34;Disclaimer: This script uses data provided by FRED, Federal Reserve Economic Data, from the Federal Reserve Bank of St. Louis and Giantbomb.com:\n- &#34; + CPI_DATA_URL + &#34;\n- http://www.giantbomb.com/api/\n&#34;)
-
-platforms = []
-counter = 0
-
-# Now that we have everything in place, fetch the platforms and calculate
-# their current price in relation to the CPI value.
-for platform in gb_api.get_platforms(sort=&#39;release_date:desc&#39;,
-                                     field_list=[&#39;release_date&#39;,
-                                                 &#39;original_price&#39;, &#39;name&#39;,
-                                                 &#39;abbreviation&#39;]):
-    # Some platforms don&#39;t have a release date or price yet. These we have
-    # to skip.
-    if not is_valid_dataset(platform):
-        continue
-
-    year = int(platform[&#39;release_date&#39;].split(&#39;-&#39;)[0])
-    price = platform[&#39;original_price&#39;]
-    adapted_price = cpi_data.get_adapted_price(price, year)
-    platform[&#39;year&#39;] = year
-    platform[&#39;original_price&#39;] = price
-    platform[&#39;adapted_price&#39;] = adapted_price
-    platforms.append(platform)
-
-    # We limit the resultset on this end since we can only here check
-    # if the dataset actually contains all the data we need and therefor
-    # can&#39;t filter on the API level.
-    if opts.limit is not None and counter + 1 &gt;= opts.limit:
-        break
-    counter += 1
-
-if opts.plot_file:
-    generate_plot(platforms, opts.plot_file)
-if opts.csv_file:
-    generate_csv(platforms, opts.csv_file)
-</code></pre>
-<p>if <strong>name</strong> == &#39;<strong>main</strong>&#39;:<br>
-    main()<br>
-```</p>
+<p><a href="/Part-2-Giantbomb-API/">Continue on to the Game API &rarr;</a></p>
 
         </div>
     </div>

@@ -1301,11 +1301,11 @@ html .halflings {
   width: 48px;
   height: 48px;
   line-height: 48px;
-  vertical-align: text-top;
+  vertical-align: text-middle;
   background-image: url(../images/glyphicons.png);
   background-position: 0 0;
   background-repeat: no-repeat;
-  vertical-align: top;
+  vertical-align: middle;
   *display: inline;
   *zoom: 1;
   *margin-right: .3em;

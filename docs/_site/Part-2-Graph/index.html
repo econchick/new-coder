@@ -39,7 +39,7 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder</a></h1>
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
@@ -51,50 +51,36 @@
         </div>
         
         <div class="body">
-            <p>Walkthrough of graphing our sample data with matplotlib and numpy.</p>
-<h3>Table of Contents</h3>
-<ol>
-<li><a href="#intro-to-numpy-and-matplotlib">Intro to Numpy &amp; matplotlib</a></li>
-<li><a href="#module-setup">Module Setup</a></li>
-<li><a href="#review-of-parse-function">Review: Parse Function</a></li>
-<li><a href="#visualize-functions">Visualize Functions</a>
-
-<ol>
-<li><a href="#visualize-days-function">By Day</a></li>
-<li><a href="#visualize-type-function">By Type</a></li>
-</ol></li>
-</ol>
-
-<p><strong>Module Location:</strong> <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/graph.py">new-coder/dataviz/lib/tutorial_source/graph.py</a></p>
+            <p>Graph our sample data with matplotlib.</p>
 <h3>Module Setup</h3>
 <ul>
-<li>Simililar as before, when you open up <code>graph.py</code>, you&#39;ll see the language and encoding setup, as well as an introduction to the module itself. </li>
-<li><a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/graph.py#14">Lines 14 - 18</a> are the libraries we import. Notice how the import statements are in alphabetical order. The general rule of ordering imports, in alphabetical order:
+<li>Simililar as before, when you open up <code>graph.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/graph.py">new-coder/dataviz/lib/tutorial_source/graph.py</a>, you’ll see the language environment setup, as well as an introduction to the module itself. </li>
+<li>The next few lines are the libraries we import. Notice how the import statements are in alphabetical order. The general rule of ordering imports, in alphabetical order:
 
 <ol>
 <li>Standard Library modules</li>
 <li>External/third party packages/modules</li>
 <li>Internal/self-written modules</li>
 </ol></li>
-<li>When importing, we can also give the object we&#39;re importing whatever name we want because we&#39;re lazy programmers. When we <code>import matplotlib.pyplot as plt</code> we&#39;re essentially renaming the <code>pyplot</code> object (which FYI is <code>&lt;type: &#39;module&#39;&gt;</code>) of <code>matplotlib</code> as <code>plt</code>. You don&#39;t have to name it plt, but it&#39;s a handy trick when you want to access different objects that the <code>pyplot</code> module has, as you&#39;ll see later.</li>
+<li>When importing, we can also give the object we’re importing whatever name we want because we’re lazy programmers. When we <code>import matplotlib.pyplot as plt</code> we’re essentially renaming the <code>pyplot</code> object (which FYI is <code>&lt;type: &#39;module&#39;&gt;</code>) of <code>matplotlib</code> as <code>plt</code>. You don’t have to name it plt, but it’s a handy trick when you want to access different objects that the <code>pyplot</code> module has, as you’ll see later.</li>
 </ul>
 <h3>Review of Parse Function</h3>
 <ul>
-<li>Once again, you see the <code>MY_FILE</code> as a global variable that points to the sample data file that&#39;s included in the repository. </li>
-<li>In a quick review of <a href="#the-parse-function">Part I: Parse</a> - tutorial comments removed - we see that the <code>parse()</code> function still takes in two parameters: <code>raw_file</code> and <code>delimiter</code>. The process of the <code>parse()</code> function is as follows:
+<li>Once again, you see the <code>MY_FILE</code> as a global variable that points to the sample data file that’s included in the repository. </li>
+<li>In a quick review of <a href="/Part-1-Parse">Part I: Parse</a> - tutorial comments removed - we see that the <code>parse()</code> function still takes in two parameters: <code>raw_file</code> and <code>delimiter</code>. The process of the <code>parse()</code> function is as follows:
 
 <ol>
 <li>Open the raw file.</li>
 <li>Read the CSV file with the appropriate delimiter.</li>
 <li>Initialize an empty list which will be returned by the function.</li>
 <li>Grab the first row of the CSV file, the headers/column names, and assign them to the <code>fields</code> variable, which will be a list.</li>
-<li>Iterate over each row in the CSV file, mapping column headers -&gt; row values, and add to our list we initialized in step 3.</li>
+<li>Iterate over each row in the CSV file, mapping column headers &rarr; row values, and add to our list we initialized in step 3.</li>
 <li>Return the <code>parsed_data</code> variable.</li>
 </ol></li>
-<li>We include the parse function here so we build on the process of parse -&gt; plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from parse.py. As a challenge to you, try editing away the parse function in <code>graph.py</code> and import it from <code>parse.py</code>.</li>
+<li>We include the parse function here so we build on the process of parse &rarr; plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from <code>parse.py</code>. As a <strong>challenge</strong> to you, try editing away the parse function in <code>graph.py</code> and import it from your <code>parse.py</code>.</li>
 </ul>
 <h3>Visualize Functions</h3>
-<p>Let&#39;s first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we&#39;re working with:</p>
+<p>Let’s first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we’re working with:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -124,15 +110,13 @@
 </td></tr></table></div></div>
 <p>By looking at a snippet of data, we can understand how we can play/visualize it.  The kind of data we are working with is where one entry equals an incident that the San Francisco Police recorded. The following two functions are just two ways of playing with the data, but note that these functions are specific to <em>our</em> data.</p>
 
-<p><strong>Disclaimer</strong>: As with understanding statistics, correlation does <em>not</em> mean causation.  This is a small sample size, not current, and it&#39;s from the point of view of officers reporting incidents.  Take everything with a grain of salt!</p>
+<p><strong>Disclaimer:</strong> As with understanding statistics, correlation does <em>not</em> mean causation.  This is a small sample size, not current, and it’s from the point of view of officers reporting incidents. Take everything with a grain of salt!</p>
 <h4>Visualize Days Function</h4>
 <p>As we read from the docstring, this will give us a visualization of data by the day of the week.  For instance, are SF policy officers more likely to file incidents on Monday versus a Tuesday? Or, tongue-in-cheek, should you stay in your house Friday night versus Sunday morning?</p>
 
-<p><i class="glyphicons-icon charts"></i></p>
+<p>You’ll also notice that the <code>def visualize_days()</code> function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: <code>def visualize_days(parsed_data)</code>.</p>
 
-<p>You&#39;ll also notice that the <code>def visualize_days()</code> function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: <code>def visualize_days(parsed_data)</code>.</p>
-
-<p>Let&#39;s walk through this function like we did the parse function.  Below is the walk through of comments for the code that we will want to write:</p>
+<p>Let’s walk through this function like we did the parse function.  Below is the walk through of comments for the code that we will want to write:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -164,7 +148,7 @@
     <span class="c"># show the plot!</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our <code>graph.py</code> file so we can easily access it&#39;s parsing-abilities! Like so:</p>
+<p>Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our <code>graph.py</code> file so we can easily access it’s parsing-abilities! Like so:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -174,11 +158,11 @@
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Notice how we assign data_file to our parse function, and the parameters we feed through our parse functions are <code>MY_FILE</code> and a comma-delimiter. Because we know the parse function returns <code>parsed_data</code>, we can expect that <code>data_file</code> will be that exact return value.</p>
+<p>Notice how we assign <code>data_file</code> to our parse function, and the parameters we feed through our parse functions are <code>MY_FILE</code> and a comma-delimiter. Because we know the parse function returns <code>parsed_data</code>, we can expect that <code>data_file</code> will be that exact return value.</p>
 
-<p>This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported Counter from the module <code>collections</code>. This is demonstrative of Python&#39;s powerful standard library. </p>
+<p>This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported <code>Counter</code> from the module <code>collections</code>. This is demonstrative of Python’s powerful standard library. </p>
 
-<p>Here, Counter behaves very similarly to Python&#39;s dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our <code>data_file</code> variable (since it&#39;s just a list of dictionaries), grabbing each key labelled &quot;DayOfWeek&quot;. </p>
+<p>Here, <code>Counter</code> behaves very similarly to Python&#39;s dictionary structure (because under the hood, the <code>Counter</code> class inherits from dictionary).  What we will do with Counter is iterate through each line item in our <code>data_file</code> variable (since it’s just a list of dictionaries), grabbing each key labelled &quot;DayOfWeek&quot;. </p>
 
 <p>What the Counter does is everytime it sees the &quot;DayOfWeek&quot; key set to a value of &quot;Monday&quot;, it will give it a tally; same with &quot;DayOfWeek&quot; key set to &quot;Tuesday&quot;, etc. This works great for very well structured data.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -196,31 +180,41 @@
     <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;DayOfWeek&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Notice, within Counter(...) we have an interesting loop construct, <code>item [&quot;DayOfWeek&quot;] for item in data_file</code>. This is called a list comprehension. You can read it as, &quot;count every dictionary value of every dictionary key set to &#39;DayOfWeek&#39; for every line item in data_file.&quot; A list comprehension just a for-loop put in a more elegant, &quot;Pythonic&quot; way. <strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
+<p>Notice, within Counter(…) we have an interesting loop construct:</p>
+
+<pre>
+item ["DayOfWeek"] for item in data_file
+</pre>
+
+<p>This is called a list comprehension. You can read it as, “count every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list comprehension just a for-loop put in a more elegant, “Pythonic” way. <strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
 
 <p>The counter object is a dictionary with the keys as days of the week, and values as the count of incidents per day. In order for our visualization to make sense, we need to make sure the order that we plot the data makes sense.  For instance, it would make no sense to plot our data in alphabetical order rather than order of the days of the week. We can force our order by separating keys and values to lists:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
-    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Wednesday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Thursday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Friday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
-                <span class="p">]</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Wednesday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Thursday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Friday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
+                 <span class="p">]</span>
     <span class="n">day_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Here, <code>data_list</code> takes each key of <code>counter</code> to grab the value associated with each day.  Because we manually write out each <code>counter</code> key, we force the order that we want. <strong>Note:</strong> a dictionary does <em>not</em> preserve order, but a list does; this is why we&#39;re electing to manually key into each value of a dictionary to make a list of each value.</p>
+<p>Here, <code>data_list</code> takes each key of <code>counter</code> to grab the value associated with each day.  Because we manually write out each <code>counter</code> key, we force the order that we want. <strong>Note:</strong> a dictionary does <em>not</em> preserve order, but a list does; this is why we’re electing to manually key into each value of a dictionary to make a list of each value.</p>
 
 <p>The <code>day_list</code> is just a list of strings that we will use for our x-axis labels.</p>
 
-<p>We now tell <code>matplotlib</code> to use our <code>data_list</code> as data points to plot. The <code>pyplot</code> module, what we&#39;ve renamed as <code>plt</code>, has a function called <code>plot()</code> which takes a list of data points to plot on the y-axis:</p>
+<p>We now tell <code>matplotlib</code> to use our <code>data_list</code> as data points to plot. The <code>pyplot</code> module, what we’ve renamed as <code>plt</code>, has a function called <code>plot()</code> which takes a list of data points to plot on the y-axis:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># with that y-axis data, assign it to a matplotlib plot instance</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
@@ -228,15 +222,15 @@
 </td></tr></table></div></div>
 <p>If you are curious about the <code>plot()</code> function, type <code>python</code> in your terminal, then <code>import matplotlib.pyplot as plt</code> followed by <code>help(plt)</code> and/or <code>dir(plt)</code>. Again, to exit out of the Python shell, press <code>CTRL-D</code>. </p>
 
-<p>Next, we&#39;ll make a tuple out of the day_list (a list of strings, each string being &quot;Mon&quot;, &quot;Tues&quot;, etc) and assign it to a <code>labels</code> variable:</p>
+<p>Next, we’ll make a tuple out of the <code>day_list</code> (a list of strings, each string being “Mon”, “Tues”, etc) and assign it to a <code>labels</code> variable:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Create labels for our x-axis</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">day_list</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>By simply &#39;wrapping&#39; tuple() around our list of strings makes will make <code>labels</code> a tuple full of strings.</p>
+<p>By simply ‘wrapping’ <code>tuple()</code> around our list of strings makes will make <code>labels</code> a tuple full of strings.</p>
 
-<p>Just creating the varible <code>labels</code> for our x-axis isn&#39;t enough - we also have to assign it to our <code>plt</code> by using the method <code>xticks()</code>:</p>
+<p>Just creating the varible <code>labels</code> for our x-axis isn’t enough — we also have to assign it to our <code>plt</code> by using the method <code>xticks()</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Assign labels to the plot</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)),</span> <span class="n">labels</span><span class="p">)</span>
@@ -244,19 +238,21 @@
 </td></tr></table></div></div>
 <p>We give <code>plt.xticks()</code> two parameters, one being a list and the other being our tuple, <code>labels</code>. </p>
 
-<p>The first parameter is <code>range(len(data_list))</code>.  Here, we call <code>len()</code> on our <code>data_list</code> variable - <code>len()</code> returns an integer, a count of the number of items in our list <code>data_list</code>. Since we have seven items in our <code>data_list</code> (<strong>q:</strong> why do we have seven items?), the <code>len()</code> will return 7. Now we have <code>range()</code> on our length of the <code>data_list</code>. If you feed <code>range()</code> one parameter <code>x</code>, it will produce a list of integers from 0 to <code>x</code> (not including <code>x</code>). So, deconstructed, we fed <code>plt.xticks()</code> the following: parameter 1 = <code>[0, 1, 2, 3, 4, 5, 6]</code>; parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;). </p>
+<p>The first parameter is <code>range(len(data_list))</code>.  Here, we call <code>len()</code> on our <code>data_list</code> variable — <code>len()</code> returns an integer, a count of the number of items in our list <code>data_list</code>. Since we have seven items in our <code>data_list</code> (<strong>q:</strong> why do we have seven items?), the <code>len()</code> will return 7. Now we have <code>range()</code> on our length of the <code>data_list</code>. If you feed <code>range()</code> one parameter <code>x</code>, it will produce a list of integers from <code>0</code> to <code>x</code> (not including <code>x</code>). So, deconstructed, we fed <code>plt.xticks()</code> the following: </p>
+<pre><code>parameter 1 = [0, 1, 2, 3, 4, 5, 6]
+parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#34;Fri&#34;, &#34;Sat&#34;, &#34;Sun&#34;)
+</code></pre>
+<p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
 
-<p>The first parameter is so matplotlib knows how many tickets it needs to place.  </p>
+<p><strong>A final note:</strong> we had to make our <code>labels</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python’s library, meaning you can’t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
 
-<p>A final note: we had to make our <code>labels</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python&#39;s library, meaning you can&#39;t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
-
-<p>We&#39;re nearly there! So far, we&#39;ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>&#39;s <code>show()</code> method:</p>
+<p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>show()</code> method:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Render the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Notice we didn&#39;t finish with <code>return</code> - you can put a <code>return</code> call at the end of the function, but we aren&#39;t returning anything, per se, and because we aren&#39;t, we don&#39;t need to have the <code>return</code> call in there.</p>
+<p>Notice we didn’t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
 
 <p>The function all together:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -286,7 +282,9 @@
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
     <span class="c"># Returns a dict where it sums the total values for each key.</span>
@@ -295,12 +293,14 @@
     <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;DayOfWeek&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">)</span>
 
     <span class="c"># Separate out the counter to order it correctly when plotting.</span>
-    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Wednesday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Thursday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Friday&quot;</span><span class="p">],</span> <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
-                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
-                <span class="p">]</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Wednesday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Thursday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Friday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
+                 <span class="p">]</span>
     <span class="n">day_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">]</span>
 
     <span class="c"># Assign the data to a plot</span>
@@ -316,7 +316,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>To actually see the visualization (and to test your code), add the following (for why, refer to <a href="#using-the-new-parse-function">parse</a>):</p>
+<p>To actually see the visualization (and to test your code), add the following boilerplate code again:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -328,15 +328,15 @@
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your Terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did <a href="#putting-it-to-action">before</a>. Also - make sure your virtualenv is active. Now, in your Terminal, run:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>python graph.py
+<p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./graph.py
 </pre></div>
 </td></tr></table></div></div>
 <p>You should see a nice rendering of our graph:</p>
 
-<p><img src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_days.png" alt="visualize-days"></p>
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_days.png" width="450" height="400"/></p>
 
-<p>When you&#39;re done marveling at your work, close the graph window and you should be back at your terminal.</p>
+<p>When you’re done marveling at your work, close the graph window and you should be back at your terminal.</p>
 
 <p>You can also start up a Python shell, and play around a little bit:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -381,8 +381,6 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 <p>Remember that <code>CTRL+D</code> exits out of the Python shell and brings you back to where you were in the terminal. </p>
 <h4>Visualize Type Function</h4>
 <p>The next function that we will walk through, <code>visualize_type()</code>, is constructed very similarly, but takes advantage of how you can manipulate the size and image of the graph. I will not rehash familiar/repetitive lines of code since a lot is similar to <code>visualize_days()</code>.</p>
-
-<p><i class="glyphicons-icon stats"></i></p>
 
 <p>Starting with our comment outline and function scaffolding:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -432,7 +430,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="c"># Render the graph!</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The first three lines of code should look familiar.  Here, we&#39;re counting over &quot;Category&quot; rather than &quot;DayOfWeek&quot;. And since order doesn&#39;t matter to us here, we can just use <code>counter.keys()</code> and <code>counter.values()</code> to get the items we need for plotting:</p>
+<p>The first three lines of code should look familiar.  Here, we’re counting over “Category” rather than “DayOfWeek” data. And since order doesn’t matter to us here, we can just use <code>counter.keys()</code> and <code>counter.values()</code> to get the items we need for plotting:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -454,13 +452,13 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">labels</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Next we finally use a bit of numpy magic (imported as <code>na</code>):</p>
+<p>Next we finally use a bit of numpy magic (we had imported the numpy library as <code>na</code>):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Set where the labels hit the x-axis</span>
     <span class="n">xlocations</span> <span class="o">=</span> <span class="n">na</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span> <span class="o">+</span> <span class="mf">0.5</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>We have a new variable, <code>xlocations</code>, which will be used to help place the <code>plt.xticks()</code>. We&#39;re using the <code>numpy.numarray</code> (aka <code>na</code>) module to access the <code>array</code> function. This turns the list that <code>range(len(labels))</code> would make into an array that you can manipulate a bit differently. Here, we&#39;re adding <code>0.5</code>. If you were to <code>print xlocations</code>, you would see <code>[0.5, 1.5, 2.5, ... , 16.5, 17.5]</code> where <code>0.5</code> was added to each int of the list.  You&#39;ll see why we need the <code>0.5</code> a bit later.</p>
+<p>We have a new variable, <code>xlocations</code>, which will be used to help place the <code>plt.xticks()</code>. We’re using the <code>numpy.numarray</code> (aka <code>na</code>) module to access the <code>array</code> function. This turns the list that <code>range(len(labels))</code> would make into an array that you can manipulate a bit differently. Here, we&#39;re adding <code>0.5</code>. If you were to <code>print xlocations</code>, you would see <code>[0.5, 1.5, 2.5, ... , 16.5, 17.5]</code> where <code>0.5</code> was added to each int of the list.  You’ll see why we need the <code>0.5</code> a bit later.</p>
 
 <p>Now we assign our x- &amp; y-ticks (should be familiar to <code>visualize_days()</code>):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -468,33 +466,33 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xlocations</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>For the <code>plt.xticks()</code>, the first parameter should look similar to before, but here we&#39;re feeding three parameters: <code>xlocations + width / 2</code>, <code>labels</code>, and <code>rotation=90</code>. The first parameter will place the center of the bar in the middle of the xtick. <code>labels</code> we know already. <code>rotation=90</code> is, as you might have guess, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.</p>
+<p>For the <code>plt.xticks()</code>, the first parameter should look similar to before, but here we’re feeding three parameters: <code>xlocations + width / 2</code>, <code>labels</code>, and <code>rotation=90</code>. The first parameter will place the center of the bar in the middle of the xtick. <code>labels</code> we know already. <code>rotation=90</code> is, as you might have guess, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.</p>
 
-<p>Notice how we can pass <code>xticks()</code> more parameters than we did before. If you read the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks">documentation</a> of that function, you can pass it <code>*args</code> and <code>*kwargs</code>, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined <a href="http://matplotlib.org/api/artist_api.html#matplotlib.text.Text">text properties</a> for the labels - so that would explain the <code>*kwargs</code> element there. If nothing is passed in for <code>rotation</code> then it&#39;s set to a default defined in their text properties documentation.</p>
+<p>Notice how we can pass <code>xticks()</code> more parameters than we did before. If you read the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks">documentation</a> of that function, you can pass it <code>*args</code> and <code>*kwargs</code>, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined <a href="http://matplotlib.org/api/artist_api.html#matplotlib.text.Text">text properties</a> for the labels — so that would explain the <code>*kwargs</code> element there. If nothing is passed in for <code>rotation</code> then it’s set to a default defined in their text properties documentation.</p>
 
-<p>Next, we just add a little bit of spacing to the bottom of the graph so the labels (since some of them are long, like &quot;Forgery/Counterfeiting&quot;). We use the <code>.subplots_adjust()</code> function. In matplotlib, you have the ability to render multiple graphs on one window/function, called subplots. With one graph, subplots can be used to adjust the spacing around the graph itself.</p>
+<p>Next, we just add a little bit of spacing to the bottom of the graph so the labels (since some of them are long, like <code>Forgery/Counterfeiting</code>). We use the <code>.subplots_adjust()</code> function. In matplotlib, you have the ability to render multiple graphs on one window/function, called subplots. With one graph, subplots can be used to adjust the spacing around the graph itself.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Give some more room so the labels aren&#39;t cut off in the graph</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>I&#39;ll be honest, <code>0.4</code> was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.</p>
+<p>I’ll be honest, <code>0.4</code> was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.</p>
 
-<p>Nearly there - before we render the graph, the actual size of the window can be played with too. <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: height + width:</p>
+<p>Nearly there — before we render the graph, the actual size of the window can be played with too. <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: height + width:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Make the overall graph/figure larger</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Again - here I just played with the numbers until I got something I liked. I encourage you to put in different numbers to change the size of your graph.</p>
+<p>Again — here I just played with the numbers until I got something I liked. I encourage you to put in different numbers to change the size of your graph.</p>
 
-<p>Finally, our favorite - rendering the graph!</p>
+<p>Finally, our favorite — rendering the graph!</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Render the graph!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>A reiteration: notice we didn&#39;t finish with <code>return</code> - you can put a <code>return</code> call at the end of the function, but we aren&#39;t returning anything, per se, and because we aren&#39;t, we don&#39;t need to have the <code>return</code> call in there.</p>
+<p>A reiteration: notice we didn&#39;t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
 
 <p>The function all together:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -558,7 +556,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>To actually see the visualization (and to test your code), add the following (for why, refer to <a href="#using-the-new-parse-function">parse</a>): </p>
+<p>To actually see the visualization (and to test your code), add the following boilerplate code: </p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -572,14 +570,15 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your Terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did <a href="#putting-it-to-action">before</a>. Also - make sure your virtualenv is active. Now, in your Terminal, run:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>python graph.py
+<p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your Terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./graph.py
 </pre></div>
 </td></tr></table></div></div>
-<p>and you should see:<br>
-<img src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_type.png" alt="visualize-type"></p>
+<p>and you should see:</p>
 
-<p>When you&#39;re done marveling at your work, close the graph window and you should be back at your terminal.</p>
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_type.png" width="450" height="400" /></p>
+
+<p>When you’re done marveling at your work, close the graph window and you should be back at your terminal.</p>
 
 <p>You can also start up a Python shell, and play around a little bit like we did with our <code>visualize_days()</code> code. Remember that <code>CTRL+D</code> exits out of the Python shell and brings you back to where you were in the terminal. </p>
 

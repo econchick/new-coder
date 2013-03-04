@@ -149,7 +149,7 @@ h2, h3 {
 }
 
 h4, h5, h6 {
-  font-family: edmondans medium;
+  font-family: edmondsans medium;
   font-style: normal;
   font-weight: bold;
   text-transform: uppercase;
@@ -225,7 +225,7 @@ p {
 
 pre, code {
   font-family: "Envy Code R", monospace;
-  font-size: 10pt;
+  font-size: 14pt;
 }
 
 pre {
@@ -347,7 +347,7 @@ small a {
   display: block;
 }
 #nav a {
-  color: #333333;
+  color: #198583;
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
@@ -404,7 +404,7 @@ div.item div.header h1, div.item div.header h2 {
 }
 div.item div.header h2 {
   border-bottom-width: 0px;
-  color: #8c8c8c;
+  color: #198583;
   font-size: 24px;
   font-weight: normal;
   text-shadow: none;
@@ -546,3 +546,22 @@ div.code td.linenos pre {
 .glyphicons.life_preserver i:before {
   content: "\e308";
 }
+
+img.displayed {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border:5px solid #198583;
+}
+
+.icon {
+  margin: 0.5em 0; }
+  .icon:before {
+    font-family: 'Glyphicons';
+    font-size: 37px;
+    content: attr(data-icon); }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: 'Glyphicons';
+  font-style: normal;
+  speak: none; }

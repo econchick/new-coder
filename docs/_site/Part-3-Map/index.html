@@ -39,7 +39,7 @@
         </div>
         
         <div id="header">
-            <h1><a href="/">New Coder</a></h1>
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
             <h2>Five Life Jackets to Throw at the New Coder</h2>
         </div>
 
@@ -51,11 +51,9 @@
         </div>
         
         <div class="body">
-            <p>Walkthrough of plotting our sample data on Google Maps.</p>
-
-<p><strong>Module Location:</strong> <code>new-coder/dataviz/lib/tutorial_source/map.py</code></p>
+            <p>Plot our sample data on Google Maps.</p>
 <h3>Module Setup</h3>
-<p>Here you see in lines <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/map.py#17">Lines 17 - 19</a> we&#39;re importing <code>xml.dom.minidom</code> which is Python&#39;s <a href="http://docs.python.org/2/library/xml.dom.minidom.html">minimal implementation</a> of DOM interface, as well as our own module, <code>parse</code> as <code>p</code>. </p>
+<p>Looking at <code>map.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/map.py"><code>new-coder/dataviz/lib/tutorial_source/map.py</code></a>, you’ll see in lines after the preamble that we’re importing <code>xml.dom.minidom</code> which is Python’s <a href="http://docs.python.org/2/library/xml.dom.minidom.html">minimal implementation</a> of DOM interface, as well as our own module, <code>parse</code> as <code>p</code>. </p>
 
 <p>Other ways you could have done the import statements:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -75,20 +73,23 @@
 <span class="kn">import</span> <span class="nn">parse</span> <span class="kn">as</span> <span class="nn">iLoveParsingSoMuch</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Of course, we&#39;re lazy programmers, so we&#39;re not going to <code>import parse as iLoveParsingSoMuch</code> because each time we want to refer to our <code>parse()</code> function in the <code>parse</code> module, we&#39;d have to type out <code>iLoveParsingSoMuch.parse(iLoveParsingSoMuch.MY_FILE, &quot;,&quot;)</code> - you can probably see why I elected <code>p</code>. </p>
+<p>Of course, we&#39;re lazy programmers, so we’re not going to <code>import parse as iLoveParsingSoMuch</code> because each time we want to refer to our <code>parse()</code> function in the <code>parse</code> module, we’d have to type out <code>iLoveParsingSoMuch.parse(iLoveParsingSoMuch.MY_FILE, &quot;,&quot;)</code> — you can probably see why I elected <code>p</code>. </p>
 
-<p>We also don&#39;t import the whole <code>xml</code> library, or <code>xml.dom</code> library for that matter. We want to run lean code, so only import the specific module that you need, or even objects (classes, functions, variables, etc) defined from within that module.</p>
-<h3>For the curious</h3>
+<p>We also don’t import the whole <code>xml</code> library, or <code>xml.dom</code> library for that matter. We want to run lean code, so only import the specific module that you need, or even objects (classes, functions, variables, etc) defined from within that module.</p>
+
+<p><strong>For the curious:</strong></p>
+
 <ul>
-<li>Library is a collection of packages. A package is a collection of modules. A module is one python file, so a library is a collection of python files.</li>
-<li>Python has a standard library already build in (standard meaning that you don&#39;t have to download extra packages, it&#39;s default within the language and just have to import what you need), but that standard library contains many packages and modules. </li>
+<li>A package is a collection of modules (or packages). A module is one python file, so a package is a collection of python files.</li>
+<li>A distributed collection of packages is can be referred to as a library.</li>
+<li>Python has a standard library already built-in (built-in meaning that you don’t have to download extra packages, it’s default within the language and just have to import what you need), but that standard library contains many packages and modules. </li>
 <li>Python will follow your import statements like a file structure. For instance, we have <code>new-coder/dataviz/lib/tutorial_source</code> - <code>lib</code> is within <code>dataviz</code>. So within Python&#39;s standard library, <code>minidom</code> is defined within <code>dom</code>, and that within <code>xml</code>. </li>
-<li>A bit of a <strong>warning</strong>: if you try to run <code>map.py</code> outside of <code>new-coder/dataviz/lib/tutorial_source</code> without adjusting the <code>import parse</code>, you may see an <code>ImportError</code>. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python <a href="http://docs.python.org/2/tutorial/modules.html#packages">docs</a></li>
+<li>A bit of a <strong>warning</strong>: if you try to run <code>map.py</code> outside of <code>new-coder/dataviz/lib/tutorial_source</code> without adjusting the <code>import parse</code>, you may see an <code>ImportError</code>. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python <a href="http://docs.python.org/2/tutorial/modules.html#packages">docs</a>.</li>
 </ul>
 
 <p>Back to the tutorial!</p>
 <h3>Helper Functions</h3>
-<p>We&#39;ve defined two helper functions for our <code>create_gmap()</code> function: <code>create_document()</code> and <code>create_placemark</code>. I won&#39;t spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don&#39;t want <code>create_gmap()</code> to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debugging.</p>
+<p>We’ve defined two helper functions for our <code>create_gmap()</code> function: <code>create_document()</code> and <code>create_placemark</code>. I won’t spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don’t want <code>create_gmap()</code> to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debugging.</p>
 
 <p>The <code>create_document(title, description=&#39;&#39;)</code> function essentially will create/initialize a KML document. It first makes an XML document, then defines it as KML, grabs common KML attributes that are defined at <code>www.opengis.net</code> (which catalogs web resources for anyone to refer to).  Lastly, it creates meta data that we want for our map: Title and Description.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -144,7 +145,7 @@
 </td></tr></table></div></div>
 <p>The <code>createElement()</code> and <code>appendChild()</code> is specific to DOM functions that the <code>xml.dom.minidom</code> gives us access to.  We first create an element (either Document, name, or description), then assign that element a value if needed (title, and description, if given).  Finally, we return the initialized document.</p>
 
-<p>The <code>create_placemark(address)</code> creates an initial XML document so we can build one placemark (equal to one piece of our data). The function actually creates the placemark data by doing the same process from earlier, <code>createElement</code> to create a type of DOM element, and assign it a value if needed (e.g. name, coordinates, description). This just returns one placemark in the correct format.</p>
+<p>The <code>create_placemark(address)</code> creates an initial XML document so we can build one placemark (equal to one piece of our data). The function actually creates the placemark data by doing the same process from earlier, <code>createElement</code> to create a type of DOM element, and assign it a value if needed (e.g. name, coordinates, description). This just returns one placemark in the correct KML format.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -198,16 +199,14 @@
     <span class="k">return</span> <span class="n">doc</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>I want to point out the following syntax: <code>Date: %(date)s, %(description)s&#39; % address)</code>. The parameter, <code>address</code> is passed to the function. We can access elements in that parameter (you&#39;ll see later that it&#39;s a dictionary) with Python&#39;s &#39;string-fu&#39; - it has a built-in method with the <code>%</code> operator (aka Modulo) for string formatting, following the convention <code>format % values</code>. You can access values in a dictionary by calling the dictionary key in parenthesis: </p>
+<p>I want to point out the following syntax: <code>Date: %(date)s, %(description)s&#39; % address</code>. The parameter, <code>address</code> is passed to the <code>create_placemark()</code> function. We can access elements in that parameter (you’ll see later that it’s a dictionary) with Python’s ‘string-fu’ — it has a built-in method with the <code>%</code> operator (aka Modulo) for string formatting, following the convention <code>format % values</code>. You can access values in a dictionary by calling the dictionary key in parenthesis: </p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">&#39;</span><span class="si">%(language)s</span><span class="s"> has </span><span class="si">%(number)03d</span><span class="s"> quote types.&#39;</span> <span class="o">%</span> <span class="p">{</span><span class="s">&quot;language&quot;</span><span class="p">:</span> <span class="s">&quot;Python&quot;</span><span class="p">,</span> <span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="n">Python</span> <span class="n">has</span> <span class="mo">002</span> <span class="n">quote</span> <span class="n">types</span><span class="o">.</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>You see that <code>(language)</code> is specified to be a string with the s, and <code>(number)</code> is a decimal specified by the d.  The <code>03</code> in front of the d refers to number of digits (3) and with zeros padding the number. More information can be read in the Python <a href="http://docs.python.org/2/library/stdtypes.html#string-formatting-operations">docs</a>.</p>
-
-<p>Create GMap!</p>
-
+<p>You see that <code>(language)</code> is specified to be a string with the <code>s</code>, and <code>(number)</code> is a decimal specified by the <code>d</code>.  The <code>03</code> in front of the <code>d</code> refers to number of digits (3) and with zeros padding the number. More information can be read in the Python <a href="http://docs.python.org/2/library/stdtypes.html#string-formatting-operations">docs</a>.</p>
+<h3>Create G-Map!</h3>
 <p>Now on to the good stuff.  The function <code>create_gmap(data_file)</code> uses the two helper functions to build a KML document with our data.  </p>
 
 <p>Again with our initial comment setup:</p>
@@ -250,7 +249,7 @@
     <span class="c"># can upload it to maps.google.com</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The first that we need to do is just to create a new KML document for us to work with. We&#39;ll use our helper function, <code>create_document</code> and pass in a title and description as parameters to create a new variable, <code>kml_doc</code>:</p>
+<p>The first that we need to do is just to create a new KML document for us to work with. We’ll use our helper function, <code>create_document</code> and pass in a title and description as parameters to create a new variable, <code>kml_doc</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Create a new KML doc with our previously-defined</span>
@@ -284,14 +283,16 @@
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Iterate over our data to create KML document</span>
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Iterate over our data to create KML document</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">:</span>
         <span class="c"># Parses the data into a dictionary</span>
         <span class="n">placemark_info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Category&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Descript&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">]}</span>
+                          <span class="s">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Category&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Descript&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">]</span>
+                          <span class="p">}</span>
 
         <span class="c"># Avoid null values for lat/long</span>
         <span class="k">if</span> <span class="n">placemark_info</span><span class="p">[</span><span class="s">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span><span class="p">:</span>
@@ -304,7 +305,7 @@
         <span class="n">document</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">placemark</span><span class="o">.</span><span class="n">documentElement</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>So for each line in our <code>data_file</code>, we take certain values of that line, <code>X</code>, <code>Y</code>, <code>Category</code>, etc, and assign it to a key.  If, for whatever instance, longitude is <code>0</code>, we&#39;ll skip over it.  The assumption is if the longitude is 0, then we can&#39;t plot it (or it will be plotted as 0,0 and screw with our map). This is a simple form of skipping over errors in the data.</p>
+<p>So for each line in our <code>data_file</code>, we take certain values of that line, <code>X</code>, <code>Y</code>, <code>Category</code>, etc, and assign it to a key.  If, for whatever instance, longitude is <code>0</code>, we&#39;ll skip over it.  The assumption is if the longitude is <code>0</code>, then we can&#39;t plot it (or it will be plotted as <code>0,0</code> and screw with our map). This is a simple form of skipping over errors in the data.</p>
 
 <p>We then create the variable <code>placemark</code> by calling the <code>create_placemark()</code> function, and feeding it our dictionary, <code>placemark_info</code>.  <code>create_placemark()</code> will return an object that can easily be added to our KML document, <code>document</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -318,7 +319,7 @@
         <span class="n">document</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">placemark</span><span class="o">.</span><span class="n">documentElement</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>So looping over each line item is done, we&#39;ve built our KML document, now how to we <em>get</em> that document so we can upload it to Google Maps?  We can do that with Python&#39;s file I/O - by opening a file (if it doesn&#39;t exist, it will be created for us), and writing to that file.</p>
+<p>So looping over each line item is done, we’ve built our KML document, now how to we <em>get</em> that document so we can upload it to Google Maps?  We can do that with Python’s file I/O — by opening a file (if it doesn’t exist, it will be created for us), and writing to that file.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -328,13 +329,13 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">kml_doc</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s">&quot;  &quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#39;UTF-8&#39;</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>This is a new loop construct: <code>with</code> - it allows us to not have to worry about closing a file; it will be done automatically for us.  More about the <code>with</code> built-in can be read <a href="http://preshing.com/20110920/the-python-with-statement-by-example">here</a>.</p>
+<p>This is a new loop construct: <code>with</code> — it allows us to not have to worry about closing a file; it will be done automatically for us.  More about the <code>with</code> built-in can be read <a href="http://preshing.com/20110920/the-python-with-statement-by-example">here</a>.</p>
 
 <p>So <code>with open(&#39;file_sf.kml&#39;, &#39;w&#39;) as f</code> assigns the opened file as f; it also will either open the file <code>file_sf.kml</code> or create it (<strong>note</strong>: it will be in your current directory unless you specify otherwise, like <code>Users/lynnroot/NotMyDevFolder/file_sf.kml</code> with absolute file paths), and give it <code>write</code> capabilities (versus read-only).</p>
 
 <p>Then we write the <code>kml_doc</code> to the file. We use the <code>toprettyxml()</code> method so that we can specify encoding and indentation, making it more readable for us.</p>
 
-<p>Let&#39;s see the <code>create_gmap()</code> function all together:</p>
+<p>Let’s see the <code>create_gmap()</code> function all together:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -373,7 +374,8 @@
 36
 37
 38
-39</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_gmap</span><span class="p">(</span><span class="n">data_file</span><span class="p">):</span>
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_gmap</span><span class="p">(</span><span class="n">data_file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates Google Maps KML Doc.</span>
 <span class="sd">    Returns a KML file to be uploaded at maps.google.com.</span>
@@ -393,10 +395,11 @@
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">:</span>
         <span class="c"># Parses the data into a dictionary</span>
         <span class="n">placemark_info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Category&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Descript&#39;</span><span class="p">],</span>
-                       <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">]}</span>
+                          <span class="s">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Category&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Descript&#39;</span><span class="p">],</span>
+                          <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">]</span>
+                          <span class="p">}</span>
 
         <span class="c"># Avoid null values for lat/long</span>
         <span class="k">if</span> <span class="n">placemark_info</span><span class="p">[</span><span class="s">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span><span class="p">:</span>
@@ -414,7 +417,7 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">kml_doc</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s">&quot;  &quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#39;UTF-8&#39;</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>That&#39;s it! Now we just have that <code>main()</code> function: </p>
+<p>That&#39;s it! Now we just have some boiler code for that <code>main()</code> function: </p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -432,10 +435,10 @@
 </td></tr></table></div></div>
 <p>Here we just first parse our data, then return the KML document using that parsed data.</p>
 
-<p>Next, save this file as <code>map.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your Terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did <a href="#putting-it-to-action">before</a>. Also - make sure your virtualenv is active. Now, in your Terminal, run:</p>
+<p>Next, save this file as <code>map.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>python map.py
-<span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>ls
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./map.py
+<span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>ls
 </pre></div>
 </td></tr></table></div></div>
 <p>You should see <code>file_sf.kml</code> file now! You can open it up in your text editor; a snipit should look like this:</p>
@@ -484,7 +487,17 @@
     <span class="nt">&lt;/Placemark&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>To see it up on Google maps, navigate to <a href="maps.google.com">maps.google.com</a>, then click the button &quot;My Places&quot;, then &quot;Create Map&quot;, then &quot;Import&quot; and select <code>file_sf.kml</code>. Go ahead and upload it and marvel in your new Google Map!</p>
+<p>To see it up on Google maps, navigate to <a href="maps.google.com">maps.google.com</a>, then click the button “My Places”, then “Create Map”, then “Import”, and select your <code>file_sf.kml</code> and upload:</p>
+
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/map_my_places.png" /></p>
+
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/map_create_map.png" /></p>
+
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/map_import.png" /></p>
+
+<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/map_upload.png" /></p>
+
+<p>Go ahead and upload it and marvel in your new Google Map!</p>
 <h3>Extended</h3><h4>Real-life Usage</h4><h4>Where to go from here</h4>
         </div>
     </div>

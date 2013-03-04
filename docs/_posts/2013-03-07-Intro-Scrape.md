@@ -1,6 +1,6 @@
 ---
 layout: post.html
-title: "Introduction to the Web Scraping Tutorial using Scrapy and PostGres"
+title: "Introduction to Web Scraping using Scrapy and PostGres"
 tags: [intro-scrape]
 ---
 
@@ -46,6 +46,6 @@ A cron is a job scheduler for Unix-like computers. It basis its schedule off of 
 
 You can schedule a cron job to go every minute, every hour, every day, etc. Wiki has an [overview](http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions) of the actual syntax to use for a cron job.
 
-**If you're on a Windows Machine**, the cron-equivalent is the [Windows Task Scheduler](http://support.microsoft.com/kb/308569).  The scope of the tutorial does not cover how to configure the Windows Task Scheduler, but you can r[read how](http://technet.microsoft.com/en-us/library/bb726974.aspx) or use the [schtask](http://technet.microsoft.com/en-us/library/cc725744.aspx) tool.
+**If you're on a Windows Machine**, the cron-equivalent is the [Windows Task Scheduler](http://support.microsoft.com/kb/308569).  The scope of the tutorial does not cover how to configure the Windows Task Scheduler, but you can [read how](http://technet.microsoft.com/en-us/library/bb726974.aspx) or use the [schtask](http://technet.microsoft.com/en-us/library/cc725744.aspx) tool.
 
 [Move onto the Setup &rarr;]({{ get_url("/Part-1-Scraper-Setup/")}})
