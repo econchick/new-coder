@@ -4,6 +4,12 @@ title: "Part 4: Pipelining Data to Database"
 tags: [scrape]
 ---
 
+----
+**NOTE**
+    session.add() – this is the actual writing to the database with our information.
+See docs. So, on this step, it's not saved into the database - it's still on sqlalchemy level. Then, running session.commit() will put it into the database and the transaction will be committed.
+----
+
 Pipelining our scraped data into our Postgres database.
 
 **TODO** add commit/rollback intro

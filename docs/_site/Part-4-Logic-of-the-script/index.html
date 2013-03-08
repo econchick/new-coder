@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -57,7 +56,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>APIProj<span class="o">)</span><span class="nv">$ </span>python a_python_file.py --debug --output-file ~/MyDocuments/MyLogs/python_file.log
 </pre></div>
 </td></tr></table></div></div>
-<p>Certainly, we&#39;d need to put some logic into our script in order to be able to parse arguments.  Let&#39;s think of all the arguments that we could possibly want to pass to our API Python script are:</p>
+<p>Certainly, we’d need to put some logic into our script in order to be able to parse arguments.  Let’s think of all the arguments that we could possibly want to pass to our API Python script are:</p>
 
 <ul>
 <li>API key for Giantbomb</li>
@@ -69,13 +68,13 @@
 <li>Maximum number of platforms we want to look at, if any</li>
 </ul>
 
-<p>Python&#39;s standard library has a great module, <code>argparse</code> that we&#39;ll use.  We&#39;ll create separate parsing function as a helper to our main function that we&#39;ll write out after this.</p>
+<p>Python’s standard library has a great module, <code>argparse</code> that we’ll use.  We’ll create separate parsing function as a helper to our main function that we’ll write out after this.</p>
 
 <p>First, import argparse,</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">argparse</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>then let&#39;s define our parsing function, and use <code>argparse</code>&#39;s <code>ArgumentParser()</code> to initialize a <code>parser</code> class:</p>
+<p>then let’s define our parsing function, and use <code>argparse</code>’s <code>ArgumentParser()</code> to initialize a <code>parser</code> class:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_args</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -155,13 +154,13 @@
     <span class="k">return</span> <span class="n">opts</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Note that when running this script, you don&#39;t have to have the output files, CSV or PNG, already created – just tell the script where you want it saved and what you want it saved as by giving it the full directory path and desired filename.</p>
+<p>Note that when running this script, you don’t have to have the output files, CSV or PNG, already created – just tell the script where you want it saved and what you want it saved as by giving it the full directory path and desired filename.</p>
 
-<p>The Python docs have a great <a href="http://docs.python.org/2/howto/argparse.html">tutorial</a> on how to use the <code>argparse</code> module if you&#39;d like additional work on this module.</p>
+<p>The Python docs have a great <a href="http://docs.python.org/2/howto/argparse.html">tutorial</a> on how to use the <code>argparse</code> module if you’d like additional work on this module.</p>
 <h3>Main function</h3>
-<p>The <code>CPIData()</code> and <code>GiantbombAPI()</code> classes have been defined with their methods, as well as functions <code>generate_plot</code>, <code>generate_csv</code>, and <code>is_valid_dataset</code>.  Let&#39;s now make one <code>main()</code> function that runs whenever we call our <code>platform_pricing.py</code> file (with arguments) that instantiates (uses) everything.</p>
+<p>The <code>CPIData()</code> and <code>GiantbombAPI()</code> classes have been defined with their methods, as well as functions <code>generate_plot</code>, <code>generate_csv</code>, and <code>is_valid_dataset</code>.  Let’s now make one <code>main()</code> function that runs whenever we call our <code>platform_pricing.py</code> file (with arguments) that instantiates (uses) everything.</p>
 
-<p>We&#39;ll first want to take care of the arguments passed through the command line by calling our <code>parse_args()</code> function.</p>
+<p>We’ll first want to take care of the arguments passed through the command line by calling our <code>parse_args()</code> function.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -183,7 +182,7 @@
 
 <p>Since we did not specify any file to save our logs to, it will just write our logging statement that we defined in <code>GiantbombAPI.get_platforms()</code> to the terminal when we run our Python program.</p>
 
-<p>Next, we&#39;ll instantiate both the <code>CPIData</code> class and the <code>GiantbombAPI</code> class and use some of the arguments that we parsed to pass the API key, the CPI URL (if we don&#39;t want to use the default defined in our global variable, <code>CPI_DATA_URL</code>, and CPI file (if we gave it a file).</p>
+<p>Next, we’ll instantiate both the <code>CPIData</code> class and the <code>GiantbombAPI</code> class and use some of the arguments that we parsed to pass the API key, the CPI URL (if we don&#39;t want to use the default defined in our global variable, <code>CPI_DATA_URL</code>, and CPI file (if we gave it a file).</p>
 
 <p>We also print to the console – using the print <em>function</em> imported from future (Python 3), rather than the print <em>keyword</em> in Python 2 – that gives a disclaimer to the user what the script will be doing.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -293,7 +292,7 @@
         <span class="n">generate_csv</span><span class="p">(</span><span class="n">platforms</span><span class="p">,</span> <span class="n">opts</span><span class="o">.</span><span class="n">csv_file</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>That&#39;s all for our <code>main()</code> function – just the final boilerplate code at the tail end:</p>
+<p>That’s all for our <code>main()</code> function – just the final boilerplate code at the tail end:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>

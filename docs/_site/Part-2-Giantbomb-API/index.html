@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -57,11 +56,11 @@
 
 <p>Before we continue, make sure you&#39;ve signed up for a developer&#39;s API key with <a href="http://www.giantbomb.com/api/">Giantbomb</a>. Do not share your key information with anyone (but if you do accidently, be sure to regenerate your key).  An API key (or token, etc) is used by folks that have public APIs (like <a href="http://dev.twitter.com">Twitter</a>, <a href="http://www.yelp.com/developers/documentation/v2/overview">Yelp</a>, etc) to identify your unique application (or user/developer).</p>
 
-<p>So in our <code>GiantbombAPI</code> class, we&#39;ll create a constructor to initialize our API key. Everytime we instantiate this class, we&#39;ll need to pass in our API key. This makes our code portable, so I can pass this piece of code onto someone else where they can pass in their own API key while still using our code to grab information from the API.</p>
+<p>So in our <code>GiantbombAPI</code> class, we’ll create a constructor to initialize our API key. Everytime we instantiate this class, we’ll need to pass in our API key. This makes our code portable, so I can pass this piece of code onto someone else where they can pass in their own API key while still using our code to grab information from the API.</p>
 
-<p><strong>Note:</strong> It&#39;s essential to make our code portable, or to have the code abstracted away from specifics to us as a user, developer, our machine, etc. It would do no one (but ourselves) any good if we hard-coded in our API key within this class; it&#39;s better to pass it in as a variable when instantiating the class.</p>
+<p><strong>Note:</strong> It’s essential to make our code portable, or to have the code abstracted away from specifics to us as a user, developer, our machine, etc. It would do no one (but ourselves) any good if we hard-coded in our API key within this class; it’s better to pass it in as a parameter when instantiating the class.</p>
 
-<p>In our class, we&#39;ll also define a base URL for which all calls to the API will use.  Since we&#39;re making calls to a URL, we will use the <code>requests</code> library again later on in this class (no new import statement need since we&#39;re in the same .py file).</p>
+<p>In our class, we’ll also define a base URL for which all calls to the API will use.  Since we’re making calls to a URL, we will use the <code>requests</code> library again later on in this class (no new import statement need since we’re in the same .py file).</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -87,12 +86,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Next, we&#39;ll define one method (our class&#39;s only method) that will make a request to the <code>base_url</code> with the parameters that we feed the method: <code>sort</code>, <code>filter</code>, <code>field_list</code>. </p>
+<p>Next, we’ll define one method (our class’s only method besides our constructor) that will make a request to the <code>base_url</code> with the parameters that we feed the method: <code>sort</code>, <code>filter</code>, <code>field_list</code>. </p>
 
 <p>This method is a generator function (a clue is the <code>yield</code> statement instead of a <code>return</code> statement).</p>
-
-<p><strong>For the curious</strong>, the <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore. </p>
-
+<h4>For the curious</h4>
+<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. </p>
+<h4>Back to the tutorial</h4>
 <p>Follow the inline comments to undestand the process flow of <code>get_platforms()</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -241,13 +240,13 @@
                 <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Did you notice the <code>logging.debug</code> item? We&#39;re using Python&#39;s <code>logging</code> module from its standard library, so we&#39;ll need to add another import statement at the beginning:</p>
+<p>Did you notice the <code>logging.debug</code> item? We’re using Python’s <code>logging</code> module from its standard library, so we’ll need to add another import statement at the beginning:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>It&#39;s important to log what we&#39;re doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the <code>logging</code> module to either save to a specific file, or have it as output to the console as the script processes. We&#39;ll configure our logs in the final part of the API tutorial.</p>
+<p>It’s important to log what we’re doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the <code>logging</code> module to either save to a specific file, or have it as output to the console as the script processes. We’ll configure our logs in the final part of the API tutorial.</p>
 
-<p>We should also define a helper function, <strong>outside</strong> of our <code>GiantbombAPI()</code> class, so that we can make sure that each platform that is yielded from <code>get_platform</code> is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it&#39;s independent of the platform object. This is akin to our helper functions that we made for <code>map.py</code> in our DataViz tutorial.</p>
+<p>Next, we should also define a helper function, <strong>outside</strong> of our <code>GiantbombAPI()</code> class, so that we can make sure that each platform that is yielded from <code>get_platform</code> is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for <code>map.py</code> in our DataViz tutorial.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -287,7 +286,7 @@
     <span class="k">return</span> <span class="bp">True</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>You should not be scared by the format we requested: <code>params[&#39;format&#39;] = &#39;json&#39;</code> – we had some fun with JSON-like parsing in our DataViz tutorial. This is basically the format we will get back when we call this method.  </p>
+<p>You should not be scared by the format we requested: <code>params[&#39;format&#39;] = &#39;json&#39;</code> – we had some fun with JSON-like parsing in our DataViz tutorial. This is the format we will get back when we call this method.  </p>
 
 <p><a href="/Part-3-JSON-Parsing/">The next part will take that JSON data to save as a CSV or generate a plot for us &rarr;</a></p>
 

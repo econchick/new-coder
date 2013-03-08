@@ -14,7 +14,7 @@ When running a python file in the command line, Python has the ability to take a
 (APIProj)$ python a_python_file.py --debug --output-file ~/MyDocuments/MyLogs/python_file.log
 ```
 
-Certainly, we'd need to put some logic into our script in order to be able to parse arguments.  Let's think of all the arguments that we could possibly want to pass to our API Python script are:
+Certainly, we’d need to put some logic into our script in order to be able to parse arguments.  Let’s think of all the arguments that we could possibly want to pass to our API Python script are:
 
 * API key for Giantbomb
 * path to CPI file
@@ -25,7 +25,7 @@ Certainly, we'd need to put some logic into our script in order to be able to pa
 * Maximum number of platforms we want to look at, if any
 
 
-Python's standard library has a great module, `argparse` that we'll use.  We'll create separate parsing function as a helper to our main function that we'll write out after this.
+Python’s standard library has a great module, `argparse` that we’ll use.  We’ll create separate parsing function as a helper to our main function that we’ll write out after this.
 
 First, import argparse,
 
@@ -33,7 +33,7 @@ First, import argparse,
 import argparse
 ```
 
-then let's define our parsing function, and use `argparse`'s `ArgumentParser()` to initialize a `parser` class:
+then let’s define our parsing function, and use `argparse`’s `ArgumentParser()` to initialize a `parser` class:
 
 ```python
 def parse_args():
@@ -92,16 +92,16 @@ def parse_args():
     return opts
 ```
 
-Note that when running this script, you don't have to have the output files, CSV or PNG, already created – just tell the script where you want it saved and what you want it saved as by giving it the full directory path and desired filename.
+Note that when running this script, you don’t have to have the output files, CSV or PNG, already created – just tell the script where you want it saved and what you want it saved as by giving it the full directory path and desired filename.
 
-The Python docs have a great [tutorial](http://docs.python.org/2/howto/argparse.html) on how to use the `argparse` module if you'd like additional work on this module.
+The Python docs have a great [tutorial](http://docs.python.org/2/howto/argparse.html) on how to use the `argparse` module if you’d like additional work on this module.
 
 
 ### Main function
 
-The `CPIData()` and `GiantbombAPI()` classes have been defined with their methods, as well as functions `generate_plot`, `generate_csv`, and `is_valid_dataset`.  Let's now make one `main()` function that runs whenever we call our `platform_pricing.py` file (with arguments) that instantiates (uses) everything.
+The `CPIData()` and `GiantbombAPI()` classes have been defined with their methods, as well as functions `generate_plot`, `generate_csv`, and `is_valid_dataset`.  Let’s now make one `main()` function that runs whenever we call our `platform_pricing.py` file (with arguments) that instantiates (uses) everything.
 
-We'll first want to take care of the arguments passed through the command line by calling our `parse_args()` function.
+We’ll first want to take care of the arguments passed through the command line by calling our `parse_args()` function.
 
 ```python
 def main():
@@ -118,7 +118,7 @@ Here, we also handle the level of logging – if the user uses the `--debug` fla
 
 Since we did not specify any file to save our logs to, it will just write our logging statement that we defined in `GiantbombAPI.get_platforms()` to the terminal when we run our Python program.
 
-Next, we'll instantiate both the `CPIData` class and the `GiantbombAPI` class and use some of the arguments that we parsed to pass the API key, the CPI URL (if we don't want to use the default defined in our global variable, `CPI_DATA_URL`, and CPI file (if we gave it a file).
+Next, we’ll instantiate both the `CPIData` class and the `GiantbombAPI` class and use some of the arguments that we parsed to pass the API key, the CPI URL (if we don't want to use the default defined in our global variable, `CPI_DATA_URL`, and CPI file (if we gave it a file).
 
 We also print to the console – using the print _function_ imported from future (Python 3), rather than the print _keyword_ in Python 2 – that gives a disclaimer to the user what the script will be doing.
 
@@ -184,7 +184,7 @@ We then take our `platforms` list and pass it to either `generate_plot` or `gene
         generate_csv(platforms, opts.csv_file)
 ```
 
-That's all for our `main()` function – just the final boilerplate code at the tail end:
+That’s all for our `main()` function – just the final boilerplate code at the tail end:
 
 ```python
 if __name__ == '__main__':

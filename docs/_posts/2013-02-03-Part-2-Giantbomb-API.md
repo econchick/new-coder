@@ -12,11 +12,11 @@ Similar to our `CPIData` class, we want to write a class for our Giantbomb API.
 
 Before we continue, make sure you've signed up for a developer's API key with [Giantbomb](http://www.giantbomb.com/api/). Do not share your key information with anyone (but if you do accidently, be sure to regenerate your key).  An API key (or token, etc) is used by folks that have public APIs (like [Twitter](http://dev.twitter.com), [Yelp](http://www.yelp.com/developers/documentation/v2/overview), etc) to identify your unique application (or user/developer).
 
-So in our `GiantbombAPI` class, we'll create a constructor to initialize our API key. Everytime we instantiate this class, we'll need to pass in our API key. This makes our code portable, so I can pass this piece of code onto someone else where they can pass in their own API key while still using our code to grab information from the API.
+So in our `GiantbombAPI` class, we’ll create a constructor to initialize our API key. Everytime we instantiate this class, we’ll need to pass in our API key. This makes our code portable, so I can pass this piece of code onto someone else where they can pass in their own API key while still using our code to grab information from the API.
 
-**Note:** It's essential to make our code portable, or to have the code abstracted away from specifics to us as a user, developer, our machine, etc. It would do no one (but ourselves) any good if we hard-coded in our API key within this class; it's better to pass it in as a variable when instantiating the class.
+**Note:** It’s essential to make our code portable, or to have the code abstracted away from specifics to us as a user, developer, our machine, etc. It would do no one (but ourselves) any good if we hard-coded in our API key within this class; it’s better to pass it in as a parameter when instantiating the class.
 
-In our class, we'll also define a base URL for which all calls to the API will use.  Since we're making calls to a URL, we will use the `requests` library again later on in this class (no new import statement need since we're in the same .py file).
+In our class, we’ll also define a base URL for which all calls to the API will use.  Since we’re making calls to a URL, we will use the `requests` library again later on in this class (no new import statement need since we’re in the same .py file).
 
 ```python
 class GiantbombAPI(object):
@@ -33,12 +33,14 @@ class GiantbombAPI(object):
         self.api_key = api_key
 ```
 
-Next, we'll define one method (our class's only method) that will make a request to the `base_url` with the parameters that we feed the method: `sort`, `filter`, `field_list`. 
+Next, we’ll define one method (our class’s only method besides our constructor) that will make a request to the `base_url` with the parameters that we feed the method: `sort`, `filter`, `field_list`. 
 
 This method is a generator function (a clue is the `yield` statement instead of a `return` statement).
 
-**For the curious**, the `yield` keyword is similar to `return`. The `parse()` function, specifically the `for deal in selector` bit, we've essentially built a Generator (it will generate data on the fly). StackOverflow has a good [explanation](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained) of what's happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it'll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a "if/else" anymore. 
+#### For the curious
+The `yield` keyword is similar to `return`. The `parse()` function, specifically the `for deal in selector` bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good [explanation](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained) of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. 
 
+#### Back to the tutorial
 Follow the inline comments to undestand the process flow of `get_platforms()`:
 
 ```python
@@ -117,15 +119,15 @@ Follow the inline comments to undestand the process flow of `get_platforms()`:
 	            counter += 1
 ```
 
-Did you notice the `logging.debug` item? We're using Python's `logging` module from its standard library, so we'll need to add another import statement at the beginning:
+Did you notice the `logging.debug` item? We’re using Python’s `logging` module from its standard library, so we’ll need to add another import statement at the beginning:
 
 ```python
 import logging
 ```
 
-It's important to log what we're doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the `logging` module to either save to a specific file, or have it as output to the console as the script processes. We'll configure our logs in the final part of the API tutorial.
+It’s important to log what we’re doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the `logging` module to either save to a specific file, or have it as output to the console as the script processes. We’ll configure our logs in the final part of the API tutorial.
 
-We should also define a helper function, **outside** of our `GiantbombAPI()` class, so that we can make sure that each platform that is yielded from `get_platform` is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it's independent of the platform object. This is akin to our helper functions that we made for `map.py` in our DataViz tutorial.
+Next, we should also define a helper function, **outside** of our `GiantbombAPI()` class, so that we can make sure that each platform that is yielded from `get_platform` is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for `map.py` in our DataViz tutorial.
 
 ```python
 def is_valid_dataset(platform):
@@ -150,6 +152,6 @@ def is_valid_dataset(platform):
 ```
 
 
-You should not be scared by the format we requested: `params['format'] = 'json'` – we had some fun with JSON-like parsing in our DataViz tutorial. This is basically the format we will get back when we call this method.  
+You should not be scared by the format we requested: `params['format'] = 'json'` – we had some fun with JSON-like parsing in our DataViz tutorial. This is the format we will get back when we call this method.  
 
 [The next part will take that JSON data to save as a CSV or generate a plot for us &rarr;]( {{ get_url("Part-3-JSON-Parsing/")}})

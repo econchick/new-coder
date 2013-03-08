@@ -9,9 +9,10 @@
 {% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml">{% endif %}
 
 <link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" type="text/css">
+<link rel="stylesheet"href="{{ get_asset('css/css3-github-ribbon.css')}}" type="text/css" />
 <link rel="stylesheet" href="{{ get_asset('css/style.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ get_asset('css/glyphicons.css') }}" type="text/css">
-{% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.css') }}" type="text/css">{% endif %}
+{% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments2.css') }}" type="text/css">{% endif %}
 <script src="{{ get_asset('js/modernizr.js')}}"></script>
 
 {% if site.analytics %}

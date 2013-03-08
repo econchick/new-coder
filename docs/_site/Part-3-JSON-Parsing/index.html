@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -53,15 +52,15 @@
         <div class="body">
             <p>Parse the response from the API call into something meaningful.</p>
 <h3>Generate Plot function</h3>
-<p>Because we <em>love</em> data visualization, and couldn&#39;t get enough of matplotlib, let&#39;s see what we can produce with the combination of CPI data and platform prices from Giantbomb!</p>
+<p>Because we <em>love</em> data visualization, and couldn’t get enough of matplotlib, let’s see what we can produce with the combination of CPI data and platform prices from Giantbomb!</p>
 
-<p>We&#39;ll need to add import statements for both matplotlib and numpy like in our previous tutorial:</p>
+<p>We’ll need to add import statements for both matplotlib and numpy like in our previous tutorial:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Now for the <code>generate_plot()</code> function (outside of the <code>GiantbombAPI()</code> class, we&#39;ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just <code>plt.show()</code>).</p>
+<p>Now for the <code>generate_plot()</code> function (outside of the <code>GiantbombAPI()</code> class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just <code>plt.show()</code>).</p>
 
 <p>Comments on process inline:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -165,13 +164,13 @@
 <h3>Generate CSV function</h3>
 <p>We can also make a function that takes the yielded data and produces a CSV file for us.</p>
 
-<p>Let&#39;s use a new library, <code>tablib</code> to help handle the CSV production.  <a href="http://docs.python-tablib.org/en/latest/"><code>tablib</code></a>, written in Python by the same author of <a href="http://twitter.com/kennethreitz">requests</a> that allows you to format the output of data into a tabular dataset (among other things).</p>
+<p>Let’s use a new library, <code>tablib</code> to help handle the CSV production.  <a href="http://docs.python-tablib.org/en/latest/">tablib</a>, written in Python by the same author of <a href="http://twitter.com/kennethreitz">requests</a> that allows you to format the output of data into a tabular dataset (among other things).</p>
 
 <p>We should add an import statement for it too:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tablib</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Similiar to <code>generate_plot()</code> function, we&#39;ll take two parameters: <code>platforms</code> which is the yielded data from our API class, and <code>output_file</code> to save the formatted data where we want to. We use the <code>tablib</code> module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the <code>.csv</code> method that <code>tablib</code> gives us. Comments on process are inline:</p>
+<p>Similiar to <code>generate_plot()</code> function, we’ll take two parameters: <code>platforms</code> which is the yielded data from our API class, and <code>output_file</code> to save the formatted data where we want to. We use the <code>tablib</code> module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the <code>.csv</code> method that <code>tablib</code> gives us. Comments on process are inline:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -215,7 +214,7 @@
         <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">csv</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Let&#39;s put the final touches of this script so we can see it in action. <a href="/Part-4-Logic-of-the-script/">The final part brings the logic together &rarr;</a></p>
+<p>Let’s put the final touches of this script so we can see it in action. <a href="/Part-4-Logic-of-the-script/">The final part brings the logic together &rarr;</a></p>
 
         </div>
     </div>

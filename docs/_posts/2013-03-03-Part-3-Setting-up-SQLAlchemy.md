@@ -4,6 +4,11 @@ title: "Part 3: Setting up SQLAlchemy"
 tags: [scrape]
 ---
 
+----
+**NOTES**
+Note that I've made a fix - so may be you should edit smth here. :)
+----
+
 Setting up our data models using SQLAlchemy.
 
 ### Create a Database
@@ -85,7 +90,7 @@ def db_connect():
     return create_engine(URL(**settings.DATABASE))
 ```
 
-A few things I want to point out with this example. First, the `from sqlalchemy import *` line. The `import *` literally imports everything into our `models.py` file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the `create_engine()` function from `sqlalchemy`, and if we just `import *`, it is difficult to initially see that `create_engine()` is defined in and imported from `sqlalchemy`.  
+A few things I want to point out with this example. First, the `from sqlalchemy import *` line. The `import *` literally imports everything into our `models.py` file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the `create_engine()` function from `sqlalchemy`, and if we just `import *`, it is difficult to initially see that `create_engine()` is defined in and imported from `sqlalchemy`. 
 
 Let's be better developers and change our import statement to `from sqlalchemy import create_engine`. Here, we avoid importing everything from the `sqlalchemy` package, and we are more explicit with what we are using from `sqlalchemy`.
 

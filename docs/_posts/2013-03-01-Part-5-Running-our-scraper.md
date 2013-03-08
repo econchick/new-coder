@@ -4,6 +4,11 @@ title: "Part 5: Running our Scraper"
 tags: [scrape]
 ---
 
+----
+**NOTE**
+Typo: bash scripe -> bash script
+----
+
 Putting all the pieces together to scrape our data.
 
 ### scrapy.cfg file

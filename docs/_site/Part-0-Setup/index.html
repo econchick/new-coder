@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -51,7 +50,14 @@
         </div>
         
         <div class="body">
-            <p>Walkthrough of scraping a webpage and saving it to a database.</p>
+            <p><strong>NOTES</strong> <br>
+I&#39;d note that you need gcc to successfully install project requirements.</p>
+
+<p>plus.. that at least on ubuntu you should install &#39;python2.x-dev&#39;, &#39;libxml2-dev&#39; and &#39;libxslt-dev&#39; packages system-wide via apt-get. On mac, I think, you also need some packages system-wide (at least &#39;libxml2&#39; and &#39;libxslt&#39;).</p>
+
+<hr>
+
+<p>Walkthrough of scraping a webpage and saving it to a database.</p>
 <h3>Initial Requirements:</h3>
 <ul>
 <li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
@@ -88,13 +94,26 @@
 <p>Within your terminal:</p>
 
 <ul>
-<li><code>$ cd new-coder/scrape</code> Change into the Web Scraping project.</li>
-<li>Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
-<li><p><code>$ mkvirtualenv ScrapeProj</code> Make a virtual environment specific to your Data Viz project. You should see (ScrapeProj) before your prompt, now:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="err">$</span>
+<li>Change into the Web Scraping project.</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>new-coder/scrape
 </pre></div>
-</td></tr></table></div></div></li>
-<li><p><code>(ScrapeProj) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</p></li>
+</td></tr></table></div></div>
+<ul>
+<li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from Initial Requirements above to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>. </li>
+<li>Make a virtual environment specific to your Data Viz project:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv ScrapeProj
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>You should see <code>(ScrapeProj)</code> before your prompt. Now install package requirements with the following command for this project. </li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
 </ul>
 
         </div>

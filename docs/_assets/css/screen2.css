@@ -65,8 +65,8 @@
 }
 
 body {
-  background-color: #F5F1E9;
-  color: #198583;
+  background-color: rgb(243, 243, 243);
+  color: rgb(6, 65, 113);
   font-family: edmondsans regular, sans-serif;
   font-size: 20px;
 }
@@ -130,7 +130,7 @@ dt:first-child {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 15px 0px 15px 0px;
-  color: #0D4544;
+  color: rgb(6, 65, 113);
   /* text-shadow: 1px 1px 0px #cccccc; */
   font-family: edmondsans bold;
   font-variant: small-caps;
@@ -170,7 +170,7 @@ h2 {
 
 h3 {
   font-size: 24px;
-  color: #8c8c8c;
+  color: rgb(25, 130, 170);
 }
 
 h4 {

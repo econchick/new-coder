@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -55,17 +54,32 @@
 
 <p>During the course of this tutorial you will get more familiar with some non-core Python libraries: <a href="http://docs.python-requests.org/en/latest/">requests</a> for making interactions with HTTP much more easier, <a href="http://matplotlib.org/">matplotlib</a> for generating graphs and charts of various kinds and <a href="http://docs.python-tablib.org/en/latest/">tablib</a> for easily generating CSV datasets.</p>
 <h3>Project</h3>
-<p>To this end we will write a simple script that fetches video game platform information from <a href="http://www.giantbomb.com/api/">Giantbomb.com</a>, combine that with CPI information made available by the <a href="http://research.stlouisfed.org/fred2/">Federal Reserve Bank of St. Louis</a> (<a href="http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt">http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt</a>) to adapt the value of the US dollar over time (this calculation is not meant to be accurate but it provides a nice example of working with diverse datasets) and generate a bar  chart and a CSV file displaying the price development.</p>
+<p>To this end we will write a simple script that fetches video game platform information from <a href="http://www.giantbomb.com/api/">Giantbomb.com</a>, combine that with <a href="http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt">CPI</a> information made available by the <a href="http://research.stlouisfed.org/fred2/">Federal Reserve Bank of St. Louis</a> to adapt the value of the US dollar over time (this calculation is not meant to be accurate but it provides a nice example of working with diverse datasets) and generate a bar  chart and a CSV file displaying the price development.</p>
 <h3>Goals</h3>
-<p><strong>TODO</strong> what should folks expect to learn from this tutorial</p>
-<h3>Intro to APIs</h3>
-<p><strong>TODO</strong></p>
-<h3>Intro to Logging</h3>
-<p><strong>TODO</strong></p>
-<h3>General advice</h3>
-<p>Especially when working with multiple components and libraries, try to divide your problem-space into as many small chunks as possible. For scripts like this I usually at first write a small main-function that contains tons of calls to other (not-yet-existing) functions and methods that match what the script&#39;s supposed to do on a very high level.</p>
+<ul>
+<li>Interacting with a public API</li>
+<li>Warm introduction to REST by requesting information from an API</li>
+<li>Command line arguments with Python</li>
+<li>File Input/Output</li>
+<li>Review of graph generation with <code>matplotlib</code></li>
+</ul>
 
-<p>When working with APIs that might easily change in the future and you don&#39;t necessarily get notified about (like a classic web API that doesn&#39;t provide multiple versions of itself to allow for backwards-compatibility) it is generally a good idea to wrap the provided functionality. This way if something changes, you only have to change your own API wrapper but not the code that uses it.</p>
+<p>What else you will be exposed to:</p>
+
+<ul>
+<li>Python 2 versus Python 3’s print keywork/function</li>
+<li>Logging</li>
+<li>Use Python’s built-in <code>argparse</code> library</li>
+<li>Validating data</li>
+</ul>
+<h3>Intro to APIs</h3>
+<p>API stands for Application Programming Interface, and provides a way for applications to talk to each other. Familiar applications include Twitter, Facebook, Yelp, Flickr, Instagram, etc. To interact with Twitter‘s API, you give input: authentication + 140 characters, and Twitter produces output: a tweet. </p>
+
+<p>Applications can interact with each other too: If you have Instagram and Twitter paired, you upload a photo to Instagram, it communicates with Twitter over an API, and Twitter posts a link to the photo.</p>
+
+<p>APIs receive calls – how you want to interact with the application, what parameters you will give that application, and the variables for those parameters.  For instance, you make a call to Bit.ly, “Hey, I want you to give me a short link”, give the parameters “username”, “long URL”, with their associated variable, “roguelynn” and “<a href="https://github.com/econchick/new-coder%E2%80%9D">https://github.com/econchick/new-coder”</a>.</p>
+
+<p>There are different specifications to communicate with APIs, including <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, <a href="http://en.wikipedia.org/wiki/SOAP">SOAP</a>, <a href="http://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a>, among others. Our tutorial will work with the REST protocol.</p>
 
 <p><a href="/Part-1-Setup-for-APIs/">Continue on to Part 1: Setup for APIs &rarr;</a></p>
 

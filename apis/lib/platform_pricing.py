@@ -20,26 +20,28 @@ including APIs ;-)
 
 To be able to use this script, you have to register for a Giantbomb API key
 and pass it to this script using the --giantbomb-api-key argument.
+
+Written by Horst Gutmann (https://github.com/zerok)
 """
 
 from __future__ import print_function
 
 import argparse
-import os
 import datetime
-import requests
 import logging
-import tablib
+import os
 
 import matplotlib.pyplot as plt
 import numpy as np
+import requests
+import tablib
 
 
 CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
 
 
 class CPIData(object):
-    """Abstraction of the CPI data provided by FRED. 
+    """Abstraction of the CPI data provided by FRED.
 
     This stores internally only one value per year.
 
@@ -58,7 +60,7 @@ class CPIData(object):
         self.first_year = None
 
     def load_from_url(self, url, save_as_file=None):
-        """Loads data from a given url. 
+        """Loads data from a given url.
 
         The downloaded file can also be saved into a location for later re-use
         with the "save_as_file" parameter specifying a filename.
@@ -137,7 +139,7 @@ class CPIData(object):
             self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
 
     def get_adjusted_price(self, price, year, current_year=None):
-        """Returns the price of a purchased item from a given year compared to 
+        """Returns the price of a purchased item from a given year compared to
         what current year has been specified.
 
         This essentially is the calculated inflation for an item.
@@ -172,7 +174,7 @@ class GiantbombAPI(object):
         self.api_key = api_key
 
     def get_platforms(self, sort=None, filter=None, field_list=None):
-        """Generator yielding platforms matching the given criteria. If no 
+        """Generator yielding platforms matching the given criteria. If no
         limit is specified, this will return *all* platforms.
 
         """

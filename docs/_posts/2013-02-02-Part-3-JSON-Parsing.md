@@ -8,16 +8,16 @@ Parse the response from the API call into something meaningful.
 
 ### Generate Plot function
 
-Because we _love_ data visualization, and couldn't get enough of matplotlib, let's see what we can produce with the combination of CPI data and platform prices from Giantbomb!
+Because we _love_ data visualization, and couldn’t get enough of matplotlib, let’s see what we can produce with the combination of CPI data and platform prices from Giantbomb!
 
-We'll need to add import statements for both matplotlib and numpy like in our previous tutorial:
+We’ll need to add import statements for both matplotlib and numpy like in our previous tutorial:
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-Now for the `generate_plot()` function (outside of the `GiantbombAPI()` class, we'll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just `plt.show()`).
+Now for the `generate_plot()` function (outside of the `GiantbombAPI()` class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just `plt.show()`).
 
 Comments on process inline:
 
@@ -78,7 +78,7 @@ You can elect to have `plt.show(dpi=72)` instead of `plt.savefig(output_file, dp
 
 We can also make a function that takes the yielded data and produces a CSV file for us.
 
-Let's use a new library, `tablib` to help handle the CSV production.  [`tablib`](http://docs.python-tablib.org/en/latest/), written in Python by the same author of [requests](http://twitter.com/kennethreitz) that allows you to format the output of data into a tabular dataset (among other things).
+Let’s use a new library, `tablib` to help handle the CSV production.  [tablib](http://docs.python-tablib.org/en/latest/), written in Python by the same author of [requests](http://twitter.com/kennethreitz) that allows you to format the output of data into a tabular dataset (among other things).
 
 We should add an import statement for it too:
 
@@ -86,7 +86,7 @@ We should add an import statement for it too:
 import tablib
 ```
 
-Similiar to `generate_plot()` function, we'll take two parameters: `platforms` which is the yielded data from our API class, and `output_file` to save the formatted data where we want to. We use the `tablib` module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the `.csv` method that `tablib` gives us. Comments on process are inline:
+Similiar to `generate_plot()` function, we’ll take two parameters: `platforms` which is the yielded data from our API class, and `output_file` to save the formatted data where we want to. We use the `tablib` module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the `.csv` method that `tablib` gives us. Comments on process are inline:
 
 ```python
 def generate_csv(platforms, output_file):
@@ -112,4 +112,4 @@ def generate_csv(platforms, output_file):
         output_file.write(dataset.csv)
 ```
 
-Let's put the final touches of this script so we can see it in action. [The final part brings the logic together &rarr;]( {{ get_url("Part-4-Logic-of-the-script/")}})
+Let’s put the final touches of this script so we can see it in action. [The final part brings the logic together &rarr;]( {{ get_url("Part-4-Logic-of-the-script/")}})

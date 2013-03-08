@@ -13,9 +13,10 @@
 
 
 <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
 
@@ -24,9 +25,7 @@
 </head>
 
 <body>
-    <div class="ribbon">
-      <a href="https://github.com/econchick/new-coder">Contribute on GitHub</a>
-    </div>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
     <div id="container">
         <div id="nav">
             <ul>
@@ -83,10 +82,26 @@
 <p>Within your terminal:</p>
 
 <ul>
-<li><code>$ cd new-coder/apis</code> to change into the APIs project.</li>
-<li>Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
-<li><code>$ mkvirtualenv APIProj</code> Make a virtual environment specific to your Data Viz project. You should see (APIProj) before your prompt, now.</li>
-<li><code>(APIProj) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+<li>Change into the APIs project:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>new-coder/apis
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from Initial Requirements above to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>. </li>
+<li>Make a virtual environment specific to your Data Viz project:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv APIProj
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>You should see <code>(APIProj)</code> before your prompt. Now install package requirements with the following command for this project. </li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>APIProj<span class="o">)</span> <span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
 </ul>
 
 <p><a href="/Part-1-Setup-raw-data/">Continue on to Part 1: Setup Raw Data &rarr;</a></p>

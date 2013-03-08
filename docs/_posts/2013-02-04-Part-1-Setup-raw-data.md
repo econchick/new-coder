@@ -6,21 +6,28 @@ tags: [api]
 
 A walkthrough of grabbing raw data from publicly available information.
 
+Starting off with our imports:
+
+#### TODO
+
+Start off with the `main()` function for scaffolding
+
+#### TODO
+
 ```python
 from __future__ import print_function
 ```
-
-You might be curious as to why we're importing a `print_function`, and why it's from `__future__`.  This is a gentle introduction of the differences between Python 2.x and Python 3.x.  In Python 3, `print()` is a function, while in Python 2, `print` is a keyword. For now, the difference is just that using `print` requires paretheses around what you are printing.
+You might be curious as to why we’re importing a `print_function`, and why it’s from `__future__`.  This is a gentle introduction to the differences between Python 2.x and Python 3.x.  In Python 3, `print()` is a function, while in Python 2, `print` is a keyword. For now, the difference is just that using `print` now requires paretheses around what you are printing.
 
 ### CPI data
 
-First, we'll grab the CPI data from the FRED.  This is where we'll use the `requests` library:
+First, we’ll grab the CPI data from the FRED.  This is where we’ll use the `requests` library:
 
 ```python
 import requests
 ```
 
-And we'll be grabbing data from a specific URL, so let's create a global variable first:
+And we’ll be grabbing data from a specific URL, so let’s create a global variable first:
 
 ```python
 CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
@@ -28,9 +35,54 @@ CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
 
 Next, we should create a CPI class to initialize the CPI data, load data from the URL, load data from a file, and get the adapted price.
 
-# TODO: add intro to classes!
+#### For the curious
 
-The scaffolding for our `class CPIData()` is as follows:
+In Python, a class is just another object. It allows us to create a blueprint to create another object: instances. It also allows us to group like-things together. For example
+
+```python
+class Human(object):
+    def __init__(self, name, birthday):
+        self.name = name
+        self.birthday = birthday
+    def get_sleep_time(self):
+        return "8 hours"
+```
+So every new human that we make from `Human` can have a name, birthday, and has a method to return hours of sleep:
+
+```python
+>>> bob = Human(name="bob", birthday="Jan 15th, 1967")
+>>> bob.name
+'bob'
+>>> bob.birthday
+'Jan 15th, 1967'
+>>> bob.get_sleep_time()
+'8 hours'
+```
+It wouldn’t make sense if we included a method that returned the value of how many eggs we laid (should probably go in a `Fowl` class).
+
+Classes also give us the ability to inherit from other classes, like so:
+
+```python
+class Superwoman(Human):
+    def get_sleep_time(self):
+        return None
+```
+`Superwoman` still has ‘access’ to the constructor that we defined in `Human`, `__init__()`, but we redefined the `get_sleep_time()` function:
+
+```python
+>>> jill = Superwoman("Jill", "Oct 8th, 1972")
+>>> jill.name
+'Jill'
+>>> jill.birthday
+'Oct 8th, 1972'
+>>> jill.get_sleep_time()
+>>>
+```
+We won‘t yet explore inheritance in this tutorial but we will in our next one, [Web Scraping]({{ get_url('scrape')}}).
+
+#### Back to the tutorial
+
+The scaffolding for our `class CPIData()` will include a constructor function, the `__init__` method, as well as methods to load data from a URL, load data from a file, and return an adjusted prices for when we want to compare platform prices between different years:
 
 ```python
 class CPIData(object):
@@ -59,7 +111,7 @@ class CPIData(object):
     def load_from_file(self, fp):
         """Loads CPI data from a given file-like object."""
 
-    def get_adapted_price(self, price, year, current_year=None):
+    def get_adjusted_price(self, price, year, current_year=None):
         """Returns the adapted price from a given year compared to what current
         year has been specified.
 
@@ -68,7 +120,7 @@ class CPIData(object):
 
 We first initialize our `CPIData` class with `year_cpi`, `last_year`, and `first_year`, as these are all common attributes for a piece of CPI data.
 
-# TODO intro to dunders
+
 
 ```python
 def __init__(self):
@@ -84,9 +136,20 @@ def __init__(self):
     self.first_year = None
 ```
 
+#### For the curious
+You might be wondering what methods that are surrounded with double underscores are in Python, specifically methods like `__init__()`. These are called **magic methods** or **dunders**, but there is nothing magical about them. 
+
+When we write a class, `MyClass`, and later instantiate that class with `x = MyClass()`, what Python is doing under the hood is calling `x.__init__()` to initialize that class. If you want the informal representation of a string, you would call `str(x)` and Python does `x.__str__()`.
+
+There are many magic methods that are just given to a class: `__init__`, `__str__`, `__repr__`, `__dir__`, etc, and you can **overwrite** them, which is what we did above with our `def __init__(self)` method. We want to give additional initialized parameters for every time we instantiate a new `CPIData` class.
+
+[Dive into Python](http://getpython3.com/diveintopython3/special-method-names.html) has a handy little tool to learn more about these methods; [Rafe Kettler](http://www.rafekettler.com/magicmethods.html) wrote up a nice series of blogs about what each one does.
+
+#### Back to the tutorial
+
 Next, we define a function that will take in a url, and where/what to save our output file as.  Comments are inline to help you walk through:
 
-```
+```python
 def load_from_url(self, url, save_as_file=None):
     """
     Loads data from a given url. The downloaded file can also be saved
@@ -121,7 +184,7 @@ def load_from_url(self, url, save_as_file=None):
             return self.load_from_file(fp)
 ```
 
-After we've grabbed the data from the URL, we then pass it to our function, `load_from_file()`.  Comments inline:
+After we’ve grabbed the data from the URL, we then pass it to our function, `load_from_file()`.  Comments inline:
 
 ```python
 def load_from_file(self, fp):
@@ -197,6 +260,6 @@ def get_adjusted_price(self, price, year, current_year=None):
     return float(price) / year_cpi * current_cpi
 ```
 
-In review, we've essentially defined the container, our `CPIData` class, to handle the the processing of our CPI data.  We initialize each field for a piece of CPI data in `__init__`, we define how to load data from a given URL (of which we define as a global variable, `CPI_DATA_URL` before we defined our class), we define how to load and parse that data that we just grabbed from the URL and saved, and lastly, we define a method to grab the price for a given year (adjusted if we didn't grab that specific year from the FRED earlier).
+In review, we’ve essentially defined the container, our `CPIData` class, to handle the the processing of our CPI data.  We initialize each field for a piece of CPI data in `__init__`, we define how to load data from a given URL (of which we define as a global variable, `CPI_DATA_URL` before we defined our class), we define how to load and parse that data that we just grabbed from the URL and saved, and lastly, we define a method to grab the price for a given year (adjusted if we didn’t grab that specific year from the FRED earlier).
 
 [Continue on to the Game API &rarr;]( {{ get_url("Part-2-Giantbomb-API/")}})
