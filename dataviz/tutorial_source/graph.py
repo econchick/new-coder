@@ -42,12 +42,12 @@ def visualize_days():
 
     # Separate out the counter to order it correctly when plotting.
     data_list = [
-                  counter["Monday"], 
+                  counter["Monday"],
                   counter["Tuesday"],
-                  counter["Wednesday"], 
+                  counter["Wednesday"],
                   counter["Thursday"],
-                  counter["Friday"], 
-                  counter["Saturday"],
+                  counter["Friday"],
+                  _counter["Saturday"],
                   counter["Sunday"]
                 ]
     day_list = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
