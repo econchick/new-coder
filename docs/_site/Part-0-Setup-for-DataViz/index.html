@@ -98,14 +98,46 @@
 <p>Within your terminal</p>
 
 <ul>
-<li><code>$ cd</code> to get to your “Home” directory</li>
-<li><code>$ mkdir Projects &amp;&amp; cd Projects</code> to create a new <code>Projects</code> folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.</li>
-<li><code>$ git clone https://github.com/econchick/new-coder.git</code> This clones the New Coder project into the directory you’re currently in, which is <code>Projects</code> (unless you named it something else).</li>
-<li><code>$ cd new-coder/dataviz</code> Change into the Data Viz project.</li>
-<li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from <strong>Initial Requirements</strong> to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
-<li><code>$ mkvirtualenv DataVizProj</code> Make a virtual environment specific to your Data Viz project. You should see <code>(DataVizProject)</code> before your prompt, now.</li>
-<li><code>(DataVizProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
-<li><strong>NOTE</strong> Sometimes, numpy is finicky. If the previous step returns errors, try:</li>
+<li>To get to your “Home” directory:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>To create a new <code>Projects</code> folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkdir Projects <span class="o">&amp;&amp;</span> <span class="nb">cd </span>Projects
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Clone the New Coder project into the directory you’re currently in, which is <code>Projects</code> (unless you named it something else):</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/econchick/new-coder.git
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Change into the Data Viz project:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>new-coder/dataviz
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from Initial Requirements to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
+<li>To make a virtual environment specific to your Data Viz project, run the following command. You should see <code>(DataVizProject)</code> before your prompt.</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv DataVizProj
+<span class="o">(</span>DataVizProj<span class="o">)</span><span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Now we will install the package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProject<span class="o">)</span> <span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li><strong>NOTE</strong> Sometimes, NumPy is finicky. If the previous step returns errors, try:</li>
 </ul>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span><span class="nv">$ </span>pip install numpy
@@ -113,12 +145,16 @@
 </pre></div>
 </td></tr></table></div></div>
 <ul>
-<li>Test the installation real quick by starting up the Python interpreter:
-<code>bash
-(DataVizProj)$ python
+<li>Test the installation real quick by starting up the Python interpreter:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span><span class="nv">$ </span>python
 &gt;&gt;&gt; import numpy
 &gt;&gt;&gt; import matplotlib
-</code></li>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
 <li>If you have no errors (you would just see the <code>&gt;&gt;&gt;</code> prompt), then you’re good to go. You can close out of the Python interpreter by pressing <code>CTRL+D</code>. If you do have errors, I’d try downloading <a href="http://scipy.org/Download">numpy</a> and <a href="http://matplotlib.org/downloads.html">matplotlib</a> manually.</li>
 </ul>
 
