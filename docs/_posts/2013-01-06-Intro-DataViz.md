@@ -27,8 +27,8 @@ Understand how to:
 What else you will be exposed to:
 
 * Importing Python’s standard library as well as your own module
-* Installing and importing third party modules
-* Licensing & copyrights when using third-party modules
+* Installing and importing third party packages
+* Licensing & copyrights when using third-party packages
 * File Input/Output
 * Counter data structure from the `collections` module
 * Global variables, docstrings, list comprehensions

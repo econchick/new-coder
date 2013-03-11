@@ -111,7 +111,6 @@ Each instance method (in this case, `parse()` is an instance method) receives a 
 >>> C.f(c, "Hello!")
 Hello!
 ```
-**TODO** For the curious, brief intro to static + class methods (versus instance methods)
 
 The `response` parameter is what the spider gets back in return after making a request to the Living Social site. We are parsing that response with our XPaths.
 
@@ -150,7 +149,7 @@ Finally, with each deal, we process each data parcel by calling `load_item()`, w
 #### For the curious
 In our for-loop, we are using handy method on our `item_fields` dictionary – `iteritems()`. This method returns an iterator object, and allows you to iterate the (key, value) of items in a dictionary. If we just wanted to loop through the keys of our dictionary, we would write: `for field in self.item_fields.iterkeys()`, and same with values with `.itervalues()`.
 
-This is different than if we were to use `self.item_fields.items()`.  The `items()` method returns a list of (key, value) tuples, rather than an iterator object that `iteritems()` returns.  A list is an iterable, and a for-loop calls `iter()` on a list (or string, dictionary, tuple, etc) 
+This is different than if we were to use `self.item_fields.items()`.  The `items()` method returns a list of (key, value) tuples, rather than an iterator object that `iteritems()` returns.  A list is an iterable, and a for-loop calls `iter()` on a list (or string, dictionary, tuple, etc) .
  
 #### For the curious 
 The `yield` keyword is similar to `return`. The `parse()` function, specifically the `for deal in selector` bit, we've essentially built a Generator (it will generate data on the fly). StackOverflow has a good [explanation](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained) of what's happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it'll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a "if/else" anymore. 

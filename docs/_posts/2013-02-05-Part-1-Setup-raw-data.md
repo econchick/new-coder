@@ -78,7 +78,7 @@ class Superwoman(Human):
 >>> jill.get_sleep_time()
 >>>
 ```
-We won‘t yet explore inheritance in this tutorial but we will in our next one, [Web Scraping]({{ get_url('scrape')}}).
+We won’t yet explore inheritance in this tutorial but we will in our next one, [Web Scraping]({{ get_url('scrape')}}).
 
 #### Back to the tutorial
 
@@ -119,8 +119,6 @@ class CPIData(object):
 ```
 
 We first initialize our `CPIData` class with `year_cpi`, `last_year`, and `first_year`, as these are all common attributes for a piece of CPI data.
-
-
 
 ```python
 def __init__(self):

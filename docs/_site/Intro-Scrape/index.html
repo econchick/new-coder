@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -50,34 +51,47 @@
         </div>
         
         <div class="body">
-            <p><strong>NOTES</strong>Few typos:</p>
+            <p>Your favorite website doesn’t have an API? Web scraping is a great alternative to grabbing the data you want.</p>
 
-<p>MySql -&gt; MySQL<br>
-datbase -&gt; database</p>
-<h2>And, I&#39;d note that postgres is object-relational DBMS. And may be you should note why and what for twisted is used in scrapy.</h2>
 <p>This tutorial will walk you through how to make a web scraper, save the data to a database, and schedule the scraper to run daily. We will also introduce you to some simple queries to use on the database so you can query the information you scraped at your leisure.</p>
 <h3>The Project</h3>
 <p>We will build a web scraper using <a href="http://scrapy.org/">Scrapy</a> to scroll through <a href="http://www.livingsocial.com">LivingSocial</a>, and save local deals to our Postgres database. We’ll schedule our computer to run this script daily, so that rather than getting those annoying emails, we can query our database when we want a deal on sky diving or hot yoga.</p>
 <h3>Goals</h3>
-<p><strong>TODO</strong> what should folks expect to learn from this tutorial</p>
+<p>The goals of this particular tutorial are to:<br>
+* Develop a more solid understanding of Python classes and inheritance<br>
+* Generators<br>
+* Reading and writing to a database</p>
+
+<p>Other topics we’ll touch on:<br>
+* Using an ORM<br>
+* Iterators<br>
+* Proper import statements<br>
+* Making a portable application</p>
 <h3>About Web Scrapers</h3>
 <p>Web scraping is a technique for gathering data or information on web pages. You could revisit your favorite web site every time it updates for new information. Or you could write a web scraper to have it do it for you!  </p>
 
 <p>A <strong>scraper</strong> is just a script that parses an HTML site – much like the parser we wrote for our CSV data in our <a href="/dataviz/">DataViz</a> tutorial.</p>
+
+<p>Quick “rules of the road” for scraping websites:<br>
+* This isn’t our data that we’re scraping – check a site‘s terms and conditions before you scrape them.<br>
+* Scrapers can and do break – Sites change their layout all the time. This will require you to rewrite and adapt your code.<br>
+* Web pages are inconsistent – There’s sometimes some manual clean up that has to happen even after you’ve gotten your data.</p>
 <h3>About Scrapy</h3>
 <p><a href="http://scrapy.org/">Scrapy</a> is one of the popular web scraping frameworks written in Python. It uses <a href="http://twistedmatrix.com/trac/">Twisted</a>, a Python networking engine, and <a href="http://lxml.de/">lxml</a>, a Python XML + HTML parser.  </p>
 
 <p><strong>Note for the curious:</strong> The lxml library builds on C libraries for parsing, giving the lxml library speed. This is why we needed to install a compiler.</p>
 
+<p>Scrapy uses Twisted under the hood, a Python library used for networking (which is introduced in the <a href="/networks">next tutorial</a>. Using Twisted allows scrapy to grab hostnames, handle events (e.g. starting, stopping a crawler), as well as gives you the ability to send mail, use the crawler within a Python console, and monitor and control a crawler using a web service. </p>
+
 <p>Scrapy also has this great <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html">tutorial</a> which this follows closely, but extends beyond it with the use of Postgres and a cronjob.</p>
 <h3>About SQLAlchemy</h3>
 <p><a href="http://www.sqlalchemy.org/">SQLAlchemy</a> is a Python library that allows developers to interact with databases (Postgres, MySQL, MS SQL, etc) without needing to write raw SQL code within a database shell. It also provides an ORM – Object Relational Mapper – to developers that essentially abstracts the database further.  You can define tables and fields with classes and instance variables instead.  If you have worked through the Django tutorial, perhaps you remember its ORM through the setup of <code>models.py</code> and the querying of data within the Django dbshell.</p>
 <h3>About Postgres</h3>
-<p>Postgres is a very popular database that is free and open source. Other popular databases include MySql, MS SQL, and MongoDB.  Which database you choose depends on what you’ll need it for.</p>
+<p>Postgres is a very popular database that is free and open source. Other popular databases include MySQL, MS SQL, and MongoDB.  Which database you choose depends on what you’ll need it for. Postgres is object-relational DBMS – meaning that it is similar to relational databases, but is object-oriented with objects, classes, and inheritance.  We don’t dive into the difference between relational and object-relational, but just know that Postgres, combined with SQLAlchemy and Scrapy, allows us to capitalize on relational databases with object-oriented programming. </p>
 
 <p>To learn why Postgres is go great, <a href="http://twitter.com/craigkerstiens">Craig Kerstiens</a> of Heroku wrote up a nice <a href="http://www.craigkerstiens.com/2012/04/30/why-postgres/">explanation</a>.</p>
 
-<p>As an aside: when I first started learning how to code, the concept of having a datbase <em>on</em> my computer blew me away. I assumed databases lived in headless computers that could handle the ubiquitous data. Turns out, it’s just like a simple program on your comptuer. Sure, if you&#39;re a company, you’d want machines dedicated for serving up production-level data. But we’re not heavy-duty number crunching (yet!).</p>
+<p>As an aside: when I first started learning how to code, the concept of having a database <em>on</em> my computer blew me away. I assumed databases lived in headless computers that could handle the ubiquitous data. Turns out, it’s just like a simple program on your comptuer. Sure, if you’re a company, you’d want machines dedicated for serving up production-level data. But we’re not heavy-duty number crunching (yet!).</p>
 <h3>What is a cronjob?</h3>
 <p>A cron is a job scheduler for Unix-like computers. It basis its schedule off of a crontab (cron table), of which each line on the table is a job (cron job).</p>
 

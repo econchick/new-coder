@@ -10,7 +10,7 @@ Parsing of a publicly available API.
 
 Similar to our `CPIData` class, we want to write a class for our Giantbomb API.
 
-Before we continue, make sure you've signed up for a developer's API key with [Giantbomb](http://www.giantbomb.com/api/). Do not share your key information with anyone (but if you do accidently, be sure to regenerate your key).  An API key (or token, etc) is used by folks that have public APIs (like [Twitter](http://dev.twitter.com), [Yelp](http://www.yelp.com/developers/documentation/v2/overview), etc) to identify your unique application (or user/developer).
+Before we continue, make sure you’ve signed up for a developer’s API key with [Giantbomb](http://www.giantbomb.com/api/). Do not share your key information with anyone (but if you do accidently, be sure to regenerate your key).  An API key (or token, etc) is used by folks that have public APIs (like [Twitter](http://dev.twitter.com), [Yelp](http://www.yelp.com/developers/documentation/v2/overview), etc) to identify your unique application (or user/developer).
 
 So in our `GiantbombAPI` class, we’ll create a constructor to initialize our API key. Everytime we instantiate this class, we’ll need to pass in our API key. This makes our code portable, so I can pass this piece of code onto someone else where they can pass in their own API key while still using our code to grab information from the API.
 
@@ -150,7 +150,6 @@ def is_valid_dataset(platform):
         return False
     return True
 ```
-
 
 You should not be scared by the format we requested: `params['format'] = 'json'` – we had some fun with JSON-like parsing in our DataViz tutorial. This is the format we will get back when we call this method.  
 

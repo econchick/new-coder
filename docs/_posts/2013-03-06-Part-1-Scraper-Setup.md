@@ -32,7 +32,9 @@ class LivingSocialDeal(Item):
 For our `LivingSocialDeal` class, we inherit from `Item` - which basically takes come pre-defined objects that scrapy has already built for us.
 
 #### For the curious
-You can think of class inheritance like the birds and the bees. For instance, we can have a base class, `class Human(object)`, that will have some human attributes - like a function for running, for bathing, eating, etc.  Then we can inherit from the `Human` class to make a new class, `class Superwoman(Human)`. Because we inherit from `Human`, we can still access the running, eating, bathing functions. But - perhaps Superwoman runs _faster_ than the average human, so we can _redefine_ the running function. This basically rewrites over Human’s running function.  
+You can think of class inheritance like the birds and the bees. For instance, we can have a base class, `class Human(object)`, that will have some human attributes - like a function for running, for bathing, eating, etc.  Then we can inherit from the `Human` class to make a new class, `class Superwoman(Human)`. Because we inherit from `Human`, we can still access the running, eating, bathing functions. But - perhaps Superwoman runs _faster_ than the average human, so we can _redefine_ the running function. This basically rewrites over Human’s running function.
+
+Or maybe we want to add to `Human`’s `eating()` method by adding an intact of 1000 more calories (being a Superwoman requires a lot of energy!). We can define an `eating()` function within our `Superwoman` class, then call `super()` on the method,
 
 Perhaps Superwomen should also fly. We can define a separate `Flying(object)` class. Now, when we define our `Superwoman()` class, we can inherit **both** from `Human` and `Flying` – called multiple inheritance: `class Superwoman(Human, Flying)`.
 

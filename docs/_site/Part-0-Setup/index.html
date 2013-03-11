@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -50,17 +51,22 @@
         </div>
         
         <div class="body">
-            <p><strong>NOTES</strong> <br>
-I&#39;d note that you need gcc to successfully install project requirements.</p>
-
-<p>plus.. that at least on ubuntu you should install &#39;python2.x-dev&#39;, &#39;libxml2-dev&#39; and &#39;libxslt-dev&#39; packages system-wide via apt-get. On mac, I think, you also need some packages system-wide (at least &#39;libxml2&#39; and &#39;libxslt&#39;).</p>
-
-<hr>
-
-<p>Walkthrough of scraping a webpage and saving it to a database.</p>
+            <p>Walkthrough of scraping a webpage and saving it to a database.</p>
 <h3>Initial Requirements:</h3>
 <ul>
 <li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
+<li>A C compiler: <a href="http://gcc.gnu.org/">GCC</a> or <a href="http://clang.llvm.org/">clang</a> – the Scrapy library has some C extensions, which will need to be compiled.
+
+<ul>
+<li>Mac: 
+
+<ul>
+<li>You will need <a href="http://developer.apple.com/xcode">XCode</a>. Once you have XCode on your machine, you will need to navigate to <strong>Preferences</strong> –&gt; <strong>Downloads</strong> –&gt; and select <strong>Command Line Tools</strong> to download &amp; install.</li>
+<li>You may need to install libxml2 and libxslt (but most-likely is already nstalled). You can install the libraries from macports: <code>sudo port install libxml2 libxslt</code></li>
+</ul></li>
+<li>Fedora: <code>sudo yum install gcc python-devel libxml libxslt libxml-devel libxslt-devel openssl openssl-devel</code></li>
+<li>Ubuntu: <code>sudo apt-get install build-essential python-dev libxml2-dev libxslt-dev</code> – you may need to run <code>sudo apt-get update</code> first.</li>
+</ul></li>
 <li><a href="http://www.postgresql.org/download/">PostgreSQL</a>
 
 <ul>
@@ -101,7 +107,7 @@ I&#39;d note that you need gcc to successfully install project requirements.</p>
 </td></tr></table></div></div>
 <ul>
 <li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from Initial Requirements above to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>. </li>
-<li>Make a virtual environment specific to your Data Viz project:</li>
+<li>Make a virtual environment specific to your Scrape project:</li>
 </ul>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv ScrapeProj
 </pre></div>
@@ -115,6 +121,8 @@ I&#39;d note that you need gcc to successfully install project requirements.</p>
 <ul>
 <li>Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
 </ul>
+
+<p><a href="/Part-1-Scraper-Setup/">Continue on to Part 1: Scraper Setup &rarr;</a></p>
 
         </div>
     </div>

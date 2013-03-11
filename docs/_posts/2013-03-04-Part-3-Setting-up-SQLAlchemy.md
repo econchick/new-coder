@@ -42,14 +42,12 @@ Our `settings.py` file is simply a list of global variables specific to our proj
 
 We first give our web scraper a name, and where our spider module is located.
 
-**TODO** What is the difference between SPIDER_MODULES and NEWSPIDER_MODULE?
 
 ```python
 
 BOT_NAME = 'tutorial'
 
 SPIDER_MODULES = ['living_social.spiders']
-NEWSPIDER_MODULE = 'living_social.spiders'
 ```
 We then define our database through a dictionary:
 
@@ -92,7 +90,7 @@ def db_connect():
 
 A few things I want to point out with this example. First, the `from sqlalchemy import *` line. The `import *` literally imports everything into our `models.py` file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the `create_engine()` function from `sqlalchemy`, and if we just `import *`, it is difficult to initially see that `create_engine()` is defined in and imported from `sqlalchemy`. 
 
-Let's be better developers and change our import statement to `from sqlalchemy import create_engine`. Here, we avoid importing everything from the `sqlalchemy` package, and we are more explicit with what we are using from `sqlalchemy`.
+Let’s be better developers and change our import statement to `from sqlalchemy import create_engine`. Here, we avoid importing everything from the `sqlalchemy` package, and we are more explicit with what we are using from `sqlalchemy`.
 
 We make a general `import settings` statement – it does not import every item in `settings.py`, but it gives us access to any item we want by later using `settings.DATABASE`.  You can think of the difference between `import settings` versus `from sqlalchemy import *` as "take the basket" versus "take everything out of the basket."
 
@@ -129,7 +127,7 @@ import settings
 
 DeclarativeBase = declarative_base()
 
-# snip
+# <--snip-->
 
 def create_deals_table(engine):
     """"""
@@ -141,7 +139,7 @@ Last, we define our actual table by inheriting from `DeclarativeBase` and settin
 ```python
 from sqlalchemy import create_engine, Column, Integer, String
 
-# snip
+# <--snip-->
 
 class Deals(DeclarativeBase):
     """Sqlalchemy deals model"""
@@ -157,7 +155,7 @@ class Deals(DeclarativeBase):
     price = Column('price', String, nullable=True)
 ```
 
-We give our class a table name, "deals", as well as 8 fields. Each field will be mapped to a column in our table which it's created through `create_deals_table()`.
+We give our class a table name, “deals”, as well as 8 fields. Each field will be mapped to a column in our table which it's created through `create_deals_table()`.
 
 For each field, we define the type of field that it is, `Integer` for our primary key field, and the rest are `String`s. We pass in the label of the column as a string for everything but the `id` field. Last, for most fields, we allow them to be empty (`nullable=True`) if we don't have those fields in the deal data that we collect.
 

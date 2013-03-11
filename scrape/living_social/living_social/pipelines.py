@@ -29,7 +29,7 @@ class LivingSocialPipeline(object):
         """Save deals in the database.
 
         This method is called for every item pipeline component.
-        
+
         """
         session = self.Session()
         deal = Deals(**item)

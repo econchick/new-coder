@@ -4,15 +4,7 @@ title: "Part 4: Pipelining Data to Database"
 tags: [scrape]
 ---
 
-----
-**NOTE**
-    session.add() – this is the actual writing to the database with our information.
-See docs. So, on this step, it's not saved into the database - it's still on sqlalchemy level. Then, running session.commit() will put it into the database and the transaction will be committed.
-----
-
 Pipelining our scraped data into our Postgres database.
-
-**TODO** add commit/rollback intro
 
 ### Setup our Pipeline
 
@@ -38,25 +30,36 @@ class LivingSocialPipeline(object):
         create_deals_table(engine)
         self.Session = sessionmaker(bind=engine)
 
-    def save_item(self, item, spider):
-        """
-        Save deals in the database.
+    def process_item(self, item, spider):
+        """Save deals in the database.
+
         This method is called for every item pipeline component.
+
         """
         session = self.Session()
         deal = Deals(**item)
-        session.add(deal)
-        session.commit()
+
+        try:
+            session.add(deal)
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
         return item
 ```
 
 Here, we create a class, `LivingSocialPipeline()`.  We have a constructor function, `def __init__(self)` to initialize the class by defining the engine, the deals table, and binding/connecting to the database with the defined engine.
 
-We then define `save_item()` that takes the parameters, `item` and `spider`. We establish a session with the database, then unpack an item (the data of one scraped deal) within our `Deal()` model.  We then add the `deal` to our database by calling `session.add()` – this is the actual writing to the database with our information.
+We then define `process_item()` that takes the parameters, `item` and `spider`. We establish a session with the database, then unpack an item (the data of one scraped deal) within our `Deal()` model.  We then add the `deal` to our database by calling `session.add()` – on this step, it’s not saved into the database - it’s still on SQLAlchemy level. Then, by calling `session.commit()`, it will put the into the database and the transaction will be committed.
 
-Finally, we commit the the transaction (a transaction here would be the act of writing to the database). The reason why we have to commit after adding data is 
+However, if something went wrong during the `save()` and `commit()` portion of the database transaction, we will need to “undo” or `rollback()` the data that was committed since we do not want partial data in our database. The `commit()` and `rollback()` pair is meant to ensure that we have made **all** the changes or **none** if there was any sort of failure during the transaction.
 
-**TODO** Do we need to `return item`?
+In Python, we do this with a `try` and `except` clause. A `try` and `except` clause allows us to “catch” any errors if our desired operation fails.
+
+We use the `finally` keyword to close the session – this basically means that whether or not we were successful in committing data, close the session/connection with the database.
 
 ### Return to settings.py
 

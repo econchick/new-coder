@@ -202,14 +202,5 @@ In your terminal, with your `APIProj` virtual environment activated, and from wi
 (APIProj)$ python platform_pricing.py --giantbomb-api-key [YOUR_KEY] --debug --limit 40 --csv-file ~/Projects/new-coder/apis/my_csv.csv
 ```
 
-### Extended
 
-**TODO**
-
-#### Real life examples
-
-**TODO**
-
-#### Where to go from here
-
-**TODO**
+[APIs – Extended: &rarr;]({{ get_url("/Extended-API")}})

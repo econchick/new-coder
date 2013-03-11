@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -55,6 +56,21 @@
 <ul>
 <li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
 <li><a href="http://git-scm.com/downloads">git</a></li>
+<li>A C compiler: <a href="http://gcc.gnu.org/">GCC</a> or <a href="http://clang.llvm.org/">clang</a> – the numpy library has some C extensions, which will need to be compiled.
+
+<ul>
+<li>To test if you have either GCC or clang, type <code>$ gcc</code> or <code>$ clang</code> into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
+
+<ul>
+<li>Mac: 
+
+<ul>
+<li>You will need <a href="http://developer.apple.com/xcode">XCode</a>. Once you have XCode on your machine, you will need to navigate to <strong>Preferences</strong> –&gt; <strong>Downloads</strong> –&gt; and select <strong>Command Line Tools</strong> to download &amp; install.</li>
+</ul></li>
+<li>Fedora: <code>sudo yum install gcc python-devel</code></li>
+<li>Ubuntu: <code>sudo apt-get install build-essential python-dev</code> – you may need to run <code>sudo apt-get update</code> first.</li>
+</ul></li>
+</ul></li>
 <li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
 
 <ul>
@@ -90,6 +106,21 @@
 <li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from <strong>Initial Requirements</strong> to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
 <li><code>$ mkvirtualenv DataVizProj</code> Make a virtual environment specific to your Data Viz project. You should see <code>(DataVizProject)</code> before your prompt, now.</li>
 <li><code>(DataVizProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+<li><strong>NOTE</strong> Sometimes, numpy is finicky. If the previous step returns errors, try:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span><span class="nv">$ </span>pip install numpy
+<span class="o">(</span>DataVizProj<span class="o">)</span><span class="nv">$ </span>pip install matplotlib
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Test the installation real quick by starting up the Python interpreter:
+<code>bash
+(DataVizProj)$ python
+&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; import matplotlib
+</code></li>
+<li>If you have no errors (you would just see the <code>&gt;&gt;&gt;</code> prompt), then you’re good to go. You can close out of the Python interpreter by pressing <code>CTRL+D</code>. If you do have errors, I’d try downloading <a href="http://scipy.org/Download">numpy</a> and <a href="http://matplotlib.org/downloads.html">matplotlib</a> manually.</li>
 </ul>
 
 <p><a href="/Part-1-Parse/">Continue on to Part 1: Parsing our Data &rarr;</a></p>

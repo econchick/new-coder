@@ -1,0 +1,20 @@
+---
+layout: post.html
+title: "API – Extended"
+tags: [api]
+---
+
+Examples of APIs being used in real life, and where to go from here.
+
+
+### In action
+
+* Applications & clients for Twitter, Facebook, Instagram, Flickr, etc all interact with the respective API built for developers
+* [Lyft](http://lyft.me) uses [Twilio](http://www.twilio.com/blog/2012/10/lyft-and-twilio.html) to send SMS messagesfor to let passengers know their ride was on its way and to communicate with drivers.
+* [Trulia](http://corp.truliablog.com/2008/10/10/social-media-synergy-trulia-integrates-yelp-reviews-into-google-maps/), [Yellow Pages](http://cbsyellowpages.com/), [GrubHub](http://www.grubhub.com) all use [Yelp](http://www.yelp.com/developers/documentation/examples)’s API for integrating reviews into their websites.
+
+### Where to go from here
+
+* Combine your recently acquired data visualization knowledge to visualize your [Twitter](http://api.twitter.com) followers and friends using [python-twitter](https://code.google.com/p/python-twitter/) to connect to the API and [NetworkX](http://networkx.github.com) to visualize your relationship.
+* Try creating a virtual vacation by collecting photos via APIs from [Flickr](http://www.flickr.com/services/api/) or [500px](http://developers.500px.com/).
+* [Great list of popular APIs](http://techcrunch.com/2011/03/25/a-look-at-the-uptime-of-50-popular-apis/) to satisfy your own creative needs.

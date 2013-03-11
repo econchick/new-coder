@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 15px 0px 15px 0px;
   color: #0D4544;
   /* text-shadow: 1px 1px 0px #cccccc; */
-  font-family: edmondsans bold;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   font-variant: small-caps;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -146,10 +146,11 @@ h2, h3 {
   padding-bottom: 5px;
   border-bottom: 1px solid #e6e6e6;
   padding-top: 30px;
+  text-transform: uppercase;
 }
 
 h4, h5, h6 {
-  font-family: edmondsans medium;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   font-style: normal;
   font-weight: bold;
   text-transform: uppercase;
@@ -160,21 +161,21 @@ h5, h6 {
 }
 
 h1 {
-  font-size: 35px;
+  font-size: 45px;
 }
 
 h2 {
   margin-top: 25px;
-  font-size: 27px;
+  font-size: 35px;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 30px;
   color: #8c8c8c;
 }
 
 h4 {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 h6 {
@@ -387,7 +388,7 @@ small a {
 #header h2 {
   border-bottom-width: 0px;
   color: #8c8c8c;
-  font-size: 42px;
+  font-size: 56px;
   font-weight: normal;
   text-shadow: none;
   text-transform: none;

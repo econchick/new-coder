@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -83,15 +84,11 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 <p>Our <code>settings.py</code> file is simply a list of global variables specific to our project so we can import our settings later.</p>
 
 <p>We first give our web scraper a name, and where our spider module is located.</p>
-
-<p><strong>TODO</strong> What is the difference between SPIDER_MODULES and NEWSPIDER_MODULE?</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;tutorial&#39;</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;tutorial&#39;</span>
 
 <span class="n">SPIDER_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;living_social.spiders&#39;</span><span class="p">]</span>
-<span class="n">NEWSPIDER_MODULE</span> <span class="o">=</span> <span class="s">&#39;living_social.spiders&#39;</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>We then define our database through a dictionary:</p>
@@ -142,9 +139,9 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
     <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>A few things I want to point out with this example. First, the <code>from sqlalchemy import *</code> line. The <code>import *</code> literally imports everything into our <code>models.py</code> file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the <code>create_engine()</code> function from <code>sqlalchemy</code>, and if we just <code>import *</code>, it is difficult to initially see that <code>create_engine()</code> is defined in and imported from <code>sqlalchemy</code>.  </p>
+<p>A few things I want to point out with this example. First, the <code>from sqlalchemy import *</code> line. The <code>import *</code> literally imports everything into our <code>models.py</code> file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the <code>create_engine()</code> function from <code>sqlalchemy</code>, and if we just <code>import *</code>, it is difficult to initially see that <code>create_engine()</code> is defined in and imported from <code>sqlalchemy</code>. </p>
 
-<p>Let&#39;s be better developers and change our import statement to <code>from sqlalchemy import create_engine</code>. Here, we avoid importing everything from the <code>sqlalchemy</code> package, and we are more explicit with what we are using from <code>sqlalchemy</code>.</p>
+<p>Let’s be better developers and change our import statement to <code>from sqlalchemy import create_engine</code>. Here, we avoid importing everything from the <code>sqlalchemy</code> package, and we are more explicit with what we are using from <code>sqlalchemy</code>.</p>
 
 <p>We make a general <code>import settings</code> statement – it does not import every item in <code>settings.py</code>, but it gives us access to any item we want by later using <code>settings.DATABASE</code>.  You can think of the difference between <code>import settings</code> versus <code>from sqlalchemy import *</code> as &quot;take the basket&quot; versus &quot;take everything out of the basket.&quot;</p>
 
@@ -193,7 +190,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 
 <span class="n">DeclarativeBase</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
-<span class="c"># snip</span>
+<span class="c"># &lt;--snip--&gt;</span>
 
 <span class="k">def</span> <span class="nf">create_deals_table</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
@@ -218,7 +215,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 15
 16</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
 
-<span class="c"># snip</span>
+<span class="c"># &lt;--snip--&gt;</span>
 
 <span class="k">class</span> <span class="nc">Deals</span><span class="p">(</span><span class="n">DeclarativeBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sqlalchemy deals model&quot;&quot;&quot;</span>
@@ -234,7 +231,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
     <span class="n">price</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s">&#39;price&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>We give our class a table name, &quot;deals&quot;, as well as 8 fields. Each field will be mapped to a column in our table which it&#39;s created through <code>create_deals_table()</code>.</p>
+<p>We give our class a table name, “deals”, as well as 8 fields. Each field will be mapped to a column in our table which it&#39;s created through <code>create_deals_table()</code>.</p>
 
 <p>For each field, we define the type of field that it is, <code>Integer</code> for our primary key field, and the rest are <code>String</code>s. We pass in the label of the column as a string for everything but the <code>id</code> field. Last, for most fields, we allow them to be empty (<code>nullable=True</code>) if we don&#39;t have those fields in the deal data that we collect.</p>
 

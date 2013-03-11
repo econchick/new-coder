@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -50,14 +51,7 @@
         </div>
         
         <div class="body">
-            <hr>
-
-<p><strong>NOTE</strong><br>
-    session.add() – this is the actual writing to the database with our information.</p>
-<h2>See docs. So, on this step, it&#39;s not saved into the database - it&#39;s still on sqlalchemy level. Then, running session.commit() will put it into the database and the transaction will be committed.</h2>
-<p>Pipelining our scraped data into our Postgres database.</p>
-
-<p><strong>TODO</strong> add commit/rollback intro</p>
+            <p>Pipelining our scraped data into our Postgres database.</p>
 <h3>Setup our Pipeline</h3>
 <p>We&#39;ve setup our spider to crawl and parse the HTML, and we&#39;ve set up our database to take the parse data. Now we have to connect the two together through a pipeline.</p>
 
@@ -88,7 +82,16 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
 <span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Deals</span><span class="p">,</span> <span class="n">db_connect</span><span class="p">,</span> <span class="n">create_deals_table</span>
 
 
@@ -103,25 +106,36 @@
         <span class="n">create_deals_table</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">save_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Save deals in the database.</span>
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save deals in the database.</span>
+
 <span class="sd">        This method is called for every item pipeline component.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
         <span class="n">deal</span> <span class="o">=</span> <span class="n">Deals</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">deal</span><span class="p">)</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">deal</span><span class="p">)</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+            <span class="k">raise</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="n">item</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Here, we create a class, <code>LivingSocialPipeline()</code>.  We have a constructor function, <code>def __init__(self)</code> to initialize the class by defining the engine, the deals table, and binding/connecting to the database with the defined engine.</p>
 
-<p>We then define <code>save_item()</code> that takes the parameters, <code>item</code> and <code>spider</code>. We establish a session with the database, then unpack an item (the data of one scraped deal) within our <code>Deal()</code> model.  We then add the <code>deal</code> to our database by calling <code>session.add()</code> – this is the actual writing to the database with our information.</p>
+<p>We then define <code>process_item()</code> that takes the parameters, <code>item</code> and <code>spider</code>. We establish a session with the database, then unpack an item (the data of one scraped deal) within our <code>Deal()</code> model.  We then add the <code>deal</code> to our database by calling <code>session.add()</code> – on this step, it’s not saved into the database - it’s still on SQLAlchemy level. Then, by calling <code>session.commit()</code>, it will put the into the database and the transaction will be committed.</p>
 
-<p>Finally, we commit the the transaction (a transaction here would be the act of writing to the database). The reason why we have to commit after adding data is </p>
+<p>However, if something went wrong during the <code>save()</code> and <code>commit()</code> portion of the database transaction, we will need to “undo” or <code>rollback()</code> the data that was committed since we do not want partial data in our database. The <code>commit()</code> and <code>rollback()</code> pair is meant to ensure that we have made <strong>all</strong> the changes or <strong>none</strong> if there was any sort of failure during the transaction.</p>
 
-<p><strong>TODO</strong> Do we need to <code>return item</code>?</p>
+<p>In Python, we do this with a <code>try</code> and <code>except</code> clause. A <code>try</code> and <code>except</code> clause allows us to “catch” any errors if our desired operation fails.</p>
+
+<p>We use the <code>finally</code> keyword to close the session – this basically means that whether or not we were successful in committing data, close the session/connection with the database.</p>
 <h3>Return to settings.py</h3>
 <p>Nearly there – we need to add a variable to <code>settings.py</code> that tells scrapy where to find our pipeline when processing data.</p>
 

@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -52,24 +53,18 @@
         <div class="body">
             <p>Parse our sample SF crime data.</p>
 <h3>Module Setup</h3>
-<p>Open up <code>parse.py</code>, found: <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py">new-coder/dataviz/lib/tutorial_source/parse.py</a></p>
+<p>Open up <code>parse.py</code>, found: <a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/parse.py">new-coder/dataviz/tutorial_source/parse.py</a></p>
 
-<p>Notice the first two lines: the first one – called “shebang” – tells UNIX-based operating systems to use the command “python” if this script is executed directly like <code>(DataVizProj)$ ./graph.py</code>.</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
-</pre></div>
-</td></tr></table></div></div>
-<p><a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py#4">The begining of the module</a> is an introduction as well as any copyright and/or license information.</p>
+<p><a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/parse.py#L1-12">The beginning of the module</a> is an introduction as well as any copyright and/or license information.</p>
 <h4>Quick note: Licensing Open Source Software</h4>
 <p>When you start using third-party libraries, pay attention to the license and/or copyright information that is written out.  Generally, if the library/code has no license, it means all rights reserved for the author (do not use the code). If it’s <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>, your application/script must also be licensed under the GPL. If it’s<a href="http://en.wikipedia.org/wiki/MIT_License"> mit/2-clause bsd</a> you can do whatever you want (no need to use the same license, or even have a license), if it’s <a href="http://en.wikipedia.org/wiki/BSD_licenses#3-clause_license_.28.22Revised_BSD_License.22.2C_.22New_BSD_License.22.2C_or_.22Modified_BSD_License.22.29">3-clause bsd</a> you can do whatever you want but have to credit the original author.  </p>
-
-<p><strong>Word to the wise:</strong> code that is up on <a href="http://github.com">GitHub</a> does <em>not</em> mean that it is free to use. If you want to use a library, ask the developer if s/he has plans to include a <code>LICENSE</code> file or in the headers of the files if it’s not there already.  </p>
+<h4>For the curious</h4>
+<p>Code that is up on <a href="http://github.com">GitHub</a> does <em>not</em> mean that it is free to use. If you want to use a library, ask the developer if s/he has plans to include a <code>LICENSE</code> file or in the headers of the files if it’s not there already.  </p>
 
 <p>If <strong>you</strong> want to open source your code (yay, go you!), include your desired license either as a separate file or within the preamble/beginning of your code. Licensing your code is simply copying &amp; pasting the required language of a license of your choice into your codebase. </p>
 
 <p>For reference, this tutorial is licensed under <a href="http://opensource.org/licenses/Zlib">zlib/libpng</a> simply because it’s short. </p>
-
-<p><strong><em>Back to the module setup</em></strong></p>
-
+<h4>Back to the tutorial</h4>
 <p>In order to read a CSV/Excel file, we have to import the <code>csv</code> module from Python&#39;s standard library.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 </pre></div>
@@ -101,9 +96,11 @@
 </pre></div>
 </td></tr></table></div></div>
 <p><strong>For the curious:</strong> If you are interested in understanding how docstrings work, Python’s PEP (Python Enhancement Proposals) documents spell out how one should craft his/her docstrings: <a href="http://www.python.org/dev/peps/pep-0008/">PEP8</a> and <a href="http://www.python.org/dev/peps/pep-0257/">PEP257</a>. This also gives you a peek at what is considered “Pythonic”.</p>
+<h4>For the curious</h4>
+<p>The differences between <code>&quot;&quot;&quot;docstrings&quot;&quot;&quot;</code> and <code># comments</code> have to do with who the reader will be. Within the a Python shell, if you call <code>help()</code> on a particular function or class, it will return the <code>&quot;&quot;&quot;docstring&quot;&quot;&quot;</code> that the developer has written. </p>
 
-<p><strong>For the curious:</strong> The differences between <code>&quot;&quot;&quot;docstrings&quot;&quot;&quot;</code> and <code># comments</code> have to do with who the reader will be. Within the a Python shell, if you call <code>help()</code> on a particular function or class, it will return the <code>&quot;&quot;&quot;docstring&quot;&quot;&quot;</code> that the developer has written. There are also documentation programs that look specifically for <code>&quot;&quot;&quot;docstrings&quot;&quot;&quot;</code> to help the developer automatically produce documentation separated out of the code.  Within docstrings, it’s helpful to say imperatively what the function/method or class is supposed to do.  Examples of how the documented code should work can also be written in the docstrings (and, subsequently, tested).  <code># comments</code>, on the otherhand, are for those reading through the code — the comments are to simply say what a specific piece/line of code is meant to do. Inline <code># comments</code> are always appreciated by those reading through your code. Many developers also litter <code># TODO</code> or <code># FIXME</code> statements for combing through later.</p>
-
+<p>There are also documentation programs that look specifically for <code>&quot;&quot;&quot;docstrings&quot;&quot;&quot;</code> to help the developer automatically produce documentation separated out of the code.  Within docstrings, it’s helpful to say imperatively what the function/method or class is supposed to do.  Examples of how the documented code should work can also be written in the docstrings (and, subsequently, tested).  <code># comments</code>, on the otherhand, are for those reading through the code — the comments are to simply say what a specific piece/line of code is meant to do. Inline <code># comments</code> are always appreciated by those reading through your code. Many developers also litter <code># TODO</code> or <code># FIXME</code> statements for combing through later.</p>
+<h4>Back to the tutorial</h4>
 <p>What we have now is a pretty good skeleton - we know what parameters the function will take (<code>raw_file</code> and <code>delimiter</code>), what it is supposed to do (our <code>&quot;&quot;&quot;doc-string&quot;&quot;&quot;</code>), and what it will return, <code>parsed_data</code>. Notice how the parameters and the return value is descriptive in itself.</p>
 
 <p>Let’s sketch out, with comments, how we want this function to take a raw file and give us the format that we want. First, let’s open the file, and the read the file, then build the parsed_data element.</p>
@@ -240,13 +237,13 @@
 </td></tr></table></div></div>
 <p>it will call the <code>main()</code> function. By doing the <code>name == main</code> check, you can have that code only execute when you want to run the module as a program (via the command line) and not have it execute when someone just wants to import the <code>parse()</code> function itself into another Python file. This is referred to as “boilerplate code” — code doesn’t really do anything and yet is necessary.</p>
 <h3>Putting it to action</h3>
-<p>So you’ve written the parse function and your <code>parse.py</code> file looks like <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py">mine</a>. Now what?  Let’s run it and parse some d*mn files!</p>
+<p>So you’ve written the parse function and your <code>parse.py</code> file looks like <a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/parse.py">mine</a>. Now what?  Let’s run it and parse some d*mn files!</p>
 
 <p>Be sure to have your virtualenv activated that you created earlier in <a href="#setup">setup</a>. Your terminal prompt should look something like this:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="err">$</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Within the <code>new-coder/dataviz/lib/</code> directory, let’s make a directory for the python files you are writing with the bash command <code>mkdir [Directory_Name]</code>:</p>
+<p>Within the <code>new-coder/dataviz/</code> directory, let’s make a directory for the python files you are writing with the bash command <code>mkdir [Directory_Name]</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -254,9 +251,9 @@
 5
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>mkdir MySourceFiles
 <span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>ls  <span class="c"># list available files and directories where we are</span>
-data    full_source    MySourceFiles    tutorial_source
+README.me    requirements.txt    data    full_source    MySourceFiles    tutorial_source
 <span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">pwd</span>  <span class="c"># current location in our directory structure</span>
-Users/lynnroot/MyProjects/new-coder/dataviz/lib
+Users/lynnroot/MyProjects/new-coder/dataviz/
 <span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>MySourceFiles  <span class="c"># change directories into our new directory</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -266,13 +263,9 @@ Users/lynnroot/MyProjects/new-coder/dataviz/lib
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python parse.py
 </pre></div>
 </td></tr></table></div></div>
-<p>OR! because we defined the environment of the file at the very beginning using a “she-bang” statement, we can simply do:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./parse.py
-</pre></div>
-</td></tr></table></div></div>
-<p>If you got a Traceback, or an error message, compare your <code>parse.py</code> file with <code>new-coder/dataviz/lib/tutorial_source/parse.py</code>. Perhaps a typo, or perhaps you don’t have your virtualenv setup properly.</p>
+<p>If you got a traceback, or an error message, compare your <code>parse.py</code> file with <code>new-coder/dataviz/tutorial_source/parse.py</code>. Perhaps a typo, or you don’t have your virtualenv setup properly.</p>
 
-<p>The output from the <code>(DataVizProj) $ ./parse.py</code> should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn’t have to be exact data, but the structure of {&quot;key&quot;: &quot;value&quot;} should look familiar):</p>
+<p>The output from the <code>(DataVizProj) $ python parse.py</code> should look like a bunch of dictionaries in one list.  For reference, the last bit of output you should see in your terminal should look like (doesn’t have to be exact data, but the structure of {&quot;key&quot;: &quot;value&quot;} should look familiar):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -282,7 +275,7 @@ Users/lynnroot/MyProjects/new-coder/dataviz/lib
 <span class="err">&#39;18:59&#39;,</span> <span class="err">&#39;Date&#39;:</span> <span class="err">&#39;02/18/2003&#39;,</span> <span class="err">&#39;X&#39;:</span> <span class="err">&#39;-122.445006858202&#39;,</span> <span class="err">&#39;Resolution&#39;:</span> <span class="err">&#39;NONE&#39;</span><span class="p">}</span><span class="err">]</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>You see this output because in the <code>def main()</code> function, and you explicitly say <code>print new_data</code> which feeds to the output of the terminal. You could, for instance, not print the <code>new_data</code> variable, and just pass the <code>new_data</code> variable to another function. Coincidently, that’s what <a href="#part-ii-graphing">Part II</a> and <a href="#part-iii-map-plotting">Part III</a> are about!</p>
+<p>You see this output because in the <code>def main()</code> function, and you explicitly say <code>print new_data</code> which feeds to the output of the terminal. You could, for instance, not print the <code>new_data</code> variable, and just pass the <code>new_data</code> variable to another function. Coincidently, that’s what <a href="/Part-2-Graph/">Part II</a> and <a href="/Part-3-Map/">Part III</a> are about!</p>
 <h3>Explore further</h3>
 <p>Play around with <code>parse.py</code> within the Python interpreter itself. Make sure you’re in your <code>MySourceFiles</code> directory, then start the Python interpreter from there:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

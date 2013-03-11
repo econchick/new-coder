@@ -32,7 +32,7 @@ Within your terminal:
 $ cd new-coder/apis
 ``` 
 * Make sure you’ve installed [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) and followed the steps above from Initial Requirements above to set up your terminal correctly.  More information can be find at virtualenvwrapper’s [docs](http://virtualenvwrapper.readthedocs.org/en/latest/). 
-* Make a virtual environment specific to your Data Viz project:
+* Make a virtual environment specific to your API project project:
 
 ```bash
 $ mkvirtualenv APIProj

@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -52,7 +53,7 @@
         <div class="body">
             <p>Plot our sample data on Google Maps.</p>
 <h3>Module Setup</h3>
-<p>Looking at <code>map.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/map.py"><code>new-coder/dataviz/lib/tutorial_source/map.py</code></a>, you’ll see in lines after the preamble that we’re importing <code>xml.dom.minidom</code> which is Python’s <a href="http://docs.python.org/2/library/xml.dom.minidom.html">minimal implementation</a> of DOM interface, as well as our own module, <code>parse</code> as <code>p</code>. </p>
+<p>Looking at <code>map.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/map.py"><code>new-coder/dataviz/tutorial_source/map.py</code></a>, you’ll see in lines after the preamble that we’re importing <code>xml.dom.minidom</code> which is Python’s <a href="http://docs.python.org/2/library/xml.dom.minidom.html">minimal implementation</a> of DOM interface, as well as our own module, <code>parse</code> as <code>p</code>. </p>
 
 <p>Other ways you could have done the import statements:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -75,9 +76,7 @@
 <p>Of course, we&#39;re lazy programmers, so we’re not going to <code>import parse as iLoveParsingSoMuch</code> because each time we want to refer to our <code>parse()</code> function in the <code>parse</code> module, we’d have to type out <code>iLoveParsingSoMuch.parse(iLoveParsingSoMuch.MY_FILE, &quot;,&quot;)</code> — you can probably see why I elected <code>p</code>. </p>
 
 <p>We also don’t import the whole <code>xml</code> library, or <code>xml.dom</code> library for that matter. We want to run lean code, so only import the specific module that you need, or even objects (classes, functions, variables, etc) defined from within that module.</p>
-
-<p><strong>For the curious:</strong></p>
-
+<h4>For the curious</h4>
 <ul>
 <li>A package is a collection of modules (or packages). A module is one python file, so a package is a collection of python files.</li>
 <li>A distributed collection of packages is can be referred to as a library.</li>
@@ -85,9 +84,7 @@
 <li>Python will follow your import statements like a file structure. For instance, we have <code>new-coder/dataviz/lib/tutorial_source</code> - <code>lib</code> is within <code>dataviz</code>. So within Python&#39;s standard library, <code>minidom</code> is defined within <code>dom</code>, and that within <code>xml</code>. </li>
 <li>A bit of a <strong>warning</strong>: if you try to run <code>map.py</code> outside of <code>new-coder/dataviz/lib/tutorial_source</code> without adjusting the <code>import parse</code>, you may see an <code>ImportError</code>. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python <a href="http://docs.python.org/2/tutorial/modules.html#packages">docs</a>.</li>
 </ul>
-
-<p>Back to the tutorial!</p>
-<h3>Helper Functions</h3>
+<h4>Back to the tutorial!</h4><h3>Helper Functions</h3>
 <p>We’ve defined two helper functions for our <code>create_gmap()</code> function: <code>create_document()</code> and <code>create_placemark</code>. I won’t spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don’t want <code>create_gmap()</code> to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debugging.</p>
 
 <p>The <code>create_document(title, description=&#39;&#39;)</code> function essentially will create/initialize a KML document. It first makes an XML document, then defines it as KML, grabs common KML attributes that are defined at <code>www.opengis.net</code> (which catalogs web resources for anyone to refer to).  Lastly, it creates meta data that we want for our map: Title and Description.</p>
@@ -330,7 +327,7 @@
 </td></tr></table></div></div>
 <p>This is a new loop construct: <code>with</code> — it allows us to not have to worry about closing a file; it will be done automatically for us.  More about the <code>with</code> built-in can be read <a href="http://preshing.com/20110920/the-python-with-statement-by-example">here</a>.</p>
 
-<p>So <code>with open(&#39;file_sf.kml&#39;, &#39;w&#39;) as f</code> assigns the opened file as f; it also will either open the file <code>file_sf.kml</code> or create it (<strong>note</strong>: it will be in your current directory unless you specify otherwise, like <code>Users/lynnroot/NotMyDevFolder/file_sf.kml</code> with absolute file paths), and give it <code>write</code> capabilities (versus read-only).</p>
+<p>So <code>with open(&#39;file_sf.kml&#39;, &#39;w&#39;) as f</code> assigns the opened file as f; it also will either open the file <code>file_sf.kml</code> or create it (<strong>note</strong>: it will be in your current directory unless you specify otherwise, like <code>/Users/lynnroot/NotMyDevFolder/file_sf.kml</code> with absolute file paths), and give it <code>write</code> capabilities (versus read-only).</p>
 
 <p>Then we write the <code>kml_doc</code> to the file. We use the <code>toprettyxml()</code> method so that we can specify encoding and indentation, making it more readable for us.</p>
 
@@ -416,7 +413,7 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">kml_doc</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s">&quot;  &quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#39;UTF-8&#39;</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>That&#39;s it! Now we just have some boiler code for that <code>main()</code> function: </p>
+<p>That’s it! Now we just have some boiler code for that <code>main()</code> function: </p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -436,7 +433,7 @@
 
 <p>Next, save this file as <code>map.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./map.py
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python map.py
 <span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>ls
 </pre></div>
 </td></tr></table></div></div>
@@ -497,7 +494,9 @@
 <p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/map_upload.png" /></p>
 
 <p>Go ahead and upload it and marvel in your new Google Map!</p>
-<h3>Extended</h3><h4>Real-life Usage</h4><h4>Where to go from here</h4>
+
+<p><a href="/Extended-DataViz">DataViz – Extended: &rarr;</a></p>
+
         </div>
     </div>
 

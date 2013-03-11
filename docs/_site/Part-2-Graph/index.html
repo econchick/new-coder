@@ -16,6 +16,7 @@
 <link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
 <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
 <script src="/assets/js/modernizr.js"></script>
 
@@ -32,14 +33,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/tutorials/">Tutorials</a></li>
-                <li><a href="/contact/">Need help? Want to say hi?</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            <h2>Five Life Jackets to Throw at the New Coder</h2>
+            <h2>five life jackets to throw at the new coder</h2>
         </div>
 
         <div id="content">
@@ -53,7 +54,7 @@
             <p>Graph our sample data with matplotlib.</p>
 <h3>Module Setup</h3>
 <ul>
-<li>Simililar as before, when you open up <code>graph.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/graph.py">new-coder/dataviz/lib/tutorial_source/graph.py</a>, you’ll see the language environment setup, as well as an introduction to the module itself. </li>
+<li>Simililar as before, when you open up <code>graph.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/graph.py">new-coder/dataviz/tutorial_source/graph.py</a>, you’ll see the language environment setup, as well as an introduction to the module itself. </li>
 <li>The next few lines are the libraries we import. Notice how the import statements are in alphabetical order. The general rule of ordering imports, in alphabetical order:
 
 <ol>
@@ -185,7 +186,9 @@
 item ["DayOfWeek"] for item in data_file
 </pre>
 
-<p>This is called a list comprehension. You can read it as, “count every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list comprehension just a for-loop put in a more elegant, “Pythonic” way. <strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
+<p>This is called a list comprehension. You can read it as, “count every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list comprehension just a for-loop put in a more elegant, “Pythonic” way. </p>
+
+<p><strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
 
 <p>The counter object is a dictionary with the keys as days of the week, and values as the count of incidents per day. In order for our visualization to make sense, we need to make sure the order that we plot the data makes sense.  For instance, it would make no sense to plot our data in alphabetical order rather than order of the days of the week. We can force our order by separating keys and values to lists:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -197,8 +200,10 @@ item ["DayOfWeek"] for item in data_file
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
-    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span>
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span>
+                 <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Wednesday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Thursday&quot;</span><span class="p">],</span>
@@ -243,7 +248,7 @@ parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#
 </code></pre>
 <p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
 
-<p><strong>A final note:</strong> we had to make our <code>labels</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python’s library, meaning you can’t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
+<p><strong>A quick note:</strong> we had to make our <code>labels</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python’s library, meaning you can’t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
 
 <p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>show()</code> method:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -328,7 +333,7 @@ parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#
 </pre></div>
 </td></tr></table></div></div>
 <p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./graph.py
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python graph.py
 </pre></div>
 </td></tr></table></div></div>
 <p>You should see a nice rendering of our graph:</p>
@@ -570,7 +575,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </pre></div>
 </td></tr></table></div></div>
 <p>Next, save this file as <code>graph.py</code> into the <code>MySourceFiles</code> directory that we created earlier, and make sure you are in that directory in your Terminal by using <code>cd</code> and <code>pwd</code> to navigate as we did before. Also — make sure your virtualenv is active. Now, in your terminal, run:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>./graph.py
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python graph.py
 </pre></div>
 </td></tr></table></div></div>
 <p>and you should see:</p>
