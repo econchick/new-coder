@@ -11,8 +11,8 @@ html .halflings {
 }
 @font-face {
   font-family: 'Glyphicons';
-  src: url('../fonts/glyphicons-regular.eot');
-  src: url('../fonts/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-regular.woff') format('woff'), url('../fonts/glyphicons-regular.ttf') format('truetype'), url('../fonts/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../fonts/glyphicons/glyphicons-regular.eot');
+  src: url('../fonts/glyphicons/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons/glyphicons-regular.woff') format('woff'), url('../fonts/glyphicons/glyphicons-regular.ttf') format('truetype'), url('../fonts/glyphicons/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }

@@ -52,24 +52,24 @@
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2><a href="{{ get_url('networks/') }}">Networks</a></h2>
+    <h2>Networks</h2>
     {% for post in posts %}
         {% if 'intro-network' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.excerpt }} <a href="{{ get_url('networks/')}}">Take off your floaties for event-driven programming in Python. &rarr;</a></dd>
+                    <dd>{{ post.excerpt }}</dd>
                 </dl>
             </dd>
         {% endif %}
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2><a href="{{ get_url('gui/') }}">GUI</a></h2>
+    <h2>GUI</h2>
     {% for post in posts %}
         {% if 'intro-gui' in post.tags %}
             <dd>
                 <dl>
-                    <dd>{{ post.excerpt }} <a href="{{ get_url('gui/')}}">Swim with the Python big leagues and draw your own GUI by writing a Sudoku game. &rarr;</a></dd>
+                    <dd>{{ post.excerpt }}</dd>
                 </dl>
             </dd>
         {% endif %}
