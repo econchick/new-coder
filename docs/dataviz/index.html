@@ -7,14 +7,14 @@
         {% if 'intro-dataviz' in post.tags %}
             <dd>
                 <dl>
-                    <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a></dd>
+                    <dd><a href="{{ get_url(post.url) }}">{{ post.title }}</a></dd>
                 </dl>
             </dd>
         {% endif %}
         {% if 'DataViz' in post.tags %}
             <dd>
                 <dl>
-                    <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a> - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</dd>
+                    <dd><a href="{{ get_url(post.url) }}">{{ post.title }}</a> - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</dd>
                 </dl>
             </dd>
         {% endif %}

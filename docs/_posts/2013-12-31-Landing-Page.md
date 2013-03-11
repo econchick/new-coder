@@ -10,4 +10,4 @@ Let's set your teeth into some real coding.  Your hand will be held in the begin
 
 Start off with [How to Work through these Tutorials]({{ get_url('begin/')}}) and then dive into the [tutorials]({{ get_url('tutorials/')}}). Take your time; these are at your own pace. 
 
-If you need help, or you want to show off, don't hesitate to [contact me]({{ get_url('contact/')}}) about anything.
+If you need help, or you want to show off, don't hesitate to [contact me]({{ get_url('Contact/')}}) about anything.
