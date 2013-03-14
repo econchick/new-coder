@@ -27,6 +27,9 @@ def parse(raw_file, delimiter):
     # Read CSV file
     csv_data = csv.reader(opened_file, delimiter=delimiter)
 
+    # Close the CSV file
+    opened_file.close()
+
     # Setup an empty list
     parsed_data = []
 

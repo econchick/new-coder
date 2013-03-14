@@ -32,7 +32,7 @@ def create_document(title, description=''):
     # Create common elements that Google will read/plot
     document = doc.createElement('Document')
     kml.appendChild(document)
-    docName = doc.createElement('name')
+    docName = doc.createElement('title')
     document.appendChild(docName)
     docName_text = doc.createTextNode(title)
     docName.appendChild(docName_text)

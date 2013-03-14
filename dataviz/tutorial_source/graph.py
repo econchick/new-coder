@@ -48,16 +48,13 @@ def visualize_days():
                   _counter["Saturday"],
                   counter["Sunday"]
                 ]
-    day_list = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+    day_tuple = tuple("Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun")
 
     # Assign the data to a plot
     plt.plot(data_list)
 
-    # Create labels for our x-axis
-    labels = tuple(day_list)
-
-    # Assign labels to the plot
-    plt.xticks(range(len(data_list)), labels)
+    # Assign labels to the plot from day_list
+    plt.xticks(range(len(day_tuple)), day_tuple)
 
     # Render the plot!
     plt.show()

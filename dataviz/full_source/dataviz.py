@@ -18,11 +18,20 @@ import xml.dom.minidom
 def parse(raw_file, delimiter):
     """Parses raw CSV file to JSON-like objects"""
 
+    # Open CSV file
+    opened_file = open(raw_file)
+
     # open a CSV file with the appropriate delimiter (comma, tab, other char)
-    csv_data = csv.reader(open(raw_file), delimiter=delimiter)
+    csv_data = csv.reader(opened_file, delimiter=delimiter)
+
+    # Close the CSV file
+    opened_file.close()
 
     # set up an empty list
     parsed_data = []
+
+    # Close the CSV file
+    opened_file.close()
 
     # skip over the first line of the file for the headers
     fields = csv_data.next()
@@ -51,16 +60,13 @@ def visualize_days(data_file):
                  counter["Saturday"],
                  counter["Sunday"]
                  ]
-    day_list = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+    day_tuple = tuple("Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun")
 
     # Assign the data to a plot
     plt.plot(data_list)
 
-    # Create labels for our x-axis
-    labels = tuple(day_list)
-
     # Assign labels to the plot
-    plt.xticks(range(len(data_list)), labels)
+    plt.xticks(range(len(day_tuple)), day_tuple)
 
     # Render the plot!
     plt.show()
@@ -115,7 +121,7 @@ def create_document(title, description=''):
     # Create common elements that Google will read/plot
     document = doc.createElement('Document')
     kml.appendChild(document)
-    docName = doc.createElement('name')
+    docName = doc.createElement('title')
     document.appendChild(docName)
     docName_text = doc.createTextNode(title)
     docName.appendChild(docName_text)
