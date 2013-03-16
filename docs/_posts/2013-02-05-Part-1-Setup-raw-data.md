@@ -6,13 +6,32 @@ tags: [api]
 
 A walkthrough of grabbing raw data from publicly available information.
 
-Starting off with our imports:
+Let’s first think about the organization of how we want this script to run. We’ll have a `main` function again like we did in the previous tutorial. We’ll also have helper functions and classes defined outside of the `main` function. But for the actual logic of grabbing CPI and game platform data, parsing, validating, plotting, and saving as a file will be in our main function.
 
-#### TODO
+First let’s build some scaffolding:
 
-Start off with the `main()` function for scaffolding
+```python
+def main():
+    """This function handles the actual logic of this script."""
 
-#### TODO
+    # Grab CPI/Inflation data.
+
+    # Grab API/game platform data.
+
+    # Figure out the current price of each platform.
+    # This will require looping through each game platform we received, and 
+    # calculate the adjusted price based on the CPI data we also received.
+    # During this point, we should also validate our data so we do not skew
+    # our results.
+
+    # Generate a plot/bar graph for the adjusted price data.
+
+    # Generate a CSV file to save for the adjusted price data.
+```
+
+Doesn’t seem _too_ bad; we’ve laid out what we want our script to do. Now let’s tackle each comment/process one at a time.  
+
+Before we start off with CPI data, let’s look at our first import statement:
 
 ```python
 from __future__ import print_function
@@ -78,11 +97,11 @@ class Superwoman(Human):
 >>> jill.get_sleep_time()
 >>>
 ```
-We won’t yet explore inheritance in this tutorial but we will in our next one, [Web Scraping]({{ get_url('scrape')}}).
+We explore inheritance a bit more in our next tutorial, [Web Scraping]({{ get_url('scrape')}}).
 
 #### Back to the tutorial
 
-The scaffolding for our `class CPIData()` will include a constructor function, the `__init__` method, as well as methods to load data from a URL, load data from a file, and return an adjusted prices for when we want to compare platform prices between different years:
+The scaffolding for our `class CPIData` will include a constructor method, the `__init__` method, as well as methods to load data from a URL, load data from a file, and return adjusted prices for when we want to compare platform prices between different years:
 
 ```python
 class CPIData(object):
@@ -191,17 +210,14 @@ def load_from_file(self, fp):
     """
     # When iterating over the data file we will need a handful of temporary
     # variables:
-    reached_dataset = False
     current_year = None
     year_cpi = []
     for line in fp:
         # The actual content of the file starts with a header line
         # starting with the string "DATE ". Until we reach this line
         # we can skip ahead.
-        if not reached_dataset:
-            if line.startswith("DATE "):
-                reached_dataset = True
-            continue
+        while not line.startswith("DATE "): 
+            pass
 
         # Each line ends with a new-line character which we strip here
         # to make the data easier usable.
@@ -233,7 +249,7 @@ def load_from_file(self, fp):
         self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
 ```
 
-For the last portion of our `class CPIData()`, we need to define a method to return the CPI price from a specific year when needed.
+For the last portion of our `class CPIData`, we need to define a method to return the CPI price from a specific year when needed.
 
 ```python
 def get_adjusted_price(self, price, year, current_year=None):

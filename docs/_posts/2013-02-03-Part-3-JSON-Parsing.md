@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-Now for the `generate_plot()` function (outside of the `GiantbombAPI()` class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just `plt.show()`).
+Now for the `generate_plot` function (outside of the `GiantbombAPI` class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just `plt.show()`).
 
-Comments on process inline:
+Comments on the process are inline:
 
 ```python
 def generate_plot(platforms, output_file):
@@ -86,7 +86,7 @@ We should add an import statement for it too:
 import tablib
 ```
 
-Similiar to `generate_plot()` function, we’ll take two parameters: `platforms` which is the yielded data from our API class, and `output_file` to save the formatted data where we want to. We use the `tablib` module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the `.csv` method that `tablib` gives us. Comments on process are inline:
+Similiar to `generate_plot` function, we’ll take two parameters: `platforms` which is the yielded data from our API class, and `output_file` to save the formatted data where we want to. We use the `tablib` module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the `.csv` method that `tablib` gives us. Comments on process are inline:
 
 ```python
 def generate_csv(platforms, output_file):

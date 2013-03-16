@@ -74,15 +74,15 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">argparse</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>then let’s define our parsing function, and use <code>argparse</code>’s <code>ArgumentParser()</code> to initialize a <code>parser</code> class:</p>
+<p>then let’s define our parsing function, and use <code>argparse</code>’s <code>ArgumentParser</code> to initialize a <code>parser</code> class:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_args</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The <code>ArgumentParser()</code> class implicitly gives us an argument for free, the <code>-h</code> and <code>--help</code> flags for showing the usage of the script, <code>python platform_pricing.py [options] [args]</code>, as well as a list of available commands and their <code>help</code> strings we assign. </p>
+<p>The <code>ArgumentParser</code> class implicitly gives us an argument for free, the <code>-h</code> and <code>--help</code> flags for showing the usage of the script, <code>python platform_pricing.py [options] [args]</code>, as well as a list of available commands and their <code>help</code> strings we assign. </p>
 
-<p>Now we should add all the arguments that could possibly be passed through from the command line with the <code>add_argument()</code> method that <code>ArgumentParser()</code> class gives us:</p>
+<p>Now we should add all the arguments that could possibly be passed through from the command line with the <code>add_argument</code> method that <code>ArgumentParser</code> class gives us:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -96,7 +96,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>APIProj<span class="o">)</span><span class="nv">$ </span>python platform_pricing.py --giantbomb-api-key &lt;YOUR_API_KEY&gt;
 </pre></div>
 </td></tr></table></div></div>
-<p>We also tell <code>add_argument</code> that this is a required field by passing the <code>required=True</code> parameter. The <code>ArgumentParser()</code> class will take care of erroring out for us if that argument isn&#39;t given in the command line.</p>
+<p>We also tell <code>add_argument</code> that this is a required field by passing the <code>required=True</code> parameter. The <code>ArgumentParser</code> class will take care of erroring out for us if that argument isn&#39;t given in the command line.</p>
 
 <p>Lastly, we pass in a string for our <code>help</code> parameter – this text will show whenever a user passes the <code>-h</code> or <code>--help</code> flag.</p>
 
@@ -158,9 +158,9 @@
 
 <p>The Python docs have a great <a href="http://docs.python.org/2/howto/argparse.html">tutorial</a> on how to use the <code>argparse</code> module if you’d like additional work on this module.</p>
 <h3>Main function</h3>
-<p>The <code>CPIData()</code> and <code>GiantbombAPI()</code> classes have been defined with their methods, as well as functions <code>generate_plot</code>, <code>generate_csv</code>, and <code>is_valid_dataset</code>.  Let’s now make one <code>main()</code> function that runs whenever we call our <code>platform_pricing.py</code> file (with arguments) that instantiates (uses) everything.</p>
+<p>The <code>CPIData</code> and <code>GiantbombAPI</code> classes have been defined with their methods, as well as functions <code>generate_plot</code>, <code>generate_csv</code>, and <code>is_valid_dataset</code>.  Let’s now make one <code>main()</code> function that runs whenever we call our <code>platform_pricing.py</code> file (with arguments) that instantiates (uses) everything.</p>
 
-<p>We’ll first want to take care of the arguments passed through the command line by calling our <code>parse_args()</code> function.</p>
+<p>We’ll first want to take care of the arguments passed through the command line by calling our <code>parse_args</code> function.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

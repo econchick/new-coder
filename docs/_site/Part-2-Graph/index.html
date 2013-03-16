@@ -70,7 +70,7 @@
 
 <ol>
 <li>Open the raw file.</li>
-<li>Read the CSV file with the appropriate delimiter.</li>
+<li>Read the CSV file with the appropriate delimiter, then close the file.</li>
 <li>Initialize an empty list which will be returned by the function.</li>
 <li>Grab the first row of the CSV file, the headers/column names, and assign them to the <code>fields</code> variable, which will be a list.</li>
 <li>Iterate over each row in the CSV file, mapping column headers &rarr; row values, and add to our list we initialized in step 3.</li>
@@ -128,9 +128,7 @@
 10
 11
 12
-13
-14
-15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
     <span class="c"># grab our parsed data that we parsed earlier</span>
 
@@ -140,9 +138,7 @@
 
     <span class="c"># with that y-axis data, assign it to a matplotlib plot instance</span>
 
-    <span class="c"># make a tuple of labels to be assigned to the x-axis</span>
-
-    <span class="c"># create the amount of ticks needed for our x-axis, and assign the tuple from earlier for labeling the x-axis</span>
+    <span class="c"># create the amount of ticks needed for our x-axis, and assign the labels</span>
 
     <span class="c"># show the plot!</span>
 </pre></div>
@@ -182,10 +178,10 @@
 <p>Notice, within Counter(…) we have an interesting loop construct:</p>
 
 <pre>
-item ["DayOfWeek"] for item in data_file
+item["DayOfWeek"] for item in data_file
 </pre>
 
-<p>This is called a list comprehension. You can read it as, “count every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list comprehension just a for-loop put in a more elegant, “Pythonic” way. </p>
+<p>This is called a list comprehension. You can read it as, “iterate every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list ```omprehension just a for-loop put in a more elegant, “Pythonic” way. </p>
 
 <p><strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
 
@@ -210,12 +206,12 @@ item ["DayOfWeek"] for item in data_file
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
                  <span class="p">]</span>
-    <span class="n">day_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">]</span>
+    <span class="n">day_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Here, <code>data_list</code> takes each key of <code>counter</code> to grab the value associated with each day.  Because we manually write out each <code>counter</code> key, we force the order that we want. <strong>Note:</strong> a dictionary does <em>not</em> preserve order, but a list does; this is why we’re electing to manually key into each value of a dictionary to make a list of each value.</p>
 
-<p>The <code>day_list</code> is just a list of strings that we will use for our x-axis labels.</p>
+<p>The <code>day_tuple</code> is just a tuple of strings that we will use for our x-axis labels.  <strong>A quick note:</strong> we had to make our <code>day_tuple</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python’s library, meaning you can’t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
 
 <p>We now tell <code>matplotlib</code> to use our <code>data_list</code> as data points to plot. The <code>pyplot</code> module, what we’ve renamed as <code>plt</code>, has a function called <code>plot()</code> which takes a list of data points to plot on the y-axis:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -225,29 +221,19 @@ item ["DayOfWeek"] for item in data_file
 </td></tr></table></div></div>
 <p>If you are curious about the <code>plot()</code> function, type <code>python</code> in your terminal, then <code>import matplotlib.pyplot as plt</code> followed by <code>help(plt)</code> and/or <code>dir(plt)</code>. Again, to exit out of the Python shell, press <code>CTRL-D</code>. </p>
 
-<p>Next, we’ll make a tuple out of the <code>day_list</code> (a list of strings, each string being “Mon”, “Tues”, etc) and assign it to a <code>labels</code> variable:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Create labels for our x-axis</span>
-    <span class="n">labels</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">day_list</span><span class="p">)</span>
-</pre></div>
-</td></tr></table></div></div>
-<p>By simply ‘wrapping’ <code>tuple()</code> around our list of strings makes will make <code>labels</code> a tuple full of strings.</p>
-
-<p>Just creating the varible <code>labels</code> for our x-axis isn’t enough — we also have to assign it to our <code>plt</code> by using the method <code>xticks()</code>:</p>
+<p>Just creating the varible <code>day_tuple</code> for our x-axis isn’t enough — we also have to assign it to our <code>plt</code> by using the method <code>xticks()</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Assign labels to the plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)),</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">day_tuple</span><span class="p">)),</span> <span class="n">day_tuple</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>We give <code>plt.xticks()</code> two parameters, one being a list and the other being our tuple, <code>labels</code>. </p>
 
-<p>The first parameter is <code>range(len(data_list))</code>.  Here, we call <code>len()</code> on our <code>data_list</code> variable — <code>len()</code> returns an integer, a count of the number of items in our list <code>data_list</code>. Since we have seven items in our <code>data_list</code> (<strong>q:</strong> why do we have seven items?), the <code>len()</code> will return 7. Now we have <code>range()</code> on our length of the <code>data_list</code>. If you feed <code>range()</code> one parameter <code>x</code>, it will produce a list of integers from <code>0</code> to <code>x</code> (not including <code>x</code>). So, deconstructed, we fed <code>plt.xticks()</code> the following: </p>
+<p>The first parameter is <code>range(len(day_tuple))</code>.  Here, we call <code>len()</code> on our <code>day_tuple</code> variable — <code>len()</code> returns an integer, a count of the number of items in our tuple <code>day_tuple</code>. Since we have seven items in our <code>day_tuple</code> (<strong>pop quiz:</strong> why do we have seven items?), the <code>len()</code> will return 7. Now we have <code>range()</code> on our length of the <code>day_tuple</code>. If you feed <code>range()</code> one parameter <code>x</code>, it will produce a list of integers from <code>0</code> to <code>x</code> (not including <code>x</code>). So, deconstructed, we fed <code>plt.xticks()</code> the following: </p>
 <pre><code>parameter 1 = [0, 1, 2, 3, 4, 5, 6]
 parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#34;Fri&#34;, &#34;Sat&#34;, &#34;Sun&#34;)
 </code></pre>
 <p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
-
-<p><strong>A quick note:</strong> we had to make our <code>labels</code> variable a tuple because <code>plt.xticks()</code> only accepts tuples for labeling the x-axis.  This is because tuples are an immutable type of data structure in Python’s library, meaning you can’t change it (not without making a copy of the variable onto a new variable), as well as it preserves order.</p>
 
 <p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>show()</code> method:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -284,10 +270,7 @@ parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#
 24
 25
 26
-27
-28
-29
-30</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+27</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
     <span class="c"># Returns a dict where it sums the total values for each key.</span>
@@ -304,16 +287,13 @@ parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Saturday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Sunday&quot;</span><span class="p">]</span>
                  <span class="p">]</span>
-    <span class="n">day_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">]</span>
+    <span class="n">day_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tues&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thurs&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">)</span>
 
     <span class="c"># Assign the data to a plot</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
 
-    <span class="c"># Create labels for our x-axis</span>
-    <span class="n">labels</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">day_list</span><span class="p">)</span>
-
     <span class="c"># Assign labels to the plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)),</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">day_tuple</span><span class="p">)),</span> <span class="n">day_tuple</span><span class="p">)</span>
 
     <span class="c"># Render the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -469,7 +449,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xlocations</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>For the <code>plt.xticks()</code>, the first parameter should look similar to before, but here we’re feeding three parameters: <code>xlocations + width / 2</code>, <code>labels</code>, and <code>rotation=90</code>. The first parameter will place the center of the bar in the middle of the xtick. <code>labels</code> we know already. <code>rotation=90</code> is, as you might have guess, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.</p>
+<p>For the <code>plt.xticks()</code>, the first parameter should look similar to before, but here we’re feeding three parameters: <code>xlocations + width / 2</code>, <code>labels</code>, and <code>rotation=90</code>. The first parameter will place the center of the bar in the middle of the xtick. <code>labels</code> we know already. <code>rotation=90</code> is, as you might have guessed, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.</p>
 
 <p>Notice how we can pass <code>xticks()</code> more parameters than we did before. If you read the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks">documentation</a> of that function, you can pass it <code>*args</code> and <code>*kwargs</code>, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined <a href="http://matplotlib.org/api/artist_api.html#matplotlib.text.Text">text properties</a> for the labels — so that would explain the <code>*kwargs</code> element there. If nothing is passed in for <code>rotation</code> then it’s set to a default defined in their text properties documentation.</p>
 
@@ -481,7 +461,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </td></tr></table></div></div>
 <p>I’ll be honest, <code>0.4</code> was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.</p>
 
-<p>Nearly there — before we render the graph, the actual size of the window can be played with too. <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: height + width:</p>
+<p>Nearly there — before we render the graph, the actual size of the window can be played with too. The <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: height + width:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Make the overall graph/figure larger</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span>

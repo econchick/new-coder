@@ -90,9 +90,9 @@
 
 <p>This method is a generator function (a clue is the <code>yield</code> statement instead of a <code>return</code> statement).</p>
 <h4>For the curious</h4>
-<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. </p>
+<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse</code> function, specifically the <code>for deal in selector</code> bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. </p>
 <h4>Back to the tutorial</h4>
-<p>Follow the inline comments to undestand the process flow of <code>get_platforms()</code>:</p>
+<p>Follow the inline comments to undestand the process flow of <code>get_platforms</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -170,10 +170,6 @@
 <span class="sd">        limit is specified, this will return *all* platforms.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">incomplete_result</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="n">num_total_results</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="n">num_fetched_results</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c"># The API itself allows us to filter the data returned either</span>
         <span class="c"># by requesting only a subset of data elements or a subset with each</span>
@@ -185,13 +181,12 @@
         <span class="c"># need to convert a dictionary of criteria into a comma-seperated</span>
         <span class="c"># list of key:value pairs.</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="nb">filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">params</span><span class="p">[</span><span class="s">&#39;filter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">filter</span>
         <span class="k">if</span> <span class="n">sort</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">params</span><span class="p">[</span><span class="s">&#39;sort&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span>
         <span class="k">if</span> <span class="n">field_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">params</span><span class="p">[</span><span class="s">&#39;field_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">field_list</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s">&#39;filter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">filter</span>
             <span class="n">parsed_filters</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">filter</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
                 <span class="n">parsed_filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;{0}:{1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
@@ -202,6 +197,11 @@
         <span class="c"># as JSON.</span>
         <span class="n">params</span><span class="p">[</span><span class="s">&#39;api_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span>
         <span class="n">params</span><span class="p">[</span><span class="s">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;json&#39;</span>
+
+        <span class="n">incomplete_result</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">num_total_results</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">num_fetched_results</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">while</span> <span class="n">incomplete_result</span><span class="p">:</span>
             <span class="c"># Giantbomb&#39;s limit for items in a result set for this API is 100</span>
@@ -246,7 +246,7 @@
 </td></tr></table></div></div>
 <p>It’s important to log what we’re doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the <code>logging</code> module to either save to a specific file, or have it as output to the console as the script processes. We’ll configure our logs in the final part of the API tutorial.</p>
 
-<p>Next, we should also define a helper function, <strong>outside</strong> of our <code>GiantbombAPI()</code> class, so that we can make sure that each platform that is yielded from <code>get_platform</code> is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for <code>map.py</code> in our DataViz tutorial.</p>
+<p>Next, we should also define a helper function, <strong>outside</strong> of our <code>GiantbombAPI</code> class, so that we can make sure that each platform that is yielded from <code>get_platform</code> is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for <code>map.py</code> in our DataViz tutorial.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

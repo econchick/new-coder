@@ -77,7 +77,7 @@
 <p>We also don’t import the whole <code>xml</code> library, or <code>xml.dom</code> library for that matter. We want to run lean code, so only import the specific module that you need, or even objects (classes, functions, variables, etc) defined from within that module.</p>
 <h4>For the curious</h4>
 <ul>
-<li>A package is a collection of modules (or packages). A module is one python file, so a package is a collection of python files.</li>
+<li>A package is a collection of modules (or packages). A module is one python file, so a package is a collection of python files within the same directory.</li>
 <li>A distributed collection of packages is can be referred to as a library.</li>
 <li>Python has a standard library already built-in (built-in meaning that you don’t have to download extra packages, it’s default within the language and just have to import what you need), but that standard library contains many packages and modules. </li>
 <li>Python will follow your import statements like a file structure. For instance, we have <code>new-coder/dataviz/lib/tutorial_source</code> - <code>lib</code> is within <code>dataviz</code>. So within Python&#39;s standard library, <code>minidom</code> is defined within <code>dom</code>, and that within <code>xml</code>. </li>
@@ -127,7 +127,7 @@
     <span class="c"># Create common elements that Google will read/plot</span>
     <span class="n">document</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;Document&#39;</span><span class="p">)</span>
     <span class="n">kml</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-    <span class="n">docName</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+    <span class="n">docName</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">)</span>
     <span class="n">document</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">docName</span><span class="p">)</span>
     <span class="n">docName_text</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">docName</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">docName_text</span><span class="p">)</span>
@@ -138,7 +138,7 @@
     <span class="k">return</span> <span class="n">doc</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The <code>createElement()</code> and <code>appendChild()</code> is specific to DOM functions that the <code>xml.dom.minidom</code> gives us access to.  We first create an element (either Document, name, or description), then assign that element a value if needed (title, and description, if given).  Finally, we return the initialized document.</p>
+<p>The <code>createElement()</code> and <code>appendChild()</code> is specific to DOM functions that the <code>xml.dom.minidom</code> gives us access to.  We first create an element (either Document, title, or description), then assign that element a value if needed (title, and description, if given).  Finally, we return the initialized document.</p>
 
 <p>The <code>create_placemark(address)</code> creates an initial XML document so we can build one placemark (equal to one piece of our data). The function actually creates the placemark data by doing the same process from earlier, <code>createElement</code> to create a type of DOM element, and assign it a value if needed (e.g. name, coordinates, description). This just returns one placemark in the correct KML format.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1

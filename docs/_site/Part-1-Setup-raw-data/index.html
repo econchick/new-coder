@@ -52,10 +52,46 @@
         <div class="body">
             <p>A walkthrough of grabbing raw data from publicly available information.</p>
 
-<p>Starting off with our imports:</p>
-<h4>TODO</h4>
-<p>Start off with the <code>main()</code> function for scaffolding</p>
-<h4>TODO</h4><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<p>Let’s first think about the organization of how we want this script to run. We’ll have a <code>main</code> function again like we did in the previous tutorial. We’ll also have helper functions and classes defined outside of the <code>main</code> function. But for the actual logic of grabbing CPI and game platform data, parsing, validating, plotting, and saving as a file will be in our main function.</p>
+
+<p>First let’s build some scaffolding:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;This function handles the actual logic of this script.&quot;&quot;&quot;</span>
+
+    <span class="c"># Grab CPI/Inflation data.</span>
+
+    <span class="c"># Grab API/game platform data.</span>
+
+    <span class="c"># Figure out the current price of each platform.</span>
+    <span class="c"># This will require looping through each game platform we received, and </span>
+    <span class="c"># calculate the adjusted price based on the CPI data we also received.</span>
+    <span class="c"># During this point, we should also validate our data so we do not skew</span>
+    <span class="c"># our results.</span>
+
+    <span class="c"># Generate a plot/bar graph for the adjusted price data.</span>
+
+    <span class="c"># Generate a CSV file to save for the adjusted price data.</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Doesn’t seem <em>too</em> bad; we’ve laid out what we want our script to do. Now let’s tackle each comment/process one at a time.  </p>
+
+<p>Before we start off with CPI data, let’s look at our first import statement:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>You might be curious as to why we’re importing a <code>print_function</code>, and why it’s from <code>__future__</code>.  This is a gentle introduction to the differences between Python 2.x and Python 3.x.  In Python 3, <code>print()</code> is a function, while in Python 2, <code>print</code> is a keyword. For now, the difference is just that using <code>print</code> now requires paretheses around what you are printing.</p>
@@ -126,9 +162,9 @@
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>We won’t yet explore inheritance in this tutorial but we will in our next one, <a href="/scrape">Web Scraping</a>.</p>
+<p>We explore inheritance a bit more in our next tutorial, <a href="/scrape">Web Scraping</a>.</p>
 <h4>Back to the tutorial</h4>
-<p>The scaffolding for our <code>class CPIData()</code> will include a constructor function, the <code>__init__</code> method, as well as methods to load data from a URL, load data from a file, and return an adjusted prices for when we want to compare platform prices between different years:</p>
+<p>The scaffolding for our <code>class CPIData</code> will include a constructor method, the <code>__init__</code> method, as well as methods to load data from a URL, load data from a file, and return adjusted prices for when we want to compare platform prices between different years:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -333,26 +369,20 @@
 40
 41
 42
-43
-44
-45
-46</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">load_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+43</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">load_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Loads CPI data from a given file-like object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># When iterating over the data file we will need a handful of temporary</span>
     <span class="c"># variables:</span>
-    <span class="n">reached_dataset</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="n">current_year</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="n">year_cpi</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
         <span class="c"># The actual content of the file starts with a header line</span>
         <span class="c"># starting with the string &quot;DATE &quot;. Until we reach this line</span>
         <span class="c"># we can skip ahead.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">reached_dataset</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;DATE &quot;</span><span class="p">):</span>
-                <span class="n">reached_dataset</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="k">continue</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;DATE &quot;</span><span class="p">):</span> 
+            <span class="k">pass</span>
 
         <span class="c"># Each line ends with a new-line character which we strip here</span>
         <span class="c"># to make the data easier usable.</span>
@@ -384,7 +414,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">year_cpi</span><span class="p">[</span><span class="n">current_year</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_cpi</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>For the last portion of our <code>class CPIData()</code>, we need to define a method to return the CPI price from a specific year when needed.</p>
+<p>For the last portion of our <code>class CPIData</code>, we need to define a method to return the CPI price from a specific year when needed.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

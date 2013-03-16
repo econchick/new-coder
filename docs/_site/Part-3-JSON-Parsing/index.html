@@ -60,9 +60,9 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Now for the <code>generate_plot()</code> function (outside of the <code>GiantbombAPI()</code> class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just <code>plt.show()</code>).</p>
+<p>Now for the <code>generate_plot</code> function (outside of the <code>GiantbombAPI</code> class), we’ll take in the yielded platforms, as well as an output file so we can save our constructed plot (instead of just <code>plt.show()</code>).</p>
 
-<p>Comments on process inline:</p>
+<p>Comments on the process are inline:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -170,7 +170,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tablib</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Similiar to <code>generate_plot()</code> function, we’ll take two parameters: <code>platforms</code> which is the yielded data from our API class, and <code>output_file</code> to save the formatted data where we want to. We use the <code>tablib</code> module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the <code>.csv</code> method that <code>tablib</code> gives us. Comments on process are inline:</p>
+<p>Similiar to <code>generate_plot</code> function, we’ll take two parameters: <code>platforms</code> which is the yielded data from our API class, and <code>output_file</code> to save the formatted data where we want to. We use the <code>tablib</code> module to assign headers to a dataset, then append each item of our platform data to the dataset. Last, we write to a file that passed in as a parameter using the <code>.csv</code> method that <code>tablib</code> gives us. Comments on process are inline:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

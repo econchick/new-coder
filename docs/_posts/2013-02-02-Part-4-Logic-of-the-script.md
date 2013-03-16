@@ -33,16 +33,16 @@ First, import argparse,
 import argparse
 ```
 
-then let’s define our parsing function, and use `argparse`’s `ArgumentParser()` to initialize a `parser` class:
+then let’s define our parsing function, and use `argparse`’s `ArgumentParser` to initialize a `parser` class:
 
 ```python
 def parse_args():
 	parser = argparse.ArgumentParser()
 ```
 
-The `ArgumentParser()` class implicitly gives us an argument for free, the `-h` and `--help` flags for showing the usage of the script, `python platform_pricing.py [options] [args]`, as well as a list of available commands and their `help` strings we assign. 
+The `ArgumentParser` class implicitly gives us an argument for free, the `-h` and `--help` flags for showing the usage of the script, `python platform_pricing.py [options] [args]`, as well as a list of available commands and their `help` strings we assign. 
 
-Now we should add all the arguments that could possibly be passed through from the command line with the `add_argument()` method that `ArgumentParser()` class gives us:
+Now we should add all the arguments that could possibly be passed through from the command line with the `add_argument` method that `ArgumentParser` class gives us:
 
 ```python
 def parse_args():
@@ -57,7 +57,7 @@ The first parameter that we feed to `add_argument` is the flag that is used in t
 (APIProj)$ python platform_pricing.py --giantbomb-api-key <YOUR_API_KEY>
 ```
 
-We also tell `add_argument` that this is a required field by passing the `required=True` parameter. The `ArgumentParser()` class will take care of erroring out for us if that argument isn't given in the command line.
+We also tell `add_argument` that this is a required field by passing the `required=True` parameter. The `ArgumentParser` class will take care of erroring out for us if that argument isn't given in the command line.
 
 Lastly, we pass in a string for our `help` parameter – this text will show whenever a user passes the `-h` or `--help` flag.
 
@@ -99,9 +99,9 @@ The Python docs have a great [tutorial](http://docs.python.org/2/howto/argparse.
 
 ### Main function
 
-The `CPIData()` and `GiantbombAPI()` classes have been defined with their methods, as well as functions `generate_plot`, `generate_csv`, and `is_valid_dataset`.  Let’s now make one `main()` function that runs whenever we call our `platform_pricing.py` file (with arguments) that instantiates (uses) everything.
+The `CPIData` and `GiantbombAPI` classes have been defined with their methods, as well as functions `generate_plot`, `generate_csv`, and `is_valid_dataset`.  Let’s now make one `main()` function that runs whenever we call our `platform_pricing.py` file (with arguments) that instantiates (uses) everything.
 
-We’ll first want to take care of the arguments passed through the command line by calling our `parse_args()` function.
+We’ll first want to take care of the arguments passed through the command line by calling our `parse_args` function.
 
 ```python
 def main():

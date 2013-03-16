@@ -23,7 +23,7 @@ If at any time you have issues installing anything, don't hesitate to [contact m
 
 ### Knowledge Requirements
 
-* Have worked through something like [Learn Python the Hard Way](http://learnpythonthehardway.org/), [Dive into Python](http://www.diveintopython.net/), [Codecademy](http://www.codecademy.com/tracks/python) or others that teach syntax. No need to have complete any/all of these introductory resources, but the tutorials will _not_ walk you through the basics of Python syntax.
+* Have worked through something like [Learn Python the Hard Way](http://learnpythonthehardway.org/), [Dive into Python](http://www.diveintopython.net/), [Codecademy](http://www.codecademy.com/tracks/python) or others that teach syntax. No need to complete any/all of these introductory resources, but the tutorials will _not_ walk you through the basics of Python syntax.
 * Want to continue to learn Python and/or learn to code.
 
 Haven't worked through any of the above resources? It's okay – feel free to do these tutorials as well, but have patience for yourself and don’t be shy on using Google or referring to those resources for syntax help.

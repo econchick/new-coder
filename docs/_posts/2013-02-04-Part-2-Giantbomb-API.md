@@ -38,10 +38,10 @@ Next, we’ll define one method (our class’s only method besides our construct
 This method is a generator function (a clue is the `yield` statement instead of a `return` statement).
 
 #### For the curious
-The `yield` keyword is similar to `return`. The `parse()` function, specifically the `for deal in selector` bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good [explanation](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained) of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. 
+The `yield` keyword is similar to `return`. The `parse` function, specifically the `for deal in selector` bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good [explanation](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained) of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. 
 
 #### Back to the tutorial
-Follow the inline comments to undestand the process flow of `get_platforms()`:
+Follow the inline comments to undestand the process flow of `get_platforms`:
 
 ```python
 	def get_platforms(self, sort=None, filter=None, field_list=None):
@@ -49,10 +49,6 @@ Follow the inline comments to undestand the process flow of `get_platforms()`:
 	    limit is specified, this will return *all* platforms.
 
 	    """
-	    incomplete_result = True
-	    num_total_results = None
-	    num_fetched_results = 0
-	    counter = 0
 
 	    # The API itself allows us to filter the data returned either
 	    # by requesting only a subset of data elements or a subset with each
@@ -64,13 +60,12 @@ Follow the inline comments to undestand the process flow of `get_platforms()`:
 	    # need to convert a dictionary of criteria into a comma-seperated
 	    # list of key:value pairs.
 	    params = {}
-	    if filter is not None:
-	        params['filter'] = filter
 	    if sort is not None:
 	        params['sort'] = sort
 	    if field_list is not None:
 	        params['field_list'] = ','.join(field_list)
 	    if filter is not None:
+	    	params['filter'] = filter
 	        parsed_filters = []
 	        for key, value in filter.iteritems():
 	            parsed_filters.append('{0}:{1}'.format(key, value))
@@ -81,6 +76,11 @@ Follow the inline comments to undestand the process flow of `get_platforms()`:
 	    # as JSON.
 	    params['api_key'] = self.api_key
 	    params['format'] = 'json'
+
+	    incomplete_result = True
+	    num_total_results = None
+	    num_fetched_results = 0
+	    counter = 0
 
 	    while incomplete_result:
 	        # Giantbomb's limit for items in a result set for this API is 100
@@ -127,7 +127,7 @@ import logging
 
 It’s important to log what we’re doing throughout our script writing.  In case we catch an error somewhere, our logs can give us more helpful clues to where the error took place, or why it happened. You can configure the `logging` module to either save to a specific file, or have it as output to the console as the script processes. We’ll configure our logs in the final part of the API tutorial.
 
-Next, we should also define a helper function, **outside** of our `GiantbombAPI()` class, so that we can make sure that each platform that is yielded from `get_platform` is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for `map.py` in our DataViz tutorial.
+Next, we should also define a helper function, **outside** of our `GiantbombAPI` class, so that we can make sure that each platform that is yielded from `get_platform` is valid (some data we get back may not have a date that we can grab for our CPI data, or a price).  We do this outside of the class so it’s independent of our API object. This is akin to our helper functions that we made for `map.py` in our DataViz tutorial.
 
 ```python
 def is_valid_dataset(platform):

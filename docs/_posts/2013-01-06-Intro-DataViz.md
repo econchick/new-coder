@@ -49,7 +49,7 @@ It’d be kind of cool to place all the coordinates in our data on a map, wouldn
 
 Google has a great KML [intro](https://developers.google.com/kml/documentation/) and [tutorial](https://developers.google.com/kml/documentation/kml_tut) for those interested. 
 
-Wiki has a pretty readable [explanation](http://en.wikipedia.org/wiki/XML) of XML, and w3 has a simple [tutorial](http://www.w3schools.com/xml/) if you want to learn more (_side comment_: w3 is not the greatest for learning front-end related web development, but fine for quick references). 
+Wikipedia has a pretty readable [explanation](http://en.wikipedia.org/wiki/XML) of XML, and w3 has a simple [tutorial](http://www.w3schools.com/xml/) if you want to learn more (_side comment_: w3 is not the greatest for learning front-end related web development, but fine for quick references). 
 
 Both KML and XML, as well as HTML and XHTML, follow the [DOM](http://en.wikipedia.org/wiki/Document_Object_Model) convention, Document Object Model. It’s basically how you interact with different objects through defined functions.
 
