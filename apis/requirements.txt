@@ -1,0 +1,4 @@
+matplotlib==1.2.0
+numpy==1.7.0
+requests==1.1.0
+tablib==0.9.11

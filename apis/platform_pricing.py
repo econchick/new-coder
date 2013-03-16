@@ -97,18 +97,14 @@ class CPIData(object):
         """Loads CPI data from a given file-like object."""
         # When iterating over the data file we will need a handful of temporary
         # variables:
-        reached_dataset = False
         current_year = None
         year_cpi = []
         for line in fp:
             # The actual content of the file starts with a header line
             # starting with the string "DATE ". Until we reach this line
             # we can skip ahead.
-            if not reached_dataset:
-                if line.startswith("DATE "):
-                    reached_dataset = True
-                continue
-
+            while not line.startswith("DATE "):
+                pass
             # Each line ends with a new-line character which we strip here
             # to make the data easier usable.
             data = line.rstrip().split()
@@ -178,10 +174,6 @@ class GiantbombAPI(object):
         limit is specified, this will return *all* platforms.
 
         """
-        incomplete_result = True
-        num_total_results = None
-        num_fetched_results = 0
-        counter = 0
 
         # The API itself allows us to filter the data returned either
         # by requesting only a subset of data elements or a subset with each
@@ -193,13 +185,12 @@ class GiantbombAPI(object):
         # need to convert a dictionary of criteria into a comma-seperated
         # list of key:value pairs.
         params = {}
-        if filter is not None:
-            params['filter'] = filter
         if sort is not None:
             params['sort'] = sort
         if field_list is not None:
             params['field_list'] = ','.join(field_list)
         if filter is not None:
+            params['filter'] = filter
             parsed_filters = []
             for key, value in filter.iteritems():
                 parsed_filters.append('{0}:{1}'.format(key, value))
@@ -210,6 +201,11 @@ class GiantbombAPI(object):
         # as JSON.
         params['api_key'] = self.api_key
         params['format'] = 'json'
+
+        incomplete_result = True
+        num_total_results = None
+        num_fetched_results = 0
+        counter = 0
 
         while incomplete_result:
             # Giantbomb's limit for items in a result set for this API is 100
