@@ -29,7 +29,7 @@ Build Instructions
 
 Simple install requirements, run the build command
 
-    pip install -r requirements.txt
+    pip install -r docs/requirements.txt
     mynt gen docs build
     (cd build && python -m SimpleHTTPServer)
 
