@@ -40,3 +40,8 @@ If you _really_ feel like a challenge, check out [Kaggle](http://www.kaggle.com/
 * [SciPy and NumPy](http://shop.oreilly.com/product/0636920020219.do) – Optimizing & Boosting your Python Programming
 * [Python for Data Analysis](http://oreilly.com/shop/product/0636920023784.html)
 * [Visual.ly](http://visual.ly/) – create data visualizations and infographics
+* Some awesome data visualizations in action:
+	* [NY Times: The Jobless Rate for People Like You](http://www.nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html?_r=0)
+	* [Stamen Design: Interactive maps of travel time and housing prices in London](http://stamen.com/clients/mysociety)
+	* [SF BART Widget](http://worrydream.com/#!/bartwidget)
+	* [Estimated Energy Use in 2011](https://flowcharts.llnl.gov/content/energy/energy_archive/energy_flow_2011/LLNLUSEnergy2011.png)
