@@ -23,3 +23,13 @@ Directory layout:
 	│   ├─── tests/
 	│   │   ├── full_tests/
 	│   │   ├── tutorial_tests/
+
+Build Instructions
+==================
+
+Simple install requirements, run the build command
+
+    pip install -r docs/requirements.txt
+    mynt gen docs build
+    (cd build && python -m SimpleHTTPServer)
+
