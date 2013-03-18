@@ -27,9 +27,6 @@ def parse(raw_file, delimiter):
     # Read CSV file
     csv_data = csv.reader(opened_file, delimiter=delimiter)
 
-    # Close the CSV file
-    opened_file.close()
-
     # Setup an empty list
     parsed_data = []
 
@@ -39,6 +36,9 @@ def parse(raw_file, delimiter):
     # Iterate over each row of the csv file, zip together field -> value
     for row in csv_data:
         parsed_data.append(dict(zip(fields, row)))
+
+    # Close the CSV file
+    opened_file.close()
 
     return parsed_data
 
