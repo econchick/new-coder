@@ -81,7 +81,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 </pre></div>
 </td></tr></table></div></div>
-<p><code>MY_FILE</code> is defining a global - notice how it‘s all caps. Included in this repo is a sample file to which this variable is assigned.</p>
+<p><code>MY_FILE</code> is defining a global - notice how it‘s all caps, a convention for variables we won&#39;t be changing. Included in this repo is a sample file to which this variable is assigned.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">MY_FILE</span> <span class="o">=</span> <span class="s">&quot;../data/sample_sfpd_incident_all.csv&quot;</span>
 </pre></div>
 </td></tr></table></div></div><h3>The Parse Function</h3>
@@ -102,7 +102,7 @@
 2
 3
 4</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object.&quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="n">parsed_data</span>
 </pre></div>
@@ -142,7 +142,11 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>Thankfully, there are a lot of built-in methods that Python has that we can use to do all the steps that we’ve outlined with our comments.  The first one we’ll use is <code>open</code> and pass <code>raw_file</code> to it, which we got from defining our own parameters in the <code>parse</code> function:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
+
+    <span class="o">...</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>So we’ve told Python to open the file, now we have to read the file. We have to use the CSV module that we imported earlier:</p>
@@ -163,27 +167,21 @@
  9
 10
 11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
 
-    <span class="c"># Open CSV file</span>
-    <span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
+    <span class="c"># Open CSV file, and safely close it when we&#39;re done</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
 
-    <span class="c"># Read CSV file</span>
-    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
-
-    <span class="c"># Close CSV file</span>
-    <span class="n">opened_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="c"># Read CSV file</span>
+        <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
 
     <span class="c"># Build a data structure to return parsed_data</span>
 
     <span class="k">return</span> <span class="n">parsed_data</span>
 </pre></div>
 </td></tr></table></div></div><h4>For the curious</h4>
-<p>The <code>csv_data object</code>, in Python terms, is now a generator. In very simple terms, this means we can iterate over each element in <code>csv_data</code> later. </p>
+<p>The <code>csv_data object</code>, in Python terms, is now an iterator. In very simple terms, this means we can get each element in <code>csv_data</code> one at a time. </p>
 <h4>Back to the tutorial</h4>
 <p>Alright — the building of the data structure might seem tricky. The best way to start off is to set up an empty Python list to our <code>parsed_data</code> variable so we can add every row of data that we will parse through.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -220,18 +218,24 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-like object&quot;&quot;&quot;</span>
-    <span class="c"># Open CSV file</span>
-    <span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
-    <span class="c"># Read CSV file</span>
-    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
-    <span class="c"># Close CSV file</span>
-    <span class="n">opened_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c"># Open CSV file, and safely close it when we&#39;re done</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
+
+        <span class="c"># Read CSV file</span>
+        <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+
     <span class="c"># Setup an empty list</span>
     <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
+
     <span class="c"># Skip over the first line of the file for the headers</span>
     <span class="n">fields</span> <span class="o">=</span> <span class="n">csv_data</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
     <span class="c"># Iterate over each row of the csv file, zip together field -&gt; value</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_data</span><span class="p">:</span>
         <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
@@ -239,14 +243,17 @@
     <span class="k">return</span> <span class="n">parsed_data</span>
 </pre></div>
 </td></tr></table></div></div><h3>Using the new Parse function</h3>
-<p>Let’s define a <code>main()</code> function to call our new <code>parse()</code> function:</p>
+<p>Let’s define a <code>main()</code> function to act as the starting point for our script,<br>
+and use our new <code>parse()</code> function:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c"># Call our parse function and give it the needed parameters</span>
     <span class="n">new_data</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+
     <span class="c"># Let&#39;s see what the data looks like!</span>
     <span class="k">print</span> <span class="n">new_data</span>
 </pre></div>
