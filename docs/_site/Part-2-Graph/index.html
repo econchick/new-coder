@@ -84,7 +84,7 @@
 <li>Read the CSV file with the appropriate delimiter, then close the file.</li>
 <li>Initialize an empty list which will be returned by the function.</li>
 <li>Grab the first row of the CSV file, the headers/column names, and assign them to the <code>fields</code> variable, which will be a list.</li>
-<li>Iterate over each row in the CSV file, mapping column headers &rarr; row values, and add to our list we initialized in step 3.</li>
+<li>Iterate over each remaining row in the CSV file, mapping column headers &rarr; row values, and add to our list we initialized in step 3.</li>
 <li>Return the <code>parsed_data</code> variable.</li>
 </ol></li>
 <li>We include the parse function here so we build on the process of parse &rarr; plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from <code>parse.py</code>. As a <strong>challenge</strong> to you, try editing away the parse function in <code>graph.py</code> and import it from your <code>parse.py</code>.</li>
@@ -139,17 +139,29 @@
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
+
     <span class="c"># grab our parsed data that we parsed earlier</span>
 
-    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through each line of data in the parsed data, and count how many incidents happen on each day of the week</span>
+    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through each</span>
+    <span class="c"># line of data in the parsed data, and count how many incidents</span>
+    <span class="c"># happen on each day of the week</span>
 
-    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
+    <span class="c"># separate the x-axis data (the days of the week) from the</span>
+    <span class="c"># &#39;counter&#39; variable from the y-axis data (the number of</span>
+    <span class="c"># incidents for each day)</span>
 
     <span class="c"># with that y-axis data, assign it to a matplotlib plot instance</span>
 
-    <span class="c"># create the amount of ticks needed for our x-axis, and assign the labels</span>
+    <span class="c"># create the amount of ticks needed for our x-axis, and assign</span>
+    <span class="c"># the labels</span>
 
     <span class="c"># show the plot!</span>
 </pre></div>
@@ -158,8 +170,10 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
+
     <span class="c"># grab our parsed data that we parsed earlier</span>
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
 </pre></div>
@@ -171,18 +185,24 @@
 <p>Here, <code>Counter</code> behaves very similarly to Python&#39;s dictionary structure (because under the hood, the <code>Counter</code> class inherits from dictionary).  What we will do with Counter is iterate through each line item in our <code>data_file</code> variable (since it’s just a list of dictionaries), grabbing each key labelled &quot;DayOfWeek&quot;. </p>
 
 <p>What the Counter does is everytime it sees the &quot;DayOfWeek&quot; key set to a value of &quot;Monday&quot;, it will give it a tally; same with &quot;DayOfWeek&quot; key set to &quot;Tuesday&quot;, etc. This works great for very well structured data.</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
+
     <span class="c"># grab our parsed data that we parsed earlier</span>
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
-    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through each line of data</span>
-    <span class="c">#in the parsed data, and count how many incidents happen on each day of the week</span>
+
+    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through</span>
+    <span class="c"># each line of data in the parsed data, and count how many</span>
+    <span class="c"># incidents happen on each day of the week</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;DayOfWeek&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -192,7 +212,7 @@
 item["DayOfWeek"] for item in data_file
 </pre>
 
-<p>This is called a list comprehension. You can read it as, “iterate every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list ```omprehension just a for-loop put in a more elegant, “Pythonic” way. </p>
+<p>This is called a list comprehension. You can read it as, “iterate every dictionary value of every dictionary key set to ‘DayOfWeek’ for every line item in <code>data_file</code>.” A list comprehension just a for-loop put in a more elegant, “Pythonic” way. </p>
 
 <p><strong>Challenge yourself:</strong> write out a for-loop for our <code>counter</code> variable.</p>
 
@@ -207,7 +227,11 @@ item["DayOfWeek"] for item in data_file
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the &#39;counter&#39; variable from the y-axis data (the number of incidents for each day)</span>
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># separate the x-axis data (the days of the week) from the</span>
+    <span class="c"># &#39;counter&#39; variable from the y-axis data (the number of</span>
+    <span class="c"># incidents for each day)</span>
     <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">],</span>
                  <span class="n">counter</span><span class="p">[</span><span class="s">&quot;Tuesday&quot;</span><span class="p">],</span>
@@ -230,7 +254,7 @@ item["DayOfWeek"] for item in data_file
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>If you are curious about the <code>plot()</code> function, type <code>python</code> in your terminal, then <code>import matplotlib.pyplot as plt</code> followed by <code>help(plt)</code> and/or <code>dir(plt)</code>. Again, to exit out of the Python shell, press <code>CTRL-D</code>. </p>
+<p>If you are curious about the <code>plot()</code> function, open a <code>python</code> prompt in your terminal, then <code>import matplotlib.pyplot as plt</code> followed by <code>help(plt)</code> and/or <code>dir(plt)</code>. Again, to exit out of the Python shell, press <code>CTRL-D</code>. </p>
 
 <p>Just creating the varible <code>day_tuple</code> for our x-axis isn’t enough — we also have to assign it to our <code>plt</code> by using the method <code>xticks()</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -399,12 +423,17 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 20
 21
 22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by category in a bar graph&quot;&quot;&quot;</span>
+
     <span class="c"># grab our parsed data</span>
 
-    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through each line of data</span>
-    <span class="c"># in the parsed data, and count how many incidents happen by category</span>
+    <span class="c"># make a new variable, &#39;counter&#39;, from iterating through each line</span>
+    <span class="c"># of data in the parsed data, and count how many incidents happen</span>
+    <span class="c"># by category</span>
 
     <span class="c"># Set the labels which are based on the keys of our counter.</span>
     <span class="c"># Since order doesn&#39;t matter, we can just used counter.keys()</span>
@@ -417,7 +446,8 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 
     <span class="c"># Assign labels and tick location to x-axis</span>
 
-    <span class="c"># Give some more room so the x-axis labels aren&#39;t cut off in the graph</span>
+    <span class="c"># Give some more room so the x-axis labels aren&#39;t cut off in the</span>
+    <span class="c"># graph</span>
 
     <span class="c"># Make the overall graph/figure is larger</span>
 
@@ -462,7 +492,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </td></tr></table></div></div>
 <p>For the <code>plt.xticks()</code>, the first parameter should look similar to before, but here we’re feeding three parameters: <code>xlocations + width / 2</code>, <code>labels</code>, and <code>rotation=90</code>. The first parameter will place the center of the bar in the middle of the xtick. <code>labels</code> we know already. <code>rotation=90</code> is, as you might have guessed, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.</p>
 
-<p>Notice how we can pass <code>xticks()</code> more parameters than we did before. If you read the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks">documentation</a> of that function, you can pass it <code>*args</code> and <code>*kwargs</code>, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined <a href="http://matplotlib.org/api/artist_api.html#matplotlib.text.Text">text properties</a> for the labels — so that would explain the <code>*kwargs</code> element there. If nothing is passed in for <code>rotation</code> then it’s set to a default defined in their text properties documentation.</p>
+<p>Notice how we can pass <code>xticks()</code> more parameters than we did before. If you read the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks">documentation</a> of that function, you can pass it <code>*args</code> and <code>**kwargs</code>, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined <a href="http://matplotlib.org/api/artist_api.html#matplotlib.text.Text">text properties</a> for the labels — so that would explain the <code>**kwargs</code> element there. If nothing is passed in for <code>rotation</code> then it’s set to a default defined in their text properties documentation.</p>
 
 <p>Next, we just add a little bit of spacing to the bottom of the graph so the labels (since some of them are long, like <code>Forgery/Counterfeiting</code>). We use the <code>.subplots_adjust()</code> function. In matplotlib, you have the ability to render multiple graphs on one window/function, called subplots. With one graph, subplots can be used to adjust the spacing around the graph itself.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -472,7 +502,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </td></tr></table></div></div>
 <p>I’ll be honest, <code>0.4</code> was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.</p>
 
-<p>Nearly there — before we render the graph, the actual size of the window can be played with too. The <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: height + width:</p>
+<p>Nearly there — before we render the graph, the actual size of the window can be played with too. The <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: <code>height + width</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Make the overall graph/figure larger</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span>
@@ -518,9 +548,13 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 27
 28
 29
-30</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by category in a bar graph&quot;&quot;&quot;</span>
+
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+
     <span class="c"># Same as before, this returns a dict where it sums the total</span>
     <span class="c"># incidents per Category.</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&quot;Category&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data_file</span><span class="p">)</span>
