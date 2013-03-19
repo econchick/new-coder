@@ -12,7 +12,7 @@ git is software. You use git to help manage your source code. While you still �
 
 Instead of “Save” and “Save As”, you “commit” your code to your local repository. A repository (a.k.a. repo) can be thought of the main, root directory for a project or a package.
 
-A bit of context, git was initially designed and developed Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – [“git” is British slang for a stupid person](http://en.wikipedia.org/wiki/Git_(software)#History).
+A bit of context, git was initially designed and developed Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – [“git” is British slang for a stupid person][git].
 
 ### Git and GitHub
 **Do not confuse git and GitHub!***  git is software, [GitHub](http://github.com) is a company that offers remote hosting for your git repositories (rather than just having a local copy on your machine). [BitBucket](http://bitbucket.org) is also a company that offers remote hosting for your git repositories (as well as Mercurial repositories). Simply put, they offer a social aspect to coding – allowing you to connect to other developers.
@@ -252,3 +252,5 @@ That’s it! You can find another quick tutorial on squashing git commits [here]
 When you have code up on GitHub and/or BitBucket, not only do they implicitly provide back up to your code in case anything happens to your local machine, but it also is a resume for you as a developer. 
 
 As you work through these tutorials, I encourage you to use GitHub or BitBucket (or any other service that allows you to publicly share repositories) to “push” your code to so others can see your progress. While I suggest you to locally commit often and commit happily, only push code to GitHub/BitBucket when there is a good completion point (e.g. when you've finished a tutorial).
+
+[git]: "http://en.wikipedia.org/wiki/Git_(software)#History"
