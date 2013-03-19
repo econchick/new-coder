@@ -26,7 +26,7 @@ Documentation Build Instructions
 
 Simple install requirements, run the build command within `docs` directory. 
 
-You will need a C compiler: [GCC](http://gcc.gnu.org/) or [clang](http://clang.llvm.org/).  To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
+You will need a C compiler: [GCC](http://gcc.gnu.org/) or [clang](http://clang.llvm.org/).  To test if you have either GCC or clang, type `gcc` or `clang` into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
 
 * Mac: 
 	* You will need [XCode](http://developer.apple.com/xcode). Once you have XCode on your machine, you will need to navigate to **Preferences** –> **Downloads** –> and select **Command Line Tools** to download & install.
