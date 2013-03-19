@@ -81,29 +81,28 @@
 <li>Ubuntu: <code>sudo apt-get install build-essential python-dev</code> – you may need to run <code>sudo apt-get update</code> first.</li>
 </ul></li>
 </ul></li>
+<li><a href="http://www.pip-installer.org/en/latest/installing.html#installing-globally">pip</a></li>
 <li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
 
 <ul>
 <li>Mac: <code>$ sudo easy_install virtualenv</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenv</code></li>
+<li>Ubuntu: <code>$ sudo apt-get install virtualenv</code></li>
 <li>Fedora: <code>$ sudo yum install python-virtualenv</code></li>
 <li>Windows: <a href="http://pypi.python.org/pypi/virtualenv">Download manually</a></li>
 </ul></li>
-<li><a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> You can either download it directly, or:
-
+<li><a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> via (for Windows, skip to the next step):</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenvwrapper
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
+<span class="nv">$ </span>mkdir -p <span class="nv">$WORKON_HOME</span>
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div>
 <ul>
-<li>Mac: <code>$ sudo easy_install virtualenvwrapper</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenvwrapper</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenvwrapper</code></li>
-<li>For Mac, Ubuntu, and Fedora:
-
-<ul>
-<li><code>$ export WORKON_HOME=~/Envs</code></li>
-<li><code>$ mkdir -p $WORKON_HOME</code></li>
-<li><code>$ source /usr/local/bin/virtualenvwrapper.sh</code></li>
-</ul></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenvwrapper">Download manually</a> and follow install instructions</li>
-</ul></li>
+<li>However, <strong>Windows</strong> is a bit different: <a href="http://pypi.python.org/pypi/virtualenvwrapper">Download virtualenvwrapper manually</a> and follow install instructions, you will need the <a href="http://technet.microsoft.com/en-us/library/bb978526.aspx">Powershell</a>.</li>
 </ul>
 <h3>Setup</h3>
 <p>Within your terminal</p>

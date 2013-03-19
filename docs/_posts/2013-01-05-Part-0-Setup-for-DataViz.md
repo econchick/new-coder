@@ -15,20 +15,21 @@ Initial setup for our Data Visualization Tutorial.
 			* You will need [XCode](http://developer.apple.com/xcode). Once you have XCode on your machine, you will need to navigate to **Preferences** –> **Downloads** –> and select **Command Line Tools** to download & install.
 		* Fedora: `sudo yum install gcc python-devel`
 		* Ubuntu: `sudo apt-get install build-essential python-dev` – you may need to run `sudo apt-get update` first.
+* [pip](http://www.pip-installer.org/en/latest/installing.html#installing-globally)
 * [virtualenv](http://pypi.python.org/pypi/virtualenv) You can either download directly, or:
 	* Mac: `$ sudo easy_install virtualenv`
-	* Ubuntu: `$ sudo apt-get virtualenv`
+	* Ubuntu: `$ sudo apt-get install virtualenv`
 	* Fedora: `$ sudo yum install python-virtualenv`
 	* Windows: [Download manually](http://pypi.python.org/pypi/virtualenv)
-* [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) You can either download it directly, or:
-	* Mac: `$ sudo easy_install virtualenvwrapper`
-	* Ubuntu: `$ sudo apt-get virtualenvwrapper`
-	* Fedora: `$ sudo yum install python-virtualenvwrapper`
-	* For Mac, Ubuntu, and Fedora:
-		* `$ export WORKON_HOME=~/Envs`
-		* `$ mkdir -p $WORKON_HOME`
-		* `$ source /usr/local/bin/virtualenvwrapper.sh`
-	* Windows: [Download manually](http://pypi.python.org/pypi/virtualenvwrapper) and follow install instructions
+* [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) via (for Windows, skip to the next step):
+
+```bash		
+$ pip install virtualenvwrapper
+$ export WORKON_HOME=~/Envs
+$ mkdir -p $WORKON_HOME
+$ source /usr/local/bin/virtualenvwrapper.sh
+```
+* However, **Windows** is a bit different: [Download virtualenvwrapper manually](http://pypi.python.org/pypi/virtualenvwrapper) and follow install instructions, you will need the [Powershell](http://technet.microsoft.com/en-us/library/bb978526.aspx).
 
 ### Setup
 Within your terminal
