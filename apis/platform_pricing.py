@@ -103,8 +103,8 @@ class CPIData(object):
             # The actual content of the file starts with a header line
             # starting with the string "DATE ". Until we reach this line
             # we can skip ahead.
-            while not line.startswith("DATE "):
-                pass
+            if not line[0].isdigit():
+                continue
             # Each line ends with a new-line character which we strip here
             # to make the data easier usable.
             data = line.rstrip().split()
