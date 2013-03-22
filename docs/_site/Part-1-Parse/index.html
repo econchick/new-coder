@@ -167,16 +167,20 @@
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-line object&quot;&quot;&quot;</span>
 
-    <span class="c"># Open CSV file, and safely close it when we&#39;re done</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
+    <span class="c"># Open CSV file</span>
+    <span class="n">open_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
 
-        <span class="c"># Read CSV file</span>
-        <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+    <span class="c"># Read the CSV data</span>
+    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
 
     <span class="c"># Build a data structure to return parsed_data</span>
+
+    <span class="c"># Close the CSV file</span>
 
     <span class="k">return</span> <span class="n">parsed_data</span>
 </pre></div>
@@ -221,14 +225,17 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parses a raw CSV file to a JSON-like object&quot;&quot;&quot;</span>
 
-    <span class="c"># Open CSV file, and safely close it when we&#39;re done</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
+    <span class="c"># Open CSV file</span>
+    <span class="n">opened_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_file</span><span class="p">)</span>
 
-        <span class="c"># Read CSV file</span>
-        <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+    <span class="c"># Read the CSV data</span>
+    <span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">opened_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
 
     <span class="c"># Setup an empty list</span>
     <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -239,6 +246,9 @@
     <span class="c"># Iterate over each row of the csv file, zip together field -&gt; value</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_data</span><span class="p">:</span>
         <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
+
+     <span class="c"># Close the CSV file</span>
+     <span class="n">opened_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
 
     <span class="k">return</span> <span class="n">parsed_data</span>
 </pre></div>
