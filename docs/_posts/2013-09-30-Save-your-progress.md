@@ -32,7 +32,7 @@ Resources for using git:
 
 With git, users can do what’s called branching and merging. With a repo, you have a main, original branch called master. Off of master, you can make branches. Consider this to give you the ability to play around with code, break things, etc, while keeping the original/master safe. If you’re happy with what has been completed within a branch, you merge the branch into the master branch, and it becomes your new original.
 
-It’s good to start off using git with good habits. Whenever you start something new, like as soon as you clone a repository, one good habit is to maked a branch to merge in later when you’re satisfied with your progress.  
+It’s good to start off using git with good habits. Whenever you start something new, like as soon as you clone a repository, one good habit is to make a branch to merge in later when you’re satisfied with your progress.  
 
 When you are intermittingly saving your progress on a branch, make a commit to your branch.  Commit your code regularly, whether when you’re done for the day, when you‘ve finished coding out one of the parts of the tutorial, before you answer the phone when someone calls you, etc. Rather than making one big “atomic” commit at big milestones (e.g. after the completion of one tutorial, an implementation of a feature), doing this makes it very easy to undo changes that you’ve made without losing big progress. 
 
