@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Setting up your computer for these tutorials"
-tags: [setup, begin]
+tags: [setup]
 ---
 
 Let’s setup your machine for these tutorials. The goal is to go through some pain **now** so you have a decent development environment later on, i.e. no short cuts. This does not go into **why** we need these tools, [not yet at least][8].
