@@ -1,10 +1,10 @@
 base_url: /
 domain:
 title: New Coder
-subtitle: five life jackets to throw at the new coder
+subtitle: five life jackets to throw to the new coder
 posts_url: /<title>/
 author: Lynn Root
-description: Five Life Jackets to Throw at the New Coder - Python tutorials
+description: Five Life Jackets to Throw to the New Coder - Python tutorials
 
 analytics:
 feed: false
