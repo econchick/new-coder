@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw at the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+    <title>Setting up your computer for these tutorials &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw at the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Setting up your computer for these tutorials</h2>
+        </div>
+        
+        <div class="body">
+            <p>Let’s setup your machine for these tutorials. The goal is to go through some pain <strong>now</strong> so you have a decent development environment later on, i.e. no short cuts. This does not go into <strong>why</strong> we need these tools, <a href="https://github.com/econchick/new-coder/issues/29">not yet at least</a>.</p>
+<h3>Overview of requirements</h3>
+<p>The installation will depend on your operating system, but overall, you will need:</p>
+
+<ul>
+<li>Python 2.x – there are <a href="https://github.com/econchick/new-coder/issues/28">plans</a> to update/include Python 3.x</li>
+<li>git – an intro given <a href="%22/Save-your-progress%22">here</a></li>
+<li>A C compiler</li>
+<li>pip</li>
+<li>virtualenv</li>
+<li>virtualenvwrapper (<strong>optional</strong> but a very handy tool for managing virtualenvs)</li>
+</ul>
+<h3>Mac OS X</h3><h5>Python</h5>
+<p>Macs come with Python pre-installed.  To check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like <a href="http://www.python.org/images/terminal-in-finder.png">so</a>), then type <code>python</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="http://www.python.org">Python.org</a> has a good <a href="http://www.python.org/getit/mac/">Python on the Mac</a> page if the above does not work for you.</p>
+<h5>git</h5>
+<p>You will need to install <a href="http://git-scm.com">git</a> on your machine through their <a href="http://git-scm.com/downloads">download page</a>. You can then follow the <a href="%22/Save-your-progress%22">Save your Progress</a> page to set it up.</p>
+<h5>C compiler</h5>
+<p>You will need the <a href="http://developer.apple.com/xcode">XCode</a> application. Once you have XCode on your machine, you will need to navigate to Preferences &rarr; Downloads, then select <strong>Command Line Tools</strong> to download &amp; install (this may take a while, get some coffee, go take a shower). </p>
+
+<p>This gives you the <a href="http://gcc.gnu.org/">GCC</a> or the GNU Compiler Collection. To test installation, within the Terminal application, type <code>gcc</code> and you should get the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>gcc
+i686-apple-darwin11-llvm-gcc-4.2: no input files
+</pre></div>
+</td></tr></table></div></div><h5>pip</h5>
+<p><a href="http://www.pip-installer.org/en/latest/">pip</a>, stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading <code>$</code> as that is your terminal prompt) for downloading &amp; installing. It may prompt you for your computer login password.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo curl -O http://python-distribute.org/distribute_setup.py | python 
+<span class="nv">$ </span>sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+<span class="nv">$ </span>pip
+Usage: pip COMMAND <span class="o">[</span>OPTIONS<span class="o">]</span>
+You must give a <span class="nb">command</span> <span class="o">(</span>use <span class="s2">&quot;pip help&quot;</span> to see a list of commands<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div><h5>virtualenv &amp; virtualenvwrapper</h5>
+<p><a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> creates isolated environments for each of your Python projects. It helps to solve version &amp; dependency problems with multple Python installations and/or multiple versions of different Python packages.  We’ll use <code>pip</code> to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use <code>pip</code> again to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenvwrapper
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
+<span class="nv">$ </span>mkdir -p <span class="nv">$WORKON_HOME</span>
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div>
+<p>Now let’s test our installation and get familiar with creating &amp; using virtual environments:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv TestEnv
+Installing
+distribute..........................................
+....................................................
+....................................................
+...............................done.
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
+</pre></div>
+</td></tr></table></div></div>
+<p>Now that you made a virtual environment called <code>TestEnv</code>, you should see <code>(TestEnv)</code> before your prompt:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Let’s play around with commands for virtualenvwrapper:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># deactivate the TestEnv</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
+<span class="nv">$ </span>
+
+<span class="c"># reactivate the TestEnv</span>
+<span class="nv">$ </span>workon TestEnv
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+
+<span class="c"># install the Django package in your TestEnv environment</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>pip install django
+Downloading/unpacking django
+  Downloading Django-1.1.1.tar.gz <span class="o">(</span>5.6Mb<span class="o">)</span>: 5.6Mb downloaded
+  Running setup.py egg_info <span class="k">for </span>package django
+Installing collected packages: django
+  Running setup.py install <span class="k">for </span>django
+    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
+    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
+Successfully installed django
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+
+<span class="c"># test the installation of Django</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+
+<span class="c"># deactivate the TestEnv virtual environment</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
+<span class="nv">$ </span>
+
+<span class="c"># try to import Django again</span>
+<span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&quot;&lt;stdin&gt;&quot;</span>, line 1, in &lt;module&gt;
+ImportError: No module named django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="nv">$ </span>
+
+<span class="c"># reactivate the TestEnv virtual environment</span>
+<span class="nv">$ </span>workon TestEnv
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+
+<span class="c"># try again to import Django</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+
+<span class="c"># see what libraries are installed in the TestEnv virtual environment:</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>pip freeze
+<span class="nv">django</span><span class="o">==</span>1.5
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>
+</pre></div>
+</td></tr></table></div></div>
+<p>As you can see, you’ll need to activate a virtual environment in order to access the libraries that you installed.  Here’s a run-down of useful commands for pip, virtualenv &amp; virtualenvwrapper:</p>
+
+<ul>
+<li><code>mkvirtualenv [ENV_NAME]</code> – creates and activates a fresh virtual environment</li>
+<li><code>workon [ENV_NAME]</code> – activates an already-created virtual environment</li>
+<li><code>deactivate</code> – deactivates the virtual environment that is currently active</li>
+<li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
+<li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
+</ul>
+
+<p>You’re good to go with your setup! Go start on <a href="%22/dataviz%22">dataviz</a>!</p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>Copyright &copy; 2013 Lynn Root &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>
