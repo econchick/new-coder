@@ -72,6 +72,50 @@ $ mkvirtualenv DataVizProj
 (DataVizProj)$ pip install numpy
 (DataVizProj)$ pip install matplotlib
 ```
+
+* **NOTE** Sometimes, matplotlib is finicky as well. If you are on a Mac and "pip install matplotlib" did not work, you are probably missing the supporting packages freetype2 and libpng. Windows users do not need to worry about his as these packages are already included in the standard matplotlib Windows installers. For Mac users, below are detailed instructions on how to install them. 
+Note that libpng has a dependency on zlib library, so we have to install that first. So in total we install 3 supporting packages: 
+
+   **1. ZLIB**
+   Go to http://www.zlib.net/ and download the latest source code archive.
+   Scroll down to zlib source code, and download version 1.2.7, tar.gz format
+   Unpack the zip file
+   Open a Terminal window, cd to the zlib source folder, and configure, make, and install the library as follows:
+   
+```bash
+user:~/Downloads$ cd zlib-1.2.7
+user:~/Downloads/zlib-1.2.7$ ./configure
+user:~/Downloads/zlib-1.2.7$ make
+user:~/Downloads/zlib-1.2.7$ sudo make install
+```
+
+   **2. LIBPNG**
+   Go to http://www.libpng.org/pub/png/libpng.html and download the latest source code archive
+   Scroll down and download by clicking the "tar.gz" link on the download.sourceforge.net row
+   Unpack the zip file
+   Open a Terminal window and type:
+```bash
+user:~/Downloads$ cd libpng-1.5.14
+user:~/Downloads/libpng-1.5.14$ ./configure
+user:~/Downloads/libpng-1.5.14$ make
+user:~/Downloads/libpng-1.5.14$ make check
+user:~/Downloads/libpng-1.5.14$ sudo make install
+```
+
+   **3. FREETYPE**
+   Go to http://sourceforge.net/projects/freetype/files/latest/download?source=files and the download of the source file should shart automatically
+   Unpack the zip file
+   Open a Terminal window and type:
+
+```bash
+user:~/Downloads$ cd freetype-2.4.11
+user:~/Downloads/freetype-2.4.11$ ./configure
+user:~/Downloads/freetype-2.4.11$ make
+user:~/Downloads/freetype-2.4.11$ sudo make install
+```
+
+After installing these three packages, type "pip install matplotlib" again and it should work. 
+
 * Test the installation real quick by starting up the Python interpreter:
 
 ```bash
