@@ -386,14 +386,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># When iterating over the data file we will need a handful of temporary</span>
     <span class="c"># variables:</span>
+    <span class="n">reached_dataset</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="n">current_year</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="n">year_cpi</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
         <span class="c"># The actual content of the file starts with a header line</span>
         <span class="c"># starting with the string &quot;DATE &quot;. Until we reach this line</span>
         <span class="c"># we can skip ahead.</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;DATE &quot;</span><span class="p">):</span> 
-            <span class="k">pass</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">reached_dataset:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;DATE &quot;</span><span class="p">):</span> 
+                <span class="n">reach_data</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">continue</span>    
 
         <span class="c"># Each line ends with a new-line character which we strip here</span>
         <span class="c"># to make the data easier usable.</span>
