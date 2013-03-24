@@ -27,10 +27,11 @@ Certainly, we’d need to put some logic into our script in order to be able to 
 
 Python’s standard library has a great module, `argparse` that we’ll use.  We’ll create separate parsing function as a helper to our main function that we’ll write out after this.
 
-First, import argparse,
+First, import argparse and os,
 
 ```python
 import argparse
+import os
 ```
 
 then let’s define our parsing function, and use `argparse`’s `ArgumentParser` to initialize a `parser` class:
