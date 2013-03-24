@@ -48,7 +48,7 @@ def generate_plot(platforms, output_file):
         if len(name) > 15:
             name = platform['abbreviation']
         labels.insert(0, u"{0}\n$ {1}\n$ {2}".format(name, price,
-                                                     round(adjusted_price, 2)))
+                                                     round(adapted_price, 2)))
         values.insert(0, adapted_price)
 
     # Let's define the width of each bar and the size of the resulting graph.
@@ -72,7 +72,7 @@ def generate_plot(platforms, output_file):
     plt.savefig(output_file, dpi=72)
 ```
 
-You can elect to have `plt.show(dpi=72)` instead of `plt.savefig(output_file, dpi=72)` if you do not want to save the file, and have the graph just pop up when running the script (or both!).
+You can elect to have `plt.show()` instead of `plt.savefig(output_file, dpi=72)` if you do not want to save the file, and have the graph just pop up when running the script (or both!).
 
 ### Generate CSV function
 
