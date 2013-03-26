@@ -18,3 +18,4 @@ Build a Sudoku game for the desktop!
 * http://stackoverflow.com/questions/201461/shortest-sudoku-solver-in-python-how-does-it-work
 * http://kjell.haxx.se/sudoku/
 * http://www.opensky.ca/~jdhildeb/software/sudokugen/
+* http://norvig.com/sudoku.html
