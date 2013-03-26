@@ -14,7 +14,7 @@ If at any time you have issues installing anything, don't hesitate to [contact m
 	* Mac OS X and Linux often ship with Python installed. To check, open up a terminal, type `python --version`, and if you get an error message, or if your version is older than 2.7, go ahead and [install or update](http://www.python.org/download/releases/2.7.3/).
 	* Windows does not automatically come with Python installed, and must be downloaded from the [website](http://www.python.org/download/releases/2.7.3/).
 * A text editor.  Some options include:
-	* [Sublime Text 2](www.sublimetext.com/2) for Mac, Linux, or Windows
+	* [Sublime Text 2](http://www.sublimetext.com/2) for Mac, Linux, or Windows
 	* [gEdit](http://projects.gnome.org/gedit/) for Linux
 	* [NotePad++](http://notepad-plus-plus.org/) for Windows
 	* [TextMate](http://macromates.com/) for Mac
