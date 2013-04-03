@@ -65,9 +65,9 @@
 <h3>What is git?</h3>
 <p>git is software. You use git to help manage your source code. While you still “Save” your code files the traditional way through your text editor, it is good practice (and used by professional engineers and hobbyists alike) to “save” your code with a source code management tool.</p>
 
-<p>Instead of “Save” and “Save As”, you “commit” your code to your local repository. A repository (a.k.a. repo) can be thought of the main, root directory for a project or a package.</p>
+<p>Instead of “Save” and “Save As”, you “commit” your code to your local repository. A repository (a.k.a. repo) can be thought of as the main, root directory for a project or a package.</p>
 
-<p>A bit of context, git was initially designed and developed Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – <a href="%22http://en.wikipedia.org/wiki/Git_(software)#History%22">“git” is British slang for a stupid person</a>.</p>
+<p>A bit of context, git was initially designed and developed by Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – <a href="%22http://en.wikipedia.org/wiki/Git_(software)#History%22">“git” is British slang for a stupid person</a>.</p>
 <h3>Git and GitHub</h3>
 <p><strong>Do not confuse git and GitHub!</strong>*  git is software, <a href="http://github.com">GitHub</a> is a company that offers remote hosting for your git repositories (rather than just having a local copy on your machine). <a href="http://bitbucket.org">BitBucket</a> is also a company that offers remote hosting for your git repositories (as well as Mercurial repositories). Simply put, they offer a social aspect to coding – allowing you to connect to other developers.</p>
 
@@ -90,7 +90,7 @@
 
 <p>It’s good to start off using git with good habits. Whenever you start something new, like as soon as you clone a repository, one good habit is to make a branch to merge in later when you’re satisfied with your progress.  </p>
 
-<p>When you are intermittingly saving your progress on a branch, make a commit to your branch.  Commit your code regularly, whether when you’re done for the day, when you‘ve finished coding out one of the parts of the tutorial, before you answer the phone when someone calls you, etc. Rather than making one big “atomic” commit at big milestones (e.g. after the completion of one tutorial, an implementation of a feature), doing this makes it very easy to undo changes that you’ve made without losing big progress. </p>
+<p>When you are intermittently saving your progress on a branch, make a commit to your branch.  Commit your code regularly, whether when you’re done for the day, when you‘ve finished coding out one of the parts of the tutorial, before you answer the phone when someone calls you, etc. Rather than making one big “atomic” commit at big milestones (e.g. after the completion of one tutorial, an implementation of a feature), doing this makes it very easy to undo changes that you’ve made without losing big progress. </p>
 
 <p>One awesome feature about git is that once you are ready to merge the branch into master, you can do what’s called squashing your commits into one big one. So, sure, you’ve made many commits - perhaps they’re many commits with one line of code or typos. This is a great way to group like commits together, hide embarrassing commits (maybe you were frustrated and your commit message contains a few swear words), or clean up the commit history. Squashing your commit history does not completely erase your commit history, but it gives you a cleaner log trail of your actions. </p>
 
@@ -105,7 +105,8 @@ $ mkdir Projects && cd Projects
 $ git init
 ## add a reference (a link) to my repository, naming it "upstream"
 $ git remote add upstream https://github.com/econchick/new-coder.git
-## pull in my repo (the master branch) from the above GitHub link into your repository
+## pull in my repo (the master branch) from the above GitHub link into your 
+## repository
 $ git pull upstream master 
 ## check the status of your repository
 $ git status
@@ -195,7 +196,7 @@ pick aa2a2e3 part 1 of dataviz tutorial
 # However, if you remove everything, the rebase will be aborted.
 </pre>
 
-<p>This is a <a href="http://en.wikipedia.org/wiki/Vi">vi</a> screen (a text editory within the terminal). To use vi, there are <a href="http://www.howtogeek.com/115051/become-a-vi-master-by-learning-these-30-key-bindings/">special keys</a> to edit and move around. Press <code>i</code> to start editing, and move up and down with your keyboard’s arrow keys. </p>
+<p>This is a <a href="http://en.wikipedia.org/wiki/Vi">vi</a> screen (a text editor within the terminal). To use vi, there are <a href="http://www.howtogeek.com/115051/become-a-vi-master-by-learning-these-30-key-bindings/">special keys</a> to edit and move around. Press <code>i</code> to start editing, and move up and down with your keyboard’s arrow keys. </p>
 
 <p>Notice the <code>pick</code> by each of the three commits that you’ve recently done. We will edit the latest two commits to say <code>squash</code>.  When done, press the following keys to save: <code>ESC</code> + <code>:</code> + <code>w</code> + <code>q</code>+ <code>Enter</code>:</p>
 
@@ -301,9 +302,9 @@ f7629fe HEAD@{3}: commit: figured out the graph functions
 
 <p>That’s it! You can find another quick tutorial on squashing git commits <a href="http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html">here</a>.</p>
 <h3>Benefit to using GitHub or BitBucket</h3>
-<p>When you have code up on GitHub and/or BitBucket, not only do they implicitly provide back up to your code in case anything happens to your local machine, but it also is a resume for you as a developer. </p>
+<p>When you have code up on GitHub and/or BitBucket, not only do they implicitly provide backup to your code in case anything happens to your local machine, but it also is a resume for you as a developer. </p>
 
-<p>As you work through these tutorials, I encourage you to use GitHub or BitBucket (or any other service that allows you to publicly share repositories) to “push” your code to so others can see your progress. While I suggest you to locally commit often and commit happily, only push code to GitHub/BitBucket when there is a good completion point (e.g. when you&#39;ve finished a tutorial).</p>
+<p>As you work through these tutorials, I encourage you to use GitHub or BitBucket (or any other service that allows you to publicly share repositories) to “push” your code so others can see your progress. While I suggest you locally commit often and commit happily, only push code to GitHub/BitBucket when there is a good completion point (e.g. when you&#39;ve finished a tutorial).</p>
 
         </div>
     </div>
