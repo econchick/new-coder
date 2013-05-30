@@ -311,7 +311,7 @@ Play around with parse.py within your Python interpreter itself:
 - We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
 
 #### Visualize Functions
-Let's first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we're working with:
+Let's first take a look at a chunk of data that we just parsed to get a better idea of what sort of data we're working with:
 
 ```bash
 	{
