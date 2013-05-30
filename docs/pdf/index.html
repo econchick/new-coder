@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<dl class="archives">
+    <h2><a href="{{ get_url("/begin") }}">How to Begin</a></h2>
+    {% for post in posts %}
+        {% if 'pdf' in post.tags %}
+            <dd>
+                <dl>
+                    <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a> – {{ post.excerpt }}</dd>
+                </dl>
+            </dd>
+        {% endif %}
+    {% endfor %}
+</dl>
+{% endblock %}
