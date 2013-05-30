@@ -106,7 +106,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>You might be curious as to why we’re importing a <code>print_function</code>, and why it’s from <code>__future__</code>.  This is a gentle introduction to the differences between Python 2.x and Python 3.x.  In Python 3, <code>print()</code> is a function, while in Python 2, <code>print</code> is a keyword. For now, the difference is just that using <code>print</code> now requires paretheses around what you are printing.</p>
-<h3>CPI data</h3>
+<h3 id="cpi-data">CPI data</h3>
 <p>First, we’ll grab the CPI data from the FRED.  This is where we’ll use the <code>requests</code> library:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
 </pre></div>
@@ -116,7 +116,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>Next, we should create a CPI class to initialize the CPI data, load data from the URL, load data from a file, and get the adapted price.</p>
-<h4>For the curious</h4>
+<h4 id="for-the-curious">For the curious</h4>
 <p>In Python, a class is just another object. It allows us to create a blueprint to create another object: instances. It also allows us to group like-things together. For example</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -174,7 +174,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>We explore inheritance a bit more in our next tutorial, <a href="/scrape">Web Scraping</a>.</p>
-<h4>Back to the tutorial</h4>
+<h4 id="back-to-the-tutorial">Back to the tutorial</h4>
 <p>The scaffolding for our <code>class CPIData</code> will include a constructor method, the <code>__init__</code> method, as well as methods to load data from a URL, load data from a file, and return adjusted prices for when we want to compare platform prices between different years:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -262,7 +262,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">first_year</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
-</td></tr></table></div></div><h4>For the curious</h4>
+</td></tr></table></div></div><h4 id="for-the-curious-2">For the curious</h4>
 <p>You might be wondering what methods that are surrounded with double underscores are in Python, specifically methods like <code>__init__()</code>. These are called <strong>magic methods</strong> or <strong>dunders</strong>, but there is nothing magical about them. </p>
 
 <p>When we write a class, <code>MyClass</code>, and later instantiate that class with <code>x = MyClass()</code>, what Python is doing under the hood is calling <code>x.__init__()</code> to initialize that class. If you want the informal representation of a string, you would call <code>str(x)</code> and Python does <code>x.__str__()</code>.</p>
@@ -270,7 +270,7 @@
 <p>There are many magic methods that are just given to a class: <code>__init__</code>, <code>__str__</code>, <code>__repr__</code>, <code>__dir__</code>, etc, and you can <strong>overwrite</strong> them, which is what we did above with our <code>def __init__(self)</code> method. We want to give additional initialized parameters for every time we instantiate a new <code>CPIData</code> class.</p>
 
 <p><a href="http://getpython3.com/diveintopython3/special-method-names.html">Dive into Python</a> has a handy little tool to learn more about these methods; <a href="http://www.rafekettler.com/magicmethods.html">Rafe Kettler</a> wrote up a nice series of blogs about what each one does.</p>
-<h4>Back to the tutorial</h4>
+<h4 id="back-to-the-tutorial-2">Back to the tutorial</h4>
 <p>Next, we define a function that will take in a url, and where/what to save our output file as.  Comments are inline to help you walk through:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

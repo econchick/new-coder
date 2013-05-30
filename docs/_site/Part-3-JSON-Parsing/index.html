@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Parse the response from the API call into something meaningful.</p>
-<h3>Generate Plot function</h3>
+<h3 id="generate-plot-function">Generate Plot function</h3>
 <p>Because we <em>love</em> data visualization, and couldn’t get enough of matplotlib, let’s see what we can produce with the combination of CPI data and platform prices from Giantbomb!</p>
 
 <p>We’ll need to add import statements for both matplotlib and numpy like in our previous tutorial:</p>
@@ -172,7 +172,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>You can elect to have <code>plt.show(dpi=72)</code> instead of <code>plt.savefig(output_file, dpi=72)</code> if you do not want to save the file, and have the graph just pop up when running the script (or both!).</p>
-<h3>Generate CSV function</h3>
+<h3 id="generate-csv-function">Generate CSV function</h3>
 <p>We can also make a function that takes the yielded data and produces a CSV file for us.</p>
 
 <p>Let’s use a new library, <code>tablib</code> to help handle the CSV production.  <a href="http://docs.python-tablib.org/en/latest/">tablib</a>, written in Python by the same author of <a href="http://twitter.com/kennethreitz">requests</a> that allows you to format the output of data into a tabular dataset (among other things).</p>

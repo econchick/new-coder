@@ -6,12 +6,12 @@ tags: [gui]
 
 Initial setup for our GUI Sudoku Tutorial.
 
-### Initial Requirements:
-* [Python 2.x](http://www.python.org/download/releases/2.7.3/)
-* We're using modules from Python's standard library, so no additional packages are needed.
 
 ### Setup
-Within your terminal
+
+**IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("/setup-your-machine")}}) before proceeding.
+
+Within your terminal:
 
 * `$ cd` to get to your 'Home' directory
 * `$ cd new-coder/gui` Change into the GUI project.

@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Graph our sample data with matplotlib.</p>
-<h3>Module Setup</h3>
+<h3 id="module-setup">Module Setup</h3>
 <ul>
 <li>Simililar as before, when you open up <code>graph.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/graph.py">new-coder/dataviz/tutorial_source/graph.py</a>, you’ll see the language environment setup, as well as an introduction to the module itself. </li>
 <li>The next few lines are the libraries we import. Notice how the import statements are in alphabetical order. The general rule of ordering imports, in alphabetical order:
@@ -74,7 +74,7 @@
 </ol></li>
 <li>When importing, we can also give the object we’re importing whatever name we want because we’re lazy programmers. When we <code>import matplotlib.pyplot as plt</code> we’re essentially renaming the <code>pyplot</code> object (which FYI is <code>&lt;type: &#39;module&#39;&gt;</code>) of <code>matplotlib</code> as <code>plt</code>. You don’t have to name it plt, but it’s a handy trick when you want to access different objects that the <code>pyplot</code> module has, as you’ll see later.</li>
 </ul>
-<h3>Review of Parse Function</h3>
+<h3 id="review-of-parse-function">Review of Parse Function</h3>
 <ul>
 <li>Once again, you see the <code>MY_FILE</code> as a global variable that points to the sample data file that’s included in the repository. </li>
 <li>In a quick review of <a href="/Part-1-Parse">Part I: Parse</a> - tutorial comments removed - we see that the <code>parse()</code> function still takes in two parameters: <code>raw_file</code> and <code>delimiter</code>. The process of the <code>parse()</code> function is as follows:
@@ -89,7 +89,7 @@
 </ol></li>
 <li>We include the parse function here so we build on the process of parse &rarr; plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from <code>parse.py</code>. As a <strong>challenge</strong> to you, try editing away the parse function in <code>graph.py</code> and import it from your <code>parse.py</code>.</li>
 </ul>
-<h3>Visualize Functions</h3>
+<h3 id="visualize-functions">Visualize Functions</h3>
 <p>Let’s first take a look at a chuck of data that we just parsed to get a better idea of what sort of data we’re working with:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -121,7 +121,7 @@
 <p>By looking at a snippet of data, we can understand how we can play/visualize it.  The kind of data we are working with is where one entry equals an incident that the San Francisco Police recorded. The following two functions are just two ways of playing with the data, but note that these functions are specific to <em>our</em> data.</p>
 
 <p><strong>Disclaimer:</strong> As with understanding statistics, correlation does <em>not</em> mean causation.  This is a small sample size, not current, and it’s from the point of view of officers reporting incidents. Take everything with a grain of salt!</p>
-<h4>Visualize Days Function</h4>
+<h4 id="visualize-days-function">Visualize Days Function</h4>
 <p>As we read from the docstring, this will give us a visualization of data by the day of the week.  For instance, are SF policy officers more likely to file incidents on Monday versus a Tuesday? Or, tongue-in-cheek, should you stay in your house Friday night versus Sunday morning?</p>
 
 <p>You’ll also notice that the <code>def visualize_days()</code> function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: <code>def visualize_days(parsed_data)</code>.</p>
@@ -397,7 +397,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </pre></div>
 </td></tr></table></div></div>
 <p>Remember that <code>CTRL+D</code> exits out of the Python shell and brings you back to where you were in the terminal. </p>
-<h4>Visualize Type Function</h4>
+<h4 id="visualize-type-function">Visualize Type Function</h4>
 <p>The next function that we will walk through, <code>visualize_type()</code>, is constructed very similarly, but takes advantage of how you can manipulate the size and image of the graph. I will not rehash familiar/repetitive lines of code since a lot is similar to <code>visualize_days()</code>.</p>
 
 <p>Starting with our comment outline and function scaffolding:</p>

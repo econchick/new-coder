@@ -62,51 +62,9 @@
         
         <div class="body">
             <p>Walkthrough of scraping a webpage and saving it to a database.</p>
-<h3>Initial Requirements:</h3>
-<ul>
-<li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
-<li>A C compiler: <a href="http://gcc.gnu.org/">GCC</a> or <a href="http://clang.llvm.org/">clang</a> – the Scrapy library has some C extensions, which will need to be compiled.
+<h3 id="setup">Setup</h3>
+<p><strong>IMPORTANT</strong>: Please be sure to work through the <a href="/setup-your-machine">machine setup</a> before proceeding.</p>
 
-<ul>
-<li>Mac: 
-
-<ul>
-<li>You will need <a href="http://developer.apple.com/xcode">XCode</a>. Once you have XCode on your machine, you will need to navigate to <strong>Preferences</strong> –&gt; <strong>Downloads</strong> –&gt; and select <strong>Command Line Tools</strong> to download &amp; install.</li>
-<li>You may need to install libxml2 and libxslt (but most-likely is already nstalled). You can install the libraries from macports: <code>sudo port install libxml2 libxslt</code></li>
-</ul></li>
-<li>Fedora: <code>sudo yum install gcc python-devel libxml libxslt libxml-devel libxslt-devel openssl openssl-devel</code></li>
-<li>Ubuntu: <code>sudo apt-get install build-essential python-dev libxml2-dev libxslt-dev</code> – you may need to run <code>sudo apt-get update</code> first.</li>
-</ul></li>
-<li><a href="http://www.postgresql.org/download/">PostgreSQL</a>
-
-<ul>
-<li>If you have a Mac, I highly suggest installing Postgres through <a href="http://postgresapp.com/">Postgres.app</a> for simple setup.</li>
-</ul></li>
-<li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
-
-<ul>
-<li>Mac: <code>$ sudo easy_install virtualenv</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenv</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenv</code></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenv">Download manually</a></li>
-</ul></li>
-<li><a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> You can either download it directly, or:
-
-<ul>
-<li>Mac: <code>$ sudo easy_install virtualenvwrapper</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenvwrapper</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenvwrapper</code></li>
-<li>For Mac, Ubuntu, and Fedora:
-
-<ul>
-<li><code>$ export WORKON_HOME=~/Envs</code></li>
-<li><code>$ mkdir -p $WORKON_HOME</code></li>
-<li><code>$ source /usr/local/bin/virtualenvwrapper.sh</code></li>
-</ul></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenvwrapper">Download manually</a> and follow install instructions</li>
-</ul></li>
-</ul>
-<h3>Setup</h3>
 <p>Within your terminal:</p>
 
 <ul>

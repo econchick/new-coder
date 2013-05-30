@@ -63,9 +63,9 @@
         <div class="body">
             <p><strong>NOTES</strong><br>
 Better inheritance example </p>
-<h2><a href="http://stackoverflow.com/questions/575217/whats-a-good-example-for-class-inheritance">http://stackoverflow.com/questions/575217/whats-a-good-example-for-class-inheritance</a></h2>
+<h2 id="httpstackoverflow.comquestions575217whats-a-good-example-for-class-inheritance"><a href="http://stackoverflow.com/questions/575217/whats-a-good-example-for-class-inheritance">http://stackoverflow.com/questions/575217/whats-a-good-example-for-class-inheritance</a></h2>
 <p>Building the scraper setup portion of the tutorial.</p>
-<h3>Define our Items</h3>
+<h3 id="define-our-items">Define our Items</h3>
 <p>In our <code>items.py</code> file, scrapy needs us to define containers for the data that we plan to scrape. If you have worked through the Django <a href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/">tutorial</a> at one point, you&#39;ll see that the <code>items.py</code> is similar to <code>models.py</code> in Django.</p>
 
 <p>First, using scrapy’s item module, we import <code>Item</code> and `Field:</p>
@@ -79,13 +79,13 @@ Better inheritance example </p>
 </pre></div>
 </td></tr></table></div></div>
 <p>For our <code>LivingSocialDeal</code> class, we inherit from <code>Item</code> - which basically takes come pre-defined objects that scrapy has already built for us.</p>
-<h4>For the curious</h4>
+<h4 id="for-the-curious">For the curious</h4>
 <p>You can think of class inheritance like the birds and the bees. For instance, we can have a base class, <code>class Human(object)</code>, that will have some human attributes - like a function for running, for bathing, eating, etc.  Then we can inherit from the <code>Human</code> class to make a new class, <code>class Superwoman(Human)</code>. Because we inherit from <code>Human</code>, we can still access the running, eating, bathing functions. But - perhaps Superwoman runs <em>faster</em> than the average human, so we can <em>redefine</em> the running function. This basically rewrites over Human’s running function.</p>
 
 <p>Or maybe we want to add to <code>Human</code>’s <code>eating()</code> method by adding an intact of 1000 more calories (being a Superwoman requires a lot of energy!). We can define an <code>eating()</code> function within our <code>Superwoman</code> class, then call <code>super()</code> on the method,</p>
 
 <p>Perhaps Superwomen should also fly. We can define a separate <code>Flying(object)</code> class. Now, when we define our <code>Superwoman()</code> class, we can inherit <strong>both</strong> from <code>Human</code> and <code>Flying</code> – called multiple inheritance: <code>class Superwoman(Human, Flying)</code>.</p>
-<h4>Back to the tutorial</h4>
+<h4 id="back-to-the-tutorial">Back to the tutorial</h4>
 <p>Let’s add some items that we actually want to collect. We assign them to <code>Field()</code> because that is how we specify metadata to scrapy:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2

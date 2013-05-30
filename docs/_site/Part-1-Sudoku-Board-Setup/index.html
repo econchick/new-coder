@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Walkthrough of setting up our Sudoku Board using Tkinter.</p>
-<h3>Planning out our Sudoku game</h3>
+<h3 id="planning-out-our-sudoku-game">Planning out our Sudoku game</h3>
 <p>When thinking of Sudoku, we know that we must have some logic to automatically check the math of our input numbers to see if every horizontal row and vertical column, as well 3x3 box, contains all digits from 1 through 9. This is the logic of the game.</p>
 
 <p>When running our Sudoku game, we want to take in arguments of the level of came that we want to play (n00b, l33t, or debug), as well as the board number we wish to play (if any).  We will need to have a function that parses these arguments.</p>
@@ -70,7 +70,7 @@
 <p>Of course, we&#39;ll need a visual interface to play the game - a GUI (Graphical User Interface). We&#39;ll need to create a separate class for drawing our Sudoku board, and we will use the Tkinter library.</p>
 
 <p>Last, we&#39;ll write some tests to make sure we&#39;ve covered the initialization of the Sudoku board, the logic of the Sudoku, etc.</p>
-<h3>Defining application specific errors</h3>
+<h3 id="defining-application-specific-errors">Defining application specific errors</h3>
 <p>We define our own Exception because we want to create error handling that&#39;s specific to our Sudoku applcation, rather than file I/O exceptions, or database exceptions, etc. This is all we need to create our own exception:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -84,7 +84,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>In the future, we will use this error class and pass our own error message when we try to catch any errors when creating our Sudoku game.</p>
-<h3>Parsing Command-line Arguments</h3>
+<h3 id="parsing-command-line-arguments">Parsing Command-line Arguments</h3>
 <p>Python&#39;s standard library has an <code>argparse</code> module that will help us capture command-line arguments and assign them to the appropriate variables.</p>
 
 <p>``python<br>
@@ -126,7 +126,7 @@ def check_negative(value):
         raise argparse.ArgumentTypeError(&#34;%s is an invalid positive int value&#34;
                                          % value)
     return ivalue
-</code></pre><h3>User Interface Setup</h3>
+</code></pre><h3 id="user-interface-setup">User Interface Setup</h3>
 <p>Now we&#39;ll actually setup the board that the user will interact with.  Since we are using Tkinter, we&#39;ll need to import some objects to help us draw the board:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">Tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">Canvas</span><span class="p">,</span> <span class="n">Frame</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">BOTH</span><span class="p">,</span> <span class="n">TOP</span><span class="p">,</span> <span class="n">BOTTOM</span>
 </pre></div>

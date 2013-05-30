@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Pipelining our scraped data into our Postgres database.</p>
-<h3>Setup our Pipeline</h3>
+<h3 id="setup-our-pipeline">Setup our Pipeline</h3>
 <p>We&#39;ve setup our spider to crawl and parse the HTML, and we&#39;ve set up our database to take the parse data. Now we have to connect the two together through a pipeline.</p>
 
 <p>In <code>pipelines.py</code>, we will define a session (the actual connecting to the database), as well as the feeding/writing of data to the database.</p>
@@ -146,7 +146,7 @@
 <p>In Python, we do this with a <code>try</code> and <code>except</code> clause. A <code>try</code> and <code>except</code> clause allows us to “catch” any errors if our desired operation fails.</p>
 
 <p>We use the <code>finally</code> keyword to close the session – this basically means that whether or not we were successful in committing data, close the session/connection with the database.</p>
-<h3>Return to settings.py</h3>
+<h3 id="return-to-settings.py">Return to settings.py</h3>
 <p>Nearly there – we need to add a variable to <code>settings.py</code> that tells scrapy where to find our pipeline when processing data.</p>
 
 <p>So within <code>settings.py</code>, add another variable, <code>ITEM_PIPELINES</code>:</p>

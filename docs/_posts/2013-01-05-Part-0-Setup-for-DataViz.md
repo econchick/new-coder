@@ -4,35 +4,14 @@ title: "Part 0: Setup"
 tags: [DataViz]
 ---
 
-Initial setup for our Data Visualization Tutorial.
+Initial setup for our Data Visualization Tutorial.  
 
-### Initial Requirements:
-* [Python 2.x](http://www.python.org/download/releases/2.7.3/)
-* [git](http://git-scm.com/downloads)
-* A C compiler: [GCC](http://gcc.gnu.org/) or [clang](http://clang.llvm.org/) – the numpy library has some C extensions, which will need to be compiled.
-	* To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
-		* Mac: 
-			* You will need [XCode](http://developer.apple.com/xcode). Once you have XCode on your machine, you will need to navigate to **Preferences** –> **Downloads** –> and select **Command Line Tools** to download & install.
-		* Fedora: `sudo yum install gcc python-devel`
-		* Ubuntu: `sudo apt-get install build-essential python-dev` – you may need to run `sudo apt-get update` first.
-* [pip](http://www.pip-installer.org/en/latest/installing.html#installing-globally)
-* [virtualenv](http://pypi.python.org/pypi/virtualenv) You can either download directly, or:
-	* Mac: `$ sudo easy_install virtualenv`
-	* Ubuntu: `$ sudo apt-get install virtualenv`
-	* Fedora: `$ sudo yum install python-virtualenv`
-	* Windows: [Download manually](http://pypi.python.org/pypi/virtualenv)
-* [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) via (for Windows, skip to the next step):
-
-```bash		
-$ pip install virtualenvwrapper
-$ export WORKON_HOME=~/Envs
-$ mkdir -p $WORKON_HOME
-$ source /usr/local/bin/virtualenvwrapper.sh
-```
-* However, **Windows** is a bit different: [Download virtualenvwrapper manually](http://pypi.python.org/pypi/virtualenvwrapper) and follow install instructions, you will need the [Powershell](http://technet.microsoft.com/en-us/library/bb978526.aspx).
 
 ### Setup
-Within your terminal
+
+**IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("/setup-your-machine")}}) before proceeding.
+
+Within your terminal:
 
 * To get to your “Home” directory:
 

@@ -64,9 +64,9 @@
             <hr>
 
 <p><strong>NOTES</strong></p>
-<h2>Note that I&#39;ve made a fix - so may be you should edit smth here. :)</h2>
+<h2 id="note-that-i39ve-made-a-fix---so-may-be-you-should-edit-smth-here.-">Note that I&#39;ve made a fix - so may be you should edit smth here. :)</h2>
 <p>Setting up our data models using SQLAlchemy.</p>
-<h3>Create a Database</h3>
+<h3 id="create-a-database">Create a Database</h3>
 <p>Our initial step needs to create the database that we plan to use to save all of our crawled data.</p>
 
 <p>To do that, we will start a Postgres shell on localhost:</p>
@@ -86,7 +86,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 </pre></div>
 </td></tr></table></div></div>
 <p>Notice I had to include the semicolon there.  This is pretty much all the raw SQL code we&#39;re going to touch. If you are curious, you can learn more on how to interact with PostGres in their <a href="http://www.postgresql.org/docs/9.2/static/index.html">docs</a>.</p>
-<h3>Settings.py</h3>
+<h3 id="settings.py">Settings.py</h3>
 <p>Our <code>settings.py</code> file only has 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).</p>
 
 <p>When walking through the scrapy <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project">tutorial</a> on your own, it creates a <code>settings.py</code> file for you with a few variables that you should define.</p>
@@ -122,7 +122,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 <p>The <code>database</code> is the name of the database we created earlier, <code>newcoder=#  create database scrape;</code>.</p>
 
 <p>We will return to our <code>settings.py</code> file to add a fifth variable, <code>ITEM_PIPELINES</code>, once we setup our pipelines (how we handle the scraped &amp; parsed data – e.g. we save them to the database).</p>
-<h3>Models.py</h3>
+<h3 id="models.py">Models.py</h3>
 <p>We&#39;ll now setup our database models using SQLAlchemy as our ORM.</p>
 
 <p>First, we&#39;ll define a function to actually connect to the database.  For this, we&#39;ll need to import SQLAlchemy as well as our <code>settings.py</code> file:</p>

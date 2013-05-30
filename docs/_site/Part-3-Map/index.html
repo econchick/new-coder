@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Plot our sample data on Google Maps.</p>
-<h3>Module Setup</h3>
+<h3 id="module-setup">Module Setup</h3>
 <p>Looking at <code>map.py</code> from <a href="https://github.com/econchick/new-coder/blob/master/dataviz/tutorial_source/map.py"><code>new-coder/dataviz/tutorial_source/map.py</code></a>, you’ll see in lines after the preamble that we’re importing <code>xml.dom.minidom</code> which is Python’s <a href="http://docs.python.org/2/library/xml.dom.minidom.html">minimal implementation</a> of DOM interface, as well as our own module, <code>parse</code> as <code>p</code>. </p>
 
 <p>Other ways you could have done the import statements:</p>
@@ -86,15 +86,15 @@
 <p>Of course, we&#39;re lazy programmers, so we’re not going to <code>import parse as iLoveParsingSoMuch</code> because each time we want to refer to our <code>parse()</code> function in the <code>parse</code> module, we’d have to type out <code>iLoveParsingSoMuch.parse(iLoveParsingSoMuch.MY_FILE, &quot;,&quot;)</code> — you can probably see why I elected <code>p</code>. </p>
 
 <p>We also don’t import the whole <code>xml</code> library, or <code>xml.dom</code> library for that matter. We want to run lean code, so only import the specific module that you need, or even objects (classes, functions, variables, etc) defined from within that module.</p>
-<h4>For the curious</h4>
+<h4 id="for-the-curious">For the curious</h4>
 <ul>
 <li>A package is a collection of modules (or packages). A module is one python file, so a package is a collection of python files within the same directory.</li>
 <li>A distributed collection of packages is can be referred to as a library.</li>
 <li>Python has a standard library already built-in (built-in meaning that you don’t have to download extra packages, it’s default within the language and just have to import what you need), but that standard library contains many packages and modules. </li>
-<li>Python will follow your import statements like a file structure. For instance, we have <code>new-coder/dataviz/lib/tutorial_source</code> - <code>lib</code> is within <code>dataviz</code>. So within Python&#39;s standard library, <code>minidom</code> is defined within <code>dom</code>, and that within <code>xml</code>. </li>
-<li>A bit of a <strong>warning</strong>: if you try to run <code>map.py</code> outside of <code>new-coder/dataviz/lib/tutorial_source</code> without adjusting the <code>import parse</code>, you may see an <code>ImportError</code>. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python <a href="http://docs.python.org/2/tutorial/modules.html#packages">docs</a>.</li>
+<li>Python will follow your import statements like a file structure. For instance, we have <code>new-coder/dataviz/tutorial_source/</code>. So within Python&#39;s standard library, <code>minidom</code> is defined within <code>dom</code>, and that within <code>xml</code>. </li>
+<li>A bit of a <strong>warning</strong>: if you try to run <code>map.py</code> outside of <code>new-coder/dataviz/tutorial_source</code> without adjusting the <code>import parse</code>, you may see an <code>ImportError</code>. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python <a href="http://docs.python.org/2/tutorial/modules.html#packages">docs</a>.</li>
 </ul>
-<h4>Back to the tutorial!</h4><h3>Helper Functions</h3>
+<h4 id="back-to-the-tutorial">Back to the tutorial!</h4><h3 id="helper-functions">Helper Functions</h3>
 <p>We’ve defined two helper functions for our <code>create_gmap()</code> function: <code>create_document()</code> and <code>create_placemark</code>. I won’t spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don’t want <code>create_gmap()</code> to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debugging.</p>
 
 <p>The <code>create_document(title, description=&#39;&#39;)</code> function essentially will create/initialize a KML document. It first makes an XML document, then defines it as KML, grabs common KML attributes that are defined at <code>www.opengis.net</code> (which catalogs web resources for anyone to refer to).  Lastly, it creates meta data that we want for our map: Title and Description.</p>
@@ -212,7 +212,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>You see that <code>(language)</code> is specified to be a string with the <code>s</code>, and <code>(number)</code> is a decimal specified by the <code>d</code>.  The <code>03</code> in front of the <code>d</code> refers to number of digits (3) and with zeros padding the number. More information can be read in the Python <a href="http://docs.python.org/2/library/stdtypes.html#string-formatting-operations">docs</a>.</p>
-<h3>Create G-Map!</h3>
+<h3 id="create-g-map">Create G-Map!</h3>
 <p>Now on to the good stuff.  The function <code>create_gmap(data_file)</code> uses the two helper functions to build a KML document with our data.  </p>
 
 <p>Again with our initial comment setup:</p>

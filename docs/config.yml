@@ -17,5 +17,8 @@ archives_url: /archives/
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
+misaka:
+    render_flags:
+        toc: true
 tag_layout: tag.html
 tags_url: /tags/

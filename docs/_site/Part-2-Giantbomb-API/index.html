@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Parsing of a publicly available API.</p>
-<h3>Giantbomb API class</h3>
+<h3 id="giantbomb-api-class">Giantbomb API class</h3>
 <p>Similar to our <code>CPIData</code> class, we want to write a class for our Giantbomb API.</p>
 
 <p>Before we continue, make sure you’ve signed up for a developer’s API key with <a href="http://www.giantbomb.com/api/">Giantbomb</a>. Do not share your key information with anyone (but if you do accidently, be sure to regenerate your key).  An API key (or token, etc) is used by folks that have public APIs (like <a href="http://dev.twitter.com">Twitter</a>, <a href="http://www.yelp.com/developers/documentation/v2/overview">Yelp</a>, etc) to identify your unique application (or user/developer).</p>
@@ -100,9 +100,9 @@
 <p>Next, we’ll define one method (our class’s only method besides our constructor) that will make a request to the <code>base_url</code> with the parameters that we feed the method: <code>sort</code>, <code>filter</code>, <code>field_list</code>. </p>
 
 <p>This method is a generator function (a clue is the <code>yield</code> statement instead of a <code>return</code> statement).</p>
-<h4>For the curious</h4>
+<h4 id="for-the-curious">For the curious</h4>
 <p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse</code> function, specifically the <code>for deal in selector</code> bit, we’ve essentially built a generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what’s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it’ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a “if/else” anymore. </p>
-<h4>Back to the tutorial</h4>
+<h4 id="back-to-the-tutorial">Back to the tutorial</h4>
 <p>Follow the inline comments to undestand the process flow of <code>get_platforms</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

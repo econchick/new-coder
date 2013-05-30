@@ -64,9 +64,9 @@
             <p>Video games have always been a pricy hobby. With the next generation of consoles just being announced (or about to be) it makes sense to look at how pricing has changed on that front over time.</p>
 
 <p>During the course of this tutorial you will get more familiar with some non-core Python libraries: <a href="http://docs.python-requests.org/en/latest/">requests</a> for making interactions with HTTP much more easier, <a href="http://matplotlib.org/">matplotlib</a> for generating graphs and charts of various kinds and <a href="http://docs.python-tablib.org/en/latest/">tablib</a> for easily generating CSV datasets.</p>
-<h3>Project</h3>
+<h3 id="project">Project</h3>
 <p>To this end we will write a simple script that fetches video game platform information from <a href="http://www.giantbomb.com/api/">Giantbomb.com</a>, combine that with <a href="http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt">CPI</a> information made available by the <a href="http://research.stlouisfed.org/fred2/">Federal Reserve Bank of St. Louis</a> to adapt the value of the US dollar over time (this calculation is not meant to be accurate but it provides a nice example of working with diverse datasets) and generate a bar  chart and a CSV file displaying the price development.</p>
-<h3>Goals</h3>
+<h3 id="goals">Goals</h3>
 <ul>
 <li>Interacting with a public API</li>
 <li>Warm introduction to REST by requesting information from an API</li>
@@ -83,7 +83,7 @@
 <li>Use Python’s built-in <code>argparse</code> library</li>
 <li>Validating data</li>
 </ul>
-<h3>Intro to APIs</h3>
+<h3 id="intro-to-apis">Intro to APIs</h3>
 <p>API stands for Application Programming Interface, and provides a way for applications to talk to each other. Familiar applications include Twitter, Facebook, Yelp, Flickr, Instagram, etc. To interact with Twitter‘s API, you give input: authentication + 140 characters, and Twitter produces output: a tweet. </p>
 
 <p>Applications can interact with each other too: If you have Instagram and Twitter paired, you upload a photo to Instagram, it communicates with Twitter over an API, and Twitter posts a link to the photo.</p>

@@ -6,24 +6,10 @@ tags: [api]
 
 Setting up our environment for the API tutorial.
 
-### Initial Requirements:
-* [Python 2.x](http://www.python.org/download/releases/2.7.3/)
-* [virtualenv](http://pypi.python.org/pypi/virtualenv) You can either download directly, or:
-	* Mac: `$ sudo easy_install virtualenv`
-	* Ubuntu: `$ sudo apt-get virtualenv`
-	* Fedora: `$ sudo yum install python-virtualenv`
-	* Windows: [Download manually](http://pypi.python.org/pypi/virtualenv)
-* [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) You can either download it directly, or:
-	* Mac: `$ sudo easy_install virtualenvwrapper`
-	* Ubuntu: `$ sudo apt-get virtualenvwrapper`
-	* Fedora: `$ sudo yum install python-virtualenvwrapper`
-	* For Mac, Ubuntu, and Fedora:
-		* `$ export WORKON_HOME=~/Envs`
-		* `$ mkdir -p $WORKON_HOME`
-		* `$ source /usr/local/bin/virtualenvwrapper.sh`
-	* Windows: [Download manually](http://pypi.python.org/pypi/virtualenvwrapper) and follow install instructions
-
 ### Setup
+
+**IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("/setup-your-machine")}}) before proceeding.
+
 Within your terminal:
 
 * Change into the APIs project:

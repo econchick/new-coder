@@ -61,51 +61,11 @@
         </div>
         
         <div class="body">
-            <p>Initial setup for our Data Visualization Tutorial.</p>
-<h3>Initial Requirements:</h3>
-<ul>
-<li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
-<li><a href="http://git-scm.com/downloads">git</a></li>
-<li>A C compiler: <a href="http://gcc.gnu.org/">GCC</a> or <a href="http://clang.llvm.org/">clang</a> – the numpy library has some C extensions, which will need to be compiled.
+            <p>Initial setup for our Data Visualization Tutorial.  </p>
+<h3 id="setup">Setup</h3>
+<p><strong>IMPORTANT</strong>: Please be sure to work through the <a href="/setup-your-machine">machine setup</a> before proceeding.</p>
 
-<ul>
-<li>To test if you have either GCC or clang, type <code>$ gcc</code> or <code>$ clang</code> into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
-
-<ul>
-<li>Mac: 
-
-<ul>
-<li>You will need <a href="http://developer.apple.com/xcode">XCode</a>. Once you have XCode on your machine, you will need to navigate to <strong>Preferences</strong> –&gt; <strong>Downloads</strong> –&gt; and select <strong>Command Line Tools</strong> to download &amp; install.</li>
-</ul></li>
-<li>Fedora: <code>sudo yum install gcc python-devel</code></li>
-<li>Ubuntu: <code>sudo apt-get install build-essential python-dev</code> – you may need to run <code>sudo apt-get update</code> first.</li>
-</ul></li>
-</ul></li>
-<li><a href="http://www.pip-installer.org/en/latest/installing.html#installing-globally">pip</a></li>
-<li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
-
-<ul>
-<li>Mac: <code>$ sudo easy_install virtualenv</code></li>
-<li>Ubuntu: <code>$ sudo apt-get install virtualenv</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenv</code></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenv">Download manually</a></li>
-</ul></li>
-<li><a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> via (for Windows, skip to the next step):</li>
-</ul>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenvwrapper
-<span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
-<span class="nv">$ </span>mkdir -p <span class="nv">$WORKON_HOME</span>
-<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
-</pre></div>
-</td></tr></table></div></div>
-<ul>
-<li>However, <strong>Windows</strong> is a bit different: <a href="http://pypi.python.org/pypi/virtualenvwrapper">Download virtualenvwrapper manually</a> and follow install instructions, you will need the <a href="http://technet.microsoft.com/en-us/library/bb978526.aspx">Powershell</a>.</li>
-</ul>
-<h3>Setup</h3>
-<p>Within your terminal</p>
+<p>Within your terminal:</p>
 
 <ul>
 <li>To get to your “Home” directory:</li>

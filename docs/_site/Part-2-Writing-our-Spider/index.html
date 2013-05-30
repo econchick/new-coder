@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Writing the spider portion of our scraper.</p>
-<h3>Defining our spider</h3>
+<h3 id="defining-our-spider">Defining our spider</h3>
 <p>This is where the magic happens - this is where we tell scrapy how to find the exact data we’re looking for. As you can imagine, writing a spider is specific to a web page. This won’t work on Groupon or another website.</p>
 
 <p>We will define one class, <code>LivingSocialSpider</code> with common attributes, like <code>name</code> and <code>url</code>. We&#39;ll also define one function within our <code>LivingSocialSpider</code> class.</p>
@@ -236,11 +236,11 @@
         <span class="n">loader</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">xpath</span><span class="p">)</span>
     <span class="k">yield</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_item</span><span class="p">()</span>
 </pre></div>
-</td></tr></table></div></div><h4>For the curious</h4>
+</td></tr></table></div></div><h4 id="for-the-curious">For the curious</h4>
 <p>In our for-loop, we are using handy method on our <code>item_fields</code> dictionary – <code>iteritems()</code>. This method returns an iterator object, and allows you to iterate the (key, value) of items in a dictionary. If we just wanted to loop through the keys of our dictionary, we would write: <code>for field in self.item_fields.iterkeys()</code>, and same with values with <code>.itervalues()</code>.</p>
 
 <p>This is different than if we were to use <code>self.item_fields.items()</code>.  The <code>items()</code> method returns a list of (key, value) tuples, rather than an iterator object that <code>iteritems()</code> returns.  A list is an iterable, and a for-loop calls <code>iter()</code> on a list (or string, dictionary, tuple, etc) .</p>
-<h4>For the curious</h4>
+<h4 id="for-the-curious-2">For the curious</h4>
 <p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore. </p>
 
 <p>We&#39;ve now implemented our Spider based off of our Items that we are seeking.</p>

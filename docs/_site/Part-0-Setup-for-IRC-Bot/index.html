@@ -62,42 +62,19 @@
         
         <div class="body">
             <p>Initial setup for our Network/IRC Bot Tutorial.</p>
-<h3>Initial Requirements:</h3>
-<ul>
-<li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a></li>
-<li><a href="http://git-scm.com/downloads">git</a></li>
-<li><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> You can either download directly, or:
+<h3 id="setup">Setup</h3>
+<p><strong>IMPORTANT</strong>: Please be sure to work through the <a href="/setup-your-machine">machine setup</a> before proceeding.</p>
+
+<p>Within your terminal:</p>
 
 <ul>
-<li>Mac: <code>$ sudo easy_install virtualenv</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenv</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenv</code></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenv">Download manually</a></li>
-</ul></li>
-<li><p><a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> You can either download it directly, or:</p>
-
-<ul>
-<li>Mac: <code>$ sudo easy_install virtualenvwrapper</code></li>
-<li>Ubuntu: <code>$ sudo apt-get virtualenvwrapper</code></li>
-<li>Fedora: <code>$ sudo yum install python-virtualenvwrapper</code></li>
-<li>For Mac, Ubuntu, and Fedora:
-
-<ul>
-<li><code>$ export WORKON_HOME=~/Envs</code></li>
-<li><code>$ mkdir -p $WORKON_HOME</code></li>
-<li><code>$ source /usr/local/bin/virtualenvwrapper.sh</code></li>
-</ul></li>
-<li>Windows: <a href="http://pypi.python.org/pypi/virtualenvwrapper">Download manually</a> and follow install instructions</li>
-</ul>
-<h3>Setup</h3>
-<p>Within your terminal:<br>
-* <code>$ cd</code> to get to your &#39;Home&#39; directory<br>
-* <code>$ mkdir Projects &amp;&amp; cd Projects</code> to create a new &#39;Projects&#39; folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.<br>
-* <code>$ git clone https://github.com/econchick/new-coder.git</code> This clones the New Coder project into the directory you&#39;re currently in, which is Projects (unless you named it something else).<br>
-* <code>$ cd new-coder/network</code> Change into the Data Viz project.<br>
-* Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.<br>
-* <code>$ mkvirtualenv NetworkProj</code> Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.<br>
-* <code>(NetworkProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</p></li>
+<li><code>$ cd</code> to get to your &#39;Home&#39; directory</li>
+<li><code>$ mkdir Projects &amp;&amp; cd Projects</code> to create a new &#39;Projects&#39; folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.</li>
+<li><code>$ git clone https://github.com/econchick/new-coder.git</code> This clones the New Coder project into the directory you&#39;re currently in, which is Projects (unless you named it something else).</li>
+<li><code>$ cd new-coder/network</code> Change into the Data Viz project.</li>
+<li>Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
+<li><code>$ mkvirtualenv NetworkProj</code> Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.</li>
+<li><code>(NetworkProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
 </ul>
 
         </div>

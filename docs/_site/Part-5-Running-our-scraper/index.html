@@ -62,7 +62,7 @@
         
         <div class="body">
             <p>Putting all the pieces together to scrape our data.</p>
-<h3>scrapy.cfg file</h3>
+<h3 id="scrapy.cfg-file">scrapy.cfg file</h3>
 <p>Scrapy needs a configuration file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for scrapy:</p>
 <pre><code>scrapy.cfg
 living_social/
@@ -78,7 +78,7 @@ living_social/
 <p>This file contains the name of the python module that defines the project settings:</p>
 <pre><code>[settings]
 default = living_social.settings
-</code></pre><h3>Manually run the scraper</h3>
+</code></pre><h3 id="manually-run-the-scraper">Manually run the scraper</h3>
 <p>Within your terminal, with your ScrapeProj virtualenv activated:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>new-coder/scrape/lib/full_source/living_social
@@ -132,7 +132,7 @@ You are now connected to database <span class="s2">&quot;scrape&quot;</span> as 
 </pre></div>
 </td></tr></table></div></div>
 <p>Notice how the strings we’re searching for contains <code>%</code> – this is a wildcard character. This is essentially saying “find deals where the title contains “Yoga”. Learn more about <a href="http://www.postgresql.org/docs/8.4/static/tutorial-select.html">querying Postgres</a>.</p>
-<h3>Hook up to a Cron job</h3>
+<h3 id="hook-up-to-a-cron-job">Hook up to a Cron job</h3>
 <p>It’d be pretty annoying if we had to manually run this script regularly.  This is where cron jobs come in.</p>
 
 <p>We’ll first create a bash script that simulates what we would do if we were to run scrapy manually.  There is a sample one in the <code>new-coder/scrape/living_social/</code> directory called <code>scrape.sh</code>. Edit the bash script to where your <code>(ScrapeProj)</code> virtualenv is as well as where your scraper root directory is (where the <code>scrapy.cfg</code> file lies).</p>
