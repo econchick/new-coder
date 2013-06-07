@@ -43,7 +43,7 @@ Once the compiler is set up:
 CONTRIBUTING
 ============
 
-PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `docs` folder (and vis-versa.
+PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `docs` folder (and vice versa).
 
 When writing documentation, please use [smart quotes](http://en.wikipedia.org/wiki/Quotation_mark_glyphs).
 
