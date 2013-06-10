@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import datetime
 import requests
 
 CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
@@ -18,7 +19,7 @@ class CPIData(object):
         self.last_year = None
         self.first_year = None
 
-    def load_from_url(self, url, save_as_file=None):
+    def load_from_url(self, url, save_as_file="cpi.dat"):
         """Loads data from a given url. 
         The downloaded file can also be saved into a location for later 
         re-use with the "save_as_file" parameter specifying a filename.
@@ -26,53 +27,80 @@ class CPIData(object):
         After fetching the file this implementation uses load_from_file
         internally.
         """
-        # We don't really know how much data we are going to get here, so
-        # it is recommended to just keep as little data as possible in memory
-        # at all times. Setting stream to True will defer the downloading of the
-        # body until the content is explicitly accessed. It's being used here in
-        # conjunction with .raw to make the response a file-like-object. Since 
-        # requests supports gzip-compression by default we just disable  gzip 
-        # by setting "Accept-Encoding" to None.
-        fp = requests.get(url, stream=True,
-                          headers={'Accept-Encoding': None}).raw
+        fp = requests.get(url)
 
-        # If we did not pass in a save_as_file parameter, just return the raw
-        # data we got from the previous line.
-        if save_as_file is None:
-            return self.load_from_file(fp)
+        with open(save_as_file, 'wb+') as out:
+            for line in fp.iter_lines():
+                out.write(line + '\n')
 
-        # Otherwise, write it to the desired file.
-        else:
-            with open(save_as_file, 'wb+') as out:
-                while True:
-                    buffer = fp.read(81920)
-                    if not buffer:
-                        break
-                    out.write(butter)
-            with open(save_as_file) as fp:
-                return self.load_from_file(fp)
+        # After the data has been written to a file, call load_from_file to 
+        # populate the CPIData object with the data
+        self.load_from_file(save_as_file)
 
     def load_from_file(self, fp):
         """Loads CPI data from a given file-like object."""
         current_year = None
         year_cpi = []
-        import pdb; pdb.set_trace()
-        for line in fp:
-            # The content of the file starts with a header line which starts
-            # with the string "DATE ". Until we reach this line, we can skip
-            # ahead.
-            while not line.startswith("Date "):
-                # Logic error here? If it was a continue statement then the loop
-                # would begin from the beginning, but it seems like this doesn't
-                # do anything. The code below is executed regardless of what the
-                # line starts with. 
-                pass
+        data_reached = False
+        with open(fp) as out:
+            for line in out:
+                # The content of the file starts with a header line which starts
+                # with the string "DATE ". Until we reach this line, we can skip
+                # ahead.
+                if not data_reached:
+                    if not line.startswith("DATE  "):
+                        continue
+                    else:
+                        data_reached = True
+                        continue
+                
+                # Remove the newline from the end of each line
+                data = line.rstrip().split()
+
+                # Extract the year
+                year = int(data[0].split('-')[0])
+                cpi = float(data[1])
+
+                if self.first_year is None:
+                    self.first_year = year
+                self.last_year = year
+
+                # The moment we reach a new year, we have to reset the CIP data
+                # and calculate the average cpi for the year we just looped over.
+                if current_year != year:
+                    # This is just for when it first starts the loop, when
+                    # current_year is still initialized at None
+                    if current_year is not None:
+                        self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
+                    year_cpi = []
+                    current_year = year
+                year_cpi.append(cpi)
+
+            # We have to do the calculation oce again for the last year in the
+            # dataset
+            if current_year is not None and current_year not in self.year_cpi:
+                self.year_cpi[current_year] = sum(year_cpi) / len(year_cpi)
 
     def get_adjusted_price(self, price, year, current_year=None):
         """
         Returns the adapted price from a given year compared to what current
         year has been specified.
+
+        This is essentially is the calculated inflation for an item.
         """
+        if current_year is None:
+            current_year = datetime.datetime.now().year
+        # If our data range doesn't provide a CPI for the given year, use
+        # the edge data
+        if year < self.first_year:
+            year = self.first_year
+        elif year > self.last_year:
+            year = self.last_year
+
+        year_cpi = self.year_cpi[year]
+        current_cpi = self.year_cpi[current_year]
+
+        return float(price) / year_cpi * current_cpi
 
 def main():
     """This function handles the actual logic of this script."""
@@ -90,7 +118,3 @@ def main():
     # Generate a plot/bar graph for the adjusted price data.
 
     # Generate a CSV file to save for the adjusted price data.
-
-if __name__ == '__main__':
-    x = CPIData()
-    x.load_from_url(CPI_DATA_URL)
