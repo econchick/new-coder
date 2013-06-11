@@ -1,7 +1,9 @@
-#!/usr/bin/python
-
+#!/usr/bin/env python
 import datetime
+import logging
 import requests
+import matplotlib.pyplot as plt
+import numpy as np
 
 CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
 
@@ -45,7 +47,7 @@ class CPIData(object):
         with open(fp) as out:
             for line in out:
                 # The content of the file starts with a header line which starts
-                # with the string "DATE ". Until we reach this line, we can skip
+                # with the string "DATE  ". Until we reach this line, we can skip
                 # ahead.
                 if not data_reached:
                     if not line.startswith("DATE  "):
@@ -101,6 +103,105 @@ class CPIData(object):
         current_cpi = self.year_cpi[current_year]
 
         return float(price) / year_cpi * current_cpi
+
+
+class GiantbombAPI(object):
+    """
+    Very simple implementation of the Giantbomb API that only offers the
+    GET /platforms/ call as a generator
+    """
+    base_url = "http://www.giantbomb.com/api"
+
+    def __init__(self, api_key):
+        self.api_key = api_key
+
+    def get_platforms(self, sort=None, filter_by=None, field_list=None):
+        """
+        Generator yielding platforms matching the given criteria. If
+        limit is specified, this will return *all* platforms.
+        """
+        # The API itself allows us to filter the data returned either
+        # by requesting only a subset of data elements or a subset with each
+        # data element (like only the name, the prices, and the release date).
+        #
+        # The following lines also do value-format converstions from what's
+        # common in Python (lists, dictionares+ into what the API requires.
+        # This is especially apparent with the filter-parameter where we 
+        # need to convert a dictionary of criteria into a comma-separated
+        # list of key:value pairs
+        params = {}
+        if sort is not None:
+            params['sort'] = sort
+        if field_list is not None:
+            params['field_list'] = ','.join(field_list)
+        if filter_by:
+            params['filter_by'] = filter_by
+            parsed_filters = []
+            # Difference btw items() and iteritems() - iteritems() returns
+            # a generator while items() returns a real list of tuples, loaded
+            # fully into memory. items() is somewhat depracated in that python 3.
+            # doesn't have iteritems(), but rather reimpliments items() to return
+            # a generator
+            for key, value in filter_by.iteritems():
+                parsed_filters.append('{0}:{1}'.format(key, value))
+            params['filter_by'] = ','.join(parsed_filters)
+
+        # Append API key and tell API we want result to be json
+        params['api_key'] = self.api_key
+        params['format'] = 'json'
+
+        incomplete_result = True
+        num_total_results = None
+        num_fetched_results = 0
+        counter = 0
+
+        while incomplete_result:
+            params['offset'] = num_fetched_results
+            result = requests.get(self.base_url + '/platforms/', params=params)
+            result = result.json()
+            if not num_total_results:
+                num_total_results = int(result['number_of_total_results'])
+            num_fetched_results += int(result['number_of_page_results'])
+            if num_fetched_results >= num_total_results:
+                incomplete_result = False
+            for item in result['results']:
+                logging.debug('Yielding platform {0} of {1}'.format(
+                    counter + 1, num_total_results))
+
+                # Since this is supposed to be an abstraction, we also convert
+                # values here into a more useful format where appropriate
+                if 'original_price' in item and item['original_price']:
+                    item['original_price'] = float(item['original_price'])
+
+                # The 'yield' keyword is what makes this a generator.
+                # Implementing this method as a generator has the advanatage
+                # that we can stop fetching of further data from the server
+                # dynamically from the outside by simply stop iterating over
+                # the generator
+                yield item
+                count += 1
+
+def is_valid_dataset(platform):
+    """
+    Filters out datasets taht we can't use since they are either lacking
+    a release date or an original price. For rendering the output, we also
+    require the name and abbreviation of the platform.
+    """
+    if 'release_date' not in platform or not platform['release_date']:
+        logging.warn(u'{0} has no release date'.format(platform['name']))
+        return False
+    if 'original_price' not in platform or not platform['original_price']:
+        logging.warn(u'{0} has no original price'.format(platform['name']))
+        return False
+    if 'name' not in platform or not platform['name']:
+        logging.warn(u'{0} has no name found for given dataset')
+        return False
+    if 'abbreviation' not in platform or not platform['abbreviation']:
+        logging.warn(u'{0} has no abbreviation'.format(platform['name']))
+        return False
+    return True
+
+
 
 def main():
     """This function handles the actual logic of this script."""
