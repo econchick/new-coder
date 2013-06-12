@@ -201,6 +201,51 @@ def is_valid_dataset(platform):
         return False
     return True
 
+def generate_plot(platforms, output_file):
+    """
+    Generates a bar chart out of the given platforms and writes the output
+    into the specificed files as a PNG image.
+    """
+
+    # First off we need to convert the platforms in a format that can be
+    # attached to the 2 axis of our bar chart. "labels" will become the
+    # x-axis and "values" the value of each label on the y-axis
+    lables = []
+    values = []
+    for platform in platforms:
+        name = platform['name']
+        adapted_price = platform['adjusted_price']
+        price = platform['original_price']
+
+        # Skip prices higher than $2000 USD simply because it would make the
+        # output unusable.
+        if price > 2000:
+            continue
+        
+        # Abbreviate names that are too long
+        if len(name) > 15:
+            name = platform['abbreviation']
+        labels.insert(0, u'{0}\n$ {1}\n$ {2}'.format(name, price,
+                                                     round(adapted_price, 2)))
+        values.insert(0, adapted_price)
+
+    width = 0.3
+    ind = np.arange(len(values))
+    fig = plt.figure(figsize=(len(labels) * 1.8, 10))
+
+    ax = fig.add_subplot(1, 1, 1)
+    ax.bar(ind, values, width, align='center')
+
+    plt.ylabel('Adjust price')
+    plt.xlabel('Year / Console')
+    ax.set_xticks(ind + 0.3)
+    ax.set_xticklabels(labels)
+    fig.autofmt_xdate()
+    plt.grid(True)
+
+    #plt.savefig(output_file, dpi=72)
+    plt.show(dpi=72)
+
 
 
 def main():
