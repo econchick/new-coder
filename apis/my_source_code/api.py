@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+import argparse
 import datetime
 import logging
+import os
 import requests
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,7 +23,7 @@ class CPIData(object):
         self.last_year = None
         self.first_year = None
 
-    def load_from_url(self, url, save_as_file="cpi.dat"):
+    def load_from_url(self, url, save_as_file):
         """Loads data from a given url. 
         The downloaded file can also be saved into a location for later 
         re-use with the "save_as_file" parameter specifying a filename.
@@ -33,6 +35,11 @@ class CPIData(object):
 
         with open(save_as_file, 'wb+') as out:
             for line in fp.iter_lines():
+                # Only write the lines of data we need, ie, start with a year
+                try:
+                    int(line.split('-')[0])
+                except ValueError:
+                    continue
                 out.write(line + '\n')
 
         # After the data has been written to a file, call load_from_file to 
@@ -44,18 +51,8 @@ class CPIData(object):
         current_year = None
         year_cpi = []
         data_reached = False
-        with open(fp) as out:
+        with open(fp, 'rb') as out:
             for line in out:
-                # The content of the file starts with a header line which starts
-                # with the string "DATE  ". Until we reach this line, we can skip
-                # ahead.
-                if not data_reached:
-                    if not line.startswith("DATE  "):
-                        continue
-                    else:
-                        data_reached = True
-                        continue
-                
                 # Remove the newline from the end of each line
                 data = line.rstrip().split()
 
@@ -105,7 +102,7 @@ class CPIData(object):
         return float(price) / year_cpi * current_cpi
 
 
-class GiantbombAPI(object):
+class GiantBombAPI(object):
     """
     Very simple implementation of the Giantbomb API that only offers the
     GET /platforms/ call as a generator
@@ -179,7 +176,7 @@ class GiantbombAPI(object):
                 # dynamically from the outside by simply stop iterating over
                 # the generator
                 yield item
-                count += 1
+                counter += 1
 
 def is_valid_dataset(platform):
     """
@@ -210,7 +207,7 @@ def generate_plot(platforms, output_file):
     # First off we need to convert the platforms in a format that can be
     # attached to the 2 axis of our bar chart. "labels" will become the
     # x-axis and "values" the value of each label on the y-axis
-    lables = []
+    labels = []
     values = []
     for platform in platforms:
         name = platform['name']
@@ -243,24 +240,87 @@ def generate_plot(platforms, output_file):
     fig.autofmt_xdate()
     plt.grid(True)
 
-    #plt.savefig(output_file, dpi=72)
-    plt.show(dpi=72)
+    plt.savefig(output_file)
+    #plt.show()
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--giantbomb-api-key', required=True,
+                        help='API key provided by Giatntbomb.com')
+    parser.add_argument('--cpi-file',
+                        default=os.path.join(os.path.dirname(__file__),
+                                              'CPIAUCSL.txt'),
+                        help='path to file containing the CPI data (also acts'
+                             ' as target file if the data has to be downloaded'
+                             ' first).')
+    parser.add_argument('--cpi-data-url', default=CPI_DATA_URL,
+                        help='URL which should be used as CPI data source')
+    parser.add_argument('--debug', default=False, action='store_true',
+                        help='Increase the output level.')
+    parser.add_argument('--plot-file',
+                        help='Path ot the PNG file which should contain the'
+                        ' data output')
+    parser.add_argument('--limit', type=int,
+                        help='Number of recent platforms to be considered')
+    opts = parser.parse_args()
+    if not opts.plot_file:
+        parser.error('You have to specify either a --csv-file or --plot-file!')
+    return opts
 
 def main():
     """This function handles the actual logic of this script."""
+    opts = parse_args()
+
+    if opts.debug:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
+    print ("Disclaimer: This script uses data provided by FRED, Federal"
+           " Reserve Economic Data, from the Federal Reserve Bank of St. Louis"
+           " and Giantbomb.com:\n- {0}\n- http://www.giantbomb.com/api/\n"
+           .format(CPI_DATA_URL))
 
     # Grab CPI/Inflation data.
+    cpi_data = CPIData()
+    if os.path.exists(opts.cpi_file):
+        cpi_data.load_from_file(opts.cpi_file)
+    else:
+        cpi_data.load_from_url(opts.cpi_data_url, opts.cpi_file)
 
     # Grab API/game platform data.
+    gb_api = GiantBombAPI(opts.giantbomb_api_key)
 
     # Figure out the current price of each platform.
     # This will require looping through each game platform we received, and 
     # calculate the adjusted price based on the CPI data we also received.
     # During this point, we should also validate our data so we do not skew
     # our results.
+    platforms = []
+    counter = 0
+    for platform in gb_api.get_platforms(sort='release_date:desc',
+                                         field_list=['release_date',
+                                                     'original_price', 'name',
+                                                     'abbreviation']):
+        if not is_valid_dataset(platform):
+            continue
+
+        year = int(platform['release_date'].split('-')[0])
+        price = platform['original_price']
+        adjusted_price = cpi_data.get_adjusted_price(price, year)
+        platform['year'] = year
+        platform['adjusted_price'] = adjusted_price
+        platforms.append(platform)
+
+        counter += 1
+        if opts.limit is not None and counter >= opts.limit:
+            break
 
     # Generate a plot/bar graph for the adjusted price data.
+    generate_plot(platforms, opts.plot_file)
 
     # Generate a CSV file to save for the adjusted price data.
+
+if __name__ == '__main__':
+    main()
