@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 4: The Logic of the Script"
 tags: [api, argparse, logging]
+url: "/api/part-4/"
 ---
 
 Parse the command-line arguments and create the main logic of the script flow.
@@ -203,4 +204,4 @@ In your terminal, with your `APIProj` virtual environment activated, and from wi
 ```
 
 
-[APIs – Extended: &rarr;]({{ get_url("/Extended-API")}})
+[APIs – Extended: &rarr;]({{ get_url("/api/extended/")}})

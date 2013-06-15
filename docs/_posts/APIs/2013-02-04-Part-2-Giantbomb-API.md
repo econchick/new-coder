@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 2: Giantbomb API"
 tags: [api, generator]
+url: "/api/part-2/"
 ---
 
 Parsing of a publicly available API.
@@ -153,4 +154,4 @@ def is_valid_dataset(platform):
 
 You should not be scared by the format we requested: `params['format'] = 'json'` – we had some fun with JSON-like parsing in our DataViz tutorial. This is the format we will get back when we call this method.  
 
-[The next part will take that JSON data to save as a CSV or generate a plot for us &rarr;]( {{ get_url("Part-3-JSON-Parsing/")}})
+[The next part will take that JSON data to save as a CSV or generate a plot for us &rarr;]( {{ get_url("/api/part-3/")}})

@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 0: Setup for APIs"
 tags: [api]
+url: "/api/part-0/"
 ---
 
 Setting up our environment for the API tutorial.
@@ -30,4 +31,4 @@ $ mkvirtualenv APIProj
 ``` 
 * Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.
 
-[Continue on to Part 1: Setup Raw Data &rarr;]( {{ get_url("Part-1-Setup-raw-data/")}})
+[Continue on to Part 1: Setup Raw Data &rarr;]( {{ get_url("/api/part-1/")}})

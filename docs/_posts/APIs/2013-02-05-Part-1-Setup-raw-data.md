@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 1: Setup Raw Data"
 tags: [api]
+url: "/api/part-1/"
 ---
 
 A walkthrough of grabbing raw data from publicly available information.
@@ -276,4 +277,4 @@ def get_adjusted_price(self, price, year, current_year=None):
 
 In review, we’ve essentially defined the container, our `CPIData` class, to handle the the processing of our CPI data.  We initialize each field for a piece of CPI data in `__init__`, we define how to load data from a given URL (of which we define as a global variable, `CPI_DATA_URL` before we defined our class), we define how to load and parse that data that we just grabbed from the URL and saved, and lastly, we define a method to grab the price for a given year (adjusted if we didn’t grab that specific year from the FRED earlier).
 
-[Continue on to the Game API &rarr;]( {{ get_url("Part-2-Giantbomb-API/")}})
+[Continue on to the Game API &rarr;]( {{ get_url("/api/part-2/")}})

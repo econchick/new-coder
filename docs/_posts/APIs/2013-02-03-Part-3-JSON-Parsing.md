@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 3: JSON Parsing"
 tags: [api, generator]
+url: "/api/part-3/"
 ---
 
 Parse the response from the API call into something meaningful.
@@ -112,4 +113,4 @@ def generate_csv(platforms, output_file):
         output_file.write(dataset.csv)
 ```
 
-Let’s put the final touches of this script so we can see it in action. [The final part brings the logic together &rarr;]( {{ get_url("Part-4-Logic-of-the-script/")}})
+Let’s put the final touches of this script so we can see it in action. [The final part brings the logic together &rarr;]( {{ get_url("/api/part-4/")}})

@@ -2,6 +2,7 @@
 layout: post.html
 title: "API – Extended"
 tags: [api]
+url: "/api/extended/"
 ---
 
 Examples of APIs being used in real life, and where to go from here.
