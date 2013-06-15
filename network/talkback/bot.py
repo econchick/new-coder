@@ -1,7 +1,7 @@
 import logging
 
-from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
+from twisted.words.protocols import irc
 
 from quotation_selector import QuotationSelector
 
@@ -30,7 +30,7 @@ class TalkBackBot(irc.IRCClient):
 
     def privmsg(self, user, channel, msg):
         """This will get called when the bot receives a message."""
-        
+
         trigger_found = False
         send_to = channel
         if self.factory.settings.NICKNAME.startswith(channel) or \
@@ -52,11 +52,13 @@ class TalkBackBot(irc.IRCClient):
 class TalkBackBotFactory(protocol.ClientFactory):
 
     def __init__(self, settings):
+        """Initialize the bot factory with settings and quote files."""
         self.settings = settings
         self.channel = self.settings.CHANNEL
         self.quotation = QuotationSelector(self.settings.QUOTES_FILE)
 
     def buildProtocol(self, addr):
+        """Returns a bot based off of settings file."""
         bot = TalkBackBot()
         bot.factory = self
         bot.nickname = self.settings.NICKNAME
@@ -64,9 +66,11 @@ class TalkBackBotFactory(protocol.ClientFactory):
         return bot
 
     def clientConnectionLost(self, connector, reason):
-        logging.info("connection lost, reconnecting")
+        """Reconnects IRC client to service if connection is lost."""
+        logging.info("connection lost: %s, reconnecting" % (reason))
         connector.connect()
 
     def clientConnectionFailed(self, connector, reason):
+        """Stops the reactor/event loop if client connection cannot be made."""
         logging.info("connection failed: %s" % (reason))
         reactor.stop()
