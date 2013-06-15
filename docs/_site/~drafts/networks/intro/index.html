@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+    <title>IRC Bot &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>IRC Bot</h2>
+        </div>
+        
+        <div class="body">
+            <h2 id="intro">Intro</h2><h3 id="the-project">The Project</h3>
+<p>This tutorial walks you through how to make an <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat_bot">IRC bot</a> with <a href="http://twistedmatrix.com">Twisted</a>.  You will be introduced to testing, logging, an overview of how the internet works, as well as event-driven programming, different internet protocols, and making a portable application.</p>
+
+<p>The project’s code is based off of <a href="https://twitter.com/jessamynsmith">Jessamyn Smith</a>’s IRC bot – the <a href="https://github.com/jessamynsmith/talkbackbot">talkbackbot</a>, where if anyone says “That’s what she said” in an IRC channel, the bot replies with a notable quote from a woman (that’s what she really said!).</p>
+<h3 id="intro-to-irc">Intro to IRC</h3>
+<p>IRC stands for Internet Relay Chat, and is a <a href="http://en.wikipedia.org/wiki/Category:Internet_protocols">protocol</a> for live messaging over the internet.  Specifically, the IRC protocol is within the <em>application layer</em> (just a simple abstraction of types of protocols). Other examples of internet protocols within the application layer are <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a>, <a href="http://en.wikipedia.org/wiki/Internet_Message_Access_Protocol">IMAP</a>, <a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>, <a href="http://en.wikipedia.org/wiki/Post_Office_Protocol">POP</a>, <a href="http://en.wikipedia.org/wiki/Secure_Shell">SSH</a>, among many others. </p>
+
+<p>IRC uses <a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a>, Transmission Control Protocol (another protocol!).  TCP is within the <em>transport layer</em>, as opposed to application later.  Another popular transportation layer protocol is <a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol">UDP</a>.</p>
+
+<p>If you have heard of IRC before, you may think it’s an antiquated means of communication. Created in 1988, it remains one of the most popular protocols for instant messaging within many aspects of the tech community.</p>
+
+<p>There are many IRC networks, the most popular in terms of users at peak hours are <a href="http://freenode.net">freenode</a>, <a href="http://www.ircnet.org/">IRCNet</a>, and <a href="http://www.quakenet.org/">QuakeNet</a>.  </p>
+
+<p><a href="http://www.irchelp.org/">IRCHelp</a> is a great resource for learning IRC.  <a href="http://pyladies.com">PyLadies</a> also has a great <a href="http://www.pyladies.com/blog/irc-resources/">introduction on how to setup and use IRC</a>.  Of the Python community, some frequent channels visited are #python, #django, #python-dev, #twisted, and of course, #pyladies, all on Freenode.</p>
+<h3 id="intro-to-twisted">Intro to Twisted</h3>
+<p>According to <a href="http://twistedmatrix.com/trac/">Twisted</a>’s website, Twisted is an “event-driven networking engine written in Python”.  OK…what does that mean?</p>
+<h4 id="event-driven-programming">Event-driven programming</h4>
+<p><a href="http://en.wikipedia.org/wiki/Event-driven_programming">Event-driven programming</a> simply means that the flow of the program is determined by events.  Events may be a click of the mouse, a message from another program, a response from a server, etc. The primary activity is a <em>reaction</em> to receiving a certain event(s).</p>
+
+<p>A good description of event-driven programming can be found in an article at <a href="http://www.linuxjournal.com/article/7871">Linux Journal</a> by Ken Kinder:</p>
+
+<blockquote>
+<p>Have you ever been standing in the express lane of a grocery store, buying a single bottle of water, only to have the customer in front of you challenge the price of an item, causing you and everyone behind you to wait five minutes for the price to be verified? </p>
+
+<p>Plenty of explanations of asynchronous programming exist, but I think the best way to understand its benefits is to wait in line with an idle cashier. If the cashier were asynchronous, he or she would put the person in front of you on hold and conduct your transaction while waiting for the price check. Unfortunately, cashiers are seldom asynchronous. </p>
+
+<p>In the world of software, however, event-driven servers make the best use of available resources, because there are no threads holding up valuable memory waiting for traffic on a socket. Following the grocery store metaphor, a threaded server solves the problem of long lines by adding more cashiers, while an asynchronous model lets each cashier help more than one customer at a time.</p>
+</blockquote>
+
+<p>Other paradigms include <a href="http://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented</a>, <a href="http://en.wikipedia.org/wiki/Imperative_programming">imperative</a>, and <a href="http://en.wikipedia.org/wiki/Function-level_programming">function-level</a>.  If you are curious about how to employ different programming paradigms for different problems, check out <a href="%22http://www.amazon.com/gp/product/0262062186/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0262062186&amp;linkCode=as2&amp;tag=roglyn-20%22">How to Design Programs</a>.</p>
+<h3 id="intro-to-logging">Intro to Logging</h3>
+<p>Logging is essentially a paper trail for your codebase. For instance, if you transfer money between accounts, there are records of activity. Implementing logging in your code helps you monitor, debug, and develop your application.  </p>
+
+<p>For something simple the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Adding two numbers.&quot;</span>
+<span class="n">two</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">print</span> <span class="s">&quot;The result is: </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">two</span>
+<span class="k">print</span> <span class="s">&quot;Adding a third number.&quot;</span>
+<span class="n">two</span> <span class="o">+=</span> <span class="mi">3</span>
+<span class="k">print</span> <span class="s">&quot;The new result is: </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">two</span>
+<span class="k">print</span> <span class="s">&quot;Done adding.&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>print statements are sufficient. But if you were to litter your code with print statements for the following tutorial, it would get way too messy and inefficient.  Also, all <code>print</code> statements go to <a href="http://docs.python.org/2/tutorial/inputoutput.html">stdout</a> (a.k.a standard output, which will feed to your console), which can get cumbersome when data is also printed to stdout.</p>
+
+<p>In this tutorial, we will get familiar with Python’s <code>logging</code> module that comes in the standard library.  With this module, will be able to configure where our logging messages print to (e.g. written/saved to a .log file, to the console, etc).  We will also be able to configure the level in which we log.  Perhaps we only want to see critical errors, or we want to see more verbose logs.</p>
+<h3 id="intro-to-testing">Intro to Testing</h3>
+<p>On top of writing a bot for IRC, we’re going to write tests to make sure our bot behaves the way we expect.  We will be writing unit tests, a type of tests where each individual blocks of code (e.g. a function) are tested separately. The goal is to have a test for each function/procedure written, giving you 100% test coverage.</p>
+
+<p>Tests also are another form of documentation (but don’t skip writing documentation!). They reveal the expected behavior of each function/class/module.  Tests should pass when the input is valid, and should not pass when invalid.  </p>
+
+<p>In this tutorial, you will explore the <code>unittest</code> module within Python’s standard library, as well as how to approach writing unit tests for your Python code.</p>
+<h3 id="approaching-the-tutorial">Approaching the tutorial</h3>
+<p>We will first knock out the simple items by addressing the global variables/settings for our IRC bot.  We’ll then build a quick function to select quotes (a list of quotes can be found in the <a href="https://github.com/econchick/new-coder/blob/master/network/talkback/quotes.txt">GitHub repo</a>).</p>
+
+<p>Then we’ll approach the making of the bot module by first creating a class to create bots (a factory class), and then another class to define the behavior of the bot.  We will also write a quick plugin to easily create and start up our bot from the command line.</p>
+
+<p>Lastly, we will write tests for the expected behavior of our talkback bot application.</p>
+
+<p>All set? <a href="/%7Edrafts/networks/part-0">Let’s begin with our setup!</a></p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+    <title>Part 3: Bot.py Module &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Part 3: Bot.py Module</h2>
+        </div>
+        
+        <div class="body">
+            <p>Writing our <code>bot.py</code> module.</p>
+<h3 id="module-setup">Module Setup</h3>
+<p>With our bot, we will log every action that the bot makes, so we will take advantage of the <code>logging</code> module in Python’s standard library.  </p>
+
+<p>Then we will import selected modules from Twisted.  There’s no expectation that you would know which modules from Twisted to import; this is just an introduction to the package’s vast capabilities in Networking.</p>
+
+<p>Our last import will be the <code>QuotationSelector</code> class we wrote in our custom module, <code>quotation_selector</code>. </p>
+
+<p>Note the order of the import statements: standard library, third-party packages, then self-written modules, each alphabetical order within the three groupings.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">protocol</span>
+<span class="kn">from</span> <span class="nn">twisted.words.protocols</span> <span class="kn">import</span> <span class="n">irc</span>
+
+<span class="kn">from</span> <span class="nn">quotation_selector</span> <span class="kn">import</span> <span class="n">QuotationSelector</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="scaffolding-for-bot.py-module">scaffolding for bot.py module</h3>
+<p>We will be writing two classes: <code>TalkBackBot</code> and <code>TalkBackBotFactory</code>.  The factory class actually instantiates the bot, while the bot class defines the bot’s behavior.</p>
+
+<p>Let’s first start off with the bot factory scaffolding:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">TalkBackBotFactory</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">ClientFactory</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the bot factory with settings and quote files.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a bot based off of settings file.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">clientConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reconnects IRC client to service if connection is lost.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">clientConnectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops the reactor/event loop if client connection cannot be made.&quot;&quot;&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The factory is in charge of creating/instantiating a protocol (here, the <code>TalkBackBot</code> in the <code>buildProtocol</code> function).  With the bot factory, we inherit from Twisted’s <code>protocol.ClientFactory</code>.  This is so we can make use of creating a connection between our client and the protocol (our IRC connection), and handle any connection errors.</p>
+
+<p>Now our <code>TalkBackBot</code> scaffolding:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">TalkBackBot</span><span class="p">(</span><span class="n">irc</span><span class="o">.</span><span class="n">IRCClient</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">connectionMade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Called when a connection is made.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">connectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Called when a connection is lost.&quot;&quot;&quot;</span>
+
+    <span class="c"># callbacks for events</span>
+
+    <span class="k">def</span> <span class="nf">signedOn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Called when bot has successfully signed on to server.&quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">joined</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This will get called when the bot joins the channel.&quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">privmsg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This will get called when the bot receives a message.&quot;&quot;&quot;</span>
+
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The <code>TalkBackBot</code> class inherits from <code>irc.IRCClient</code> from the Twisted library.  This is so we can make use of functions like <code>connectionMade</code>, <code>signedOn</code>, etc, and define desired behavior.  </p>
+
+<p>First, we’ll code out the bot factory, then return to the bot itself.</p>
+<h3 id="talkbackbotfactory-class">TalkBackBotFactory class</h3>
+<p>Notice that in our import statements, we didn’t import our <code>settings</code> module.  When we run our program, we will pass the settings file as an argument (detailed in <a href="/networks/part-4">Part 4</a>).  With that, our <code>TalkBackBotFactory</code> will initialize with the settings file:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialize the bot factory with settings and quote files.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">settings</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">CHANNEL</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">quotation</span> <span class="o">=</span> <span class="n">QuotationSelector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">QUOTES_FILE</span><span class="p">)</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Notice that we also refer to the <code>QuotationSelector</code> class we wrote, which will pull a random quote from the <code>QUOTES_FILE</code> that is defined in our settings file, and assign it to <code>self.quotation</code>. </p>
+
+<p>Next, we’ll create a bot.  Notice it calls <code>TalkBackBot()</code> – we will write this class once we finish the Factory.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a bot based off of settings file.&quot;&quot;&quot;</span>
+    <span class="n">bot</span> <span class="o">=</span> <span class="n">TalkBackBot</span><span class="p">()</span>
+    <span class="n">bot</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="bp">self</span>
+    <span class="n">bot</span><span class="o">.</span><span class="n">nickname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">NICKNAME</span>
+    <span class="n">bot</span><span class="o">.</span><span class="n">realname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">REALNAME</span>
+    <span class="k">return</span> <span class="n">bot</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>TODO</strong>:</p>
+
+<ul>
+<li>clientConnectionLost/Failed</li>
+<li>logging</li>
+<li>make a bot (bot behavior)
+
+<ul>
+<li>functions</li>
+<li>connection made</li>
+<li>connection lost
+
+<ul>
+<li>how is this different from the Factory connection lost/failed functions?</li>
+</ul></li>
+<li>signed on</li>
+<li>joined</li>
+<li>private message (response from within channel or private ping)</li>
+</ul></li>
+<li>why <code>__init__.py</code> within <code>network/talkback/</code> directory</li>
+</ul>
+
+<p>One bit before our tests: <a href="/%7Edrafts/networks/part-4/">our custom twisted plugin &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

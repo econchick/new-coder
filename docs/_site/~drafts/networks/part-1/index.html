@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+    <title>Part 1: Settings &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+            
+        </div>
+        
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Part 1: Settings</h2>
+        </div>
+        
+        <div class="body">
+            <p>Define our settings for our IRC bot.</p>
+<h3 id="module-setup">Module setup</h3>
+<p>If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are global variables.  </p>
+
+<p>For our <code>settings.py</code> module, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use.</p>
+
+<p>First, our connection-specific settings:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># IRC settings</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="s">&quot;irc.freenode.net&quot;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">6667</span>
+<span class="n">USE_SSL</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">CHANNEL</span> <span class="o">=</span> <span class="s">&quot;#newcoder&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The <code>HOST</code> identifies which network we want to connect to.  You may remember from the <a href="/networks/intro/">introduction</a> that there are many IRC networks.  You can see that for our bot, we are electing to connect to <a href="http://freenode.net">Freenode</a>.</p>
+
+<p>It’s not enough just to identify the <code>HOST</code>, or hostname, of the network we want to connect to.  We also need to declare the <code>PORT</code> we want to go through at the <code>HOST</code>.  There are conventions about which types of services use which ports.  Ports can range from 1 through 65535, but about 250 are reserved by convention for certain processes/protocols.  For instance, by default, HTTP uses port 80, and HTTPS uses 443.  POP listens on port 110, SMTP on 25, and IMAP on 143.  Here, freenode makes port 6667 available to bind to for IRC.</p>
+
+<p><code>USE_SSL</code> is a boolean that if true, will connect to the <code>HOST</code> over an <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a> connection.  SSL is designed to provide security when communicating over the internet and prevent eavesdropping and tampering. </p>
+
+<p>Lastly, the <code>CHANNEL</code> variable, a string that needs to start with <code>#</code>. This is the channel that the bot will join when connecting to Freenode.</p>
+
+<p>Next, our bot-specific settings:</p>
+<pre><code># Bot settings
+NICKNAME = &#34;whatshereallysaid&#34;
+REALNAME = &#34;bot: provides quotations from notable women&#34;
+</code></pre>
+<p>This is pretty self-explanatory.  The bot’s <code>NICKNAME</code> will show when it’s connected to Freenode, and its <code>REALNAME</code> will show when a user queries or requests more information about the bot itself (e.g. with the command, <code>/whois whatshereallysaid</code> within a chat window).</p>
+
+<p>Now the last few global variables:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Trigger phrases, in lowercase</span>
+<span class="n">TRIGGERS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&quot;that&#39;s what she said&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c"># Process settings</span>
+<span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s">&quot;./talkbackbot.log&quot;</span>
+<span class="n">QUOTES_FILE</span> <span class="o">=</span> <span class="s">&quot;talkback/quotes.txt&quot;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The <code>TRIGGERS</code> is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.</p>
+
+<p>The <code>LOG_FILE</code> and <code>QUOTES_FILE</code> is pretty self-explanatory as well.  The “./” in <code>LOG_FILE</code> means the current directory.  No need to actually create the log file now; once the program is ran, you will see it created.  </p>
+
+<p>All set? Let’s continue with <a href="/%7Edrafts/networks/part-2/">crafting our quote selector &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+        
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>
