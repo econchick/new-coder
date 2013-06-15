@@ -2,6 +2,7 @@
 layout: post.html
 title: "Save your progress - soft intro to git"
 tags: [save, git, begin, rebase, squash]
+url: /begin/save-your-progress/
 ---
 
 This is an introduction on saving your code the way a developer does – through source control management. [git](http://git-scm.com/downloads) is what is used for these tutorials.
@@ -42,7 +43,7 @@ Here is a sample workflow of making a respository, branching, committing, squash
 
 Within your terminal, we will initialize our repository and get the newcoder code base:
 
-<pre>
+```bash
 ## make a Projects folder and move into that folder (change directories)
 $ mkdir Projects && cd Projects
 ## initialize/create a new git repository
@@ -56,21 +57,21 @@ $ git pull upstream master
 $ git status
 # On branch master
 nothing to commit (working directory clean)
-</pre>
+```
 
 Now, let’s create a branch for our development:
 
-<pre>
+```bash
 ## create a branch to start doing your work for the first tutorial, dataviz
 $ git branch dataviz
 ## switch to the dataviz branch
 $ git checkout dataviz
 ## go ahead and start coding and working.
-</pre>
+```
 
 When you are done for the day, interrupted, or want to save whatever small progress you’ve made, then commit it (save) your progress to your repo. We first have to add the file(s) that you’ve changed so that git knows to track them, then commit with a message for your reference:
 
-<pre>
+```bash
 ## when you need to stop, or when you’ve made some changes you want
 ## to keep, you first add the files for git to track & commit:
 $ git status
@@ -89,11 +90,11 @@ $ git add dataviz/tutorial_source/parse.py
 $ git commit -m "part 1 of dataviz tutorial"
 [master aa2a2e3] part 1 of dataviz tutorial
 1 file changed, 1 insertion(+)
-</pre>
+```
 
 To check your commits, you can see git’s logs:
 
-<pre>
+```bash
 $ git log
 commit aa2a2e301ef11ce27a799988354ea30b7aacb1c9
 Author: Lynn Root <erin.lynn.root@gmail.com>
@@ -112,13 +113,13 @@ Author: Lynn Root <erin.lynn.root@gmail.com>
 Date:   Mon Mar 11 14:48:53 2013 -0700
 
     fixing typo in my code
-</pre>
+```
 
 When you are ready to merge your progress into master (e.g. you’ve finished the whole tutorial), then squash commits via `git rebase` with the `-i` flag for interactive, and `HEAD~3` refers to the last three commits:
 
 You first run this command:
 
-<pre>
+```bash
 $ git rebase -i HEAD~3
 pick 77578d6 fixing typo in my code
 pick f7629fe figured out the graph functions
@@ -138,13 +139,13 @@ pick aa2a2e3 part 1 of dataviz tutorial
 #
 # If you remove a line here THAT COMMIT WILL BE LOST.
 # However, if you remove everything, the rebase will be aborted.
-</pre>
+```
 
 This is a [vi](http://en.wikipedia.org/wiki/Vi) screen (a text editor within the terminal). To use vi, there are [special keys](http://www.howtogeek.com/115051/become-a-vi-master-by-learning-these-30-key-bindings/) to edit and move around. Press `i` to start editing, and move up and down with your keyboard’s arrow keys. 
 
 Notice the `pick` by each of the three commits that you’ve recently done. We will edit the latest two commits to say `squash`.  When done, press the following keys to save: `ESC` + `:` + `w` + `q`+ `Enter`:
 
-<pre>
+```bash
 pick 77578d6 fixing typo in my code
 squash f7629fe figured out the graph functions
 squash aa2a2e3 part 1 of dataviz tutorial
@@ -163,11 +164,11 @@ squash aa2a2e3 part 1 of dataviz tutorial
 #
 # If you remove a line here THAT COMMIT WILL BE LOST.
 # However, if you remove everything, the rebase will be aborted.
-</pre>
+```
 
 Now you will see a new vi screen to edit:
 
-<pre>
+```bash
 # This is a combination of 3 commits.
 # The first commit's message is:
 typo in my code
@@ -188,11 +189,11 @@ part 1 of dataviz tutorial
 #
 #   modified:   dataviz/tutorial_source/parse.py
 #
-</pre>
+```
 
 You can now edit these messages to have one single message. This is essentially rewriting history, so let’s write a meaningful commit message. The lines starting with `#` will be ignored. When done editing, press `ESC` + `:` + `w` + `q` + `Enter`.
 
-<pre>
+```bash
 # This is a combination of 3 commits.
 # The first commit's message is:
 Completed the dataviz tutorial
@@ -205,44 +206,44 @@ Completed the dataviz tutorial
 #
 #   modified:   dataviz/tutorial_source/parse.py
 #
-</pre>
+```
 
 Now you should see a message to the following;
 
-<pre>
+```bash
 Created commit 0fc4eea: Completed the dataviz tutorial
  1 files changed, 14 insertions(+), 13 deletions(-)
 Successfully rebased and updated refs/heads/dataviz.
-</pre>
+```
 
 Ok now that we’ve squashed & rebased our many commits into one, we should merge our progress onto master:
 
-<pre>
+```bash
 $ git checkout master
 $ git merge dataviz
-</pre>
+```
 
 You should now see the one squashed commit in the commit log:
 
-<pre>
+```bash
 $ git log
 commit 90b4bdb388480529b1524b6afedbb0fab0fc4eea
 Author: Lynn Root <erin.lynn.root@gmail.com>
 Date:   Thu Mar 14 10:48:25 2013 -0700
 
     Completed the dataviz tutorial
-</pre>
+```
 
 However, you have not lost the commits you’ve squashed. To see all commits:
 
-<pre>
+```bash
 $ git reflog
 0fc4eea HEAD@{0}: rebase -i (finish): returning to refs/heads/master
 0fc4eea HEAD@{1}: rebase -i (squash): Completed the dataviz tutorial
 aa2a2e3 HEAD@{2}: commit: part 1 of dataviz tutorial
 f7629fe HEAD@{3}: commit: figured out the graph functions
 77578d6 HEAD@{4}: commit: typo in my code
-</pre>
+```
 
 That’s it! You can find another quick tutorial on squashing git commits [here](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html).
 

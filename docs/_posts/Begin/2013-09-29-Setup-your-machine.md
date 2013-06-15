@@ -2,6 +2,7 @@
 layout: post.html
 title: "Setting up your computer"
 tags: [setup, installation, begin]
+url: "/begin/setup-your-machine/"
 ---
 
 All the needed dependencies for setting up your Mac, Linux, or Windows machine for these tutorials.

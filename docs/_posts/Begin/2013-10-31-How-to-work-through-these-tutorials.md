@@ -2,6 +2,7 @@
 layout: post.html
 title: "How to work through these tutorials"
 tags: [begin-intro, begin]
+url: "/begin/how-to-work-through-tutorials/"
 ---
 
 How should a new coder approach these tutorials?

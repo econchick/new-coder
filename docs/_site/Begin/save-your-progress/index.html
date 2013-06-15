@@ -97,209 +97,313 @@
 <p>Here is a sample workflow of making a respository, branching, committing, squashing, then merging into master.</p>
 
 <p>Within your terminal, we will initialize our repository and get the newcoder code base:</p>
-
-<pre>
-## make a Projects folder and move into that folder (change directories)
-$ mkdir Projects && cd Projects
-## initialize/create a new git repository
-$ git init
-## add a reference (a link) to my repository, naming it "upstream"
-$ git remote add upstream https://github.com/econchick/new-coder.git
-## pull in my repo (the master branch) from the above GitHub link into your 
-## repository
-$ git pull upstream master 
-## check the status of your repository
-$ git status
-# On branch master
-nothing to commit (working directory clean)
-</pre>
-
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">## make a Projects folder and move into that folder (change directories)</span>
+<span class="nv">$ </span>mkdir Projects <span class="o">&amp;&amp;</span> <span class="nb">cd </span>Projects
+<span class="c">## initialize/create a new git repository</span>
+<span class="nv">$ </span>git init
+<span class="c">## add a reference (a link) to my repository, naming it &quot;upstream&quot;</span>
+<span class="nv">$ </span>git remote add upstream https://github.com/econchick/new-coder.git
+<span class="c">## pull in my repo (the master branch) from the above GitHub link into your </span>
+<span class="c">## repository</span>
+<span class="nv">$ </span>git pull upstream master 
+<span class="c">## check the status of your repository</span>
+<span class="nv">$ </span>git status
+<span class="c"># On branch master</span>
+nothing to commit <span class="o">(</span>working directory clean<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>Now, let’s create a branch for our development:</p>
-
-<pre>
-## create a branch to start doing your work for the first tutorial, dataviz
-$ git branch dataviz
-## switch to the dataviz branch
-$ git checkout dataviz
-## go ahead and start coding and working.
-</pre>
-
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">## create a branch to start doing your work for the first tutorial, dataviz</span>
+<span class="nv">$ </span>git branch dataviz
+<span class="c">## switch to the dataviz branch</span>
+<span class="nv">$ </span>git checkout dataviz
+<span class="c">## go ahead and start coding and working.</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>When you are done for the day, interrupted, or want to save whatever small progress you’ve made, then commit it (save) your progress to your repo. We first have to add the file(s) that you’ve changed so that git knows to track them, then commit with a message for your reference:</p>
-
-<pre>
-## when you need to stop, or when you’ve made some changes you want
-## to keep, you first add the files for git to track & commit:
-$ git status
-# On branch master
-# Your branch is ahead of 'origin/master' by 4 commits.
-#
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#   modified:   dataviz/tutorial_source/parse.py
-#
-no changes added to commit (use "git add" and/or "git commit -a")
-$ git add dataviz/tutorial_source/parse.py
-## then commit with a message:
-$ git commit -m "part 1 of dataviz tutorial"
-[master aa2a2e3] part 1 of dataviz tutorial
-1 file changed, 1 insertion(+)
-</pre>
-
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">## when you need to stop, or when you’ve made some changes you want</span>
+<span class="c">## to keep, you first add the files for git to track &amp; commit:</span>
+<span class="nv">$ </span>git status
+<span class="c"># On branch master</span>
+<span class="c"># Your branch is ahead of &#39;origin/master&#39; by 4 commits.</span>
+<span class="c">#</span>
+<span class="c"># Changes not staged for commit:</span>
+<span class="c">#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span class="c">#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span class="c">#</span>
+<span class="c">#   modified:   dataviz/tutorial_source/parse.py</span>
+<span class="c">#</span>
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+<span class="nv">$ </span>git add dataviz/tutorial_source/parse.py
+<span class="c">## then commit with a message:</span>
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;part 1 of dataviz tutorial&quot;</span>
+<span class="o">[</span>master aa2a2e3<span class="o">]</span> part 1 of dataviz tutorial
+1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>To check your commits, you can see git’s logs:</p>
-
-<pre>
-$ git log
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git log
 commit aa2a2e301ef11ce27a799988354ea30b7aacb1c9
-Author: Lynn Root <erin.lynn.root@gmail.com>
+Author: Lynn Root &lt;erin.lynn.root@gmail.com&gt;
 Date:   Thu Mar 14 10:48:25 2013 -0700
 
     part 1 of dataviz tutorial
 
 commit f7629fe807a270f4bb67375cf7d3f93b0aab4381
-Author: Lynn Root <erin.lynn.root@gmail.com>
+Author: Lynn Root &lt;erin.lynn.root@gmail.com&gt;
 Date:   Mon Mar 11 14:58:00 2013 -0700
 
-    figured out the graph function
+    figured out the graph <span class="k">function</span>
 
 commit 77578d675dbf0d9f360dc1d3af399538715491c2
-Author: Lynn Root <erin.lynn.root@gmail.com>
+Author: Lynn Root &lt;erin.lynn.root@gmail.com&gt;
 Date:   Mon Mar 11 14:48:53 2013 -0700
 
     fixing typo in my code
-</pre>
-
+</pre></div>
+</td></tr></table></div></div>
 <p>When you are ready to merge your progress into master (e.g. you’ve finished the whole tutorial), then squash commits via <code>git rebase</code> with the <code>-i</code> flag for interactive, and <code>HEAD~3</code> refers to the last three commits:</p>
 
 <p>You first run this command:</p>
-
-<pre>
-$ git rebase -i HEAD~3
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git rebase -i HEAD~3
 pick 77578d6 fixing typo in my code
 pick f7629fe figured out the graph functions
 pick aa2a2e3 part 1 of dataviz tutorial
 
-# Rebase c59a19b..aa2a2e3 onto c59a19b
-#
-# Commands:
-#  p, pick = use commit
-#  r, reword = use commit, but edit the commit message
-#  e, edit = use commit, but stop for amending
-#  s, squash = use commit, but meld into previous commit
-#  f, fixup = like "squash", but discard this commit's log message
-#  x, exec = run command (the rest of the line) using shell
-#
-# These lines can be re-ordered; they are executed from top to bottom.
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-# However, if you remove everything, the rebase will be aborted.
-</pre>
-
+<span class="c"># Rebase c59a19b..aa2a2e3 onto c59a19b</span>
+<span class="c">#</span>
+<span class="c"># Commands:</span>
+<span class="c">#  p, pick = use commit</span>
+<span class="c">#  r, reword = use commit, but edit the commit message</span>
+<span class="c">#  e, edit = use commit, but stop for amending</span>
+<span class="c">#  s, squash = use commit, but meld into previous commit</span>
+<span class="c">#  f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message</span>
+<span class="c">#  x, exec = run command (the rest of the line) using shell</span>
+<span class="c">#</span>
+<span class="c"># These lines can be re-ordered; they are executed from top to bottom.</span>
+<span class="c">#</span>
+<span class="c"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
+<span class="c"># However, if you remove everything, the rebase will be aborted.</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>This is a <a href="http://en.wikipedia.org/wiki/Vi">vi</a> screen (a text editor within the terminal). To use vi, there are <a href="http://www.howtogeek.com/115051/become-a-vi-master-by-learning-these-30-key-bindings/">special keys</a> to edit and move around. Press <code>i</code> to start editing, and move up and down with your keyboard’s arrow keys. </p>
 
 <p>Notice the <code>pick</code> by each of the three commits that you’ve recently done. We will edit the latest two commits to say <code>squash</code>.  When done, press the following keys to save: <code>ESC</code> + <code>:</code> + <code>w</code> + <code>q</code>+ <code>Enter</code>:</p>
-
-<pre>
-pick 77578d6 fixing typo in my code
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre>pick 77578d6 fixing typo in my code
 squash f7629fe figured out the graph functions
 squash aa2a2e3 part 1 of dataviz tutorial
 
-# Rebase c59a19b..aa2a2e3 onto c59a19b
-#
-# Commands:
-#  p, pick = use commit
-#  r, reword = use commit, but edit the commit message
-#  e, edit = use commit, but stop for amending
-#  s, squash = use commit, but meld into previous commit
-#  f, fixup = like "squash", but discard this commit's log message
-#  x, exec = run command (the rest of the line) using shell
-#
-# These lines can be re-ordered; they are executed from top to bottom.
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-# However, if you remove everything, the rebase will be aborted.
-</pre>
-
+<span class="c"># Rebase c59a19b..aa2a2e3 onto c59a19b</span>
+<span class="c">#</span>
+<span class="c"># Commands:</span>
+<span class="c">#  p, pick = use commit</span>
+<span class="c">#  r, reword = use commit, but edit the commit message</span>
+<span class="c">#  e, edit = use commit, but stop for amending</span>
+<span class="c">#  s, squash = use commit, but meld into previous commit</span>
+<span class="c">#  f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message</span>
+<span class="c">#  x, exec = run command (the rest of the line) using shell</span>
+<span class="c">#</span>
+<span class="c"># These lines can be re-ordered; they are executed from top to bottom.</span>
+<span class="c">#</span>
+<span class="c"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
+<span class="c"># However, if you remove everything, the rebase will be aborted.</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>Now you will see a new vi screen to edit:</p>
-
-<pre>
-# This is a combination of 3 commits.
-# The first commit's message is:
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># This is a combination of 3 commits.</span>
+<span class="c"># The first commit&#39;s message is:</span>
 typo in my code
 
-# This is the 2nd commit message:
+<span class="c"># This is the 2nd commit message:</span>
 
 figured out the graph functions
 
-# This is the 3rd commit message:
+<span class="c"># This is the 3rd commit message:</span>
 
 part 1 of dataviz tutorial
 
-# Please enter the commit message for your changes. Lines starting
-# with '#' will be ignored, and an empty message aborts the commit.
-# Not currently on any branch.
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#   modified:   dataviz/tutorial_source/parse.py
-#
-</pre>
-
+<span class="c"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
+<span class="c"># Not currently on any branch.</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span>
+<span class="c">#</span>
+<span class="c">#   modified:   dataviz/tutorial_source/parse.py</span>
+<span class="c">#</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>You can now edit these messages to have one single message. This is essentially rewriting history, so let’s write a meaningful commit message. The lines starting with <code>#</code> will be ignored. When done editing, press <code>ESC</code> + <code>:</code> + <code>w</code> + <code>q</code> + <code>Enter</code>.</p>
-
-<pre>
-# This is a combination of 3 commits.
-# The first commit's message is:
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># This is a combination of 3 commits.</span>
+<span class="c"># The first commit&#39;s message is:</span>
 Completed the dataviz tutorial
 
-# Please enter the commit message for your changes. Lines starting
-# with '#' will be ignored, and an empty message aborts the commit.
-# Not currently on any branch.
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#   modified:   dataviz/tutorial_source/parse.py
-#
-</pre>
-
+<span class="c"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
+<span class="c"># Not currently on any branch.</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span>
+<span class="c">#</span>
+<span class="c">#   modified:   dataviz/tutorial_source/parse.py</span>
+<span class="c">#</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>Now you should see a message to the following;</p>
-
-<pre>
-Created commit 0fc4eea: Completed the dataviz tutorial
- 1 files changed, 14 insertions(+), 13 deletions(-)
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>Created commit 0fc4eea: Completed the dataviz tutorial
+ 1 files changed, 14 insertions<span class="o">(</span>+<span class="o">)</span>, 13 deletions<span class="o">(</span>-<span class="o">)</span>
 Successfully rebased and updated refs/heads/dataviz.
-</pre>
-
+</pre></div>
+</td></tr></table></div></div>
 <p>Ok now that we’ve squashed &amp; rebased our many commits into one, we should merge our progress onto master:</p>
-
-<pre>
-$ git checkout master
-$ git merge dataviz
-</pre>
-
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git checkout master
+<span class="nv">$ </span>git merge dataviz
+</pre></div>
+</td></tr></table></div></div>
 <p>You should now see the one squashed commit in the commit log:</p>
-
-<pre>
-$ git log
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git log
 commit 90b4bdb388480529b1524b6afedbb0fab0fc4eea
-Author: Lynn Root <erin.lynn.root@gmail.com>
+Author: Lynn Root &lt;erin.lynn.root@gmail.com&gt;
 Date:   Thu Mar 14 10:48:25 2013 -0700
 
     Completed the dataviz tutorial
-</pre>
-
+</pre></div>
+</td></tr></table></div></div>
 <p>However, you have not lost the commits you’ve squashed. To see all commits:</p>
-
-<pre>
-$ git reflog
-0fc4eea HEAD@{0}: rebase -i (finish): returning to refs/heads/master
-0fc4eea HEAD@{1}: rebase -i (squash): Completed the dataviz tutorial
-aa2a2e3 HEAD@{2}: commit: part 1 of dataviz tutorial
-f7629fe HEAD@{3}: commit: figured out the graph functions
-77578d6 HEAD@{4}: commit: typo in my code
-</pre>
-
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git reflog
+0fc4eea HEAD@<span class="o">{</span>0<span class="o">}</span>: rebase -i <span class="o">(</span>finish<span class="o">)</span>: returning to refs/heads/master
+0fc4eea HEAD@<span class="o">{</span>1<span class="o">}</span>: rebase -i <span class="o">(</span>squash<span class="o">)</span>: Completed the dataviz tutorial
+aa2a2e3 HEAD@<span class="o">{</span>2<span class="o">}</span>: commit: part 1 of dataviz tutorial
+f7629fe HEAD@<span class="o">{</span>3<span class="o">}</span>: commit: figured out the graph functions
+77578d6 HEAD@<span class="o">{</span>4<span class="o">}</span>: commit: typo in my code
+</pre></div>
+</td></tr></table></div></div>
 <p>That’s it! You can find another quick tutorial on squashing git commits <a href="http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html">here</a>.</p>
 <h3 id="benefit-to-using-github-or-bitbucket">Benefit to using GitHub or BitBucket</h3>
 <p>When you have code up on GitHub and/or BitBucket, not only do they implicitly provide backup to your code in case anything happens to your local machine, but it also is a resume for you as a developer. </p>
