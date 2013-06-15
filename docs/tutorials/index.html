@@ -52,7 +52,7 @@
     {% endfor %}
 </dl>
 <dl class="archives">
-    <h2>Networks</h2>
+    <h2><a href="{{ get_url('networks/') }}">Networks</a></h2>
     {% for post in posts %}
         {% if 'intro-network' in post.tags %}
             <dd>
