@@ -1,0 +1,100 @@
+---
+layout: post.html
+title: "Part 2: Quote Selector"
+tags: [Network]
+url: "/~drafts/networks/part-2/"
+---
+
+Walkthrough of quote selection.
+
+**Module Location:** [new-coder/network/lib/tutorial_source/quotation_selector.py](https://github.com/econchick/new-coder/blob/master/network/lib/tutorial_source/quotation_selector.py)
+
+### Module Setup
+
+We want to select from our list of quotes at random, so we will use the `random` library from Python’s standard library and import the choice function:
+
+```python
+from random import choice
+```
+
+This module does not generate or select quotes at “true” randomness.  The [`random`](http://docs.python.org/2/library/random.html) module in Python generates pseudo-random number based off of the [Mersenne twister](http://en.wikipedia.org/wiki/Mersenne_twister).  The `choice` method uses `random()` to generate a pseudo-random number between 0 and 1, multiply it by the number of items in the list to choose from, and index into the list.
+
+### QuotationSelector class
+
+Next, we need to define the behavior of how we want to select a quote that our bot uses.  We’ll create a class, `class QuotationSelector(object):` with two functions, `__init__` and `select`:
+
+
+```python
+# <--snip-->
+
+class QuotationSelector(object):
+
+    def __init__(self, quotes_filename):
+        """Initialize our QuotationSelector class"""
+        # <--snip-->
+
+    def select(self):
+    	"""Return a random quote."""
+    	# <--snip-->
+```
+
+We will want to initialize our class with the file that we plan to pull a quote from.  If you remember from earlier tutorials, Python has a few keywords and built-in functions for file input/output.  We will open our quote file using the `with` keyword, which will implicitly take care of closing our quote file when we are done with the `with` loop:
+
+```python
+# <--snip-->
+
+def __init__(self, quotes_filename):
+    """Initialize our QuotationSelector class"""
+    with open(quotes_filename) as quotes_file:
+        # <--snip-->
+
+# <--snip-->
+```
+
+Within the `with` keyword, we label the opened file, `open(quotes_filename)` as `quotes_file`.  We will then read each line item in the `quotes_file` (each quote is on its own line) with another built-in function, `readlines`, and assign it to `self.quotes`.  This variable, `self.quotes`, will be accessible to the rest of the `QuotationSelector` class, including our next function, `select`.  
+
+```python
+# <--snip-->
+
+def __init__(self, quotes_filename):
+    """Initialize our QuotationSelector class"""
+    with open(quotes_filename) as quotes_file:
+        self.quotes = quotes_file.readlines()
+
+# <--snip-->
+```
+
+For our `select` function, we will use the `choice` function we imported from `random` to randomly pick a quote from `self.quotes` variable we initialized in `__init__`.  To be safe, we will use a built-in string method, `strip`, to clean up any extraneous blank spaces and null characters that may be before or after the quote itself. 
+
+Rather than creating a variable and assigning it `choice(self.quotes).strip()` and then returning the variable, we simplify it by just returning `choice(self.quotes).strip()`.
+
+```python
+# <--snip-->
+
+def select(self):
+    """Return a random quote."""
+    return choice(self.quotes).strip()
+
+# <--snip-->
+```
+
+The whole `quotation_selector.py` module put together:
+
+```python
+from random import choice
+
+
+class QuotationSelector(object):
+
+    def __init__(self, quotes_filename):
+        """Initialize our QuotationSelector class"""
+        with open(quotes_filename) as quotes_file:
+            self.quotes = quotes_file.readlines()
+
+    def select(self):
+        """Return a random quote."""
+        return choice(self.quotes).strip()
+```
+
+
+That was pretty simple, right?  I hope!  Now let’s move onto the [bot module &rarr;]( {{ get_url("/~drafts/networks/part-3/")}})
