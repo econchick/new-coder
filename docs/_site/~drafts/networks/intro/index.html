@@ -75,50 +75,27 @@
 <p>There are many IRC networks, the most popular in terms of users at peak hours are <a href="http://freenode.net">freenode</a>, <a href="http://www.ircnet.org/">IRCNet</a>, and <a href="http://www.quakenet.org/">QuakeNet</a>.  </p>
 
 <p><a href="http://www.irchelp.org/">IRCHelp</a> is a great resource for learning IRC.  <a href="http://pyladies.com">PyLadies</a> also has a great <a href="http://www.pyladies.com/blog/irc-resources/">introduction on how to setup and use IRC</a>.  Of the Python community, some frequent channels visited are #python, #django, #python-dev, #twisted, and of course, #pyladies, all on Freenode.</p>
+
+<p>For more information, <a href="http://web.mit.edu/jesstess/">Jessica McKellar</a> gave a great talk at PyCon 2013 about <a href="http://pyvideo.org/video/1677/how-the-internet-works">How the Internet Works</a>, with her slides <a href="https://speakerdeck.com/pyconslides/the-internet-by-jessica-mckellar">here</a>. She gives an overview of what happens when you click through your browser, what a protocol is, DNS, and generally how to communicate over the internet.</p>
 <h3 id="intro-to-twisted">Intro to Twisted</h3>
 <p>According to <a href="http://twistedmatrix.com/trac/">Twisted</a>’s website, Twisted is an “event-driven networking engine written in Python”.  OK…what does that mean?</p>
 <h4 id="event-driven-programming">Event-driven programming</h4>
 <p><a href="http://en.wikipedia.org/wiki/Event-driven_programming">Event-driven programming</a> simply means that the flow of the program is determined by events.  Events may be a click of the mouse, a message from another program, a response from a server, etc. The primary activity is a <em>reaction</em> to receiving a certain event(s).</p>
 
-<p>A good description of event-driven programming can be found in an article at <a href="http://www.linuxjournal.com/article/7871">Linux Journal</a> by Ken Kinder:</p>
+<p>Glyph, the author of Twisted, gave a great <a href="http://pyvideo.org/video/1681/so-easy-you-can-even-do-it-in-javascript-event-d">talk on event-driven architecture</a> at PyCon 2013. He describes how to approach thinking about events and callbacks the right way.  Essentially, an event is just a function call that you asked for.  Glyph’s <a href="https://speakerdeck.com/pyconslides/so-easy-you-can-even-do-it-in-javascript-event-driven-architecture-for-regular-programmers-by-glyph?slide=113">slides</a> encapsulates it well: </p>
 
-<blockquote>
-<p>Have you ever been standing in the express lane of a grocery store, buying a single bottle of water, only to have the customer in front of you challenge the price of an item, causing you and everyone behind you to wait five minutes for the price to be verified? </p>
-
-<p>Plenty of explanations of asynchronous programming exist, but I think the best way to understand its benefits is to wait in line with an idle cashier. If the cashier were asynchronous, he or she would put the person in front of you on hold and conduct your transaction while waiting for the price check. Unfortunately, cashiers are seldom asynchronous. </p>
-
-<p>In the world of software, however, event-driven servers make the best use of available resources, because there are no threads holding up valuable memory waiting for traffic on a socket. Following the grocery store metaphor, a threaded server solves the problem of long lines by adding more cashiers, while an asynchronous model lets each cashier help more than one customer at a time.</p>
-</blockquote>
-
-<p>Other paradigms include <a href="http://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented</a>, <a href="http://en.wikipedia.org/wiki/Imperative_programming">imperative</a>, and <a href="http://en.wikipedia.org/wiki/Function-level_programming">function-level</a>.  If you are curious about how to employ different programming paradigms for different problems, check out <a href="%22http://www.amazon.com/gp/product/0262062186/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0262062186&amp;linkCode=as2&amp;tag=roglyn-20%22">How to Design Programs</a>.</p>
+<ul>
+<li>When a user clicks a button, then call this function.</li>
+<li>When a user answers this question, call this function.</li>
+<li>When a network answers a question, call this function.</li>
+<li>When a network sends me data, call this function.</li>
+</ul>
+<h4 id="programming-paradigms">Programming Paradigms</h4>
+<p>Some paradigms include <a href="http://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented</a>, <a href="http://en.wikipedia.org/wiki/Imperative_programming">imperative</a>, and <a href="https://en.wikipedia.org/wiki/Functional_programming">functional</a>, all of which can use event-driven programming. If you are curious about how to employ different programming paradigms for different problems, check out <a href="%22http://www.amazon.com/gp/product/0262062186/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0262062186&amp;linkCode=as2&amp;tag=roglyn-20%22">How to Design Programs</a>.</p>
 <h3 id="intro-to-logging">Intro to Logging</h3>
-<p>Logging is essentially a paper trail for your codebase. For instance, if you transfer money between accounts, there are records of activity. Implementing logging in your code helps you monitor, debug, and develop your application.  </p>
-
-<p>For something simple the following:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Adding two numbers.&quot;</span>
-<span class="n">two</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="k">print</span> <span class="s">&quot;The result is: </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">two</span>
-<span class="k">print</span> <span class="s">&quot;Adding a third number.&quot;</span>
-<span class="n">two</span> <span class="o">+=</span> <span class="mi">3</span>
-<span class="k">print</span> <span class="s">&quot;The new result is: </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">two</span>
-<span class="k">print</span> <span class="s">&quot;Done adding.&quot;</span>
-</pre></div>
-</td></tr></table></div></div>
-<p>print statements are sufficient. But if you were to litter your code with print statements for the following tutorial, it would get way too messy and inefficient.  Also, all <code>print</code> statements go to <a href="http://docs.python.org/2/tutorial/inputoutput.html">stdout</a> (a.k.a standard output, which will feed to your console), which can get cumbersome when data is also printed to stdout.</p>
-
-<p>In this tutorial, we will get familiar with Python’s <code>logging</code> module that comes in the standard library.  With this module, will be able to configure where our logging messages print to (e.g. written/saved to a .log file, to the console, etc).  We will also be able to configure the level in which we log.  Perhaps we only want to see critical errors, or we want to see more verbose logs.</p>
+<p><strong>NOTE</strong> logging module is being ripped out for Twisted’s logging.</p>
 <h3 id="intro-to-testing">Intro to Testing</h3>
-<p>On top of writing a bot for IRC, we’re going to write tests to make sure our bot behaves the way we expect.  We will be writing unit tests, a type of tests where each individual blocks of code (e.g. a function) are tested separately. The goal is to have a test for each function/procedure written, giving you 100% test coverage.</p>
-
-<p>Tests also are another form of documentation (but don’t skip writing documentation!). They reveal the expected behavior of each function/class/module.  Tests should pass when the input is valid, and should not pass when invalid.  </p>
-
-<p>In this tutorial, you will explore the <code>unittest</code> module within Python’s standard library, as well as how to approach writing unit tests for your Python code.</p>
+<p><strong>NOTE</strong> unittest module is being ripped out for Twisted’s testing module.</p>
 <h3 id="approaching-the-tutorial">Approaching the tutorial</h3>
 <p>We will first knock out the simple items by addressing the global variables/settings for our IRC bot.  We’ll then build a quick function to select quotes (a list of quotes can be found in the <a href="https://github.com/econchick/new-coder/blob/master/network/talkback/quotes.txt">GitHub repo</a>).</p>
 
