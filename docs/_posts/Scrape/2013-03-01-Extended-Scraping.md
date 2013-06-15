@@ -2,6 +2,7 @@
 layout: post.html
 title: "Extended"
 tags: [scrape]
+url: "/scrape/extended/"
 ---
 
 Scrapers that are used in real life, and where to go from here.

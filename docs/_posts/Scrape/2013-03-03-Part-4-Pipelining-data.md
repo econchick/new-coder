@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 4: Pipelining Data to Database"
 tags: [scrape]
+url: "/scrape/part-4/"
 ---
 
 Pipelining our scraped data into our Postgres database.
@@ -73,4 +74,4 @@ ITEM_PIPELINES = ['living_social.pipelines.LivingSocialPipeline']
 
 This is the directory/module path to the pipeline we just defined.
 
-[Part 5 puts the project all together &rarr;]( {{ get_url('Part-5-Running-our-scraper')}})
+[Part 5 puts the project all together &rarr;]( {{ get_url("/scrape/part-5/")}})

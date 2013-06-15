@@ -2,13 +2,9 @@
 layout: post.html
 title: "Part 1: Scraper Setup"
 tags: [scrape]
+url: "/scrape/part-1/"
 ---
 
-
-**NOTES**
-Better inheritance example 
-http://stackoverflow.com/questions/575217/whats-a-good-example-for-class-inheritance
-----
 
 Building the scraper setup portion of the tutorial.
 
@@ -76,4 +72,4 @@ LivingSocialDeal(title='$20 off yoga classes', category='health')
 
 The scrapy `Item` class behaves very similar to Python’s dictionaries with the ability to get keys and values.
 
-Now that it’s all setup, let’s [setup our spider &rarr;]({{ get_url('Part-2-Writing-our-Spider')}})
+Now that it’s all setup, let’s [setup our spider &rarr;]({{ get_url("/scrape/part-2/")}})

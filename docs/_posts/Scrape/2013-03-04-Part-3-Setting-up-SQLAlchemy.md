@@ -2,12 +2,8 @@
 layout: post.html
 title: "Part 3: Setting up SQLAlchemy"
 tags: [scrape]
+url: "/scrape/part-3/"
 ---
-
-----
-**NOTES**
-Note that I've made a fix - so may be you should edit smth here. :)
-----
 
 Setting up our data models using SQLAlchemy.
 
@@ -199,4 +195,4 @@ class Deals(DeclarativeBase):
     price = Column('price', String, nullable=True)
 ```
 
-[Part 4 will wrap up with how we pipeline our scraped data to save to our database &rarr;]( {{ get_url('Part-4-Pipelining-data')}})
+[Part 4 will wrap up with how we pipeline our scraped data to save to our database &rarr;]( {{ get_url("/scrape/part-4/")}})

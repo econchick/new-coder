@@ -89,7 +89,7 @@
 
 <span class="kn">from</span> <span class="nn">tutorial.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
 
-<span class="k">class</span> <span class="nc">LivingSOcialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York Page&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;livingsocial&quot;</span>
     <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;livingsocial.com&quot;</span><span class="p">]</span>
@@ -119,7 +119,7 @@
 
 <p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &quot;unstyled cities-items&quot;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>. </p>
 
-<p>Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see <img src="https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png" alt=""> (highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
+<p>Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see <img src="https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png" alt="screenshot"> (highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
 
 <p><strong>NOTE</strong> When scraping your own sites and trying to figure out XPaths, Chrome&#39;s <a href="https://developers.google.com/chrome-developer-tools/">Dev Tools</a> offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x(&quot;//img&quot;). While not explored when writing this tutorial, Firefox has an add-on, <a href="https://addons.mozilla.org/en-us/firefox/addon/firepath/">FirePath</a> that can edit, inspect, and generate XPaths as well.</p>
 
@@ -165,7 +165,7 @@
 17
 18</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York page&quot;&quot;&quot;</span>
-<span class="c"># snip</span>
+<span class="c"># &lt;--snip--&gt;</span>
     <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="n">hxs</span> <span class="o">=</span> <span class="n">HtmlXPathSelector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
@@ -245,7 +245,7 @@
 
 <p>We&#39;ve now implemented our Spider based off of our Items that we are seeking.</p>
 
-<p><a href="/Part-3-Setting-up-SQLAlchemy">Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;</a></p>
+<p><a href="/scrape/part-3/">Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;</a></p>
 
         </div>
     </div>

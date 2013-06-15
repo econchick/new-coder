@@ -141,15 +141,15 @@ You are now connected to database <span class="s2">&quot;scrape&quot;</span> as 
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>crontab -e
 </pre></div>
 </td></tr></table></div></div>
-<p>to edit your crontab file.  This opens up the editor for your cron tab.  Add a line:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh
-</pre></div>
-</td></tr></table></div></div>
+<p>to edit your crontab file.  This opens up the editor for your cron tab.  Add a line: </p>
+
+<p><code>0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh</code></p>
+
 <p>This says that ever day at hour 13 (1pm, relative to your local machine time), run the <code>scrapy.sh</code> script.  To schedule your cron job at a different time, check out Wiki&#39;s <a href="http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions">overview</a>.</p>
 
 <p><strong>NOTE:</strong> The cron job will run automatically for whenever you schedule it to run (in this example, daily at 1pm). But! It will only run when your computer is on (not hibernate/sleep or powered off), and in particular with this script, connected to the internet.  To run the cron job regardless of the state your computer is in, you would host the scraper code + the bash script and cron job on a separate server (either your own, or a company&#39;s) that will always be &#39;on&#39;.  You can host your own cron jobs on <a href="http://openshift.redhat.com">OpenShift</a>.</p>
 
-<p><a href="/Extended-Scraping">Scraping – Extended: &rarr;</a></p>
+<p><a href="/scrape/extended/">Scraping – Extended: &rarr;</a></p>
 
         </div>
     </div>

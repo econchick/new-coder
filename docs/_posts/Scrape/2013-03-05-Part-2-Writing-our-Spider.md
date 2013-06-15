@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 2: Writing our Spider"
 tags: [scrape]
+url: "/scrape/part-2/"
 ---
 
 Writing the spider portion of our scraper.
@@ -20,7 +21,7 @@ from scrapy.spider import BaseSpider
 
 from tutorial.items import LivingSocialDeal
 
-class LivingSOcialSpider(BaseSpider):
+class LivingSocialSpider(BaseSpider):
 	"""Spider for regularly updated livingsocial.com site, New York Page"""
 	name = "livingsocial"
 	allowed_domains = ["livingsocial.com"]
@@ -50,7 +51,7 @@ I mean – look at that mess. We need to give the spider a little guidance.
 
 You see that `deals_list_xpath = '//ul[@class="unstyled cities-items"]/li[@dealid]'` sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their [docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths). But essentially, the `'//ul[@class="unstyled cities-items"]/li[@dealid]'`  is saying: within all `<ul>` elements, if a `<ul class=` is defined as "unstyled cities-items", then go within that `<ul>` element to find `<li>` elements that have a parameter called `dealid`. 
 
-Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for `"unstyled cities-items"` - you will see ![](https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png) (highlighted with the portion of searched text). Scroll a few lines down to see something like `<li dealid="123456">`. BAM! those are where our deals are specifically located on the web site.
+Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for `"unstyled cities-items"` - you will see ![screenshot](https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png) (highlighted with the portion of searched text). Scroll a few lines down to see something like `<li dealid="123456">`. BAM! those are where our deals are specifically located on the web site.
 
 **NOTE** When scraping your own sites and trying to figure out XPaths, Chrome's [Dev Tools](https://developers.google.com/chrome-developer-tools/) offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x("//img"). While not explored when writing this tutorial, Firefox has an add-on, [FirePath](https://addons.mozilla.org/en-us/firefox/addon/firepath/) that can edit, inspect, and generate XPaths as well.
 
@@ -78,7 +79,7 @@ Here’s what our `parse()` function looks like:
 ```python
 class LivingSocialSpider(BaseSpider)
 """Spider for regularly updated livingsocial.com site, New York page"""
-# snip
+# <--snip-->
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
 
@@ -156,4 +157,4 @@ The `yield` keyword is similar to `return`. The `parse()` function, specifically
 
 We've now implemented our Spider based off of our Items that we are seeking.
 
-[Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;]( {{ get_url('Part-3-Setting-up-SQLAlchemy')}})
+[Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;]( {{ get_url("/scrape/part-3/")}})

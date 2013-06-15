@@ -2,6 +2,7 @@
 layout: post.html
 title: "Part 5: Running our Scraper"
 tags: [scrape]
+url: "/scrape/part-5/"
 ---
 
 Putting all the pieces together to scrape our data.
@@ -84,15 +85,13 @@ Next, within your terminal, type:
 ```bash
 $ crontab -e
 ```
-to edit your crontab file.  This opens up the editor for your cron tab.  Add a line:
+to edit your crontab file.  This opens up the editor for your cron tab.  Add a line: 
 
-```cron
-0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh
-```
+`0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh`
 
 This says that ever day at hour 13 (1pm, relative to your local machine time), run the `scrapy.sh` script.  To schedule your cron job at a different time, check out Wiki's [overview](http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions).
 
 **NOTE:** The cron job will run automatically for whenever you schedule it to run (in this example, daily at 1pm). But! It will only run when your computer is on (not hibernate/sleep or powered off), and in particular with this script, connected to the internet.  To run the cron job regardless of the state your computer is in, you would host the scraper code + the bash script and cron job on a separate server (either your own, or a company's) that will always be 'on'.  You can host your own cron jobs on [OpenShift](http://openshift.redhat.com).
 
 
-[Scraping – Extended: &rarr;]({{ get_url("/Extended-Scraping")}})
+[Scraping – Extended: &rarr;]({{ get_url("/scrape/extended/")}})

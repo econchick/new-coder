@@ -32,7 +32,7 @@
 
 </script>
     
-    <title>Tutorial &rsaquo; intro-scrape &ndash; New Coder</title>
+    <title>Part 0: Setup &ndash; New Coder</title>
 </head>
 
 <body>
@@ -55,21 +55,45 @@
 
         <div id="content">
             
-    <h2>Tutorials</h2>
-    
-        <dl class="archives">
-            <dt><a href="/archives/2013/">intro-scrape</a></dt>
-            <dd>
-                <dl>
-                    
-                        
-                            <dd><a href="/scrape/intro/">Introduction to Web Scraping using Scrapy and PostGres - Your favorite website doesn’t have an API? Web scraping is a great alternative to grabbing the data you want.</a></dd>
-                        
-                    
-                </dl>
-            </dd>
-        </dl>
-    
+    <div class="item">
+        <div class="header">
+            <h2>Part 0: Setup</h2>
+        </div>
+        
+        <div class="body">
+            <p>Initial setup of your scraper environment.</p>
+<h3 id="setup">Setup</h3>
+<p><strong>IMPORTANT</strong>: Please be sure to work through the <a href="/setup-your-machine">machine setup</a> before proceeding.</p>
+
+<p>Within your terminal:</p>
+
+<ul>
+<li>Change into the Web Scraping project.</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>new-coder/scrape
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Make sure you’ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> and followed the steps above from Initial Requirements above to set up your terminal correctly.  More information can be find at virtualenvwrapper’s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>. </li>
+<li>Make a virtual environment specific to your Scrape project:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv ScrapeProj
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>You should see <code>(ScrapeProj)</code> before your prompt. Now install package requirements with the following command for this project. </li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+</ul>
+
+<p><a href="/scrape/part-1/">Continue on to Part 1: Scraper Setup &rarr;</a></p>
+
+        </div>
+    </div>
 
         </div>
         
