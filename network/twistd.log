@@ -1,0 +1,4 @@
+2013-06-15 17:45:31+0200 [-] Log opened.
+2013-06-15 17:45:31+0200 [-] twistd 12.0.0 (/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python 2.7.2) starting up.
+2013-06-15 17:45:31+0200 [-] reactor class: twisted.internet.selectreactor.SelectReactor.
+2013-06-15 17:45:31+0200 [-] Starting factory <talkback.bot.TalkBackBotFactory instance at 0x10d054560>
