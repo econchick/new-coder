@@ -1,72 +1,81 @@
-import logging
+# -*- test-case-name: tests.test_talkbackbot -*-
 
+from twisted.internet import protocol
+from twisted.python import log
 from twisted.words.protocols import irc
-from twisted.internet import reactor, protocol
-
-from quotation_selector import QuotationSelector
 
 
 class TalkBackBot(irc.IRCClient):
-
     def connectionMade(self):
+        self.nickname = self.factory.nickname
+        self.realname = self.factory.realname
         irc.IRCClient.connectionMade(self)
-        logging.info("connectionMade")
+        log.msg("connectionMade")
 
     def connectionLost(self, reason):
         irc.IRCClient.connectionLost(self, reason)
-        logging.info("connectionLost")
+        log.msg("connectionLost {!r}".format(reason))
 
     # callbacks for events
 
     def signedOn(self):
-        """Called when bot has successfully signed on to server."""
-        logging.info("Signed on")
+        """
+        Called when bot has successfully signed on to server.
+        """
+        log.msg("Signed on")
+        if self.nickname != self.factory.nickname:
+            log.msg('Your nickname was already occupied, actual nickname is '
+                    '"{}".'.format(self.nickname))
         self.join(self.factory.channel)
 
     def joined(self, channel):
-        """This will get called when the bot joins the channel."""
-        logging.info("[%s has joined %s]"
-            % (self.nickname, self.factory.channel))
+        """
+        Called when the bot joins the channel.
+        """
+        log.msg("[{nick} has joined {channel}]"
+                .format(nick=self.nickname, channel=self.factory.channel,))
 
     def privmsg(self, user, channel, msg):
-        """This will get called when the bot receives a message."""
-        
-        trigger_found = False
-        send_to = channel
-        if self.factory.settings.NICKNAME.startswith(channel) or \
-                channel.startswith(self.factory.settings.NICKNAME):
-            trigger_found = True
-            send_to = user.split('!')[0]
+        """
+        Called when the bot receives a message.
+        """
+        sendTo = None
+        prefix = ''
+        senderNick = user.split('!', 1)[0]
+        if channel == self.nickname:
+            # /MSG back
+            sendTo = senderNick
+        elif msg.startswith(self.nickname):
+            # Reply back on the channel
+            sendTo = channel
+            prefix = senderNick + ': '
         else:
-            for trigger in self.factory.settings.TRIGGERS:
-                if msg.lower().find(trigger) >= 0:
-                    trigger_found = True
+            msg = msg.lower()
+            for trigger in self.factory.triggers:
+                if msg in trigger:
+                    sendTo = channel
+                    prefix = senderNick + ': '
                     break
 
-        if trigger_found:
-            quote = self.factory.quotation.select()
-            self.msg(send_to, quote)
-            logging.info("sent message to %s:\n\t%s" % (send_to, quote))
+        if sendTo:
+            quote = self.factory.quotes.pick()
+            self.msg(sendTo, prefix + quote)
+            log.msg(
+                "sent message to {receiver}, triggered by {sender}:\n\t{quote}"
+                .format(receiver=sendTo, sender=senderNick, quote=quote)
+            )
 
 
 class TalkBackBotFactory(protocol.ClientFactory):
+    protocol = TalkBackBot
 
-    def __init__(self, settings):
-        self.settings = settings
-        self.channel = self.settings.CHANNEL
-        self.quotation = QuotationSelector(self.settings.QUOTES_FILE)
-
-    def buildProtocol(self, addr):
-        bot = TalkBackBot()
-        bot.factory = self
-        bot.nickname = self.settings.NICKNAME
-        bot.realname = self.settings.REALNAME
-        return bot
+    def __init__(self, channel, nickname, realname, quotes, triggers):
+        self.channel = channel
+        self.nickname = nickname
+        self.realname = realname
+        self.quotes = quotes
+        self.triggers = triggers
 
     def clientConnectionLost(self, connector, reason):
-        logging.info("connection lost, reconnecting")
+        log.msg("connection lost, reconnecting: {!r}".format(reason))
         connector.connect()
-
-    def clientConnectionFailed(self, connector, reason):
-        logging.info("connection failed: %s" % (reason))
-        reactor.stop()

@@ -1,2 +1,5 @@
 *.pyc
 .idea
+.coverage
+htmlcov
+settings.ini
