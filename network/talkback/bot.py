@@ -75,7 +75,3 @@ class TalkBackBotFactory(protocol.ClientFactory):
         self.realname = realname
         self.quotes = quotes
         self.triggers = triggers
-
-    def clientConnectionLost(self, connector, reason):
-        log.msg("connection lost, reconnecting: {!r}".format(reason))
-        connector.connect()
