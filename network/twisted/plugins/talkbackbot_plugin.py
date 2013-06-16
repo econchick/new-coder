@@ -19,25 +19,44 @@ class Options(usage.Options):
 class TalkBackBotService(Service):
     _bot = None
 
-    def __init__(self, client, factory):
-        self._client = client
-        self._factory = factory
+    def __init__(self, endpoint, channel, nickname, realname, quotesFilename,
+                 triggers):
+        self._endpoint = endpoint
+        self._channel = channel
+        self._nickname = nickname
+        self._realname = realname
+        self._quotesFilename = quotesFilename
+        self._triggers = triggers
 
     def startService(self):
+        """
+        Construct a client & connect to server.
+        """
+        from twisted.internet import reactor
+
         def connected(bot):
             self._bot = bot
 
         def failure(err):
             log.err(err, _why='Could not connect to specified server.')
-            from twisted.internet import reactor
             reactor.stop()
 
-        return (
-            self._client.connect(self._factory)
-            .addCallbacks(connected, failure)
+        quotes = QuotePicker(self._quotesFilename)
+        client = clientFromString(reactor, self._endpoint)
+        factory = TalkBackBotFactory(
+            self._channel,
+            self._nickname,
+            self._realname,
+            quotes,
+            self._triggers,
         )
 
+        return client.connect(factory).addCallbacks(connected, failure)
+
     def stopService(self):
+        """
+        Disconnect.
+        """
         if self._bot and self._bot.transport.connected:
             self._bot.transport.loseConnection()
 
@@ -50,9 +69,8 @@ class BotServiceMaker(object):
 
     def makeService(self, options):
         """
-        Construct the talkbackbot TCP client
+        Construct the talkbackbot service.
         """
-        from twisted.internet import reactor
         config = ConfigParser()
         config.read([options['config']])
         triggers = [
@@ -61,17 +79,14 @@ class BotServiceMaker(object):
             in config.get('talkback', 'triggers').split('\n')
             if trigger.strip()
         ]
-        quotes = QuotePicker(config.get('talkback', 'quotesFile'))
 
         return TalkBackBotService(
-            clientFromString(reactor, config.get('irc', 'endpoint')),
-            TalkBackBotFactory(
-                config.get('irc', 'channel'),
-                config.get('irc', 'nickname'),
-                config.get('irc', 'realname'),
-                quotes,
-                triggers
-            )
+            endpoint=config.get('irc', 'endpoint'),
+            channel=config.get('irc', 'channel'),
+            nickname=config.get('irc', 'nickname'),
+            realname=config.get('irc', 'realname'),
+            quotesFilename=config.get('talkback', 'quotesFilename'),
+            triggers=triggers,
         )
 
 # Now construct an object which *provides* the relevant interfaces
