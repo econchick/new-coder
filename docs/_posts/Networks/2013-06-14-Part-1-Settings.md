@@ -58,4 +58,4 @@ triggers =
 ```
 
 
-All set? Let’s continue with [crafting our quote selector &rarr;]( {{ get_url("/~drafts/networks/part-2/")}})
+All set? Let’s continue with [crafting our quote picker class &rarr;]( {{ get_url("/~drafts/networks/part-2/")}})
