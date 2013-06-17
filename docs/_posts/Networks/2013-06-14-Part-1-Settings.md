@@ -9,56 +9,53 @@ Define our settings for our IRC bot.
 
 ### Module setup
 
-If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are global variables.  
+If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are constant variables.  
 
-For our `settings.py` module, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use.
+For our `settings.ini` file, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use. [ini files](http://en.wikipedia.org/wiki/INI_file) is just an informal standard for configurations.  If you look at [settings.ini.EXAMPLE](https://github.com/econchick/new-coder/blob/master/network/settings.ini.EXAMPLE), you’ll see two sections: `[irc]` and `[talkback]`. The `[irc]` segment defines the configuration for connecting to an IRC server, while the `[talkback]` section is configuration information specific to our bot.  It’s good to group like-settings and configurations together for easy readability and management.
 
 First, our connection-specific settings:
 
 
-```python
-# IRC settings
-HOST = "irc.freenode.net"
-PORT = 6667
-USE_SSL = False
-CHANNEL = "#newcoder"
+```
+[irc]
+endpoint = ssl:host=irc.freenode.net:port=7000
+nickName = whatshereallysaid
+realName = bot: provides quotations from notable women
+
+channel = #newcoder
 ```
 
-The `HOST` identifies which network we want to connect to.  You may remember from the [introduction]( {{ get_url("/networks/intro/")}}) that there are many IRC networks.  You can see that for our bot, we are electing to connect to [Freenode](http://freenode.net).
+The `endpoint` identifies which network we want to connect to.  You may remember from the [introduction]( {{ get_url("/networks/intro/")}}) that there are many IRC networks.  You can see that for our bot, we are electing to connect to [Freenode](http://freenode.net).
 
-It’s not enough just to identify the `HOST`, or hostname, of the network we want to connect to.  We also need to declare the `PORT` we want to go through at the `HOST`.  There are conventions about which types of services use which ports.  Ports can range from 1 through 65535, but about 250 are reserved by convention for certain processes/protocols.  For instance, by default, HTTP uses port 80, and HTTPS uses 443.  POP listens on port 110, SMTP on 25, and IMAP on 143.  Here, freenode makes port 6667 available to bind to for IRC.
+The `ssl` means we want to connect over [SSL](http://en.wikipedia.org/wiki/Transport_Layer_Security) creating a secure connection.  If we didn’t want an SSL connection, we would replace `ssl` with `tcp`. 
 
-`USE_SSL` is a boolean that if true, will connect to the `HOST` over an [SSL](http://en.wikipedia.org/wiki/Transport_Layer_Security) connection.  SSL is designed to provide security when communicating over the internet and prevent eavesdropping and tampering. 
+`host` connects to the IRC network we want, in this case: `irc.freenode.net`.  For freenode, the ports to connect to for SSL connections are 6697, 7000, and 7070.  If we were connecting via `tcp` rather than `ssl`, we could select either 6665, 6666, or 6667 (there are some [others](http://freenode.net/irc_servers.shtml), too).  Notice the port depends on type of connection, either SSL or TCP, which is typical of other protocols too (e.g. HTTP listens over 80, while HTTPS listens over 443).
 
-Lastly, the `CHANNEL` variable, a string that needs to start with `#`. This is the channel that the bot will join when connecting to Freenode.
+The bot’s `nickName` will show when it’s connected to Freenode, and its `realName` will show when a user queries or requests more information about the bot itself (e.g. with the command, `/whois whatshereallysaid` within a chat window).
+
+Lastly, the `channel` variable, a string that needs to start with `#`. This is the channel that the bot will join when connecting to Freenode.  By default, I have `#newcoder`, which you are welcome to test your IRC bots in when it comes time. 
 
 
 Next, our bot-specific settings:
 
 ```
-# Bot settings
-NICKNAME = "whatshereallysaid"
-REALNAME = "bot: provides quotations from notable women"
-```
-
-This is pretty self-explanatory.  The bot’s `NICKNAME` will show when it’s connected to Freenode, and its `REALNAME` will show when a user queries or requests more information about the bot itself (e.g. with the command, `/whois whatshereallysaid` within a chat window).
-
-Now the last few global variables:
-
-```python
+[talkback]
+quotesFile = quotes.txt
 # Trigger phrases, in lowercase
-TRIGGERS = (
-    "that's what she said",
-    )
-
-# Process settings
-LOG_FILE = "./talkbackbot.log"
-QUOTES_FILE = "talkback/quotes.txt"
+triggers =
+    that's what she said
 ```
 
-The `TRIGGERS` is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.
+The `quotesFile` is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the `quotesFile`, you could but in a relative path, `../otherQuotesFile.txt`, or absolute path, `/Users/lynnroot/quotesForBots/otherQuotesFile.txt`.
 
-The `LOG_FILE` and `QUOTES_FILE` is pretty self-explanatory as well.  The “./” in `LOG_FILE` means the current directory.  No need to actually create the log file now; once the program is ran, you will see it created.  
+The `triggers` is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.  If you wanted to add another trigger, just add another line indented by 4 spaces, like so:
+
+```
+triggers =
+    that's what she said
+    that is what she said
+    that is what she said!!!
+```
 
 
 All set? Let’s continue with [crafting our quote selector &rarr;]( {{ get_url("/~drafts/networks/part-2/")}})
