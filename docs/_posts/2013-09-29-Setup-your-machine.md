@@ -18,7 +18,7 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 The installation will depend on your operating system, but overall, you will need:
 
 * Python 2.x – there are [plans][1] to update/include Python 3.x
-* git – an intro given [here]("http://newcoder.io/Save-your-progress")
+* git – an intro given [here](http://newcoder.io/Save-your-progress)
 * A C compiler
 * pip
 * virtualenv
@@ -40,7 +40,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 [Python.org][3] has a good [Python on the Mac][4] page if the above does not work for you.
 
 ### git
-You will need to install [git][5] on your machine through their [download page][6]. You can then follow the [Save your Progress]("http://newcoder.io/Save-your-progress") page to set it up.
+You will need to install [git][5] on your machine through their [download page][6]. You can then follow the [Save your Progress](http://newcoder.io/Save-your-progress) page to set it up.
 
 ### C compiler
 
@@ -99,7 +99,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 ### git
-You will need to install [git][5] either from commands below or through their [download page][6]. You can then follow the [Save your Progress]("http://newcoder.io/Save-your-progress") page to set it up.
+You will need to install [git][5] either from commands below or through their [download page][6]. You can then follow the [Save your Progress](http://newcoder.io/Save-your-progress) page to set it up.
 
 * Fedora: `sudo yum git`
 * Ubuntu: `sudo apt-get install git`
@@ -187,15 +187,15 @@ Success! You have installed Python!
 
 ### git
 
-Download git [here]("http://git-scm.com/download/win").
+Download git [here](http://git-scm.com/download/win).
 
 ### C Compiler
 
-Download the MinGW GCC compiler [here]("http://sourceforge.net/projects/mingw/files/latest/download?source=files") and follow installation instructions [here]("http://www.mingw.org/wiki/InstallationHOWTOforMinGW").
+Download the MinGW GCC compiler [here](http://sourceforge.net/projects/mingw/files/latest/download?source=files) and follow installation instructions [here](http://www.mingw.org/wiki/InstallationHOWTOforMinGW).
 
 ### virtualenv + pip
 
-1. From [here]("http://pypi.python.org/pypi/virtualenv"), under Installation, see “You can just grab the single file virtualenv.py ..”. Right-click and save-as and place in the Scripts folder that we earlier added to system PATH.
+1. From [here](http://pypi.python.org/pypi/virtualenv), under Installation, see “You can just grab the single file virtualenv.py ..”. Right-click and save-as and place in the Scripts folder that we earlier added to system PATH.
 2. From the command line, `cd` into the directory that you want to save your Python work. **IMPORTANT TIP**: Do not create or use a directory that has spaces in the name. For instance, ‘Python Projects’ is not good, but ‘PythonProjects’ is fine.
 3. Within your Python project directory, type: `virtualenv.py dataviz`. A virtual environment called “dataviz” has been created, and now lives in your Python projects directory. This also installs pip: pip is a tool that is used to install Python packages
 4. You will now need to activate the virtual environment by typing in your command line: `dataviz\Scripts\activate.bat`.  You should see something like this:  `(dataviz) C:\PythonProjects>`
@@ -358,7 +358,7 @@ django==1.5
 		* within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
 		* within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
 
-You’re good to go with your setup! Go start on [dataviz]("http://newcoder.io/dataviz")!
+You’re good to go with your setup! Go start on [dataviz](http://newcoder.io/dataviz)!
 
 [1]: https://github.com/econchick/new-coder/issues/28
 [2]: http://www.python.org/images/terminal-in-finder.png
