@@ -1,2 +1,8 @@
 *.pyc
 .idea
+
+docs/.DS_Store
+
+docs/_posts/.DS_Store
+
+docs/_posts/.DS_Store

@@ -4,3 +4,13 @@ INFO:root:sent message to #newcoder:
 	Tonight, the daughter of an immigrant from Italy has been chosen to run for vice president in the new land my father came to love. ~ Geraldine Ferraro
 INFO:root:sent message to #newcoder:
 	The strokes of the pen need deliberation as much as the sword needs swiftness. ~ Julia Ward Howe
+INFO:root:connectionLost
+INFO:root:connection lost: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion.
+], reconnecting
+INFO:root:connectionMade
+INFO:root:Signed on
+INFO:root:connectionLost
+INFO:root:connection lost: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion.
+], reconnecting
+INFO:root:connectionMade
+INFO:root:Signed on

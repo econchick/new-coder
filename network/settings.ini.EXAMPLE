@@ -1,0 +1,12 @@
+[irc]
+endpoint = ssl:host=irc.freenode.net:port=7000
+nickName = whatshereallysaid
+realName = bot: provides quotations from notable women
+
+channel = #channel_name
+
+[talkback]
+quotesFilename = quotes.txt
+# Trigger phrases, in lowercase
+triggers =
+    that's what she said

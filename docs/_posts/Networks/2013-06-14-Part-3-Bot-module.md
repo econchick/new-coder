@@ -12,7 +12,13 @@ Writing our `bot.py` module.
 
 Then we will import selected modules from Twisted.  There’s no expectation that you would know which modules from Twisted to import; this is just an introduction to the package’s vast capabilities in Networking.  In this package, we are taking advantage of Twisted’s `log` module for logging rather than using Python’s `logging` module, `protocol` module to create our bot factory (to be explain), as well as leverage Twisted’s `irc` module so we don’t reinvent the wheel.
 
+<<<<<<< Updated upstream
 Note that the order of import statements are alphabetical per [PEP-8](http://www.python.org/dev/peps/pep-0008/), Python’s style guide.
+=======
+Our last import will be the `QuotationSelector` class we wrote in our custom module, `quotation_selector`. 
+
+Note the order of the import statements: standard library, third-party packages, then self-written modules, each alphabetical order within the three groupings.  The convention of ordering import statements this way is defined in Python’s style guide, [PEP-8](http://www.python.org/dev/peps/pep-0008/#imports).
+>>>>>>> Stashed changes
 
 ```python
 from twisted.internet import protocol
