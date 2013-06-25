@@ -1,8 +1,14 @@
 *.pyc
 .idea
+<<<<<<< Updated upstream
 
 docs/.DS_Store
 
 docs/_posts/.DS_Store
 
 docs/_posts/.DS_Store
+=======
+.coverage
+htmlcov
+settings.ini
+>>>>>>> Stashed changes

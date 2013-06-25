@@ -4,7 +4,7 @@ layout: post.html
 tags: [irc, network, networks]
 url: "/~drafts/networks/intro/"
 ---
-## Intro
+
 
 ### The Project
 
@@ -49,13 +49,61 @@ Some paradigms include [object-oriented](http://en.wikipedia.org/wiki/Object-ori
 ### Intro to Logging
 
 
-**NOTE** logging module is being ripped out for Twisted’s logging.
+Logging is quite important for applications.  Transferring money, the black box on an airplane, cell phone bills - they all log actions to be referenced and checked later. As such, logging is quite important for developing, debugging, maintaining, and running systems and applications.
+
+There is the `logging` module in Python’s standard library, and a great [how-to](http://docs.python.org/2/howto/logging-cookbook.html) write up for the `logging` module.
+
+But Twisted has its own logging module, `log`. The initial reason that Twisted doesn’t use the `logging` module from the Python standard library is that the Twisted logging module predates the stdlib one.  There are many reasons that Twisted hasn’t moved to the stdlib logging module which you can read [here](http://twistedmatrix.com/trac/wiki/TwistedLogging).
+
+You may start out simply adding `print` statements to your application, but this isn’t ideal for anything beyond a very basic script.  `print` does not allow you to set up different importance levels, e.g. `DEBUG`, `INFO`, `WARN`, `ERROR`, `CRITICAL`, or `FAIL`; it's an all or nothing with `print`.
+
+Identifying which level of importance to log a message at can get some getting use to.  Use the `debug` level for granular information, such as printing out variables that change within a for-loop:
+
+```python
+def some_awesome_function(items):
+    for i, item in enumerate(items):
+        # do some complex computation/iteration
+        logger.debug('%s iteration, item=%s', i, item)
+```
+
+Use `info` for routines and such, like starting or connecting to a server:
+
+```python
+def start_IMAP_service():
+    logger.info('Starting IMAP service at port %s ...', port)
+    service.start()
+    logger.info('IMAP Service is started')
+```
+
+Use `warn` for important events happen, but no error has occurred, like a password that was incorrectly inputted.  Finally, use `error` for when an exception is thrown, user isn’t found in the database, connectivity issue, etc.  As the admin of an application with a logging mechanism, you would setup your desired level of logs in some configuration for instance, if you only want to see errors, you would ideally set a configuration value to something like `debug_level=error`. 
+
+These above examples use Python’s `logging` module.  For our tutorial, we’ll use Twisted’s `log` module, which has slightly different syntax when passing in log levels.
 
 
 ### Intro to Testing
 
-**NOTE** unittest module is being ripped out for Twisted’s testing module.
+Very similar to logging, testing is also quite important for your code base.  Writing tests in parallel to writing code is considered good habit.  Submitting features and patches to projects without tests can be a big faux-pas. 
 
+There are different types of testing, and with this tutorial we will focus on unit testing.
+
+A unit test just focuses on one tiny bit of functionality to prove it correct, and should be independent of other unit tests.
+
+An example of a unit test using Pythons `unittest` module, taken from [python-guide.org](http://docs.python-guide.org/en/latest/writing/tests.html#unittest):
+
+```python
+import unittest
+
+def fun(x):
+    return x + 1
+
+class MyTest(unittest.TestCase):
+    def test(self):
+        self.assertEqual(fun(3), 4)
+```
+
+The main part here is `assertEqual(fun(3), 4)`, where we feed `fun` the number `3`.  The test will pass if the return value of `fun(3) == 4`, else it will fail.
+
+We will be using Twisted’s own unit testing framework that is built upon Python’s `unittest` module with the added ability to test event-driven code.
 
 ### Approaching the tutorial
 

@@ -62,22 +62,21 @@
         
         <div class="body">
             <p>Initial setup for our Network/IRC Bot Tutorial.</p>
-
-<p><strong>TODO</strong>: not reviewed/complete</p>
 <h3 id="setup">Setup</h3>
 <p><strong>IMPORTANT</strong>: Please be sure to work through the <a href="/setup-your-machine">machine setup</a> before proceeding.</p>
 
 <p>Within your terminal:</p>
 
-<ul>
-<li><code>$ cd</code> to get to your &#39;Home&#39; directory</li>
-<li><code>$ mkdir Projects &amp;&amp; cd Projects</code> to create a new &#39;Projects&#39; folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is.</li>
-<li><code>$ git clone https://github.com/econchick/new-coder.git</code> This clones the New Coder project into the directory you&#39;re currently in, which is Projects (unless you named it something else).</li>
-<li><code>$ cd new-coder/network</code> Change into the Data Viz project.</li>
-<li>Make sure you&#39;ve installed <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> to set up your Terminal correctly.  More information can be find at virtualenv-wrapper&#39;s <a href="http://virtualenvwrapper.readthedocs.org/en/latest/">docs</a>.</li>
-<li><code>$ mkvirtualenv NetworkProj</code> Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.</li>
-<li><code>(NetworkProject) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
-</ul>
+<ol>
+<li><code>cd</code> to get to your “Home” directory</li>
+<li>If you haven’t already made a <code>Projects</code> folder for your new coder projects (or perhaps named it something else), then: <code>$ mkdir Projects</code> to create a new &#39;Projects&#39; folder. You can name it whatever you want, just remember what you named it, and where it is.</li>
+<li>Move into your <code>Projects</code> directory (or whatever you named it to): <code>cd Projects</code>.</li>
+<li>If you haven’t already cloned the repo, then <code>$ git clone https://github.com/econchick/new-coder.git</code>. This clones the New Coder project into the directory you&#39;re currently in, which is Projects (unless you named it something else).</li>
+<li><code>$ cd new-coder/network</code> Change into the Network tutorial.</li>
+<li> If you have <a href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenv-wrapper</a> and followed the steps above from <a href="#initial-requirements">Initial Requirements</a> installed (which you should if you are on <strong>Mac</strong> or <strong>Linux</strong>, follow <a href="/setup-your-machine">machine setup</a> if not): <code>$ mkvirtualenv NetworkProj</code> Make a virtual environment specific to your Data Viz project. You should see <code>(NetworkProj)</code> before your prompt, now.</li>
+<li>If you have <strong>Windows</strong>, within your Python project directory, type:  <code>virtualenv.py NetworkProj</code>. A virtual environment called “NetworkProj” will be started.  Now you will need to activate it, type: <code>NetworkProj\Scripts\activate.bat</code> and you’ll see something like <code>(NetworkProj) C:\PythonProjects&gt;</code></li>
+<li><code>(NetworkProj) $ pip install -r requirements.txt</code> Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.</li>
+</ol>
 
 <p>Now you’re ready to move onto <a href="/%7Edrafts/networks/part-1/">defining our bot settings &rarr;</a></p>
 

@@ -63,60 +63,44 @@
         <div class="body">
             <p>Define our settings for our IRC bot.</p>
 <h3 id="module-setup">Module setup</h3>
-<p>If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are global variables.  </p>
+<p>If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are constant variables.  </p>
 
-<p>For our <code>settings.py</code> module, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use.</p>
+<p>For our <code>settings.ini</code> file, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use. <a href="http://en.wikipedia.org/wiki/INI_file">ini files</a> is just an informal standard for configurations.  If you look at <a href="https://github.com/econchick/new-coder/blob/master/network/settings.ini.EXAMPLE">settings.ini.EXAMPLE</a>, you’ll see two sections: <code>[irc]</code> and <code>[talkback]</code>. The <code>[irc]</code> segment defines the configuration for connecting to an IRC server, while the <code>[talkback]</code> section is configuration information specific to our bot.  It’s good to group like-settings and configurations together for easy readability and management.</p>
 
 <p>First, our connection-specific settings:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># IRC settings</span>
-<span class="n">HOST</span> <span class="o">=</span> <span class="s">&quot;irc.freenode.net&quot;</span>
-<span class="n">PORT</span> <span class="o">=</span> <span class="mi">6667</span>
-<span class="n">USE_SSL</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">CHANNEL</span> <span class="o">=</span> <span class="s">&quot;#newcoder&quot;</span>
-</pre></div>
-</td></tr></table></div></div>
-<p>The <code>HOST</code> identifies which network we want to connect to.  You may remember from the <a href="/networks/intro/">introduction</a> that there are many IRC networks.  You can see that for our bot, we are electing to connect to <a href="http://freenode.net">Freenode</a>.</p>
+<pre><code>[irc]
+endpoint = ssl:host=irc.freenode.net:port=7000
+nickName = whatshereallysaid
+realName = bot: provides quotations from notable women
 
-<p>It’s not enough just to identify the <code>HOST</code>, or hostname, of the network we want to connect to.  We also need to declare the <code>PORT</code> we want to go through at the <code>HOST</code>.  There are conventions about which types of services use which ports.  Ports can range from 1 through 65535, but about 250 are reserved by convention for certain processes/protocols.  For instance, by default, HTTP uses port 80, and HTTPS uses 443.  POP listens on port 110, SMTP on 25, and IMAP on 143.  Here, freenode makes port 6667 available to bind to for IRC.</p>
+channel = #newcoder
+</code></pre>
+<p>The <code>endpoint</code> identifies which network we want to connect to.  You may remember from the <a href="/networks/intro/">introduction</a> that there are many IRC networks.  You can see that for our bot, we are electing to connect to <a href="http://freenode.net">Freenode</a>.</p>
 
-<p><code>USE_SSL</code> is a boolean that if true, will connect to the <code>HOST</code> over an <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a> connection.  SSL is designed to provide security when communicating over the internet and prevent eavesdropping and tampering. </p>
+<p>The <code>ssl</code> means we want to connect over <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a> creating a secure connection.  If we didn’t want an SSL connection, we would replace <code>ssl</code> with <code>tcp</code>. </p>
 
-<p>Lastly, the <code>CHANNEL</code> variable, a string that needs to start with <code>#</code>. This is the channel that the bot will join when connecting to Freenode.</p>
+<p><code>host</code> connects to the IRC network we want, in this case: <code>irc.freenode.net</code>.  For freenode, the ports to connect to for SSL connections are 6697, 7000, and 7070.  If we were connecting via <code>tcp</code> rather than <code>ssl</code>, we could select either 6665, 6666, or 6667 (there are some <a href="http://freenode.net/irc_servers.shtml">others</a>, too).  Notice the port depends on type of connection, either SSL or TCP, which is typical of other protocols too (e.g. HTTP listens over 80, while HTTPS listens over 443).</p>
+
+<p>The bot’s <code>nickName</code> will show when it’s connected to Freenode, and its <code>realName</code> will show when a user queries or requests more information about the bot itself (e.g. with the command, <code>/whois whatshereallysaid</code> within a chat window).</p>
+
+<p>Lastly, the <code>channel</code> variable, a string that needs to start with <code>#</code>. This is the channel that the bot will join when connecting to Freenode.  By default, I have <code>#newcoder</code>, which you are welcome to test your IRC bots in when it comes time. </p>
 
 <p>Next, our bot-specific settings:</p>
-<pre><code># Bot settings
-NICKNAME = &#34;whatshereallysaid&#34;
-REALNAME = &#34;bot: provides quotations from notable women&#34;
+<pre><code>[talkback]
+quotesFile = quotes.txt
+# Trigger phrases, in lowercase
+triggers =
+    that&#39;s what she said
 </code></pre>
-<p>This is pretty self-explanatory.  The bot’s <code>NICKNAME</code> will show when it’s connected to Freenode, and its <code>REALNAME</code> will show when a user queries or requests more information about the bot itself (e.g. with the command, <code>/whois whatshereallysaid</code> within a chat window).</p>
+<p>The <code>quotesFile</code> is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the <code>quotesFile</code>, you could but in a relative path, <code>../otherQuotesFile.txt</code>, or absolute path, <code>/Users/lynnroot/quotesForBots/otherQuotesFile.txt</code>.</p>
 
-<p>Now the last few global variables:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Trigger phrases, in lowercase</span>
-<span class="n">TRIGGERS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&quot;that&#39;s what she said&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="c"># Process settings</span>
-<span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s">&quot;./talkbackbot.log&quot;</span>
-<span class="n">QUOTES_FILE</span> <span class="o">=</span> <span class="s">&quot;talkback/quotes.txt&quot;</span>
-</pre></div>
-</td></tr></table></div></div>
-<p>The <code>TRIGGERS</code> is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.</p>
-
-<p>The <code>LOG_FILE</code> and <code>QUOTES_FILE</code> is pretty self-explanatory as well.  The “./” in <code>LOG_FILE</code> means the current directory.  No need to actually create the log file now; once the program is ran, you will see it created.  </p>
-
-<p>All set? Let’s continue with <a href="/%7Edrafts/networks/part-2/">crafting our quote selector &rarr;</a></p>
+<p>The <code>triggers</code> is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.  If you wanted to add another trigger, just add another line indented by 4 spaces, like so:</p>
+<pre><code>triggers =
+    that&#39;s what she said
+    that is what she said
+    that is what she said!!!
+</code></pre>
+<p>All set? Let’s continue with <a href="/%7Edrafts/networks/part-2/">crafting our quote picker class &rarr;</a></p>
 
         </div>
     </div>

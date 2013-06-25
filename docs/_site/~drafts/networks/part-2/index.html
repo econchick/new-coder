@@ -32,7 +32,7 @@
 
 </script>
     
-    <title>Part 2: Quote Selector &ndash; New Coder</title>
+    <title>Part 2: Quote Picker &ndash; New Coder</title>
 </head>
 
 <body>
@@ -57,21 +57,21 @@
             
     <div class="item">
         <div class="header">
-            <h2>Part 2: Quote Selector</h2>
+            <h2>Part 2: Quote Picker</h2>
         </div>
         
         <div class="body">
-            <p>Walkthrough of quote selection.</p>
+            <p>Walkthrough of the pseudo-random quotation picker.</p>
 
-<p><strong>Module Location:</strong> <a href="https://github.com/econchick/new-coder/blob/master/network/lib/tutorial_source/quotation_selector.py">new-coder/network/lib/tutorial_source/quotation_selector.py</a></p>
+<p><strong>Module Location:</strong> <a href="https://github.com/econchick/new-coder/blob/master/network/talkback/quotation_picker.py">new-coder/network/talkback/quotation_picker.py</a></p>
 <h3 id="module-setup">Module Setup</h3>
 <p>We want to select from our list of quotes at random, so we will use the <code>random</code> library from Python’s standard library and import the choice function:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>This module does not generate or select quotes at “true” randomness.  The <a href="http://docs.python.org/2/library/random.html"><code>random</code></a> module in Python generates pseudo-random number based off of the <a href="http://en.wikipedia.org/wiki/Mersenne_twister">Mersenne twister</a>.  The <code>choice</code> method uses <code>random()</code> to generate a pseudo-random number between 0 and 1, multiply it by the number of items in the list to choose from, and index into the list.</p>
-<h3 id="quotationselector-class">QuotationSelector class</h3>
-<p>Next, we need to define the behavior of how we want to select a quote that our bot uses.  We’ll create a class, <code>class QuotationSelector(object):</code> with two functions, <code>__init__</code> and <code>select</code>:</p>
+<h3 id="quotationpicker-class">QuotationPicker class</h3>
+<p>Next, we need to define the behavior of how we want to grab a quote that our bot uses.  We’ll create a class, <code>class QuotationPicker(object):</code> with two functions, <code>__init__</code> and <code>pick</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -84,13 +84,13 @@
 10
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
 
-<span class="k">class</span> <span class="nc">QuotationSelector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">QuotationPicker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quotes_filename</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize our QuotationSelector class&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Initialize our QuotationPicker class&quot;&quot;&quot;</span>
         <span class="c"># &lt;--snip--&gt;</span>
 
-    <span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a random quote.&quot;&quot;&quot;</span>
         <span class="c"># &lt;--snip--&gt;</span>
 </pre></div>
@@ -106,14 +106,14 @@
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
 
 <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quotes_filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initialize our QuotationSelector class&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Initialize our QuotationPicker class&quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">quotes_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">quotes_file</span><span class="p">:</span>
         <span class="c"># &lt;--snip--&gt;</span>
 
 <span class="c"># &lt;--snip--&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Within the <code>with</code> keyword, we label the opened file, <code>open(quotes_filename)</code> as <code>quotes_file</code>.  We will then read each line item in the <code>quotes_file</code> (each quote is on its own line) with another built-in function, <code>readlines</code>, and assign it to <code>self.quotes</code>.  This variable, <code>self.quotes</code>, will be accessible to the rest of the <code>QuotationSelector</code> class, including our next function, <code>select</code>.  </p>
+<p>Within the <code>with</code> keyword, we label the opened file, <code>open(quotes_filename)</code> as <code>quotes_file</code>.  We will then read each line item in the <code>quotes_file</code> (each quote is on its own line) with another built-in function, <code>readlines</code>, and assign it to <code>self.quotes</code>.  This variable, <code>self.quotes</code>, will be accessible to the rest of the <code>QuotationPicker</code> class, including our next function, <code>pick</code>.  </p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -124,14 +124,14 @@
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
 
 <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quotes_filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initialize our QuotationSelector class&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Initialize our QuotationPicker class&quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">quotes_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">quotes_file</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quotes</span> <span class="o">=</span> <span class="n">quotes_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 
 <span class="c"># &lt;--snip--&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>For our <code>select</code> function, we will use the <code>choice</code> function we imported from <code>random</code> to randomly pick a quote from <code>self.quotes</code> variable we initialized in <code>__init__</code>.  To be safe, we will use a built-in string method, <code>strip</code>, to clean up any extraneous blank spaces and null characters that may be before or after the quote itself. </p>
+<p>For our <code>pick</code> function, we will use the <code>choice</code> function we imported from <code>random</code> to randomly pick a quote from <code>self.quotes</code> variable we initialized in <code>__init__</code>.  To be safe, we will use a built-in string method, <code>strip</code>, to clean up any extraneous blank spaces and null characters that may be before or after the quote itself. </p>
 
 <p>Rather than creating a variable and assigning it <code>choice(self.quotes).strip()</code> and then returning the variable, we simplify it by just returning <code>choice(self.quotes).strip()</code>.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -142,14 +142,14 @@
 6
 7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
 
-<span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return a random quote.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quotes</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 <span class="c"># &lt;--snip--&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The whole <code>quotation_selector.py</code> module put together:</p>
+<p>The whole <code>quotation_picker.py</code> module put together:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -165,14 +165,14 @@
 13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
 
 
-<span class="k">class</span> <span class="nc">QuotationSelector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">QuotationPicker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quotes_filename</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize our QuotationSelector class&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Initialize our QuotationPicker class&quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">quotes_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">quotes_file</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">quotes</span> <span class="o">=</span> <span class="n">quotes_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a random quote.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quotes</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </pre></div>
