@@ -7,11 +7,11 @@ url: "/~drafts/networks/part-2/"
 
 Walkthrough of the pseudo-random quotation picker.
 
-**Module Location:** [new-coder/network/talkback/quotation_picker.py](https://github.com/econchick/new-coder/blob/master/network/talkback/quotation_picker.py)
+Module Location: [new-coder/network/talkback/quote_picker.py](https://github.com/econchick/new-coder/blob/master/network/talkback/quote_picker.py)
 
 ### Module Setup
 
-We want to select from our list of quotes at random, so we will use the `random` library from Python’s standard library and import the choice function:
+We want to select from our list of quotes at random, so we use the `random` library from Python’s standard library and import the choice function:
 
 ```python
 from random import choice
@@ -19,18 +19,18 @@ from random import choice
 
 This module does not generate or select quotes at “true” randomness.  The [`random`](http://docs.python.org/2/library/random.html) module in Python generates pseudo-random number based off of the [Mersenne twister](http://en.wikipedia.org/wiki/Mersenne_twister).  The `choice` method uses `random()` to generate a pseudo-random number between 0 and 1, multiply it by the number of items in the list to choose from, and index into the list.
 
-### QuotationPicker class
+### QuotePicker class
 
-Next, we need to define the behavior of how we want to grab a quote that our bot uses.  We’ll create a class, `class QuotationPicker(object):` with two functions, `__init__` and `pick`:
+Next, we need to define the behavior of how we want to grab a quote that our bot uses.  We’ll create a class, `class QuotePicker(object):` with two functions, `__init__` and `pick`:
 
 
 ```python
 # <--snip-->
 
-class QuotationPicker(object):
+class QuotePicker(object):
 
     def __init__(self, quotes_filename):
-        """Initialize our QuotationPicker class"""
+        """Initialize our QuotePicker class"""
         # <--snip-->
 
     def pick(self):
@@ -38,33 +38,33 @@ class QuotationPicker(object):
     	# <--snip-->
 ```
 
-We will want to initialize our class with the file that we plan to pull a quote from.  If you remember from earlier tutorials, Python has a few keywords and built-in functions for file input/output.  We will open our quote file using the `with` keyword, which will implicitly take care of closing our quote file when we are done with the `with` loop:
+We want to initialize our class with the file that we plan to pull a quote from.  If you remember from earlier tutorials, Python has a few keywords and built-in functions for file input/output.  We open our quote file using the `with` keyword, which will implicitly take care of closing our quote file when we are done with the `with` loop:
 
 ```python
 # <--snip-->
 
 def __init__(self, quotes_filename):
-    """Initialize our QuotationPicker class"""
+    """Initialize our QuotePicker class"""
     with open(quotes_filename) as quotes_file:
         # <--snip-->
 
 # <--snip-->
 ```
 
-Within the `with` keyword, we label the opened file, `open(quotes_filename)` as `quotes_file`.  We will then read each line item in the `quotes_file` (each quote is on its own line) with another built-in function, `readlines`, and assign it to `self.quotes`.  This variable, `self.quotes`, will be accessible to the rest of the `QuotationPicker` class, including our next function, `pick`.  
+Within the `with` keyword, we label the opened file, `open(quotes_filename)` as `quotes_file`.  We then read each line item in the `quotes_file` (each quote is on its own line) with another built-in function, `readlines`, and assign it to `self.quotes`.  This variable, `self.quotes`, will be accessible to the rest of the `QuotationPicker` class, including our next function, `pick`.  
 
 ```python
 # <--snip-->
 
 def __init__(self, quotes_filename):
-    """Initialize our QuotationPicker class"""
+    """Initialize our QuotePicker class"""
     with open(quotes_filename) as quotes_file:
         self.quotes = quotes_file.readlines()
 
 # <--snip-->
 ```
 
-For our `pick` function, we will use the `choice` function we imported from `random` to randomly pick a quote from `self.quotes` variable we initialized in `__init__`.  To be safe, we will use a built-in string method, `strip`, to clean up any extraneous blank spaces and null characters that may be before or after the quote itself. 
+For our `pick` function, we use the `choice` function we imported from `random` to randomly pick a quote from `self.quotes` variable we initialized in `__init__`.  To be safe, we use a built-in string method, `strip`, to clean up any extraneous blank spaces and whitespace characters that may be before or after the quote itself. 
 
 Rather than creating a variable and assigning it `choice(self.quotes).strip()` and then returning the variable, we simplify it by just returning `choice(self.quotes).strip()`.
 
@@ -78,16 +78,16 @@ def pick(self):
 # <--snip-->
 ```
 
-The whole `quotation_picker.py` module put together:
+The whole `quote_picker.py` module put together:
 
 ```python
 from random import choice
 
 
-class QuotationPicker(object):
+class QuotePicker(object):
 
     def __init__(self, quotes_filename):
-        """Initialize our QuotationPicker class"""
+        """Initialize our QuotePicker class"""
         with open(quotes_filename) as quotes_file:
             self.quotes = quotes_file.readlines()
 
