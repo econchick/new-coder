@@ -8,9 +8,7 @@ QUOTE = "Nobody minds having what is too good for them. ~ Jane Austen"
 
 
 class FakePicker(object):
-    """
-    Always return the same quote.
-    """
+    """Always return the same quote."""
     def __init__(self, quote):
         self._quote = quote
 
@@ -39,16 +37,12 @@ class TestTalkBackBot(unittest.SynchronousTestCase):
         self.fake_transport.clear()
 
     def test_privmsgNoTrigger(self):
-        """
-        Shouldn't send a quote if message does not match trigger
-        """
+        """Shouldn't send a quote if message does not match trigger"""
         self.bot.privmsg(self._username, self._channel, "hi")
         self.assertEqual('', self.fake_transport.value())
 
     def test_privmsgWithTrigger(self):
-        """
-        Should send a quote if message matches trigger
-        """
+        """Should send a quote if message matches trigger"""
         self.bot.privmsg(self._username, self._channel, "twss")
         self.assertEqual(
             'PRIVMSG {channel} :{username}: {quote}\r\n'.format(
@@ -57,9 +51,7 @@ class TestTalkBackBot(unittest.SynchronousTestCase):
             self.fake_transport.value())
 
     def test_privmsgAttribution(self):
-        """
-        If someone attributes the bot in public, they get a public response.
-        """
+        """If someone attributes the bot in public, they get a public response."""
         self.bot.privmsg(self._username, self._channel, self._us + ': foo')
         self.assertEqual(
             'PRIVMSG {channel} :{username}: {quote}\r\n'.format(
@@ -68,9 +60,7 @@ class TestTalkBackBot(unittest.SynchronousTestCase):
             self.fake_transport.value())
 
     def test_privmsgPrivateMessage(self):
-        """
-        For private messages, should send quote directly to user
-        """
+        """For private messages, should send quote directly to user"""
         self.bot.privmsg(self._username, self._us, "hi")
         self.assertEqual(
             'PRIVMSG {username} :{quote}\r\n'.format(
