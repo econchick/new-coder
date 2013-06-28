@@ -10,7 +10,7 @@ Initial setup for our Data Visualization Tutorial.
 
 ### Setup
 
-**IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("/setup-your-machine")}}) before proceeding.
+**IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("begin/setup-your-machine")}}) before proceeding.
 
 Within your terminal:
 
