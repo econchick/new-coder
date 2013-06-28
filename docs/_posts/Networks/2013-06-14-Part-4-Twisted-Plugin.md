@@ -5,12 +5,11 @@ tags: [irc, network, networks]
 url: "/~drafts/networks/part-4/"
 ---
 
-Writing our `twistd` command line plugin for easy deployment.  When all finished, we will be able to run `twistd -n twsrs` from our command line to simply run our bot.
-
+Creating our `twistd` command line plugin for easy deployment.
 
 ### Module Setup
 
-To setup our plugin, we will need a way to parse our settings configuration.  For this, we will use `ConfigParser` from Python’s standard library:
+To setup our plugin, we need a way to parse our settings configuration.  For this, we use `ConfigParser` from Python’s standard library:
 
 ```python
 from ConfigParser import ConfigParser
@@ -76,7 +75,7 @@ class TalkBackBotService(Service):
 # <--snip-->
 ```
 
-To go along with our `TalkBackBotService`, we will create a Maker class (similar to having our bot Factory class to create our bot) that constructs our service.
+To go along with our `TalkBackBotService`, we create a Maker class (similar to having our bot Factory class to create our bot) that constructs our service.
 
 ```python
 # <--snip-->
@@ -147,7 +146,7 @@ def makeService(self, options):
 # <--snip-->
 ```
 
-First, we instantiate `ConfigParser()`, and read from our `options` parameter that we pass in to grab `'config'` in our options.  This is essentially grabbing and reading our `settings.ini` file.  Next, we create a list comprehension for `triggers`.  We will strip the null characters for every trigger we find in our settings.ini file.   Looking at the file, we are able to pull out only the triggers with the `config.get('talkback', 'triggers')` function:
+First, we instantiate `ConfigParser()`, and read from our `options` parameter that we pass in to grab `'config'` in our options.  This is essentially grabbing and reading our `settings.ini` file.  Next, we create a list comprehension for `triggers`.  We strip the null characters for every trigger we find in our settings.ini file.   Looking at the file, we are able to pull out only the triggers with the `config.get('talkback', 'triggers')` function:
 
 ```
 # <--snip-->
@@ -188,7 +187,7 @@ class BotServiceMaker(object):
 # <--snip-->
 ```
 
-Rather than having `BotServiceMaker` inherit from both `IServiceMaker` and `IPlugin`, we use `@implementer` as a marker to implement an interface.  We basically say, “Please give me an object which implements `IServiceMaker` and `IPlugin` for object type `BotServiceMaker`”.  It’s essentially an adaptor that tells one object to perform a task for another object.  `IServiceMaker` gives us the ability to use `tapname`, `description`, `options`, and the function `makeService`, while `IPlugin` needs to be implemented for any and every plugin written for Twisted.  You can read more about Twisted’s interfaces [here](http://twistedmatrix.com/documents/current/core/howto/components.html).
+Rather than having `BotServiceMaker` inherit from both `IServiceMaker` and `IPlugin`, we use `@implementer` as a marker saying “this class implements these interfaces”.  You can read more about Twisted’s interfaces [here](http://twistedmatrix.com/documents/current/core/howto/components.html).
 
 ### Options class
 
@@ -219,7 +218,7 @@ We also feed it a default value, in this case, `settings.ini`.  If you were not 
 
 Our `BotServiceMaker.makeService` method returns an instance of `TalkBackBotService` with parameters grabbed from our configuration, definied in `settings.ini`.  Now let’s implement our `TalkBackBotService` class.
 
-We’ll first create a private variable `_bot` with `None` (private is denoted with a leading `_`, and while it’s not meant to be publically accessible, it isn’t enforced). 
+We’ll first create a private variable `_bot` with value `None` (private is denoted with a leading `_`, and while it’s not meant to be publically accessible, it isn’t enforced). 
 
 We also initialize the class:
 
@@ -281,7 +280,7 @@ We also define `failure(err)` within `startService` to log that we could not con
 
 Next, we instantiate the `QuotePicker` class with our quote file with defining `quotes`.  This pulls in all our quotes within `quotes.txt` file.  
 
-Now we need to define a `client` that basically constructs an endpoint based on a string with `clientFromString` function.  The `clientFromString` takes in the `reactor` that we imported, and the endpoint, which is grabbed from the endpoint string defined in our `settings.ini` file.  The `reactor` Twisted’s event loop driving its applications.  More about Twisted’s `reactor` object is detailed in its [howto documentation](http://twistedmatrix.com/documents/current/core/howto/reactor-basics.html).
+Now we need to define a `client` that basically constructs an endpoint based on a string with `clientFromString` function.  The `clientFromString` takes in the `reactor` that we imported, and the endpoint, which is grabbed from the endpoint string defined in our `settings.ini` file.  The `reactor` Twisted’s event loop driving your Twisted applications.  More about Twisted’s `reactor` object is detailed in its [howto documentation](http://twistedmatrix.com/documents/current/core/howto/reactor-basics.html).
 
 We then create a `factory` variable that instantiates `TalkBackBotFactory` defined in `bot.py` which passes in the appropriate parameters.
 
@@ -299,7 +298,7 @@ def stopService(self):
 
 # <--snip-->
 ```
-It is a [deferred](http://twistedmatrix.com/documents/current/core/howto/defer.html) (a callback which we put off until later) that is triggered when the service closes our connection between the client and server (if `_bot` is not `None, and if the bot is connected`).
+It is a [deferred](http://twistedmatrix.com/documents/current/core/howto/defer.html) (a callback which we put off until later) that is triggered when the service closes our connection between the client and server (if `_bot` is not `None`, and if the bot is connected).
 
 Near the home stretch!
 
