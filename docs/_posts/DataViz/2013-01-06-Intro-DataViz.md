@@ -58,4 +58,4 @@ As you are starting to realize the awesomeness of Python, you can assume there i
 
 For the record, do not use Python’s `xml` library in production code until the core developers have implemented security fixes. For information, you can read [here](http://blog.python.org/2013/02/announcing-defusedxml-fixes-for-xml.html).
 
-[Continue on to the Setup for DataViz &rarr;]( {{ get_url("Part-0-Setup-for-DataViz/")}})
+[Continue on to the Setup for DataViz &rarr;]( {{ get_url("dataviz/part-0")}})
