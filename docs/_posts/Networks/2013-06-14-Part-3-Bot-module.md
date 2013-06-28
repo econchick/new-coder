@@ -9,7 +9,7 @@ Writing our `bot.py` module.
 
 ### Module Setup
 
-With `bot.py`, we only need to leverage modules from Twisted library.  There’s no expectation that you would know which modules from Twisted to import; this is just an introduction to the package’s vast capabilities in Networking.  In this package, we are taking advantage of Twisted’s `log` module for logging rather than using Python’s `logging` module, `protocol` module to create our bot factory (to be explain), as well as leverage Twisted’s `irc` module so we don’t reinvent the wheel.
+With `bot.py`, we only need to leverage modules from the Twisted library.  There’s no expectation that you would know which modules from Twisted to import; this is just an introduction to the package’s vast capabilities in networking.  In this package, we are taking advantage of Twisted’s `log` module for logging rather than using Python’s `logging` module, `protocol` module to create our bot factory (to be explained), as well as leverage Twisted’s `irc` module so we don’t reinvent the wheel.
 
 Note that the order of import statements are alphabetical per [PEP-8](http://www.python.org/dev/peps/pep-0008/), Python’s style guide.
 
@@ -22,7 +22,7 @@ from twisted.words.protocols import irc
 
 ### Scaffolding for bot.py module
 
-We will be writing two classes: `TalkBackBot` and `TalkBackBotFactory`.  The factory class actually instantiates the bot, while the bot class defines the bot’s behavior.
+We will write two classes: `TalkBackBot` and `TalkBackBotFactory`.  The factory class actually instantiates the bot, while the bot class defines the bot’s behavior.
 
 Let’s first start off with the bot factory scaffolding with comments and docstrings:
 
@@ -76,7 +76,7 @@ First, we’ll code out the bot factory, then return to the bot itself.
 
 ### TalkBackBotFactory class
 
-We first define the protocol that the Factory will make with:
+We first define the protocol that the Factory will make the bot with:
 
 ```python
 # <--snip-->
@@ -88,7 +88,7 @@ protocol = TalkBackBot
 
 This calls an internal method within the `twisted.internet.protocol` library, `buildProtocol()`.  This instantiates a `ClientFactory` to be able to handle input of an incoming server connection.
 
-Notice that in our import statements, we didn’t import our `settings.ini` file.  When we run our program, the plugin that we write (detailed in [Part 4]({{ get_url('/networks/part-4')}})) will pick up the file.  With that, our `TalkBackBotFactory` will initialize with the settings:
+Notice that in our import statements, we didn’t import our `settings.ini` file.  When we run our program, the plugin that we write (detailed in [Part 4]({{ get_url('/networks/part-4')}})) will pick up the file.  With that, our `TalkBackBotFactory` initializes with the settings:
 
 ```python
 # <--snip-->
@@ -110,7 +110,7 @@ The initialization of our factory is pretty self explanatory – the factory is 
 
 ### TalkBackBot class
 
-Now for the `TalkBackBot` class.  Revisiting the scaffolding we did earlier, we will define 5 functions for our class, which will setup the behavior for our bot:
+Now for the `TalkBackBot` class.  Revisiting the scaffolding we did earlier, we define 5 functions for our class, which will setup the behavior for our bot:
 
 ```python
 # <--snip-->
@@ -184,9 +184,9 @@ The `!r` tells `format` to call the function `repr()` (rather than the `str()` f
 "repr() shows quotes: 'test1'; str() doesn't: test2"
 ```
 
-To understand `repr()` versus `str()` better, [StackOverflow](http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python) as a great explanation.
+To understand `repr()` versus `str()` better, [StackOverflow](http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python) has a great explanation.
 
-Next, we will define our `signedOn` function:
+Next, we define our `signedOn` function:
 
 ```python
 # <--snip-->
