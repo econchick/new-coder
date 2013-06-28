@@ -9,7 +9,7 @@ Define our settings for our IRC bot.
 
 ### Module setup
 
-If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are constant variables.  
+If you remember from earlier tutorials, variables that are in all caps are meant to convey that they are constants.  
 
 For our `settings.ini` file, we don’t need to import any special library or package.  We are simply defining the settings that we want our IRC bot to use. [ini files](http://en.wikipedia.org/wiki/INI_file) is just an informal standard for configurations.  If you look at [settings.ini.EXAMPLE](https://github.com/econchick/new-coder/blob/master/network/settings.ini.EXAMPLE), you’ll see two sections: `[irc]` and `[talkback]`. The `[irc]` segment defines the configuration for connecting to an IRC server, while the `[talkback]` section is configuration information specific to our bot.  It’s good to group like-settings and configurations together for easy readability and management.
 

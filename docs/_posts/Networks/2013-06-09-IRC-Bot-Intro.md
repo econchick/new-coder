@@ -82,11 +82,11 @@ These above examples use Python’s `logging` module.  For our tutorial, we’ll
 
 ### Intro to Testing
 
-Very similar to logging, testing is also quite important for your code base.  Writing tests in parallel to writing code is considered good habit.  Submitting features and patches to projects without tests can be a big faux-pas. 
+Very similar to logging, testing is also quite important for your code base.  Writing tests in parallel to writing code is considered a good habit.  Submitting features and patches to projects without tests can be a big faux-pas. 
 
 There are different types of testing, and with this tutorial we will focus on unit testing.
 
-A unit test just focuses on one tiny bit of functionality to prove it correct, and should be independent of other unit tests.
+A unit test just focuses on one tiny bit of functionality to prove correct behavior based on inputs, and should be independent of other unit tests.
 
 An example of a unit test using Pythons `unittest` module, taken from [python-guide.org](http://docs.python-guide.org/en/latest/writing/tests.html#unittest):
 
