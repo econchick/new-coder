@@ -152,7 +152,7 @@ $ source /usr/local/bin/virtualenvwrapper.sh
 
 ### python
 
-1. Go [here](http://python.org/ftp/python/2.7.1/python-2.7.1.msi) and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
+1. Go [here](http://python.org/ftp/python/2.7.5/python-2.7.5.msi) and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
 2. Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
 	- On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on "cmd" in the search results above the Search field.
 	- On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on "Run...", type cmd into the text box, and hit enter.
