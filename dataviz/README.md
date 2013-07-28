@@ -5,7 +5,7 @@ To parse data from a CSV or Excel file and plot it with matplotlib. Examples inc
 
 
 ### Initial Requirements:
-* [Python 2.x](http://www.python.org/download/releases/2.7.3/)
+* [Python 2.x](http://www.python.org/download/releases/2.7.5/)
 * [git](http://git-scm.com/downloads)
 * [virtualenv](http://pypi.python.org/pypi/virtualenv) You can either download directly, or:
 	* Mac: `$ sudo easy_install virtualenv`
