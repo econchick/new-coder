@@ -7,3 +7,5 @@ docs/_posts/.DS_Store
 htmlcov
 settings.ini
 
+
+*.html
