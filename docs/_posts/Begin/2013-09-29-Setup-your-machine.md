@@ -19,7 +19,7 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 The installation will depend on your operating system, but overall, you will need:
 
 * Python 2.x – there are [plans][1] to update/include Python 3.x
-* git – an intro given [here]( {{get_url("begin/Save-your-progress")}})
+* git – an intro given [here]( {{get_url("begin/save-your-progress")}})
 * A C compiler
 * pip
 * virtualenv
@@ -46,7 +46,7 @@ You will need to install [git][5] on your machine through their [download page][
 ### C compiler
 
 
-You will need the [XCode](http://developer.apple.com/xcode) application. Once you have XCode on your machine, you will need to navigate to Preferences &rarr; Downloads, then select **Command Line Tools** to download & install (this may take a while, get some coffee, go take a shower). 
+You will need the [XCode](http://developer.apple.com/xcode) application. Once you have XCode on your machine, you will need to navigate to Preferences &rarr; Downloads, then select **Command Line Tools** to download & install (this may take a while, get some coffee, go take a shower).
 
 This gives you the [GCC][7] or the GNU Compiler Collection. To test installation, within the Terminal application, type `gcc` and you should get the following:
 
@@ -60,7 +60,7 @@ i686-apple-darwin11-llvm-gcc-4.2: no input files
 [pip][9], stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading `$` as that is your terminal prompt) for downloading & installing. It may prompt you for your computer login password.
 
 ```bash
-$ sudo curl -O http://python-distribute.org/distribute_setup.py | python 
+$ sudo curl -O http://python-distribute.org/distribute_setup.py | python
 $ sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 $ pip
 Usage: pip COMMAND [OPTIONS]
@@ -108,14 +108,14 @@ You will need to install [git][5] either from commands below or through their [d
 
 ### C Compiler
 
-A C compiler, either GCC or clang, is needed because the `numpy` library we are using has some C extensions, which will need to be compiled.  
+A C compiler, either GCC or clang, is needed because the `numpy` library we are using has some C extensions, which will need to be compiled.
 
 To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your terminal. If you get an error that says “command not found” then follow the install instructions:
 
-* Fedora: 
+* Fedora:
 	* `sudo yum groupinstall "Developer Tools"`
 	* `sudo yum install python-devel`
-* Ubuntu: 
+* Ubuntu:
 	* you may need to run `sudo apt-get update` first.
 	* `sudo apt-get install build-essential python-dev`
 
@@ -124,7 +124,7 @@ To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your ter
 [pip][9], stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading `$` as that is your terminal prompt) for downloading & installing. It may prompt you for your computer login password.
 
 ```bash
-$ sudo curl -O http://python-distribute.org/distribute_setup.py | python 
+$ sudo curl -O http://python-distribute.org/distribute_setup.py | python
 $ sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 $ pip
 Usage: pip COMMAND [OPTIONS]
@@ -173,16 +173,16 @@ Type "help", "copyright", "credits" or "license" for more information
 			* If you’re using XP: window labeled "System Properties" will pop up. Click the "Advanced" tab. A window with the title "System Properties" will appear.
 			* If you’re **not** using XP: A window labeled “View basic information about your computer” will appear. In this window, click "Advanced system settings".  A window with the title "System Properties" will appear.
 	* Edit the Path
-		1. Within System Properties, make sure you are in the tab labeled “Advanced’. 
+		1. Within System Properties, make sure you are in the tab labeled “Advanced’.
 		2. Click the button labeled “Environment Variables”.  A window labeled "Environment Variables" will appear.
 		3. In this window, the screen is split between “User variables” and “System variables”. Within “System variables’, scroll down and find the one labeled “Path’. Click the “Edit...” button A window with the "Variable name" and the "Variable value" should appear.  The “Variable value” will already have some text in it; click in the box to unhighlight it (we don't want to accidentally delete that text).
 	* In the "Variable value" box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! `;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts`
-	* Hit "OK" to close out the system properties window. 
+	* Hit "OK" to close out the system properties window.
 	* Test your change:
 		1. Open up a new command prompt: you do this the same way you did above when installing python. This needs to be a new command prompt because the changes you just made didn't take affect in prompts that were already open.
 		2. Type python into the command prompt to start Python
 		3. Notice that you now get a Python interpreter, indicated by the change to a `>>>` prompt.
-		4. Exit the Python prompt by typing `exit()` and hitting enter. Now you're back at the Windows command prompt (`C:\`). 
+		4. Exit the Python prompt by typing `exit()` and hitting enter. Now you're back at the Windows command prompt (`C:\`).
 
 Success! You have installed Python!
 
@@ -207,8 +207,8 @@ Download the MinGW GCC compiler [here][mingw] and follow installation instructio
 
 
 Now let’s test our installation and get familiar with creating & using virtual environments:
-	
-- Mac OS X/Linux: 
+
+- Mac OS X/Linux:
 
 ```bash
 $ mkvirtualenv TestEnv
@@ -245,20 +245,20 @@ virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env
 Now that you made a virtual environment called `TestEnv`, you should see `(TestEnv)` before your prompt:
 
 ```bash
-(TestEnv) $ 
+(TestEnv) $
 ```
 
 Let’s play around with commands for virtualenv:
 
-* Mac OS X/Linux: 
+* Mac OS X/Linux:
 
 ```bash
 # deactivate the TestEnv
 (TestEnv) $ deactivate
-$ 
+$
 # reactivate the TestEnv
 $ workon TestEnv
-(TestEnv) $ 
+(TestEnv) $
 # install the Django package in your TestEnv environment
 (TestEnv) $ pip install django
 Downloading/unpacking django
@@ -269,7 +269,7 @@ Installing collected packages: django
     changing mode of build/scripts-2.6/django-admin.py from 644 to 755
     changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
 Successfully installed django
-(TestEnv) $ 
+(TestEnv) $
 ```
 
 * Windows:
@@ -307,7 +307,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 # deactivate the TestEnv virtual environment
 (TestEnv) $ deactivate
-$ 
+$
 ```
 
 ```bash
@@ -321,13 +321,13 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named django
 >>> exit()
-$ 
+$
 ```
 
 ```bash
 # reactivate the TestEnv virtual environment
 $ workon TestEnv
-(TestEnv) $ 
+(TestEnv) $
 # try again to import Django
 (TestEnv) $ python
 Python 2.7.2 (default, Jun 20 2012, 16:23:33)
@@ -335,14 +335,14 @@ Python 2.7.2 (default, Jun 20 2012, 16:23:33)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import django
 >>> exit()
-(TestEnv) $ 
+(TestEnv) $
 ```
 
 ```bash
 # see what libraries are installed in the TestEnv virtual environment:
 (TestEnv) $ pip freeze
 django==1.5
-(TestEnv) $ 
+(TestEnv) $
 ```
 
 * here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper:
