@@ -67,7 +67,7 @@
 body {
   background-color: rgb(243, 243, 243);
   color: rgb(6, 65, 113);
-  font-family: edmondsans regular, sans-serif;
+  font-family: "Myriad Pro", myriad-pro, Verdana, serif;
   font-size: 20px;
 }
 
@@ -167,11 +167,13 @@ h1 {
 h2 {
   margin-top: 25px;
   font-size: 35px;
+  text-align: center;
 }
 
 h3 {
   font-size: 30px;
   color: #8c8c8c;
+  text-align: center;
 }
 
 h4 {
@@ -449,7 +451,7 @@ dl.archives > dt a {
   line-height: 18px;
 }
 dl.archives dd {
-  margin-left: 75px;
+  margin-left: 0px;
 }
 dl.archives dt {
   width: 50px;

@@ -5,7 +5,7 @@ from twisted.trial import unittest
 from talkback.quote_picker import QuotePicker
 
 
-class TestQuotationSelector(unittest.TestCase):
+class TestQuotePicker(unittest.TestCase):
     QUOTE1 = (
         "A fool without fear is sometimes wiser than an angel with fear. "
         "~ Nancy Astor"

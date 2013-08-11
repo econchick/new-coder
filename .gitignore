@@ -1,5 +1,11 @@
 *.pyc
 .idea
+docs/_site/*
+docs/.DS_Store
+docs/_posts/.DS_Store
 .coverage
 htmlcov
 settings.ini
+
+
+*.html

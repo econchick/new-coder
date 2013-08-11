@@ -29,9 +29,7 @@ class TalkBackBotService(Service):
         self._triggers = triggers
 
     def startService(self):
-        """
-        Construct a client & connect to server.
-        """
+        """Construct a client & connect to server."""
         from twisted.internet import reactor
 
         def connected(bot):
@@ -54,9 +52,7 @@ class TalkBackBotService(Service):
         return client.connect(factory).addCallbacks(connected, failure)
 
     def stopService(self):
-        """
-        Disconnect.
-        """
+        """Disconnect."""
         if self._bot and self._bot.transport.connected:
             self._bot.transport.loseConnection()
 
@@ -68,9 +64,7 @@ class BotServiceMaker(object):
     options = Options
 
     def makeService(self, options):
-        """
-        Construct the talkbackbot service.
-        """
+        """Construct the talkbackbot service."""
         config = ConfigParser()
         config.read([options['config']])
         triggers = [

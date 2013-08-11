@@ -13,16 +13,17 @@
         <div id="nav">
             <ul>
                 <li><a href="{{ get_url() }}">Home</a></li>
-                <li><a href="{{ get_url('about/') }}">About</a></li>
+                <li><a href="{{ get_url('About/') }}">About</a></li>
                 <li><a href="{{ get_url('tutorials/') }}">Tutorials</a></li>
                 <li><a href="{{ get_url('Contact/') }}">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
             </ul>
             
         </div>
         
         <div id="header">
             <h1><a href="{{ get_url() }}">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            {% if site.subtitle %}<h2>{{ site.subtitle }}</h2>{% endif %}
+            {% if site.subtitle %}<h1>{{ site.subtitle }}</h1>{% endif %}
         </div>
 
         <div id="content">
@@ -31,7 +32,7 @@
         </div>
         
         <div id="footer">
-            <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+            <p>{% if site.author %}The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
         </div>
     </div>
 </body>
