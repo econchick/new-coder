@@ -4,5 +4,3 @@
 htmlcov
 settings.ini
 twistd.pid
-
-*.html
