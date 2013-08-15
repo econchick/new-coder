@@ -1,11 +1,11 @@
 *.pyc
 .idea
-docs/_site/*
-docs/.DS_Store
-docs/_posts/.DS_Store
+website/_site/*
+website/.DS_Store
+website/_posts/.DS_Store
 .coverage
 htmlcov
 settings.ini
-
+twistd.pid
 
 *.html
