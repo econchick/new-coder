@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.newcoder.io"]);
+  _paq.push(["setDomains", ["*.newcoder.io"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.ox.cx/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "12"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 1824739360,widget_type: "donation_campaign",anchor_id: "wepay_widget_anchor_51bc7f731bfd4",widget_options: {list_suggested_donations: true,allow_cover_fee: true,enable_recurring: true,allow_anonymous: true,button_text: "Donate"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    <title>Part 4: Twisted Plugin &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/workshop/">Workshop Kit</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
+            </ul>
+
+        </div>
+
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Part 4: Twisted Plugin</h2>
+        </div>
+        
+        <div class="body">
+            <p>Creating our <code>twistd</code> command line plugin for easy deployment.</p>
+<h3 id="module-setup">Module Setup</h3>
+<p>To setup our plugin, we need a way to parse our settings configuration.  For this, we use <code>ConfigParser</code> from Python’s standard library:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, we have a bunch of Twisted import statements to create our plugin (don’t get scared!):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="kn">from</span> <span class="nn">twisted.application.service</span> <span class="kn">import</span> <span class="n">IServiceMaker</span><span class="p">,</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">twisted.internet.endpoints</span> <span class="kn">import</span> <span class="n">clientFromString</span>
+<span class="kn">from</span> <span class="nn">twisted.plugin</span> <span class="kn">import</span> <span class="n">IPlugin</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="kn">import</span> <span class="n">implementer</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>And last, we’ll import our talkback bot and quote picker function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="kn">from</span> <span class="nn">talkback.bot</span> <span class="kn">import</span> <span class="n">TalkBackBotFactory</span>
+<span class="kn">from</span> <span class="nn">talkback.quote_picker</span> <span class="kn">import</span> <span class="n">QuotePicker</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Again, notice the order of imports per <a href="http://www.python.org/dev/peps/pep-0008/">Python’s style guide</a> grouped by standard library, third-party libraries/modules, and our own written modules, each group of import statements in alphabetical order. </p>
+<h3 id="scaffolding-for-talkbackbot_plugin.py">Scaffolding for talkbackbot_plugin.py</h3>
+<p>We’ll first want to leverage Twisted’s <code>usage</code> module to parse our configuration:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, the actual class that constructs our application using Twisted’s <code>Service</code> class to start and stop our application:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">TalkBackBotService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">realname</span><span class="p">,</span> <span class="n">quotesFilename</span><span class="p">,</span>
+                 <span class="n">triggers</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">startService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a client &amp; connect to server.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">stopService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Disconnect.&quot;&quot;&quot;</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>To go along with our <code>TalkBackBotService</code>, we create a Maker class (similar to having our bot Factory class to create our bot) that constructs our service.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">BotServiceMaker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">tapname</span> <span class="o">=</span> <span class="s">&quot;twsrs&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;IRC bot that provides quotations from notable women&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">Options</span>
+
+    <span class="k">def</span> <span class="nf">makeService</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct the talkbackbot service.&quot;&quot;&quot;</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Lastly, we construct an object which calls our <code>BotServiceMaker</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="n">serviceMaker</span> <span class="o">=</span> <span class="n">BotServiceMaker</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Let’s first approach our <code>BotServiceMaker</code>.</p>
+<h3 id="botservicemaker-class">BotServiceMaker class</h3>
+<p>First, a few settings for our class:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="n">tapname</span> <span class="o">=</span> <span class="s">&quot;twsrs&quot;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s">&quot;IRC bot that provides quotations from notable women&quot;</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The <code>tapname</code> is the short string name for our plugin; this is the subcommand of <code>twistd</code>.  The <code>description</code> is the short summary of what the plugin does. And the <code>options</code> variable refers to our <code>Options</code> class that we will code out in a bit.</p>
+
+<p>Next, our <code>makeService</code> function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">makeService</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Construct the talkbackbot service.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">([</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;config&#39;</span><span class="p">]])</span>
+    <span class="n">triggers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">trigger</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">trigger</span>
+        <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;talkback&#39;</span><span class="p">,</span> <span class="s">&#39;triggers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">trigger</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">TalkBackBotService</span><span class="p">(</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;endpoint&#39;</span><span class="p">),</span>
+        <span class="n">channel</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">),</span>
+        <span class="n">nickname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;nickname&#39;</span><span class="p">),</span>
+        <span class="n">realname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;realname&#39;</span><span class="p">),</span>
+        <span class="n">quotesFilename</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;talkback&#39;</span><span class="p">,</span> <span class="s">&#39;quotesFilename&#39;</span><span class="p">),</span>
+        <span class="n">triggers</span><span class="o">=</span><span class="n">triggers</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>First, we instantiate <code>ConfigParser()</code>, and read from our <code>options</code> parameter that we pass in to grab <code>&#39;config&#39;</code> in our options.  This is essentially grabbing and reading our <code>settings.ini</code> file.  Next, we create a list comprehension for <code>triggers</code>.  We strip the null characters for every trigger we find in our settings.ini file.   Looking at the file, we are able to pull out only the triggers with the <code>config.get(&#39;talkback&#39;, &#39;triggers&#39;)</code> function:</p>
+<pre><code># &lt;--snip--&gt;
+
+[talkback]
+
+# &lt;--snip--&gt;
+
+triggers =
+    that&#39;s what she said
+</code></pre>
+<p>The <code>.split(&#39;\n&#39;)</code> means that each quote is separated by a new line.</p>
+
+<p>After we setup our triggers, we then return our instantiated <code>TalkBackBotService</code> class with the parameters grabbed from our <code>config</code> variable: </p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+    <span class="k">return</span> <span class="n">TalkBackBotService</span><span class="p">(</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;endpoint&#39;</span><span class="p">),</span>
+        <span class="n">channel</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">),</span>
+        <span class="n">nickname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;nickname&#39;</span><span class="p">),</span>
+        <span class="n">realname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;realname&#39;</span><span class="p">),</span>
+        <span class="n">quotesFilename</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;talkback&#39;</span><span class="p">,</span> <span class="s">&#39;quotesFilename&#39;</span><span class="p">),</span>
+        <span class="n">triggers</span><span class="o">=</span><span class="n">triggers</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>One final bit that I didn’t detail in the scaffolding: Twisted makes use of <a href="http://docs.zope.org/zope.interface/">Zope’s interfaces</a>.  Earlier, we imported <code>implementer</code> from <code>zope.interface</code>.  The way we will use <code>implementer</code> is a Python <a href="http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/">decorator</a>, and with Twisted, it is considered an interface:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IServiceMaker</span><span class="p">,</span> <span class="n">IPlugin</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BotServiceMaker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Rather than having <code>BotServiceMaker</code> inherit from both <code>IServiceMaker</code> and <code>IPlugin</code>, we use <code>@implementer</code> as a marker saying “this class implements these interfaces”.  You can read more about Twisted’s interfaces <a href="http://twistedmatrix.com/documents/current/core/howto/components.html">here</a>.</p>
+<h3 id="options-class">Options class</h3>
+<p>This is pretty simple: we need to tell our Twisted application about the options it can handle:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s">&#39;config&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;settings.ini&#39;</span><span class="p">,</span> <span class="s">&#39;Configuration file.&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>This gives us two flags: <code>--config</code> and <code>-c</code> that we could include when we run <code>twistd twsrs</code> (remember that <code>twsrs</code> is the <code>tapname</code> for our service):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>twistd twsrs --config<span class="o">=</span>/path/to/settings.ini
+<span class="nv">$ </span>twistd twsrs -c /path/to/settings.ini
+</pre></div>
+</td></tr></table></div></div>
+<p>We also feed it a default value, in this case, <code>settings.ini</code>.  If you were not to include a config flag, the application would look for <code>settings.ini</code> in the current directory (same directory that the <code>README.md</code>, <code>settings.ini.EXAMPLE</code>, <code>quotes.txt</code> files live).</p>
+<h3 id="talkbackbotservice-class">TalkBackBotService class</h3>
+<p>Our <code>BotServiceMaker.makeService</code> method returns an instance of <code>TalkBackBotService</code> with parameters grabbed from our configuration, definied in <code>settings.ini</code>.  Now let’s implement our <code>TalkBackBotService</code> class.</p>
+
+<p>We’ll first create a private variable <code>_bot</code> with value <code>None</code> (private is denoted with a leading <code>_</code>, and while it’s not meant to be publically accessible, it isn’t enforced). </p>
+
+<p>We also initialize the class:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">realname</span><span class="p">,</span> <span class="n">quotesFilename</span><span class="p">,</span>
+             <span class="n">triggers</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_nickname</span> <span class="o">=</span> <span class="n">nickname</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_realname</span> <span class="o">=</span> <span class="n">realname</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_quotesFilename</span> <span class="o">=</span> <span class="n">quotesFilename</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_triggers</span> <span class="o">=</span> <span class="n">triggers</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>This <code>__init__</code> function gets called when we return <code>TalkBackBotService</code> from <code>BotServiceMaker.makeService</code> method with our settings from our parsed configuration.</p>
+
+<p>Next, we’ll define <code>startService</code> method, which is a part of the <code>Service</code> base class we inherit from:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">startService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Construct a client &amp; connect to server.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span>
+
+    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="n">bot</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span> <span class="o">=</span> <span class="n">bot</span>
+
+    <span class="k">def</span> <span class="nf">failure</span><span class="p">(</span><span class="n">err</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">_why</span><span class="o">=</span><span class="s">&#39;Could not connect to specified server.&#39;</span><span class="p">)</span>
+        <span class="n">reactor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+    <span class="n">quotes</span> <span class="o">=</span> <span class="n">QuotePicker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_quotesFilename</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">clientFromString</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">)</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">TalkBackBotFactory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nickname</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_realname</span><span class="p">,</span>
+        <span class="n">quotes</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_triggers</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">connected</span><span class="p">,</span> <span class="n">failure</span><span class="p">)</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Our <code>startService</code> method has a few interesting things going on.  We first have an import statement nested in it: <code>from twisted.internet import reactor</code>. <a href="http://twitter.com/_ashfall_">Ashwini Oruganti</a>, a contributor to Twisted, wrote up a <a href="http://ashfall.github.io/blog/2013/06/15/the-twisted-reactor-part-1/">great blog post</a> detailing why we nest this import statement within <code>startService</code> method:</p>
+
+<blockquote>
+<p>If you import <code>twisted.internet.reactor</code> without first installing a specific reactor implementation, then Twisted will install the default reactor for you. The particular one you get will depend on the operating system and Twisted version you are using. For that reason, it is general practice not to import the reactor at the top level of modules to avoid accidentally installing the default reactor. Instead, import the reactor in the same scope in which you use it.</p>
+</blockquote>
+
+<p>Within <code>startService</code> method, we define <code>connected(bot)</code>, which assigns our private variable we defined earlier, <code>_bot</code>, to the passed-in parameter, <code>bot</code>. </p>
+
+<p>We also define <code>failure(err)</code> within <code>startService</code> to log that we could not connect to a specific service, along with the error message the failure gave us.  We then stop our reactor upon calling <code>failure</code>.</p>
+
+<p>Next, we instantiate the <code>QuotePicker</code> class with our quote file with defining <code>quotes</code>.  This pulls in all our quotes within <code>quotes.txt</code> file.  </p>
+
+<p>Now we need to define a <code>client</code> that basically constructs an endpoint based on a string with <code>clientFromString</code> function.  The <code>clientFromString</code> takes in the <code>reactor</code> that we imported, and the endpoint, which is grabbed from the endpoint string defined in our <code>settings.ini</code> file.  The <code>reactor</code> Twisted’s event loop driving your Twisted applications.  More about Twisted’s <code>reactor</code> object is detailed in its <a href="http://twistedmatrix.com/documents/current/core/howto/reactor-basics.html">howto documentation</a>.</p>
+
+<p>We then create a <code>factory</code> variable that instantiates <code>TalkBackBotFactory</code> defined in <code>bot.py</code> which passes in the appropriate parameters.</p>
+
+<p>Last, we return <code>client</code>, defined by our endpoint, and connect to our endpoint with the <code>factory</code> variable.  We also add <code>addCallbacks</code> which take a pair of functions of what happens on success and on failure (our <code>connected</code> and <code>failure</code> functions).</p>
+
+<p>The last function we define in our <code>TalkBackBotService</code> class is <code>stopService</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># &lt;--snip--&gt;</span>
+
+<span class="k">def</span> <span class="nf">stopService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Disconnect.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+<span class="c"># &lt;--snip--&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>It is a <a href="http://twistedmatrix.com/documents/current/core/howto/defer.html">deferred</a> (a callback which we put off until later) that is triggered when the service closes our connection between the client and server (if <code>_bot</code> is not <code>None</code>, and if the bot is connected).</p>
+
+<p>Near the home stretch!</p>
+<h3 id="constructing-botservicemaker">Constructing BotServiceMaker</h3>
+<p>At the very end of our plugin module, we have to include: <code>serviceMaker = BotServiceMaker()</code> to construct an object which provides the relevant interfaces to bind to <code>IPlugin</code> and <code>IServiceMaker</code>.</p>
+<h3 id="completed-talkbackbot_plugin.py">Completed talkbackbot_plugin.py</h3><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+
+<span class="kn">from</span> <span class="nn">twisted.application.service</span> <span class="kn">import</span> <span class="n">IServiceMaker</span><span class="p">,</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">twisted.internet.endpoints</span> <span class="kn">import</span> <span class="n">clientFromString</span>
+<span class="kn">from</span> <span class="nn">twisted.plugin</span> <span class="kn">import</span> <span class="n">IPlugin</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="kn">import</span> <span class="n">implementer</span>
+
+<span class="kn">from</span> <span class="nn">talkback.bot</span> <span class="kn">import</span> <span class="n">TalkBackBotFactory</span>
+<span class="kn">from</span> <span class="nn">talkback.quote_picker</span> <span class="kn">import</span> <span class="n">QuotePicker</span>
+
+
+<span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s">&#39;config&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;settings.ini&#39;</span><span class="p">,</span> <span class="s">&#39;Configuration file.&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">TalkBackBotService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+    <span class="n">_bot</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">realname</span><span class="p">,</span> <span class="n">quotesFilename</span><span class="p">,</span>
+                 <span class="n">triggers</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nickname</span> <span class="o">=</span> <span class="n">nickname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_realname</span> <span class="o">=</span> <span class="n">realname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quotesFilename</span> <span class="o">=</span> <span class="n">quotesFilename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_triggers</span> <span class="o">=</span> <span class="n">triggers</span>
+
+    <span class="k">def</span> <span class="nf">startService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a client &amp; connect to server.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span>
+
+        <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="n">bot</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span> <span class="o">=</span> <span class="n">bot</span>
+
+        <span class="k">def</span> <span class="nf">failure</span><span class="p">(</span><span class="n">err</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">_why</span><span class="o">=</span><span class="s">&#39;Could not connect to specified server.&#39;</span><span class="p">)</span>
+            <span class="n">reactor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+        <span class="n">quotes</span> <span class="o">=</span> <span class="n">QuotePicker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_quotesFilename</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">clientFromString</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">)</span>
+        <span class="n">factory</span> <span class="o">=</span> <span class="n">TalkBackBotFactory</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nickname</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_realname</span><span class="p">,</span>
+            <span class="n">quotes</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_triggers</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">connected</span><span class="p">,</span> <span class="n">failure</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stopService</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Disconnect.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bot</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IServiceMaker</span><span class="p">,</span> <span class="n">IPlugin</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BotServiceMaker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">tapname</span> <span class="o">=</span> <span class="s">&quot;twsrs&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;IRC bot that provides quotations from notable women&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">Options</span>
+
+    <span class="k">def</span> <span class="nf">makeService</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct the talkbackbot service.&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">([</span><span class="n">options</span><span class="p">[</span><span class="s">&#39;config&#39;</span><span class="p">]])</span>
+        <span class="n">triggers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">trigger</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">trigger</span>
+            <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;talkback&#39;</span><span class="p">,</span> <span class="s">&#39;triggers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">trigger</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">TalkBackBotService</span><span class="p">(</span>
+            <span class="n">endpoint</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;endpoint&#39;</span><span class="p">),</span>
+            <span class="n">channel</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">),</span>
+            <span class="n">nickname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;nickname&#39;</span><span class="p">),</span>
+            <span class="n">realname</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;irc&#39;</span><span class="p">,</span> <span class="s">&#39;realname&#39;</span><span class="p">),</span>
+            <span class="n">quotesFilename</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;talkback&#39;</span><span class="p">,</span> <span class="s">&#39;quotesFilename&#39;</span><span class="p">),</span>
+            <span class="n">triggers</span><span class="o">=</span><span class="n">triggers</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<span class="c"># Now construct an object which *provides* the relevant interfaces</span>
+<span class="c"># The name of this variable is irrelevant, as long as there is *some*</span>
+<span class="c"># name bound to a provider of IPlugin and IServiceMaker.</span>
+
+<span class="n">serviceMaker</span> <span class="o">=</span> <span class="n">BotServiceMaker</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Now on to writing tests for our <a href="/%7Edrafts/networks/part-5/">bot &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

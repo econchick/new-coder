@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.newcoder.io"]);
+  _paq.push(["setDomains", ["*.newcoder.io"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.ox.cx/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "12"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 1824739360,widget_type: "donation_campaign",anchor_id: "wepay_widget_anchor_51bc7f731bfd4",widget_options: {list_suggested_donations: true,allow_cover_fee: true,enable_recurring: true,allow_anonymous: true,button_text: "Donate"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    <title>Introduction to the Data Visualization Tutorial &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/workshop/">Workshop Kit</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
+            </ul>
+
+        </div>
+
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Introduction to the Data Visualization Tutorial</h2>
+        </div>
+        
+        <div class="body">
+            <p>Data visualization is quite fun. Perhaps when you think of data visualization, you think of ugly Microsoft Excel spreadsheets with half-a$$ed graphs.</p>
+
+<p>This tutorial is meant to push you out of the Excel mindset just a little bit, and introduce you to the popular Python library, <a href="http://matplotlib.org/">matplotlib</a>. </p>
+<h3 id="the-project">The Project</h3>
+<p>The project we will create takes the sample data from the repository that you will download (a.k.a. clone) in <a href="/Part-0-Setup-for-DataViz">Part 0: Setup</a>, parse the sample data from columns and rows to a list of dictionaries, then render that data in two different graphs and in <a href="http://maps.google.com">Google Maps</a>.</p>
+
+<p>The sample data that is included is a snapshot of public crime filings from the San Francisco police. Once you’ve gone through this tutorial, feel free to find other data that interests you, and rework our visualization functions.</p>
+<h3 id="goals">Goals</h3>
+<p>Understand how to:</p>
+
+<ul>
+<li>run a Python file from the command line</li>
+<li>import a Python file</li>
+<li>take a raw file and parse its data with Python’s data structures</li>
+<li>make a simple graph</li>
+<li>produce a Google Maps-readable file</li>
+</ul>
+
+<p>What else you will be exposed to:</p>
+
+<ul>
+<li>Importing Python’s standard library as well as your own module</li>
+<li>Installing and importing third party packages</li>
+<li>Licensing &amp; copyrights when using third-party packages</li>
+<li>File Input/Output</li>
+<li>Counter data structure from the <code>collections</code> module</li>
+<li>Global variables, docstrings, list comprehensions</li>
+<li>Python’s interactive shell in the terminal</li>
+<li>Iterators versus Generators</li>
+</ul>
+<h3 id="intro-to-numpy-and-matplotlib">Intro to NumPy and matplotlib</h3>
+<p><a href="http://www.numpy.org/">NumPy</a> (pronounced num-pie) is a popular scientific library for Python that gives a developer, academic, or scientist tools to work with high-level mathematical functions as well as multi-dimensional arrays and matrices. </p>
+
+<p>We won&#39;t be using much of NumPy, but it is required that we install this library before we can install and use <code>matplotlib</code>.</p>
+
+<p><a href="http://matplotlib.org/">matplotlib</a> is another popular scientific library that gives the developer tools to produce 2D figures. No longer do you need your <a href="http://www.amazon.com/Texas-Instruments-Titanium-Calculator-Packaging/dp/B0001EMLZ2">TI-89</a> calculator where you must punch in long lines of formulas, waiting precious seconds for it to render a graph that may be too zoomed in to realize you are missing an important axis point. Packed with detailed <a href="http://matplotlib.org/examples/index.html">examples</a>, you are able to make publication/presentation-quality graphs from the comfort of your keyboard.</p>
+<h3 id="intro-to-google-mapping">Intro to Google Mapping</h3>
+<p>It’d be kind of cool to place all the coordinates in our data on a map, wouldn’t it?  Google Maps allows folks to upload KML-type documents, which is essentially a type of an XML document for displaying geographic-related data.  </p>
+
+<p>Google has a great KML <a href="https://developers.google.com/kml/documentation/">intro</a> and <a href="https://developers.google.com/kml/documentation/kml_tut">tutorial</a> for those interested. </p>
+
+<p>Wikipedia has a pretty readable <a href="http://en.wikipedia.org/wiki/XML">explanation</a> of XML, and w3 has a simple <a href="http://www.w3schools.com/xml/">tutorial</a> if you want to learn more (<em>side comment</em>: w3 is not the greatest for learning front-end related web development, but fine for quick references). </p>
+
+<p>Both KML and XML, as well as HTML and XHTML, follow the <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> convention, Document Object Model. It’s basically how you interact with different objects through defined functions.</p>
+
+<p>As you are starting to realize the awesomeness of Python, you can assume there is an <code>xml</code> module in the standard library. How convenient!  Python’s <code>xml.dom</code> module uses the DOM convention and gives us access to functions that HTML, XML, and KML will understand when we build our own KML document.</p>
+
+<p>For the record, do not use Python’s <code>xml</code> library in production code until the core developers have implemented security fixes. For information, you can read <a href="http://blog.python.org/2013/02/announcing-defusedxml-fixes-for-xml.html">here</a>.</p>
+
+<p><a href="/dataviz/part-0">Continue on to the Setup for DataViz &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.newcoder.io"]);
+  _paq.push(["setDomains", ["*.newcoder.io"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.ox.cx/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "12"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 1824739360,widget_type: "donation_campaign",anchor_id: "wepay_widget_anchor_51bc7f731bfd4",widget_options: {list_suggested_donations: true,allow_cover_fee: true,enable_recurring: true,allow_anonymous: true,button_text: "Donate"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    <title>Part 6: Running our bot &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/workshop/">Workshop Kit</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
+            </ul>
+
+        </div>
+
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Part 6: Running our bot</h2>
+        </div>
+        
+        <div class="body">
+            <p>Running the bot application and its tests.</p>
+<h3 id="running-tests-the-bot-with-twisted-plugins">Running tests + the bot with Twisted plugins</h3><h4 id="running-tests">Running tests</h4>
+<p>Let’s first test to see if our tests pass.  Twisted has a plugin command, <code>trial</code>, that will easily pick up the tests that we wrote.  Within our <code>new-coder/network</code> directory, with our virtualenv activated, we’ll run our tests:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span><span class="nb">pwd</span>
+/Users/lynnroot/Dev/new-coder/network
+<span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>trial tests
+</pre></div>
+</td></tr></table></div></div>
+<p>You should see something like the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>trial tests
+tests.test_quote_picker
+  TestQuotePicker
+    test_pick ...                                    <span class="o">[</span>OK<span class="o">]</span>
+tests.test_talkbackbot
+  TestTalkBackBot
+    test_privmsgAttribution ...                      <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgNoTrigger ...                        <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgPrivateMessage ...                   <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgWithTrigger ...                      <span class="o">[</span>OK<span class="o">]</span>
+
+---------------------------------------------------------
+Ran 5 tests in 0.020s
+
+PASSED <span class="o">(</span><span class="nv">successes</span><span class="o">=</span>5<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="running-our-bot">Running our bot</h4>
+<p>Time to play with our bot!  First, copy <code>settings.ini.EXAMPLE</code> to <code>settings.ini</code> and edit the file as necessary: </p>
+<pre><code>[irc]
+endpoint = ssl:host=irc.freenode.net:port=7000
+nickName = shereallysaid
+realName = bot: provides quotations from notable women
+
+channel = #newcoder
+
+[talkback]
+quotesFilename = quotes.txt
+# Trigger phrases, in lowercase
+triggers =
+    that&#39;s what she said
+</code></pre>
+<p>Then run the following command with our virtualenv activated:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>twistd -n twsrs
+</pre></div>
+</td></tr></table></div></div>
+<p>and you should see the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>twistd -n twsrs
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> Log opened.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> twistd 13.0.0 <span class="o">(</span>/Users/lynnroot/.virtualenvs/NetworkProj/bin/python 2.7.2<span class="o">)</span> starting up.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> reactor class: twisted.internet.selectreactor.SelectReactor.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> Starting factory &lt;talkback.bot.TalkBackBotFactory instance at 0x107e2bc68&gt;
+2013-06-27 16:27:51+0200 <span class="o">[</span>Uninitialized<span class="o">]</span> connectionMade
+2013-06-27 16:28:01+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> Signed on
+2013-06-27 16:28:07+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> <span class="o">[</span>shereallysaid has joined <span class="c">#newcoder]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Now if you log onto irc.freenode.net as yourself and join the #newcoder channel, you should see <code>shereallysaid</code> in the channel.  Try sending <code>that&#39;s what she said</code> in the channel:</p>
+
+<p><img class="displayed" src="/assets/images/irc_trigger.png" /></p>
+
+<p>Now try sending <code>shereallysaid: ping</code> in the #newcoder channel:</p>
+
+<p><img class="displayed" src="/assets/images/irc_ping.png" /></p>
+
+<p>And last, try sending a message to the bot directly: <code>/msg shereallysaid hello</code>:</p>
+
+<p><img class="displayed" src="/assets/images/irc_msg.png" /></p>
+
+<p>Looking back at our terminal, we can see the output of our logs:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>twistd -n twsrs
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> Log opened.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> twistd 13.0.0 <span class="o">(</span>/Users/lynnroot/.virtualenvs/IRCbot/bin/python 2.7.2<span class="o">)</span> starting up.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> reactor class: twisted.internet.selectreactor.SelectReactor.
+2013-06-27 16:27:51+0200 <span class="o">[</span>-<span class="o">]</span> Starting factory &lt;talkback.bot.TalkBackBotFactory instance at 0x107e2bc68&gt;
+2013-06-27 16:27:51+0200 <span class="o">[</span>Uninitialized<span class="o">]</span> connectionMade
+2013-06-27 16:28:01+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> Signed on
+2013-06-27 16:28:07+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> <span class="o">[</span>shereallysaid has joined <span class="c">#newcoder]</span>
+2013-06-27 16:32:34+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> sent message to <span class="c">#newcoder, triggered by roguelynn:</span>
+        The worst cynicism: a belief in luck. ~ Joyce Carol Oates
+2013-06-27 16:36:48+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> sent message to <span class="c">#newcoder, triggered by roguelynn:</span>
+        It is because I have lived a most difficult life that I could <span class="k">do </span>this. ~ Oksana Baiul
+2013-06-27 16:37:46+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> sent message to roguelynn, triggered by roguelynn:
+        Cherish your human connections: your relationships with friends and family. ~ Barbara Bush
+</pre></div>
+</td></tr></table></div></div>
+<p>When you’re done, within the terminal, press <code>CTRL+C</code> to terminate the bot.  When doing so, you’ll see the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>2013-06-27 16:41:16+0200 <span class="o">[</span>-<span class="o">]</span> Received SIGINT, shutting down.
+2013-06-27 16:41:16+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> connectionLost &lt;twisted.python.failure.Failure &lt;class <span class="s1">&#39;twisted.internet.error.ConnectionLost&#39;</span>&gt;&gt;
+2013-06-27 16:41:16+0200 <span class="o">[</span>TalkBackBot <span class="o">(</span>TLSMemoryBIOProtocol<span class="o">)</span>,client<span class="o">]</span> Stopping factory &lt;talkback.bot.TalkBackBotFactory instance at 0x107e2bc68&gt;
+2013-06-27 16:41:16+0200 <span class="o">[</span>-<span class="o">]</span> Main loop terminated.
+2013-06-27 16:41:16+0200 <span class="o">[</span>-<span class="o">]</span> Server Shut Down.
+</pre></div>
+</td></tr></table></div></div><h3 id="running-tests-the-bot-with-a-makefile">Running tests + the bot with a Makefile</h3>
+<p>If you have <code>Make</code> installed (test in your terminal via <code>make --version</code>), you can create a Makefile, like so:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">run</span><span class="o">:</span>
+    twistd -n twsrs
+
+<span class="nf">cov</span><span class="o">:</span>
+    coverage run --branch --source talkback  <span class="sb">`</span>which trial<span class="sb">`</span> tests
+    coverage report
+    coverage html
+
+<span class="nf">.PHONY</span><span class="o">:</span> <span class="m">run cov</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>A Makefile simplifies commands for us – notice that these are just commands we could run in our terminal directly..  If we want to run the bot, all we’d have to do is <code>make run</code> to start our bot.  If we want to run our tests, all we’d have to do is <code>make cov</code>.  </p>
+
+<p>Running our tests via <code>make cov</code> makes use of <code>coverage</code> (a requirement that is listed in <code>requirements.txt</code> and should be in your virtualenv already).  When we run <code>make cov</code>, we see this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>NetworkProj<span class="o">)</span><span class="nv">$ </span>make cov
+coverage run --branch --source talkback  <span class="sb">`</span>which trial<span class="sb">`</span> tests
+tests.test_quote_picker
+  TestQuotePicker
+    test_pick ...                                                          <span class="o">[</span>OK<span class="o">]</span>
+tests.test_talkbackbot
+  TestTalkBackBot
+    test_privmsgAttribution ...                                            <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgNoTrigger ...                                              <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgPrivateMessage ...                                         <span class="o">[</span>OK<span class="o">]</span>
+    test_privmsgWithTrigger ...                                            <span class="o">[</span>OK<span class="o">]</span>
+
+-------------------------------------------------------------------------------
+Ran 5 tests in 0.087s
+
+PASSED <span class="o">(</span><span class="nv">successes</span><span class="o">=</span>5<span class="o">)</span>
+coverage report
+Name                    Stmts   Miss Branch BrMiss  Cover
+---------------------------------------------------------
+talkback/__init__           0      0      0      0   100%
+talkback/bot               46      3     12      1    93%
+talkback/quote_picker       7      0      0      0   100%
+---------------------------------------------------------
+TOTAL                      53      3     12      1    94%
+coverage html
+</pre></div>
+</td></tr></table></div></div>
+<p>It runs our tests, but then also runs <code>coverage</code>, which assesses the amount of code that is covered by our tests. After its run, <code>coverage</code> creates a nice html page within <code>htmlcov</code> that you can view in your browser.  Just open up the <code>index.html</code> file in <code>new-coder/networks/htmlcov/</code> and it will launch in your browser:</p>
+
+<p><img class="displayed" src="/assets/images/coverage_report.png" /></p>
+
+<p>You can click on line items to see more detail:</p>
+
+<p><img class="displayed" src="/assets/images/coverage_bot.png" /></p>
+
+<p>You’ll notice that we don’t have 100% coverage.  This is because there’s no need to test log messages.  Having a goal of 100% coverage can be unrealistic, and is not typical in the industry.  To read more about what reasonable test coverage is, StackOverflow has a <a href="http://stackoverflow.com/questions/90002/what-is-a-reasonable-code-coverage-for-unit-tests-and-why">great answer</a> to such a question.</p>
+
+<p><strong>If you do not have <code>make</code> installed</strong>: you can still run coverage, just run the commands that are detailed in the Makefile:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="n">NetworkProj</span><span class="p">)</span><span class="err">$</span> <span class="n">coverage</span> <span class="n">run</span> <span class="o">--</span><span class="n">branch</span> <span class="o">--</span><span class="n">source</span> <span class="n">talkback</span>  <span class="sb">`which trial`</span> <span class="n">tests</span>
+<span class="p">(</span><span class="n">NetworkProj</span><span class="p">)</span><span class="err">$</span> <span class="n">coverage</span> <span class="n">report</span>
+<span class="p">(</span><span class="n">NetworkProj</span><span class="p">)</span><span class="err">$</span> <span class="n">coverage</span> <span class="n">html</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Enjoy working with Twisted? <a href="/%7Edrafts/networks/extended/">Learn more about Twisted and networking with Python &rarr;</a></p>
+
+        </div>
+    </div>
+
+        </div>
+
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

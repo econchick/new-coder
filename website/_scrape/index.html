@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+        <dl class="archives">
+            <h2><a href="{{ get_url("/scrape") }}">Web Scraping</a></h2>
+            {% for post in posts %}
+                {% if 'intro-scrape' in post.tags %}
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a></dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if 'scrape' in post.tags %}
+                    <dd>
+                        <dl>
+                            <dd><a href="{{ get_url(post.url) }}"><b>{{ post.title }}</b></a> - {% if post.excerpt %}{{ post.excerpt }}{% endif %}</dd>
+                        </dl>
+                    </dd>
+                {% endif %}
+            {% endfor %}
+        </dl>
+{% endblock %}

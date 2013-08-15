@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.newcoder.io"]);
+  _paq.push(["setDomains", ["*.newcoder.io"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.ox.cx/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "12"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 1824739360,widget_type: "donation_campaign",anchor_id: "wepay_widget_anchor_51bc7f731bfd4",widget_options: {list_suggested_donations: true,allow_cover_fee: true,enable_recurring: true,allow_anonymous: true,button_text: "Donate"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    <title>How to work through these tutorials &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/workshop/">Workshop Kit</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
+            </ul>
+
+        </div>
+
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>How to work through these tutorials</h2>
+        </div>
+        
+        <div class="body">
+            <p>How should a new coder approach these tutorials?</p>
+<h3 id="tech-requirements">Tech Requirements</h3>
+<p>If at any time you have issues installing anything, don&#39;t hesitate to <a href="/Contact">contact me</a>.</p>
+
+<ul>
+<li><a href="http://www.python.org/download/releases/2.7.3/">Python 2.x</a>
+
+<ul>
+<li>Mac OS X and Linux often ship with Python installed. To check, open up a terminal, type <code>python --version</code>, and if you get an error message, or if your version is older than 2.7, go ahead and <a href="http://www.python.org/download/releases/2.7.3/">install or update</a>.</li>
+<li>Windows does not automatically come with Python installed, and must be downloaded from the <a href="http://www.python.org/download/releases/2.7.3/">website</a>.</li>
+</ul></li>
+<li>A text editor.  Some options include:
+
+<ul>
+<li><a href="http://www.sublimetext.com/2">Sublime Text 2</a> for Mac, Linux, or Windows</li>
+<li><a href="http://projects.gnome.org/gedit/">gEdit</a> for Linux</li>
+<li><a href="http://notepad-plus-plus.org/">NotePad++</a> for Windows</li>
+<li><a href="http://macromates.com/">TextMate</a> for Mac</li>
+</ul></li>
+<li><a href="http://git-scm.com/downloads">git</a> installed</li>
+<li>Optional but suggested: a <a href="http://github.com">GitHub</a> or <a href="http://bitbucket.org">BitBucket</a> account to upload, display, and share your code.</li>
+</ul>
+<h3 id="knowledge-requirements">Knowledge Requirements</h3>
+<ul>
+<li>Have worked through something like <a href="http://learnpythonthehardway.org/">Learn Python the Hard Way</a>, <a href="http://www.diveintopython.net/">Dive into Python</a>, <a href="http://www.codecademy.com/tracks/python">Codecademy</a> or others that teach syntax. No need to complete any/all of these introductory resources, but the tutorials will <em>not</em> walk you through the basics of Python syntax.</li>
+<li>Want to continue to learn Python and/or learn to code.</li>
+</ul>
+
+<p>Haven&#39;t worked through any of the above resources? It&#39;s okay – feel free to do these tutorials as well, but have patience for yourself and don’t be shy on using Google or referring to those resources for syntax help.</p>
+<h3 id="purpose-of-these-tutorials">Purpose of these tutorials</h3>
+<p>Each tutorial is meant to be worked through in the order presented, but can be skipped if not challenging enough:</p>
+
+<ul>
+<li>Data Visualization</li>
+<li>APIs</li>
+<li>Web Scraping</li>
+<li>Networks</li>
+<li>GUI</li>
+</ul>
+
+<p>Each tutorial can stand on its own, but gently advances in development topics that a new coder may not be exposed to when trying to learn on his/her own.  It‘s okay to get bored, frustrated, distracted, etc. Life happens. The tutorials will still be here for when you return – just be sure to <a href="/begin/save-your-progress">save your progress</a>.</p>
+
+<p>Code for these tutorials may not be the most Pythonic — it’s meant to teach.</p>
+
+        </div>
+    </div>
+
+        </div>
+
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>

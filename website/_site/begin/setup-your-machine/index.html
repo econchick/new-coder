@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Lynn Root">
+<meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+
+
+<link rel="stylesheet" href="/assets/css/screen3.css" type="text/css">
+<link rel="stylesheet"href="/assets/css/css3-github-ribbon.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/glyphicons.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.newcoder.io"]);
+  _paq.push(["setDomains", ["*.newcoder.io"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.ox.cx/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "12"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link rel="stylesheet" href="/assets/css/pygments2.css" type="text/css">
+<script src="/assets/js/modernizr.js"></script>
+<script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 1824739360,widget_type: "donation_campaign",anchor_id: "wepay_widget_anchor_51bc7f731bfd4",widget_options: {list_suggested_donations: true,allow_cover_fee: true,enable_recurring: true,allow_anonymous: true,button_text: "Donate"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39343031-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    <title>Setting up your computer &ndash; New Coder</title>
+</head>
+
+<body>
+    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/tutorials/">Tutorials</a></li>
+                <li><a href="/workshop/">Workshop Kit</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="https://www.wepay.com/donations/1824739360">Donate</a></li>
+            </ul>
+
+        </div>
+
+        <div id="header">
+            <h1><a href="/">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
+            <h2>five life jackets to throw to the new coder</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+            <h2>Setting up your computer</h2>
+        </div>
+        
+        <div class="body">
+            <p>All the needed dependencies for setting up your Mac, Linux, or Windows machine for these tutorials.</p>
+
+<ol>
+<li><a href="#overview-of-requirements">Overview</a></li>
+<li>Install:
+
+<ul>
+<li><a href="#mac-os-x">Mac OS X</a></li>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#windows">Windows</a></li>
+</ul></li>
+<li><a href="#test-your-setup">Test your setup</a></li>
+</ol>
+<h2 id="overview-of-requirements">Overview of requirements</h2>
+<p>The installation will depend on your operating system, but overall, you will need:</p>
+
+<ul>
+<li>Python 2.x – there are <a href="https://github.com/econchick/new-coder/issues/28">plans</a> to update/include Python 3.x</li>
+<li>git – an intro given <a href="/begin/save-your-progress">here</a></li>
+<li>A C compiler</li>
+<li>pip</li>
+<li>virtualenv</li>
+<li>virtualenvwrapper</li>
+</ul>
+<h2 id="mac-os-x">Mac OS X</h2><h3 id="python">Python</h3>
+<p>Macs come with Python pre-installed.  To check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like <a href="http://www.python.org/images/terminal-in-finder.png">so</a>), then type <code>python</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="http://www.python.org">Python.org</a> has a good <a href="http://www.python.org/getit/mac/">Python on the Mac</a> page if the above does not work for you.</p>
+<h3 id="git">git</h3>
+<p>You will need to install <a href="http://git-scm.com">git</a> on your machine through their <a href="http://git-scm.com/downloads">download page</a>. You can then follow the <a href="/begin/save-your-progress">Save your Progress</a> page to set it up.</p>
+<h3 id="c-compiler">C compiler</h3>
+<p>You will need the <a href="http://developer.apple.com/xcode">XCode</a> application. Once you have XCode on your machine, you will need to navigate to Preferences &rarr; Downloads, then select <strong>Command Line Tools</strong> to download &amp; install (this may take a while, get some coffee, go take a shower).</p>
+
+<p>This gives you the <a href="http://gcc.gnu.org/">GCC</a> or the GNU Compiler Collection. To test installation, within the Terminal application, type <code>gcc</code> and you should get the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>gcc
+i686-apple-darwin11-llvm-gcc-4.2: no input files
+</pre></div>
+</td></tr></table></div></div><h3 id="pip">pip</h3>
+<p><a href="http://www.pip-installer.org/en/latest/">pip</a>, stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading <code>$</code> as that is your terminal prompt) for downloading &amp; installing. It may prompt you for your computer login password.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo curl -O http://python-distribute.org/distribute_setup.py | python
+<span class="nv">$ </span>sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+<span class="nv">$ </span>pip
+Usage: pip COMMAND <span class="o">[</span>OPTIONS<span class="o">]</span>
+You must give a <span class="nb">command</span> <span class="o">(</span>use <span class="s2">&quot;pip help&quot;</span> to see a list of commands<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="virtualenv-amp-virtualenvwrapper">virtualenv &amp; virtualenvwrapper</h3>
+<p><a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> creates isolated environments for each of your Python projects. It helps to solve version &amp; dependency problems with multple Python installations and/or multiple versions of different Python packages.  We’ll use <code>pip</code> to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use <code>pip</code> again to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenvwrapper
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
+<span class="nv">$ </span>mkdir -p <span class="nv">$WORKON_HOME</span>
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div><h2 id="linux">Linux</h2><h3 id="python-2">Python</h3>
+<p>Linux come with Python pre-installed.  To check, open up the Terminal application, then type <code>python</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python
+Python 2.7.3 <span class="o">(</span>default, Aug  9 2012, 17:23:57<span class="o">)</span>
+<span class="o">[</span>GCC 4.7.1 20120720 <span class="o">(</span>Red Hat 4.7.1-5<span class="o">)]</span> on linux2
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div><h3 id="git-2">git</h3>
+<p>You will need to install <a href="http://git-scm.com">git</a> either from commands below or through their <a href="http://git-scm.com/downloads">download page</a>. You can then follow the <a href="/begin/Save-your-progress">Save your Progress</a> page to set it up.</p>
+
+<ul>
+<li>Fedora: <code>sudo yum git</code></li>
+<li>Ubuntu: <code>sudo apt-get install git</code></li>
+</ul>
+<h3 id="c-compiler-2">C Compiler</h3>
+<p>A C compiler, either GCC or clang, is needed because the <code>numpy</code> library we are using has some C extensions, which will need to be compiled.</p>
+
+<p>To test if you have either GCC or clang, type <code>$ gcc</code> or <code>$ clang</code> into your terminal. If you get an error that says “command not found” then follow the install instructions:</p>
+
+<ul>
+<li>Fedora:
+
+<ul>
+<li><code>sudo yum groupinstall &quot;Developer Tools&quot;</code></li>
+<li><code>sudo yum install python-devel</code></li>
+</ul></li>
+<li>Ubuntu:
+
+<ul>
+<li>you may need to run <code>sudo apt-get update</code> first.</li>
+<li><code>sudo apt-get install build-essential python-dev</code></li>
+</ul></li>
+</ul>
+<h3 id="pip-2">pip</h3>
+<p><a href="http://www.pip-installer.org/en/latest/">pip</a>, stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading <code>$</code> as that is your terminal prompt) for downloading &amp; installing. It may prompt you for your computer login password.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo curl -O http://python-distribute.org/distribute_setup.py | python
+<span class="nv">$ </span>sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+<span class="nv">$ </span>pip
+Usage: pip COMMAND <span class="o">[</span>OPTIONS<span class="o">]</span>
+You must give a <span class="nb">command</span> <span class="o">(</span>use <span class="s2">&quot;pip help&quot;</span> to see a list of commands<span class="o">)</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="virtualenv-amp-virtualenvwrapper-2">virtualenv &amp; virtualenvwrapper</h3>
+<p><a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> creates isolated environments for each of your Python projects. It helps to solve version &amp; dependency problems with multple Python installations and/or multiple versions of different Python packages.  We’ll use <code>pip</code> to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</td></tr></table></div></div>
+<p><a href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use <code>pip</code> again to install it:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenvwrapper
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span>~/Envs
+<span class="nv">$ </span>mkdir -p <span class="nv">$WORKON_HOME</span>
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div><h2 id="windows">Windows</h2><h3 id="python-3">python</h3>
+<ol>
+<li>Go <a href="http://python.org/ftp/python/2.7.1/python-2.7.1.msi">here</a> and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.</li>
+<li>Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
+
+<ul>
+<li>On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on &quot;cmd&quot; in the search results above the Search field.</li>
+<li>On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on &quot;Run...&quot;, type cmd into the text box, and hit enter.</li>
+</ul></li>
+<li>At this <code>C:\</code> prompt that appears, test your Python install by typing <code>\Python27\python.exe</code> and hitting <code>enter</code>. You should see something like</li>
+</ol>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>Python 2.7.3 <span class="o">(</span>r271:86832,...<span class="o">)</span> on win32
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information
+&gt;&gt;&gt;
+</pre></div>
+</td></tr></table></div></div>
+<ol>
+<li>You just started Python! The <code>&gt;&gt;&gt;</code> indicates that you are at a new type of prompt – a Python prompt. The command prompt lets you navigate your computer and run programs, and the Python prompt lets you write and run Python code interactively.</li>
+<li>To exit the Python prompt, type <code>exit()</code> and press Enter. This will take you back to the Windows command prompt (the <code>C:\</code> you saw earlier).</li>
+<li>Put Python on the PATH – You might have noticed that you typed a &quot;full path&quot; to the Python application above when launching Python (<code>python.exe</code> is the application, but we typed <code>\Python27\python.exe</code>). In this step, you will configure your computer so that you can run Python without typing the &#39;&#39;Python27&#39;&#39; directory name.
+
+<ul>
+<li>Get to System Properties
+
+<ol>
+<li>Open up “My Computer” by clicking on the Start menu or the Windows logo in the lower-left hand corner, and navigate to &quot;My Computer&quot; (for Windows XP) or &quot;Computer&quot; (For Vista and Windows 7).</li>
+<li>Right-click on the empty space in the window, and choose “Properties”.
+
+<ul>
+<li>If you’re using XP: window labeled &quot;System Properties&quot; will pop up. Click the &quot;Advanced&quot; tab. A window with the title &quot;System Properties&quot; will appear.</li>
+<li>If you’re <strong>not</strong> using XP: A window labeled “View basic information about your computer” will appear. In this window, click &quot;Advanced system settings&quot;.  A window with the title &quot;System Properties&quot; will appear.</li>
+</ul></li>
+</ol></li>
+<li>Edit the Path
+
+<ol>
+<li>Within System Properties, make sure you are in the tab labeled “Advanced’.</li>
+<li>Click the button labeled “Environment Variables”.  A window labeled &quot;Environment Variables&quot; will appear.</li>
+<li>In this window, the screen is split between “User variables” and “System variables”. Within “System variables’, scroll down and find the one labeled “Path’. Click the “Edit...” button A window with the &quot;Variable name&quot; and the &quot;Variable value&quot; should appear.  The “Variable value” will already have some text in it; click in the box to unhighlight it (we don&#39;t want to accidentally delete that text).</li>
+</ol></li>
+<li>In the &quot;Variable value&quot; box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! <code>;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts</code></li>
+<li>Hit &quot;OK&quot; to close out the system properties window.</li>
+<li>Test your change:
+
+<ol>
+<li>Open up a new command prompt: you do this the same way you did above when installing python. This needs to be a new command prompt because the changes you just made didn&#39;t take affect in prompts that were already open.</li>
+<li>Type python into the command prompt to start Python</li>
+<li>Notice that you now get a Python interpreter, indicated by the change to a <code>&gt;&gt;&gt;</code> prompt.</li>
+<li>Exit the Python prompt by typing <code>exit()</code> and hitting enter. Now you&#39;re back at the Windows command prompt (<code>C:\</code>).</li>
+</ol></li>
+</ul></li>
+</ol>
+
+<p>Success! You have installed Python!</p>
+<h3 id="git-3">git</h3>
+<p>Download git <a href="http://git-scm.com/download/win">here</a>.</p>
+<h3 id="c-compiler-3">C Compiler</h3>
+<p>Download the MinGW GCC compiler <a href="http://sourceforge.net/projects/mingw/files/latest/download?source=files">here</a> and follow installation instructions <a href="http://www.mingw.org/wiki/InstallationHOWTOforMinGW">here</a>.</p>
+<h3 id="virtualenv-pip">virtualenv + pip</h3>
+<ol>
+<li>From <a href="http://pypi.python.org/pypi/virtualenv">here</a>, under Installation, see “You can just grab the single file virtualenv.py ..”. Right-click and save-as and place in the Scripts folder that we earlier added to system PATH.</li>
+<li>From the command line, <code>cd</code> into the directory that you want to save your Python work. <strong>IMPORTANT TIP</strong>: Do not create or use a directory that has spaces in the name. For instance, ‘Python Projects’ is not good, but ‘PythonProjects’ is fine.</li>
+<li>Within your Python project directory, type: <code>virtualenv.py dataviz</code>. A virtual environment called “dataviz” has been created, and now lives in your Python projects directory. This also installs pip: pip is a tool that is used to install Python packages</li>
+<li>You will now need to activate the virtual environment by typing in your command line: <code>dataviz\Scripts\activate.bat</code>.  You should see something like this:  <code>(dataviz) C:\PythonProjects&gt;</code></li>
+<li>To stop working in the virtual environment, type the following in your command line: <code>dataviz\Scripts\deactivate.bat</code>.  You will need to run the activate script again (stated in #4) to start up the virtual environment.</li>
+</ol>
+<h2 id="test-your-setup">Test your setup</h2>
+<p>Now let’s test our installation and get familiar with creating &amp; using virtual environments:</p>
+
+<ul>
+<li>Mac OS X/Linux:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv TestEnv
+Installing
+distribute..........................................
+....................................................
+....................................................
+...............................done.
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Windows:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre># Within your ProjectFolder
+C:\dataviz\Scripts&gt; virtualenv.py TestEnv
+Installing
+distribute..........................................
+....................................................
+....................................................
+...............................done.
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
+</pre></div>
+</td></tr></table></div></div>
+<p>Now that you made a virtual environment called <code>TestEnv</code>, you should see <code>(TestEnv)</code> before your prompt:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Let’s play around with commands for virtualenv:</p>
+
+<ul>
+<li>Mac OS X/Linux:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># deactivate the TestEnv</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
+<span class="err">$</span>
+<span class="c"># reactivate the TestEnv</span>
+<span class="nv">$ </span>workon TestEnv
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+<span class="c"># install the Django package in your TestEnv environment</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>pip install django
+Downloading/unpacking django
+  Downloading Django-1.1.1.tar.gz <span class="o">(</span>5.6Mb<span class="o">)</span>: 5.6Mb downloaded
+  Running setup.py egg_info <span class="k">for </span>package django
+Installing collected packages: django
+  Running setup.py install <span class="k">for </span>django
+    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
+    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
+Successfully installed django
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Windows:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre># deactivate the TestEv
+(TestEnv) dataviz\Scripts&gt; deactivate.bat
+C:\dataviz\Scripts&gt;
+C:\dataviz\Scripts&gt; activate.bat
+(TestEnv) C:\dataviz\Scripts&gt;
+# install the Django package in your TestEnv environment
+(TestEnv) C:\ pip install django
+Downloading/unpacking django
+  Downloading Django-1.1.1.tar.gz (5.6Mb): 5.6Mb downloaded
+  Running setup.py egg_info for package django
+Installing collected packages: django
+  Running setup.py install for django
+    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
+    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
+Successfully installed django
+(TestEnv) C:\dataviz\Scripts&gt;
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>All operating systems (for Windows, know that instead of the <code>$</code> prompt, you will see <code>C:\</code> + folder name:</li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># test the installation of Django</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="c"># deactivate the TestEnv virtual environment</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
+<span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># try to import Django again</span>
+<span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&quot;&lt;stdin&gt;&quot;</span>, line 1, in &lt;module&gt;
+ImportError: No module named django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># reactivate the TestEnv virtual environment</span>
+<span class="nv">$ </span>workon TestEnv
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+<span class="c"># try again to import Django</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>python
+Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
+<span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; <span class="nb">exit</span><span class="o">()</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># see what libraries are installed in the TestEnv virtual environment:</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>pip freeze
+<span class="nv">django</span><span class="o">==</span>1.5
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>here’s a run-down of useful commands for pip, virtualenv &amp; virtualenvwrapper:
+
+<ul>
+<li>For Linux + Mac OS:
+
+<ul>
+<li><code>mkvirtualenv [ENV_NAME]</code> – creates and activates a fresh virtual environment</li>
+<li><code>workon [ENV_NAME]</code> – activates an already-created virtual environment</li>
+<li><code>deactivate</code> – deactivates the virtual environment that is currently active</li>
+<li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
+<li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
+</ul></li>
+<li>For Windows:
+
+<ul>
+<li><code>virtualenv.py [ENV_NAME]</code> – creates and activates a fresh virtual environment within <code>ProjectFolder</code>.</li>
+<li><code>ProjectFolder\Scripts\activate.bat</code> – activates an already-created virtual environment</li>
+<li><code>ProjectFolder\Scripts\deactivate.bat</code> – deactivates the virtual environment that is currently active</li>
+<li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
+<li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>You’re good to go with your setup! Go start on <a href="/dataviz">dataviz</a>!</p>
+
+        </div>
+    </div>
+
+        </div>
+
+        <div id="footer">
+            <p>The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </div>
+</body>
+</html>
