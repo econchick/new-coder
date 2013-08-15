@@ -7,5 +7,10 @@ website/_posts/.DS_Store
 htmlcov
 settings.ini
 twistd.pid
+website/_generated_html/*
+website/_generated_html
+website/_generated_html/
+website/_site/
+website/_site
 
 *.html
