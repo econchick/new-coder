@@ -153,7 +153,7 @@ $ source /usr/local/bin/virtualenvwrapper.sh
 
 ### python
 
-1. Go [here](http://python.org/ftp/python/2.7.1/python-2.7.1.msi) and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
+1. Go [here](http://python.org/ftp/python/2.7.5/python-2.7.5.msi) and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
 2. Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
 	- On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on "cmd" in the search results above the Search field.
 	- On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on "Run...", type cmd into the text box, and hit enter.
@@ -188,47 +188,63 @@ Success! You have installed Python!
 
 ### git
 
-Download git [here][gitwin].
+Download git [here](http://msysgit.github.io/).  This installs git for Windows, as well as Msys, a Unix-like shell, that also includes a GCC compiler, [MinGW](http://mingw.org/).
 
-### C Compiler
 
-Download the MinGW GCC compiler [here][mingw] and follow installation instructions [here][install].
+### pip, virtualenv + virtualenvwrapper
 
-### virtualenv + pip
+1. Navigate [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip) to download and the Windows pip executible.  Be sure to select the correct one for your architecture AND Python version (either pip-1.4.1.win-amd64-py2.7.‌exe or pip-1.4.1.win32-py2.7.‌exe).  You now have pip installed.
+2. Open/run the Git Bash program. **NOTE**:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.
+3. Run the following command to install [virtualenv](http://www.virtualenv.org/en/latest/#installation):
 
-1. From [here][virtualenv], under Installation, see “You can just grab the single file virtualenv.py ..”. Right-click and save-as and place in the Scripts folder that we earlier added to system PATH.
-2. From the command line, `cd` into the directory that you want to save your Python work. **IMPORTANT TIP**: Do not create or use a directory that has spaces in the name. For instance, ‘Python Projects’ is not good, but ‘PythonProjects’ is fine.
-3. Within your Python project directory, type: `virtualenv.py dataviz`. A virtual environment called “dataviz” has been created, and now lives in your Python projects directory. This also installs pip: pip is a tool that is used to install Python packages
-4. You will now need to activate the virtual environment by typing in your command line: `dataviz\Scripts\activate.bat`.  You should see something like this:  `(dataviz) C:\PythonProjects>`
-5. To stop working in the virtual environment, type the following in your command line: `dataviz\Scripts\deactivate.bat`.  You will need to run the activate script again (stated in #4) to start up the virtual environment.
+	```bash
+	$ pip install virtualenv
+	```
+
+	or, if you get a permission error:
+
+	```bash
+	$ sudo pip install virtualenv
+	```
+
+4. Next, run the command to install [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/install.html):
+
+	```bash
+	$ pip install virtualenvwrapper
+	```
+
+	or, if you get a permission error:
+
+	```bash
+	$ sudo pip install virtualenvwrapper
+	```
+
+5. And now setup virtualenvwrapper:
+
+	```bash
+	$ export WORKON_HOME=$HOME/.virtualenvs
+	$ export MSYS_HOME=/c/msys/1.0
+	$ source /usr/local/bin/virtualenvwrapper.sh
+	```
+
+	or,
+
+	```bash
+	$ export WORKON_HOME=$HOME/.virtualenvs
+	$ export MSYS_HOME=C:\msys\1.0
+	$ source /usr/local/bin/virtualenvwrapper.sh
+	```
+
 
 
 ## Test your setup
 
 
-Now let’s test our installation and get familiar with creating & using virtual environments:
+Now let’s test our installation and get familiar with creating & using virtual environments, let’s return to our terminal:
 
-- Mac OS X/Linux:
 
 ```bash
 $ mkvirtualenv TestEnv
-Installing
-distribute..........................................
-....................................................
-....................................................
-...............................done.
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
-virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
-```
-
-* Windows:
-
-```cmd
-# Within your ProjectFolder
-C:\dataviz\Scripts> virtualenv.py TestEnv
 Installing
 distribute..........................................
 ....................................................
@@ -250,7 +266,6 @@ Now that you made a virtual environment called `TestEnv`, you should see `(TestE
 
 Let’s play around with commands for virtualenv:
 
-* Mac OS X/Linux:
 
 ```bash
 # deactivate the TestEnv
@@ -259,6 +274,11 @@ $
 # reactivate the TestEnv
 $ workon TestEnv
 (TestEnv) $
+```
+
+Next, we’ll practice installing a package into the virtualenv:
+
+```bash
 # install the Django package in your TestEnv environment
 (TestEnv) $ pip install django
 Downloading/unpacking django
@@ -272,30 +292,6 @@ Successfully installed django
 (TestEnv) $
 ```
 
-* Windows:
-
-```cmd
-# deactivate the TestEv
-(TestEnv) dataviz\Scripts> deactivate.bat
-C:\dataviz\Scripts>
-C:\dataviz\Scripts> activate.bat
-(TestEnv) C:\dataviz\Scripts>
-# install the Django package in your TestEnv environment
-(TestEnv) C:\ pip install django
-Downloading/unpacking django
-  Downloading Django-1.1.1.tar.gz (5.6Mb): 5.6Mb downloaded
-  Running setup.py egg_info for package django
-Installing collected packages: django
-  Running setup.py install for django
-    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
-    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
-Successfully installed django
-(TestEnv) C:\dataviz\Scripts>
-
-```
-
-
-* All operating systems (for Windows, know that instead of the `$` prompt, you will see `C:\` + folder name:
 
 ```bash
 # test the installation of Django
@@ -312,6 +308,7 @@ $
 
 ```bash
 # try to import Django again
+# we should get an error because we deactivated the virtualenv
 $ python
 Python 2.7.2 (default, Jun 20 2012, 16:23:33)
 [GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
@@ -345,19 +342,14 @@ django==1.5
 (TestEnv) $
 ```
 
-* here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper:
-	* For Linux + Mac OS:
-		* `mkvirtualenv [ENV_NAME]` – creates and activates a fresh virtual environment
-		* `workon [ENV_NAME]` – activates an already-created virtual environment
-		* `deactivate` – deactivates the virtual environment that is currently active
-		* within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
-		* within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
-	* For Windows:
-		* `virtualenv.py [ENV_NAME]` – creates and activates a fresh virtual environment within `ProjectFolder`.
-		* `ProjectFolder\Scripts\activate.bat` – activates an already-created virtual environment
-		* `ProjectFolder\Scripts\deactivate.bat` – deactivates the virtual environment that is currently active
-		* within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
-		* within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
+Here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper.
+
+* `mkvirtualenv [ENV_NAME]` – creates and activates a fresh virtual environment
+* `workon [ENV_NAME]` – activates an already-created virtual environment
+* `deactivate` – deactivates the virtual environment that is currently active
+* within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
+* within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
+
 
 You’re good to go with your setup! Go start on [dataviz]({{ get_url("dataviz")}})!
 
