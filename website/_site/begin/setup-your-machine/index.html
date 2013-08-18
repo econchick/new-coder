@@ -221,7 +221,7 @@ You must give a <span class="nb">command</span> <span class="o">(</span>use <spa
 </pre></div>
 </td></tr></table></div></div><h2 id="windows">Windows</h2><h3 id="python-3">python</h3>
 <ol>
-<li>Go <a href="http://python.org/ftp/python/2.7.1/python-2.7.1.msi">here</a> and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.</li>
+<li>Go <a href="http://python.org/ftp/python/2.7.5/python-2.7.5.msi">here</a> and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.</li>
 <li>Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
 
 <ul>
@@ -276,23 +276,46 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 
 <p>Success! You have installed Python!</p>
 <h3 id="git-3">git</h3>
-<p>Download git <a href="http://git-scm.com/download/win">here</a>.</p>
-<h3 id="c-compiler-3">C Compiler</h3>
-<p>Download the MinGW GCC compiler <a href="http://sourceforge.net/projects/mingw/files/latest/download?source=files">here</a> and follow installation instructions <a href="http://www.mingw.org/wiki/InstallationHOWTOforMinGW">here</a>.</p>
-<h3 id="virtualenv-pip">virtualenv + pip</h3>
+<p>Download git <a href="http://msysgit.github.io/">here</a>.  This installs git for Windows, as well as Msys, a Unix-like shell, that also includes a GCC compiler, <a href="http://mingw.org/">MinGW</a>.</p>
+<h3 id="pip-virtualenv-virtualenvwrapper">pip, virtualenv + virtualenvwrapper</h3>
 <ol>
-<li>From <a href="http://pypi.python.org/pypi/virtualenv">here</a>, under Installation, see “You can just grab the single file virtualenv.py ..”. Right-click and save-as and place in the Scripts folder that we earlier added to system PATH.</li>
-<li>From the command line, <code>cd</code> into the directory that you want to save your Python work. <strong>IMPORTANT TIP</strong>: Do not create or use a directory that has spaces in the name. For instance, ‘Python Projects’ is not good, but ‘PythonProjects’ is fine.</li>
-<li>Within your Python project directory, type: <code>virtualenv.py dataviz</code>. A virtual environment called “dataviz” has been created, and now lives in your Python projects directory. This also installs pip: pip is a tool that is used to install Python packages</li>
-<li>You will now need to activate the virtual environment by typing in your command line: <code>dataviz\Scripts\activate.bat</code>.  You should see something like this:  <code>(dataviz) C:\PythonProjects&gt;</code></li>
-<li>To stop working in the virtual environment, type the following in your command line: <code>dataviz\Scripts\deactivate.bat</code>.  You will need to run the activate script again (stated in #4) to start up the virtual environment.</li>
+<li>Navigate <a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#pip">here</a> to download and the Windows pip executible.  Be sure to select the correct one for your architecture AND Python version (either pip-1.4.1.win-amd64-py2.7.‌exe or pip-1.4.1.win32-py2.7.‌exe).  You now have pip installed.</li>
+<li>Open/run the Git Bash program. <strong>NOTE</strong>:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.</li>
+<li><p>Run the following command to install <a href="http://www.virtualenv.org/en/latest/#installation">virtualenv</a>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv
+</pre></div>
+</td></tr></table></div></div>
+<p>or, if you get a permission error:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</td></tr></table></div></div></li>
+<li><p>Next, run the command to install <a href="http://virtualenvwrapper.readthedocs.org/en/latest/install.html">virtualenvwrapper</a>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenvwrapper
+</pre></div>
+</td></tr></table></div></div>
+<p>or, if you get a permission error:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenvwrapper
+</pre></div>
+</td></tr></table></div></div></li>
+<li><p>And now setup virtualenvwrapper:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">MSYS_HOME</span><span class="o">=</span>/c/msys/1.0
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div>
+<p>or,</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">MSYS_HOME</span><span class="o">=</span>C:<span class="se">\m</span>sys<span class="se">\1</span>.0
+<span class="nv">$ </span><span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</td></tr></table></div></div></li>
 </ol>
 <h2 id="test-your-setup">Test your setup</h2>
-<p>Now let’s test our installation and get familiar with creating &amp; using virtual environments:</p>
-
-<ul>
-<li>Mac OS X/Linux:</li>
-</ul>
+<p>Now let’s test our installation and get familiar with creating &amp; using virtual environments, let’s return to our terminal:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -316,43 +339,25 @@ virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postact
 virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
 </pre></div>
 </td></tr></table></div></div>
-<ul>
-<li>Windows:</li>
-</ul>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="highlight"><pre># Within your ProjectFolder
-C:\dataviz\Scripts&gt; virtualenv.py TestEnv
-Installing
-distribute..........................................
-....................................................
-....................................................
-...............................done.
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
-virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
-virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
-</pre></div>
-</td></tr></table></div></div>
 <p>Now that you made a virtual environment called <code>TestEnv</code>, you should see <code>(TestEnv)</code> before your prompt:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Let’s play around with commands for virtualenv:</p>
-
-<ul>
-<li>Mac OS X/Linux:</li>
-</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># deactivate the TestEnv</span>
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
+<span class="err">$</span>
+<span class="c"># reactivate the TestEnv</span>
+<span class="nv">$ </span>workon TestEnv
+<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Next, we’ll practice installing a package into the virtualenv:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -363,19 +368,7 @@ virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env
  8
  9
 10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># deactivate the TestEnv</span>
-<span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>deactivate
-<span class="err">$</span>
-<span class="c"># reactivate the TestEnv</span>
-<span class="nv">$ </span>workon TestEnv
-<span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
-<span class="c"># install the Django package in your TestEnv environment</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># install the Django package in your TestEnv environment</span>
 <span class="o">(</span>TestEnv<span class="o">)</span> <span class="nv">$ </span>pip install django
 Downloading/unpacking django
   Downloading Django-1.1.1.tar.gz <span class="o">(</span>5.6Mb<span class="o">)</span>: 5.6Mb downloaded
@@ -387,47 +380,7 @@ Installing collected packages: django
 Successfully installed django
 <span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
 </pre></div>
-</td></tr></table></div></div>
-<ul>
-<li>Windows:</li>
-</ul>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre># deactivate the TestEv
-(TestEnv) dataviz\Scripts&gt; deactivate.bat
-C:\dataviz\Scripts&gt;
-C:\dataviz\Scripts&gt; activate.bat
-(TestEnv) C:\dataviz\Scripts&gt;
-# install the Django package in your TestEnv environment
-(TestEnv) C:\ pip install django
-Downloading/unpacking django
-  Downloading Django-1.1.1.tar.gz (5.6Mb): 5.6Mb downloaded
-  Running setup.py egg_info for package django
-Installing collected packages: django
-  Running setup.py install for django
-    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
-    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
-Successfully installed django
-(TestEnv) C:\dataviz\Scripts&gt;
-</pre></div>
-</td></tr></table></div></div>
-<ul>
-<li>All operating systems (for Windows, know that instead of the <code>$</code> prompt, you will see <code>C:\</code> + folder name:</li>
-</ul>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</td></tr></table></div></div><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -457,7 +410,9 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># try to import Django again</span>
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># try to import Django again</span>
+<span class="c"># we should get an error because we deactivated the virtualenv</span>
 <span class="nv">$ </span>python
 Python 2.7.2 <span class="o">(</span>default, Jun 20 2012, 16:23:33<span class="o">)</span>
 <span class="o">[</span>GCC 4.2.1 Compatible Apple Clang 4.0 <span class="o">(</span>tags/Apple/clang-418.0.60<span class="o">)]</span> on darwin
@@ -500,11 +455,7 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 <span class="o">(</span>TestEnv<span class="o">)</span> <span class="err">$</span>
 </pre></div>
 </td></tr></table></div></div>
-<ul>
-<li>here’s a run-down of useful commands for pip, virtualenv &amp; virtualenvwrapper:
-
-<ul>
-<li>For Linux + Mac OS:
+<p>Here’s a run-down of useful commands for pip, virtualenv &amp; virtualenvwrapper.</p>
 
 <ul>
 <li><code>mkvirtualenv [ENV_NAME]</code> – creates and activates a fresh virtual environment</li>
@@ -512,17 +463,6 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 <li><code>deactivate</code> – deactivates the virtual environment that is currently active</li>
 <li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
 <li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
-</ul></li>
-<li>For Windows:
-
-<ul>
-<li><code>virtualenv.py [ENV_NAME]</code> – creates and activates a fresh virtual environment within <code>ProjectFolder</code>.</li>
-<li><code>ProjectFolder\Scripts\activate.bat</code> – activates an already-created virtual environment</li>
-<li><code>ProjectFolder\Scripts\deactivate.bat</code> – deactivates the virtual environment that is currently active</li>
-<li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
-<li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
-</ul></li>
-</ul></li>
 </ul>
 
 <p>You’re good to go with your setup! Go start on <a href="/dataviz">dataviz</a>!</p>
