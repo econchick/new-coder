@@ -148,7 +148,7 @@ we’ll iterate over each deal we find from the `deals_list_xpath`, and then we 
 	loader.default_output_processor = Join()
 ```
 
-Here we grab the deal and pass it into XPathItemLoader through the `selector` parameter, along with the `LivingSocialSpider()` class, and assign the `loader` variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within `Join()`, the data items are just joined by a space, and is helpful for when we have multi-line data.
+Here we grab the deal and pass it into XPathItemLoader through the `selector` parameter, along with the `LivingSocialDeal()` class, and assign the `loader` variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within `Join()`, the data items are just joined by a space, and is helpful for when we have multi-line data.
 
 We then iterate over each key and value of `items_fields` and add a the specific data piece's xpath to the loader.
 
