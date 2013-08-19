@@ -93,6 +93,7 @@
 <li><a href="#windows">Windows</a></li>
 </ul></li>
 <li><a href="#test-your-setup">Test your setup</a></li>
+<li><a href="#get-the-tutorial-code">Get the Tutorial Code</a></li>
 </ol>
 <h2 id="overview-of-requirements">Overview of requirements</h2>
 <p>The installation will depend on your operating system, but overall, you will need:</p>
@@ -466,7 +467,82 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 <li>within an activated virtualenv, <code>pip install [PACKAGE_NAME]</code> installs a package into the virtualenv</li>
 <li>within an activated virtualenv, <code>pip freeze</code> lists the packages that is installed &amp; accessible within the virtualenv</li>
 </ul>
+<h2 id="get-the-tutorial-code">Get the Tutorial Code</h2>
+<p>Within your terminal:</p>
 
+<ol>
+<li><p>To get to your “Home” directory:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span>
+</pre></div>
+</td></tr></table></div></div></li>
+<li><p>To create a new <code>Projects</code> folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkdir Projects
+<span class="nv">$ </span><span class="nb">cd </span>Projects
+</pre></div>
+</td></tr></table></div></div></li>
+<li><p>Clone the New Coder project into the directory you’re currently in, which is <code>Projects</code> (unless you named it something else):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/econchick/new-coder.git
+</pre></div>
+</td></tr></table></div></div></li>
+</ol>
+
+<p>When you clone a repo with the above command, git creates a directory.  Here, git created the <code>new-coder</code> directory within our <code>Projects</code> directory.  If you were to open up your file browser (e.g. Finder in Mac), the file hierarchy would look like the following:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre>.
+└── Projects/
+    ├── AUTHORS.md
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    ├── README.md
+    ├── apis/     <span class="c"># sample code for tutorial #2</span>
+    ├── dataviz/  <span class="c"># sample code for tutorial #1</span>
+    ├── gui/      <span class="c"># sample code for tutorial #5</span>
+    ├── network/  <span class="c"># sample code for tutorial #4</span>
+    ├── scrape/   <span class="c"># sample code for tutorial #3</span>
+    └── website/  <span class="c"># files that make newcoder.io</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>When you work through each project, make a new directory within <code>Projects</code> to keep your code away from the sample code.  For example:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre>.
+└── Projects/
+    <span class="c"># &lt;-- snip --&gt;</span>
+    ├── apis/     <span class="c"># sample code for tutorial #2</span>
+    ├── apis_workspace/ <span class="c"># your code for tutorial #2</span>
+    ├── dataviz/  <span class="c"># sample code for tutorial #1</span>
+    ├── dataviz_workspace/ <span class="c"># your code for tutorial #1</span>
+    ├── gui/      <span class="c"># sample code for tutorial #5</span>
+    ├── gui_workspace/ <span class="c"># your code for tutorial #5</span>
+    ├── network/  <span class="c"># sample code for tutorial #4</span>
+    ├── network_workspace/ <span class="c"># your code for tutorial #4</span>
+    ├── scrape/   <span class="c"># sample code for tutorial #3</span>
+    ├── scrape_workspace/ <span class="c"># your code for tutorial #3</span>
+    └── website/  <span class="c"># files that make newcoder.io</span>
+</pre></div>
+</td></tr></table></div></div>
 <p>You’re good to go with your setup! Go start on <a href="/dataviz">dataviz</a>!</p>
 
         </div>

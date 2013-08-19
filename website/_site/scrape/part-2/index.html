@@ -213,11 +213,11 @@
 <span class="sd">        @scrapes title link</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">hxs</span> <span class="o">=</span> <span class="n">HtmlXPathSelector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="n">HtmlXPathSelector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
         <span class="c"># iterate over deals</span>
-        <span class="k">for</span> <span class="n">qxs</span> <span class="ow">in</span> <span class="n">hxs</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deals_list_xpath</span><span class="p">):</span>
-            <span class="n">loader</span> <span class="o">=</span> <span class="n">XPathItemLoader</span><span class="p">(</span><span class="n">LivingSocialDeal</span><span class="p">(),</span> <span class="n">selector</span><span class="o">=</span><span class="n">qxs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">deal</span> <span class="ow">in</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deals_list_xpath</span><span class="p">):</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">XPathItemLoader</span><span class="p">(</span><span class="n">LivingSocialDeal</span><span class="p">(),</span> <span class="n">selector</span><span class="o">=</span><span class="n">deal</span><span class="p">)</span>
 
             <span class="c"># define processors</span>
             <span class="n">loader</span><span class="o">.</span><span class="n">default_input_processor</span> <span class="o">=</span> <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">)</span>
@@ -251,7 +251,7 @@
 </td></tr></table></div></div>
 <p>The <code>response</code> parameter is what the spider gets back in return after making a request to the Living Social site. We are parsing that response with our XPaths.</p>
 
-<p>First, we will instantiate <code>HtmlXPathSelector()</code> by giving it the parameter, <code>response</code> and assigning it to the variable <code>selector</code>.  We’ll be able access <code>HtmlXPathSelector()</code>&#39;s method, <code>select()</code> to grab the exact data we want using the xpaths we defined before.</p>
+<p>First, we will instantiate <code>HtmlXPathSelector()</code> by giving it the parameter, <code>response</code> and assigning it to the variable <code>selector</code>.  We’ll be able access <code>HtmlXPathSelector()</code>’s method, <code>select()</code> to grab the exact data we want using the xpaths we defined before.</p>
 
 <p>Now, since there are multiple deals within one page,</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">for</span> <span class="n">deal</span> <span class="ow">in</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deals_list_xpath</span><span class="p">):</span>
@@ -269,7 +269,7 @@
     <span class="n">loader</span><span class="o">.</span><span class="n">default_output_processor</span> <span class="o">=</span> <span class="n">Join</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Here we grab the deal and pass it into XPathItemLoader through the <code>selector</code> parameter, along with the <code>LivingSocialSpider()</code> class, and assign the <code>loader</code> variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within <code>Join()</code>, the data items are just joined by a space, and is helpful for when we have multi-line data.</p>
+<p>Here we grab the deal and pass it into XPathItemLoader through the <code>selector</code> parameter, along with the <code>LivingSocialDeal()</code> class, and assign the <code>loader</code> variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within <code>Join()</code>, the data items are just joined by a space, and is helpful for when we have multi-line data.</p>
 
 <p>We then iterate over each key and value of <code>items_fields</code> and add a the specific data piece&#39;s xpath to the loader.</p>
 
