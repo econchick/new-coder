@@ -24,15 +24,13 @@ def db_connect():
     """Performs database connection using database settings from settings.py.
 
     Returns sqlalchemy engine instance.
-    
+
     """
     return create_engine(URL(**settings.DATABASE))
-
 
 def create_deals_table(engine):
     """"""
     DeclarativeBase.metadata.create_all(engine)
-
 
 class Deals(DeclarativeBase):
     """Sqlalchemy deals model"""
