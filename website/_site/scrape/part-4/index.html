@@ -83,11 +83,11 @@
         <div class="body">
             <p>Pipelining our scraped data into our Postgres database.</p>
 <h3 id="setup-our-pipeline">Setup our Pipeline</h3>
-<p>We&#39;ve setup our spider to crawl and parse the HTML, and we&#39;ve set up our database to take the parse data. Now we have to connect the two together through a pipeline.</p>
+<p>We’ve setup our spider to crawl and parse the HTML, and we’ve set up our database to take the parse data. Now we have to connect the two together through a pipeline.</p>
 
-<p>In <code>pipelines.py</code>, we will define a session (the actual connecting to the database), as well as the feeding/writing of data to the database.</p>
+<p>Create a file called <code>pipelines.py</code> in <code>my_scraper/scraper_app/</code> directory. In <code>pipelines.py</code>, we will define a session (the actual connecting to the database), as well as the feeding/writing of data to the database.</p>
 
-<p>We&#39;ll need to import SQLAlchemy&#39;s <code>sessionmaker</code> function to bind to the database (create that connection), as well as import our models.</p>
+<p>We’ll need to import SQLAlchemy&#39;s <code>sessionmaker</code> function to bind to the database (create that connection), as well as import our models.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

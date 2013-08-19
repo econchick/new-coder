@@ -279,7 +279,9 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 <p>Download git <a href="http://msysgit.github.io/">here</a>.  This installs git for Windows, as well as Msys, a Unix-like shell, that also includes a GCC compiler, <a href="http://mingw.org/">MinGW</a>.</p>
 <h3 id="pip-virtualenv-virtualenvwrapper">pip, virtualenv + virtualenvwrapper</h3>
 <ol>
-<li>Navigate <a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#pip">here</a> to download and the Windows pip executible.  Be sure to select the correct one for your architecture AND Python version (either pip-1.4.1.win-amd64-py2.7.‌exe or pip-1.4.1.win32-py2.7.‌exe).  You now have pip installed.</li>
+<li>You’ll first need to install setuptools, and use <code>ez_setup.py</code> to run it.  Download <a href="https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py">ez_setup.py</a> and run it.</li>
+<li>Once installation is complete, you will find an <code>easy_install.exe</code> program in your Python <code>Scripts</code> subdirectory. For simple invocation and best results, add this directory to your <code>PATH</code> environment variable, if it is not already present.</li>
+<li>Next, run <code>easy_install pip</code> to install <a href="https://pypi.python.org/pypi/pip">pip</a>.</li>
 <li>Open/run the Git Bash program. <strong>NOTE</strong>:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.</li>
 <li><p>Run the following command to install <a href="http://www.virtualenv.org/en/latest/#installation">virtualenv</a>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv

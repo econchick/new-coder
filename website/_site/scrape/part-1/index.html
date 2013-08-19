@@ -82,10 +82,18 @@
         
         <div class="body">
             <p>Building the scraper setup portion of the tutorial.</p>
-<h3 id="define-our-items">Define our Items</h3>
-<p>In our <code>items.py</code> file, scrapy needs us to define containers for the data that we plan to scrape. If you have worked through the Django <a href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/">tutorial</a> at one point, you&#39;ll see that the <code>items.py</code> is similar to <code>models.py</code> in Django.</p>
+<h3 id="directory-setup">Directory setup</h3>
+<p>Create the following file/directory hierarchy, mimicking that of the <code>scrape</code> directory of the repo:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>└── my_scraper/
+    └── scraper_app/
+       └── spiders/
+</pre></div>
+</td></tr></table></div></div><h3 id="define-our-items">Define our Items</h3>
+<p>Create an <code>items.py</code> file in the <code>my_scraper/scraper_app/</code> directory.  In our <code>items.py</code> file, scrapy needs us to define containers for the data that we plan to scrape. If you have worked through the Django <a href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/">tutorial</a> at one point, you&#39;ll see that the <code>items.py</code> is similar to <code>models.py</code> in Django.</p>
 
-<p>First, using scrapy’s item module, we import <code>Item</code> and `Field:</p>
+<p>First, using scrapy’s item module, we import <code>Item</code> and <code>Field</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scrapy.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Field</span>
 </pre></div>
 </td></tr></table></div></div>

@@ -30,9 +30,9 @@ Notice I had to include the semicolon there.  This is pretty much all the raw SQ
 
 ### Settings.py
 
-Our `settings.py` file only has 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
+Create `settings.py` within `my_scraper/scraper_app/`.  Our `settings.py` file will only have 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
 
-When walking through the scrapy [tutorial](http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project) on your own, it creates a `settings.py` file for you with a few variables that you should define.
+If you were walking through the scrapy [tutorial](http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project) on your own, it would create a `settings.py` file for you with a few variables that you should define.
 
 Our `settings.py` file is simply a list of global variables specific to our project so we can import our settings later.
 
@@ -41,9 +41,9 @@ We first give our web scraper a name, and where our spider module is located.
 
 ```python
 
-BOT_NAME = 'tutorial'
+BOT_NAME = 'livingsocialscraper'
 
-SPIDER_MODULES = ['living_social.spiders']
+SPIDER_MODULES = ['scraper_app.spiders']
 ```
 We then define our database through a dictionary:
 
@@ -56,9 +56,9 @@ DATABASE = {'drivername': 'postgres',
             'database': 'scrape'}
 ```
 
-The `drivername` is the type of database we're using – Postgres.  Since we're using Postgres that we installed on our own computer, the location, or the `host` is `localhost`.  The port is the default port that Postgres listens on.  
+The `drivername` is the type of database we're using – Postgres.  Since we're using Postgres that we installed on our own computer, the location, or the `host` is `localhost`.  The port is the default port that Postgres listens on.
 
-The `username` is _your_ username for your machine.  The `password` may not be needed, or may be the password used when setting up Postgres initially. 
+The `username` is _your_ username for your machine.  The `password` may not be needed, or may be the password used when setting up Postgres initially.
 
 The `database` is the name of the database we created earlier, `newcoder=#  create database scrape;`.
 
@@ -66,7 +66,7 @@ We will return to our `settings.py` file to add a fifth variable, `ITEM_PIPELINE
 
 ### Models.py
 
-We'll now setup our database models using SQLAlchemy as our ORM.
+Next create `models.py` file within `my_scraper/scraper_app/` directory. We’ll now setup our database models using SQLAlchemy as our ORM.
 
 First, we'll define a function to actually connect to the database.  For this, we'll need to import SQLAlchemy as well as our `settings.py` file:
 
@@ -84,15 +84,15 @@ def db_connect():
     return create_engine(URL(**settings.DATABASE))
 ```
 
-A few things I want to point out with this example. First, the `from sqlalchemy import *` line. The `import *` literally imports everything into our `models.py` file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the `create_engine()` function from `sqlalchemy`, and if we just `import *`, it is difficult to initially see that `create_engine()` is defined in and imported from `sqlalchemy`. 
+A few things I want to point out with this example. First, the `from sqlalchemy import *` line. The `import *` literally imports everything into our `models.py` file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the `create_engine()` function from `sqlalchemy`, and if we just `import *`, it is difficult to initially see that `create_engine()` is defined in and imported from `sqlalchemy`.
 
 Let’s be better developers and change our import statement to `from sqlalchemy import create_engine`. Here, we avoid importing everything from the `sqlalchemy` package, and we are more explicit with what we are using from `sqlalchemy`.
 
 We make a general `import settings` statement – it does not import every item in `settings.py`, but it gives us access to any item we want by later using `settings.DATABASE`.  You can think of the difference between `import settings` versus `from sqlalchemy import *` as "take the basket" versus "take everything out of the basket."
 
-Last item I want to point out before we move on is the usage of the double astricks within the `URL()` function: `**settings.DATABASE`. First, we are accessing the `DATABASE` variable within `settings.py`. The `**` actually unpacks all the values within the `DATABASE` dictionary.  The `URL` function, a constructor defined within SQLAlchemy, will map keys and values to a URL that SQLAlchemy can understand to make a connection to our database.  
+Last item I want to point out before we move on is the usage of the double astricks within the `URL()` function: `**settings.DATABASE`. First, we are accessing the `DATABASE` variable within `settings.py`. The `**` actually unpacks all the values within the `DATABASE` dictionary.  The `URL` function, a constructor defined within SQLAlchemy, will map keys and values to a URL that SQLAlchemy can understand to make a connection to our database.
 
-So first, our dictionary looks like: 
+So first, our dictionary looks like:
 
 ```python
 DATABASE = {'drivername': 'postgres',

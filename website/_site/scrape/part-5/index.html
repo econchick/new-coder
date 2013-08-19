@@ -83,28 +83,48 @@
         <div class="body">
             <p>Putting all the pieces together to scrape our data.</p>
 <h3 id="scrapy.cfg-file">scrapy.cfg file</h3>
-<p>Scrapy needs a configuration file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for scrapy:</p>
-<pre><code>scrapy.cfg
-living_social/
-    __init__.py
-    items.py
-    models.py
-    pipelines.py
-    settings.py
-    spiders/
-        __init__.py
-        livingsocial_spider.py
-</code></pre>
-<p>This file contains the name of the python module that defines the project settings:</p>
+<p>Scrapy needs a configuration file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for our application:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre>.
+├── my_scraper
+│   ├── scraper_app
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   ├── models.py
+│   │   ├── pipelines.py
+│   │   ├── settings.py
+│   │   └── spiders
+│   │       ├── __init__.py
+│   │       └── livingsocial_spider.py
+│   └── scrapy.cfg  <span class="c"># we must create this file now</span>
+├── README.md
+└── requirements.txt
+</pre></div>
+</td></tr></table></div></div>
+<p>Create a file called <code>scrapy.cfg</code> within <code>/my_scraper/</code> directory. This file should contain the name of the python module that defines the project settings:</p>
 <pre><code>[settings]
-default = living_social.settings
+default = scraper_app.settings
 </code></pre><h3 id="manually-run-the-scraper">Manually run the scraper</h3>
 <p>Within your terminal, with your ScrapeProj virtualenv activated:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>new-coder/scrape/lib/full_source/living_social
-<span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span>scrapy crawl livingsocial
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>my_scraper/scraper_app
+<span class="o">(</span>ScrapeProj<span class="o">)</span> <span class="nv">$ </span>scrapy crawl livingsocialscraper
 </pre></div>
 </td></tr></table></div></div>
+<p>Where <code>livingsocialscraper</code> is the <code>BOT_NAME</code> defined in <code>settings.py</code>.</p>
+
 <p>Next, to see the data that&#39;s saved into the database, start up Postgres and enter these commands:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -161,7 +181,7 @@ You are now connected to database <span class="s2">&quot;scrape&quot;</span> as 
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>crontab -e
 </pre></div>
 </td></tr></table></div></div>
-<p>to edit your crontab file.  This opens up the editor for your cron tab.  Add a line: </p>
+<p>to edit your crontab file.  This opens up the editor for your cron tab.  Add a line:</p>
 
 <p><code>0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh</code></p>
 

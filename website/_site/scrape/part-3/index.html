@@ -103,18 +103,18 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
 </td></tr></table></div></div>
 <p>Notice I had to include the semicolon there.  This is pretty much all the raw SQL code we&#39;re going to touch. If you are curious, you can learn more on how to interact with PostGres in their <a href="http://www.postgresql.org/docs/9.2/static/index.html">docs</a>.</p>
 <h3 id="settings.py">Settings.py</h3>
-<p>Our <code>settings.py</code> file only has 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).</p>
+<p>Create <code>settings.py</code> within <code>my_scraper/scraper_app/</code>.  Our <code>settings.py</code> file will only have 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).</p>
 
-<p>When walking through the scrapy <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project">tutorial</a> on your own, it creates a <code>settings.py</code> file for you with a few variables that you should define.</p>
+<p>If you were walking through the scrapy <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project">tutorial</a> on your own, it would create a <code>settings.py</code> file for you with a few variables that you should define.</p>
 
 <p>Our <code>settings.py</code> file is simply a list of global variables specific to our project so we can import our settings later.</p>
 
 <p>We first give our web scraper a name, and where our spider module is located.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;tutorial&#39;</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;livingsocialscraper&#39;</span>
 
-<span class="n">SPIDER_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;living_social.spiders&#39;</span><span class="p">]</span>
+<span class="n">SPIDER_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;scraper_app.spiders&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>We then define our database through a dictionary:</p>
@@ -131,15 +131,15 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
             <span class="s">&#39;database&#39;</span><span class="p">:</span> <span class="s">&#39;scrape&#39;</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>The <code>drivername</code> is the type of database we&#39;re using – Postgres.  Since we&#39;re using Postgres that we installed on our own computer, the location, or the <code>host</code> is <code>localhost</code>.  The port is the default port that Postgres listens on.  </p>
+<p>The <code>drivername</code> is the type of database we&#39;re using – Postgres.  Since we&#39;re using Postgres that we installed on our own computer, the location, or the <code>host</code> is <code>localhost</code>.  The port is the default port that Postgres listens on.</p>
 
-<p>The <code>username</code> is <em>your</em> username for your machine.  The <code>password</code> may not be needed, or may be the password used when setting up Postgres initially. </p>
+<p>The <code>username</code> is <em>your</em> username for your machine.  The <code>password</code> may not be needed, or may be the password used when setting up Postgres initially.</p>
 
 <p>The <code>database</code> is the name of the database we created earlier, <code>newcoder=#  create database scrape;</code>.</p>
 
 <p>We will return to our <code>settings.py</code> file to add a fifth variable, <code>ITEM_PIPELINES</code>, once we setup our pipelines (how we handle the scraped &amp; parsed data – e.g. we save them to the database).</p>
 <h3 id="models.py">Models.py</h3>
-<p>We&#39;ll now setup our database models using SQLAlchemy as our ORM.</p>
+<p>Next create <code>models.py</code> file within <code>my_scraper/scraper_app/</code> directory. We’ll now setup our database models using SQLAlchemy as our ORM.</p>
 
 <p>First, we&#39;ll define a function to actually connect to the database.  For this, we&#39;ll need to import SQLAlchemy as well as our <code>settings.py</code> file:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -165,15 +165,15 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
     <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>A few things I want to point out with this example. First, the <code>from sqlalchemy import *</code> line. The <code>import *</code> literally imports everything into our <code>models.py</code> file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the <code>create_engine()</code> function from <code>sqlalchemy</code>, and if we just <code>import *</code>, it is difficult to initially see that <code>create_engine()</code> is defined in and imported from <code>sqlalchemy</code>. </p>
+<p>A few things I want to point out with this example. First, the <code>from sqlalchemy import *</code> line. The <code>import *</code> literally imports everything into our <code>models.py</code> file. This is typically not good; it can sacrifice performance, and is also unclear to whomever reads your code later.  We specifically want the <code>create_engine()</code> function from <code>sqlalchemy</code>, and if we just <code>import *</code>, it is difficult to initially see that <code>create_engine()</code> is defined in and imported from <code>sqlalchemy</code>.</p>
 
 <p>Let’s be better developers and change our import statement to <code>from sqlalchemy import create_engine</code>. Here, we avoid importing everything from the <code>sqlalchemy</code> package, and we are more explicit with what we are using from <code>sqlalchemy</code>.</p>
 
 <p>We make a general <code>import settings</code> statement – it does not import every item in <code>settings.py</code>, but it gives us access to any item we want by later using <code>settings.DATABASE</code>.  You can think of the difference between <code>import settings</code> versus <code>from sqlalchemy import *</code> as &quot;take the basket&quot; versus &quot;take everything out of the basket.&quot;</p>
 
-<p>Last item I want to point out before we move on is the usage of the double astricks within the <code>URL()</code> function: <code>**settings.DATABASE</code>. First, we are accessing the <code>DATABASE</code> variable within <code>settings.py</code>. The <code>**</code> actually unpacks all the values within the <code>DATABASE</code> dictionary.  The <code>URL</code> function, a constructor defined within SQLAlchemy, will map keys and values to a URL that SQLAlchemy can understand to make a connection to our database.  </p>
+<p>Last item I want to point out before we move on is the usage of the double astricks within the <code>URL()</code> function: <code>**settings.DATABASE</code>. First, we are accessing the <code>DATABASE</code> variable within <code>settings.py</code>. The <code>**</code> actually unpacks all the values within the <code>DATABASE</code> dictionary.  The <code>URL</code> function, a constructor defined within SQLAlchemy, will map keys and values to a URL that SQLAlchemy can understand to make a connection to our database.</p>
 
-<p>So first, our dictionary looks like: </p>
+<p>So first, our dictionary looks like:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

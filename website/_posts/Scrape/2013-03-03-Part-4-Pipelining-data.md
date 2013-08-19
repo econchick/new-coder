@@ -9,11 +9,11 @@ Pipelining our scraped data into our Postgres database.
 
 ### Setup our Pipeline
 
-We've setup our spider to crawl and parse the HTML, and we've set up our database to take the parse data. Now we have to connect the two together through a pipeline.
+We’ve setup our spider to crawl and parse the HTML, and we’ve set up our database to take the parse data. Now we have to connect the two together through a pipeline.
 
-In `pipelines.py`, we will define a session (the actual connecting to the database), as well as the feeding/writing of data to the database.
+Create a file called `pipelines.py` in `my_scraper/scraper_app/` directory. In `pipelines.py`, we will define a session (the actual connecting to the database), as well as the feeding/writing of data to the database.
 
-We'll need to import SQLAlchemy's `sessionmaker` function to bind to the database (create that connection), as well as import our models.
+We’ll need to import SQLAlchemy's `sessionmaker` function to bind to the database (create that connection), as well as import our models.
 
 ```python
 from sqlalchemy.orm import sessionmaker

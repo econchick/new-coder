@@ -193,9 +193,11 @@ Download git [here](http://msysgit.github.io/).  This installs git for Windows, 
 
 ### pip, virtualenv + virtualenvwrapper
 
-1. Navigate [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip) to download and the Windows pip executible.  Be sure to select the correct one for your architecture AND Python version (either pip-1.4.1.win-amd64-py2.7.‌exe or pip-1.4.1.win32-py2.7.‌exe).  You now have pip installed.
-2. Open/run the Git Bash program. **NOTE**:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.
-3. Run the following command to install [virtualenv](http://www.virtualenv.org/en/latest/#installation):
+1. You’ll first need to install setuptools, and use `ez_setup.py` to run it.  Download [ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) and run it.
+2. Once installation is complete, you will find an `easy_install.exe` program in your Python `Scripts` subdirectory. For simple invocation and best results, add this directory to your `PATH` environment variable, if it is not already present.
+3. Next, run `easy_install pip` to install [pip](https://pypi.python.org/pypi/pip).
+4. Open/run the Git Bash program. **NOTE**:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.
+5. Run the following command to install [virtualenv](http://www.virtualenv.org/en/latest/#installation):
 
 	```bash
 	$ pip install virtualenv

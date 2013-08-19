@@ -83,9 +83,9 @@
         <div class="body">
             <p>Writing the spider portion of our scraper.</p>
 <h3 id="defining-our-spider">Defining our spider</h3>
-<p>This is where the magic happens - this is where we tell scrapy how to find the exact data we’re looking for. As you can imagine, writing a spider is specific to a web page. This won’t work on Groupon or another website.</p>
+<p>Create a file called <code>livingsocial_spider.py</code> in <code>my_scraper/scraper_app/spiders/</code> directory. This is where the magic happens - this is where we tell scrapy how to find the exact data we’re looking for. As you can imagine, writing a spider is specific to a web page. This won’t work on Groupon or another website.</p>
 
-<p>We will define one class, <code>LivingSocialSpider</code> with common attributes, like <code>name</code> and <code>url</code>. We&#39;ll also define one function within our <code>LivingSocialSpider</code> class.</p>
+<p>In the <code>livingsocial_spider.py</code> file, we will define one class, <code>LivingSocialSpider</code> with common attributes, like <code>name</code> and <code>url</code>. We&#39;ll also define one function within our <code>LivingSocialSpider</code> class.</p>
 
 <p>First we’ll setup our <code>LivingSocialSpider</code> class with attributes (variables that are defined within a class, also referred to as fields).  We’ll inherit from scrapy’s <code>BaseSpider</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -107,7 +107,7 @@
 17
 18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scrapy.spider</span> <span class="kn">import</span> <span class="n">BaseSpider</span>
 
-<span class="kn">from</span> <span class="nn">tutorial.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
+<span class="kn">from</span> <span class="nn">scraper_app.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
 
 <span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York Page&quot;&quot;&quot;</span>
@@ -133,13 +133,17 @@
 
 <p>We basically tell scrapy where to start looking for information based on a defined Xpath.  Let’s navigate to our <a href="http://www.livingsocial.com/cities/1719-newyork-citywide">LivingSocial</a> site and right-click to &quot;View Source&quot;:</p>
 
-<p><img src="https://www.dropbox.com/s/nzwav6rat685luy/Screen%20Shot%202013-03-02%20at%2012.53.03%20PM.png" alt="View Source of LivingSocial"></p>
+<p><img src="/assets/images/scrape/view-source.png" alt="View Source of LivingSocial"></p>
 
 <p>I mean – look at that mess. We need to give the spider a little guidance.</p>
 
-<p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &quot;unstyled cities-items&quot;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>. </p>
+<p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &quot;unstyled cities-items&quot;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>.</p>
 
-<p>Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see <img src="https://www.dropbox.com/s/vszc7750rffzhjd/Screen%20Shot%202013-03-02%20at%201.03.08%20PM.png" alt="screenshot"> (highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
+<p>Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see:</p>
+
+<p><img src="/assets/images/scrape/highlight.png" alt="screenshot"></p>
+
+<p>(highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
 
 <p><strong>NOTE</strong> When scraping your own sites and trying to figure out XPaths, Chrome&#39;s <a href="https://developers.google.com/chrome-developer-tools/">Dev Tools</a> offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x(&quot;//img&quot;). While not explored when writing this tutorial, Firefox has an add-on, <a href="https://addons.mozilla.org/en-us/firefox/addon/firepath/">FirePath</a> that can edit, inspect, and generate XPaths as well.</p>
 
@@ -156,7 +160,7 @@
 <span class="kn">from</span> <span class="nn">scrapy.contrib.loader</span> <span class="kn">import</span> <span class="n">XPathItemLoader</span>
 <span class="kn">from</span> <span class="nn">scrapy.contrib.loader.processor</span> <span class="kn">import</span> <span class="n">Join</span><span class="p">,</span> <span class="n">MapCompose</span>
 
-<span class="kn">from</span> <span class="nn">tutorial.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
+<span class="kn">from</span> <span class="nn">scraper_app.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>We’re using the HtmlXPathSelector – this will handle the response of when we request a webpage, and give us the ability to select certain parts of that response, defined by our <code>deals_list_xpath</code> field.  For understanding of scrapy’s handling of responses, read <a href="http://doc.scrapy.org/en/0.16/intro/tutorial.html#what-just-happened-under-the-hood">what happens under the hood</a>.</p>
@@ -183,10 +187,32 @@
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">)</span>
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York page&quot;&quot;&quot;</span>
+
 <span class="c"># &lt;--snip--&gt;</span>
+
     <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Default callback used by Scrapy to process downloaded responses</span>
+
+<span class="sd">        Testing contracts:</span>
+<span class="sd">        @url http://www.livingsocial.com/cities/1719-newyork-citywide</span>
+<span class="sd">        @returns items 1</span>
+<span class="sd">        @scrapes title link</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">hxs</span> <span class="o">=</span> <span class="n">HtmlXPathSelector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
         <span class="c"># iterate over deals</span>
@@ -261,9 +287,9 @@
 
 <p>This is different than if we were to use <code>self.item_fields.items()</code>.  The <code>items()</code> method returns a list of (key, value) tuples, rather than an iterator object that <code>iteritems()</code> returns.  A list is an iterable, and a for-loop calls <code>iter()</code> on a list (or string, dictionary, tuple, etc) .</p>
 <h4 id="for-the-curious-2">For the curious</h4>
-<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore. </p>
+<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore.</p>
 
-<p>We&#39;ve now implemented our Spider based off of our Items that we are seeking.</p>
+<p>We’ve now implemented our Spider based off of our Items that we are seeking.</p>
 
 <p><a href="/scrape/part-3/">Part 3 will continue with how we setup our data model for eventual saving into the database &rarr;</a></p>
 

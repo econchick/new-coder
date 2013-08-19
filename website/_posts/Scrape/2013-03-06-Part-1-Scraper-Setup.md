@@ -8,11 +8,21 @@ url: "/scrape/part-1/"
 
 Building the scraper setup portion of the tutorial.
 
+### Directory setup
+
+Create the following file/directory hierarchy, mimicking that of the `scrape` directory of the repo:
+
+```bash
+└── my_scraper/
+    └── scraper_app/
+       └── spiders/
+```
+
 ### Define our Items
 
-In our `items.py` file, scrapy needs us to define containers for the data that we plan to scrape. If you have worked through the Django [tutorial](https://docs.djangoproject.com/en/1.5/intro/tutorial01/) at one point, you'll see that the `items.py` is similar to `models.py` in Django.
+Create an `items.py` file in the `my_scraper/scraper_app/` directory.  In our `items.py` file, scrapy needs us to define containers for the data that we plan to scrape. If you have worked through the Django [tutorial](https://docs.djangoproject.com/en/1.5/intro/tutorial01/) at one point, you'll see that the `items.py` is similar to `models.py` in Django.
 
-First, using scrapy’s item module, we import `Item` and `Field:
+First, using scrapy’s item module, we import `Item` and `Field`:
 
 ```python
 from scrapy.item import Item, Field

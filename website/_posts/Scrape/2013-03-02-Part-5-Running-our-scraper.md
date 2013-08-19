@@ -9,26 +9,30 @@ Putting all the pieces together to scrape our data.
 
 ### scrapy.cfg file
 
-Scrapy needs a configuration file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for scrapy:
+Scrapy needs a configuration file to direct it to where our project lies. The config file needs to be in the project root directory. An example of our directory structure for our application:
 
-```
-scrapy.cfg
-living_social/
-    __init__.py
-    items.py
-    models.py
-    pipelines.py
-    settings.py
-    spiders/
-        __init__.py
-        livingsocial_spider.py
+```bash
+.
+├── my_scraper
+│   ├── scraper_app
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   ├── models.py
+│   │   ├── pipelines.py
+│   │   ├── settings.py
+│   │   └── spiders
+│   │       ├── __init__.py
+│   │       └── livingsocial_spider.py
+│   └── scrapy.cfg  # we must create this file now
+├── README.md
+└── requirements.txt
 ```
 
-This file contains the name of the python module that defines the project settings:
+Create a file called `scrapy.cfg` within `/my_scraper/` directory. This file should contain the name of the python module that defines the project settings:
 
 ```
 [settings]
-default = living_social.settings
+default = scraper_app.settings
 ```
 
 ### Manually run the scraper
@@ -36,9 +40,11 @@ default = living_social.settings
 Within your terminal, with your ScrapeProj virtualenv activated:
 
 ```bash
-(ScrapeProj) $ cd new-coder/scrape/lib/full_source/living_social
-(ScrapeProj) $ scrapy crawl livingsocial
+(ScrapeProj) $ cd my_scraper/scraper_app
+(ScrapeProj) $ scrapy crawl livingsocialscraper
 ```
+
+Where `livingsocialscraper` is the `BOT_NAME` defined in `settings.py`.
 
 Next, to see the data that's saved into the database, start up Postgres and enter these commands:
 
@@ -85,7 +91,7 @@ Next, within your terminal, type:
 ```bash
 $ crontab -e
 ```
-to edit your crontab file.  This opens up the editor for your cron tab.  Add a line: 
+to edit your crontab file.  This opens up the editor for your cron tab.  Add a line:
 
 `0 13  * * * sh ~/Projects/new-coder/scrape/living_social/scrapy.sh`
 
