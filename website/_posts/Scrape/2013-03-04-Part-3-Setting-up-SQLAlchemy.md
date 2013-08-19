@@ -13,7 +13,7 @@ Our initial step needs to create the database that we plan to use to save all of
 
 To do that, we will start a Postgres shell on localhost:
 
-```bash
+```psql
 (ScrapProj)$ psql -h localhost
 psql (9.1.4, server 9.1.3)
 Type "help" for help.

@@ -141,22 +141,22 @@ default = scraper_app.settings
 13
 14
 15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>psql -h localhost
-psql <span class="o">(</span>9.1.4, server 9.1.3<span class="o">)</span>
-Type <span class="s2">&quot;help&quot;</span> <span class="k">for </span>help.
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="gp">$</span> psql -h localhost
+<span class="go">psql (9.1.4, server 9.1.3)</span>
+<span class="go">Type &quot;help&quot; for help.</span>
 
-<span class="nv">lynnroot</span><span class="o">=</span><span class="c"># \connect scrape</span>
-psql <span class="o">(</span>9.1.4, server 9.1.3<span class="o">)</span>
-You are now connected to database <span class="s2">&quot;scrape&quot;</span> as user <span class="s2">&quot;lynnroot&quot;</span>.
-<span class="nv">scrape</span><span class="o">=</span><span class="c"># select * from deals limit 5;</span>
- id |                 title                 |            description             |                                    link                                    |   location   |  category  | original_price | price
-----+---------------------------------------+------------------------------------+----------------------------------------------------------------------------+--------------+------------+----------------+-------
-  1 | Mini Box                              | Deck of Photo Playing Cards        | /cities/1719-newyork-citywide/deals/614972-deck-of-photo-playing-cards     | national     |            | 29             |  9
-  2 | Paintball: LivingSocial Original:     | Paintball + BBQ Day Trip           | /cities/1719-newyork-citywide/deals/575448-paintball-bbq-day-trip          | NYC Citywide | activities |                |  69
-  3 | Medieval Times                        | Medieval Times: Meal + Show Ticket | /cities/1719-newyork-citywide/deals/627242-medieval-times-meal-show-ticket | NYC Citywide | activities | 41             |  27
-  4 | <span class="s1">&#39;80s Boat Cruise: LivingSocial Ori... | NYC Boat Cruise + &#39;</span>80s Concert     | /cities/1719-newyork-citywide/deals/610320-nyc-boat-cruise-80s-concert     | NYC Citywide | activities |                |  29
-  5 | New York Magazine                     | 50 Issues of New York Magazine     | /cities/1719-newyork-citywide/deals/594056-50-issues-of-new-york-magazine  | NYC Citywide |            | 30             |  15
-<span class="o">(</span>5 rows<span class="o">)</span>
+<span class="gp">lynnroot=#</span> <span class="kp">\connect</span> <span class="ss">scrape</span>
+<span class="go">psql (9.1.4, server 9.1.3)</span>
+<span class="go">You are now connected to database &quot;scrape&quot; as user &quot;lynnroot&quot;.</span>
+<span class="gp">scrape=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">limit</span> <span class="mf">5</span><span class="p">;</span>
+<span class="go"> id |                 title                 |            description             |                                    link                                    |   location   |  category  | original_price | price</span>
+<span class="go">----+---------------------------------------+------------------------------------+----------------------------------------------------------------------------+--------------+------------+----------------+-------</span>
+<span class="go">  1 | Mini Box                              | Deck of Photo Playing Cards        | /cities/1719-newyork-citywide/deals/614972-deck-of-photo-playing-cards     | national     |            | 29             |  9</span>
+<span class="go">  2 | Paintball: LivingSocial Original:     | Paintball + BBQ Day Trip           | /cities/1719-newyork-citywide/deals/575448-paintball-bbq-day-trip          | NYC Citywide | activities |                |  69</span>
+<span class="go">  3 | Medieval Times                        | Medieval Times: Meal + Show Ticket | /cities/1719-newyork-citywide/deals/627242-medieval-times-meal-show-ticket | NYC Citywide | activities | 41             |  27</span>
+<span class="go">  4 | &#39;80s Boat Cruise: LivingSocial Ori... | NYC Boat Cruise + &#39;80s Concert     | /cities/1719-newyork-citywide/deals/610320-nyc-boat-cruise-80s-concert     | NYC Citywide | activities |                |  29</span>
+<span class="go">  5 | New York Magazine                     | 50 Issues of New York Magazine     | /cities/1719-newyork-citywide/deals/594056-50-issues-of-new-york-magazine  | NYC Citywide |            | 30             |  15</span>
+<span class="go">(5 rows)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Try a few of these select queries:</p>
@@ -164,11 +164,11 @@ You are now connected to database <span class="s2">&quot;scrape&quot;</span> as 
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">scrape</span><span class="o">=</span><span class="c"># select * from deals where title like (&#39;%Yoga&#39;);</span>
-<span class="nv">scrape</span><span class="o">=</span><span class="c"># select * from deals where description like (&#39;%Yoga%&#39;);</span>
-<span class="nv">scrape</span><span class="o">=</span><span class="c"># select * from deals where description like (&#39;%Dinner&#39;);</span>
-<span class="nv">scrape</span><span class="o">=</span><span class="c"># select link from deals where description like (&#39;%Photography%&#39;);</span>
-<span class="nv">scrape</span><span class="o">=</span><span class="c"># select title from deals limit 30;</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="gp">scrape=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">where</span> <span class="n">title</span> <span class="k">like</span> <span class="p">(</span><span class="s1">&#39;%Yoga&#39;</span><span class="p">);</span>
+<span class="gp">scrape=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">where</span> <span class="n">description</span> <span class="k">like</span> <span class="p">(</span><span class="s1">&#39;%Yoga%&#39;</span><span class="p">);</span>
+<span class="gp">scrape=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">where</span> <span class="n">description</span> <span class="k">like</span> <span class="p">(</span><span class="s1">&#39;%Dinner&#39;</span><span class="p">);</span>
+<span class="gp">scrape=#</span> <span class="k">select</span> <span class="n">link</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">where</span> <span class="n">description</span> <span class="k">like</span> <span class="p">(</span><span class="s1">&#39;%Photography%&#39;</span><span class="p">);</span>
+<span class="gp">scrape=#</span> <span class="k">select</span> <span class="n">title</span> <span class="k">from</span> <span class="n">deals</span> <span class="k">limit</span> <span class="mf">30</span><span class="p">;</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Notice how the strings we’re searching for contains <code>%</code> – this is a wildcard character. This is essentially saying “find deals where the title contains “Yoga”. Learn more about <a href="http://www.postgresql.org/docs/8.4/static/tutorial-select.html">querying Postgres</a>.</p>

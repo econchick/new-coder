@@ -48,7 +48,7 @@ Where `livingsocialscraper` is the `BOT_NAME` defined in `settings.py`.
 
 Next, to see the data that's saved into the database, start up Postgres and enter these commands:
 
-```bash
+```psql
 $ psql -h localhost
 psql (9.1.4, server 9.1.3)
 Type "help" for help.
@@ -69,7 +69,7 @@ scrape=# select * from deals limit 5;
 
 Try a few of these select queries:
 
-```bash
+```psql
 scrape=# select * from deals where title like ('%Yoga');
 scrape=# select * from deals where description like ('%Yoga%');
 scrape=# select * from deals where description like ('%Dinner');
