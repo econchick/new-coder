@@ -13,6 +13,7 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 	* [Linux](#linux)
 	* [Windows](#windows)
 3. [Test your setup](#test-your-setup)
+4. [Get the Tutorial Code](#get-the-tutorial-code)
 
 ## Overview of requirements
 
@@ -351,6 +352,67 @@ Here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper.
 * `deactivate` – deactivates the virtual environment that is currently active
 * within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
 * within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
+
+
+## Get the Tutorial Code
+
+Within your terminal:
+
+1. To get to your “Home” directory:
+
+	```bash
+	$ cd
+	```
+
+2. To create a new `Projects` folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is:
+
+	```bash
+	$ mkdir Projects
+	$ cd Projects
+	```
+
+3. Clone the New Coder project into the directory you’re currently in, which is `Projects` (unless you named it something else):
+
+	```bash
+	$ git clone https://github.com/econchick/new-coder.git
+	```
+
+When you clone a repo with the above command, git creates a directory.  Here, git created the `new-coder` directory within our `Projects` directory.  If you were to open up your file browser (e.g. Finder in Mac), the file hierarchy would look like the following:
+
+```bash
+.
+└── Projects/
+    ├── AUTHORS.md
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    ├── README.md
+    ├── apis/     # sample code for tutorial #2
+    ├── dataviz/  # sample code for tutorial #1
+    ├── gui/      # sample code for tutorial #5
+    ├── network/  # sample code for tutorial #4
+    ├── scrape/   # sample code for tutorial #3
+    └── website/  # files that make newcoder.io
+```
+
+When you work through each project, make a new directory within `Projects` to keep your code away from the sample code.  For example:
+
+```bash
+.
+└── Projects/
+	# <-- snip -->
+    ├── apis/     # sample code for tutorial #2
+    ├── apis_workspace/ # your code for tutorial #2
+    ├── dataviz/  # sample code for tutorial #1
+    ├── dataviz_workspace/ # your code for tutorial #1
+    ├── gui/      # sample code for tutorial #5
+    ├── gui_workspace/ # your code for tutorial #5
+    ├── network/  # sample code for tutorial #4
+    ├── network_workspace/ # your code for tutorial #4
+    ├── scrape/   # sample code for tutorial #3
+    ├── scrape_workspace/ # your code for tutorial #3
+    └── website/  # files that make newcoder.io
+```
+
 
 
 You’re good to go with your setup! Go start on [dataviz]({{ get_url("dataviz")}})!

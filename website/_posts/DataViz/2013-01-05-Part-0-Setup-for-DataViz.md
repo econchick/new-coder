@@ -5,30 +5,13 @@ tags: [DataViz]
 url: "/dataviz/part-0/"
 ---
 
-Initial setup for our Data Visualization Tutorial.  
+Initial setup for our Data Visualization Tutorial.
 
 
 ### Setup
 
 **IMPORTANT**: Please be sure to work through the [machine setup]({{ get_url("begin/setup-your-machine")}}) before proceeding.
 
-Within your terminal:
-
-* To get to your “Home” directory:
-
-```bash
-$ cd
-```
-* To create a new `Projects` folder and move to that directory. You can name it whatever you want, just remember what you named it, and where it is:
-
-```bash
-$ mkdir Projects && cd Projects
-```
-* Clone the New Coder project into the directory you’re currently in, which is `Projects` (unless you named it something else):
-
-```bash
-$ git clone https://github.com/econchick/new-coder.git
-```
 * Change into the Data Viz project:
 
 ```bash
