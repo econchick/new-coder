@@ -96,11 +96,11 @@ class LivingSocialSpider(BaseSpider)
         @scrapes title link
 
         """
-        hxs = HtmlXPathSelector(response)
+        selector = HtmlXPathSelector(response)
 
         # iterate over deals
-        for qxs in hxs.select(self.deals_list_xpath):
-            loader = XPathItemLoader(LivingSocialDeal(), selector=qxs)
+        for deal in selector.select(self.deals_list_xpath):
+            loader = XPathItemLoader(LivingSocialDeal(), selector=deal)
 
             # define processors
             loader.default_input_processor = MapCompose(unicode.strip)
@@ -130,7 +130,7 @@ Hello!
 
 The `response` parameter is what the spider gets back in return after making a request to the Living Social site. We are parsing that response with our XPaths.
 
-First, we will instantiate `HtmlXPathSelector()` by giving it the parameter, `response` and assigning it to the variable `selector`.  We’ll be able access `HtmlXPathSelector()`'s method, `select()` to grab the exact data we want using the xpaths we defined before.
+First, we will instantiate `HtmlXPathSelector()` by giving it the parameter, `response` and assigning it to the variable `selector`.  We’ll be able access `HtmlXPathSelector()`’s method, `select()` to grab the exact data we want using the xpaths we defined before.
 
 Now, since there are multiple deals within one page,
 
