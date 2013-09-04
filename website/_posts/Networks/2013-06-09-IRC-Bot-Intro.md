@@ -43,7 +43,7 @@ Glyph, the author of Twisted, gave a great [talk on event-driven architecture](h
 
 #### Programming Paradigms
 
-Some paradigms include [object-oriented](http://en.wikipedia.org/wiki/Object-oriented_programming), [imperative](http://en.wikipedia.org/wiki/Imperative_programming), and [functional](https://en.wikipedia.org/wiki/Functional_programming), all of which can use event-driven programming. If you are curious about how to employ different programming paradigms for different problems, check out [How to Design Programs]("http://www.amazon.com/gp/product/0262062186/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262062186&linkCode=as2&tag=roglyn-20").
+Some paradigms include [object-oriented](http://en.wikipedia.org/wiki/Object-oriented_programming), [imperative](http://en.wikipedia.org/wiki/Imperative_programming), and [functional](https://en.wikipedia.org/wiki/Functional_programming), all of which can use event-driven programming. If you are curious about how to employ different programming paradigms for different problems, check out [How to Design Programs](http://www.amazon.com/gp/product/0262062186/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262062186&linkCode=as2&tag=roglyn-20).
 
 
 ### Intro to Logging
