@@ -24,7 +24,7 @@ Directory layout:
 Documentation Build Instructions
 ==================
 
-Simple install requirements, run the build command within `docs` directory. 
+Simple install requirements, run the build command within `website` directory. 
 
 You will need a C compiler: [GCC](http://gcc.gnu.org/) or [clang](http://clang.llvm.org/).  To test if you have either GCC or clang, type `gcc` or `clang` into your terminal. If you get an error that says “command not found” then follow the install instructions for your OS:
 
@@ -35,15 +35,15 @@ You will need a C compiler: [GCC](http://gcc.gnu.org/) or [clang](http://clang.l
 
 Once the compiler is set up:
 
-    pip install -r docs/requirements.txt
-    mynt gen docs build
+    pip install -r website/requirements.txt
+    mynt gen website build
     (cd build && python -m SimpleHTTPServer)
 
 
 CONTRIBUTING
 ============
 
-PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `docs` folder (and vis-versa.
+PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `website` folder (and vis-versa.
 
 When writing documentation, please use [smart quotes](http://en.wikipedia.org/wiki/Quotation_mark_glyphs).
 
