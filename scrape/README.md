@@ -7,18 +7,13 @@ Scrape data from a regularly updated website (e.g. cafeteria's weekly lunch menu
 Within your terminal:
 
 * Create database for storing scraped data
-* `(WebScraperProj) $ cd new-coder/scrape/lib/full_source/tutorial/tutorial`
+* `(WebScraperProj) $ cd new-coder/living_social`
 * Edit settings.py and set your database settings
 * `(WebScraperProj) $ scrapy crawl livingsocial`
 
 #### Running tests
 Within your terminal:
 
-* `(WebScraperProj) $ cd new-coder/scrape/lib/full_source/tutorial/tutorial`
+* `(WebScraperProj) $ cd new-coder/scrape/living_social`
 * `(WebScraperProj) $ scrapy check livingsocial`
 
-### TODOs
-* write code.
-* write tests.
-* write tutorial.
-* be awesome.
