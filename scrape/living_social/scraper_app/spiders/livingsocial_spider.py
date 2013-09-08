@@ -37,7 +37,7 @@ class LivingSocialSpider(BaseSpider):
         Default callback used by Scrapy to process downloaded responses
 
         Testing contracts:
-        @url http://www.livingsocial.com/cities/1719-newyork-citywide
+        @url http://www.livingsocial.com/cities/15-san-francisco
         @returns items 1
         @scrapes title link
 

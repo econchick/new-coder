@@ -22,19 +22,19 @@ from scrapy.spider import BaseSpider
 from scraper_app.items import LivingSocialDeal
 
 class LivingSocialSpider(BaseSpider):
-	"""Spider for regularly updated livingsocial.com site, New York Page"""
+	"""Spider for regularly updated livingsocial.com site, San Francisco Page"""
 	name = "livingsocial"
 	allowed_domains = ["livingsocial.com"]
-	start_urls = ["http://www.livingsocial.com/cities/1719-newyork-citywide"]
+	start_urls = ["http://www.livingsocial.com/cities/15-san-francisco"]
 
-    deals_list_xpath = '//ul[@class="unstyled cities-items"]/li[@dealid]'
-    item_fields = {'title': './/a/div[@class="bd"]/h1/text()',
+    deals_list_xpath = '//li[@dealid]'
+    item_fields = {'title': './/a/div[@class="deal-bottom"]/h3[@itemprop]/text()',
                    'link': './/a/@href',
-                   'description': './/a/div[@class="bd"]/h2/text()',
-                   'category': './/@data-categories',
-                   'location': './/a/div[@class="hd"]/div[@class="meta"]/span/text()',
-                   'original_price': './/a/div[@class="bd"]/p[@class="meta"]/span[@class="original-price"]/del/text()',
-                   'price': './/a/div[@class="bd"]/p[@class="meta"]/span[@class="price"]/text()'}
+                   'description': './/a/div[@class="deal-bottom"]/p/text()',
+                   'category': './/a/div[@class="deal-top"]/div[@class="deal-category"]/span/text()',
+                   'location': './/a/div[@class="deal-top"]/ul[@class="unstyled deal-info"]/li/text()',
+                   'original_price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-original"]/del/text()',
+                   'price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-price"]/text()'}
 ```
 
 I’ve chosen to not build out the scaffolding with comments, but to throw this at you instead.  Let’s walk it through.
@@ -91,7 +91,7 @@ class LivingSocialSpider(BaseSpider)
         Default callback used by Scrapy to process downloaded responses
 
         Testing contracts:
-        @url http://www.livingsocial.com/cities/1719-newyork-citywide
+        @url http://www.livingsocial.com/cities/15-san-francisco
         @returns items 1
         @scrapes title link
 
