@@ -8,9 +8,9 @@
 
 BOT_NAME = 'livingsocial'
 
-SPIDER_MODULES = ['living_social.spiders']
+SPIDER_MODULES = ['scraper_app.spiders']
 
-ITEM_PIPELINES = ['living_social.pipelines.LivingSocialPipeline']
+ITEM_PIPELINES = ['scraper_app.pipelines.LivingSocialPipeline']
 
 DATABASE = {'drivername': 'postgres',
             'host': 'localhost',
