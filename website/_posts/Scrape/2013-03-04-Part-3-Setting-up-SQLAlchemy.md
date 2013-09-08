@@ -11,19 +11,33 @@ Setting up our data models using SQLAlchemy.
 
 Our initial step needs to create the database that we plan to use to save all of our crawled data.
 
-To do that, we will start a Postgres shell on localhost:
+To do that, we will start the Postgres server and client.
+
+To start the server:
+
+* if you are on a Mac and you have [postgresapp](http://postgresapp.com) installed, just start the Postgres app (located in your Applications).
+* if you are on Ubuntu, in a shell/terminal, type: `pg_ctl start` (you may need to add `sudo`).
+* if you are on Fedora, CentOS, Red Hat Linux, Scientific Linix, follow these commands at [Configure PostgreSQL 8.4 Server](http://www.if-not-true-then-false.com/2010/howto-install-postgresql-8-4-database-server-on-centos-fedora-red-hat/) (you may have a different version of Postgres).
+* if you are on Windows, you will need to be running as the Administrator.  Launch the server (Start > All Programs > Postgres Plus * > Start Server).  More instructions [here](http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows).
+
+For the client, for Mac, or any Linux distros, on a *different* shell/terminal:
 
 ```psql
-(ScrapProj)$ psql -h localhost
+(ScrapProj)$ psql -h localhost -d postgres
 psql (9.1.4, server 9.1.3)
 Type "help" for help.
 
-newcoder=#
+postgres=#
 ```
-The `newcoder=#` is the PostGres prompt. We simply create a database with this command:
+
+For Windows, follow instructions [here](http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows) under "Starting the SQL Command Line Terminal".
+
+With the client started, you should see the `postgres=#` is the postgres prompt.
+
+We simply create a database for our project with this command:
 
 ```psql
-newcoder=# create database scrape;
+postgres=# create database scrape;
 ```
 
 Notice I had to include the semicolon there.  This is pretty much all the raw SQL code we're going to touch. If you are curious, you can learn more on how to interact with PostGres in their [docs](http://www.postgresql.org/docs/9.2/static/index.html).
@@ -60,7 +74,7 @@ The `drivername` is the type of database we're using – Postgres.  Since we're 
 
 The `username` is _your_ username for your machine.  The `password` may not be needed, or may be the password used when setting up Postgres initially.
 
-The `database` is the name of the database we created earlier, `newcoder=#  create database scrape;`.
+The `database` is the name of the database we created earlier, `postgres=#  create database scrape;`.
 
 We will return to our `settings.py` file to add a fifth variable, `ITEM_PIPELINES`, once we setup our pipelines (how we handle the scraped & parsed data – e.g. we save them to the database).
 
