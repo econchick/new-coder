@@ -16,7 +16,7 @@ To do that, we will start the Postgres server and client.
 To start the server:
 
 * if you are on a Mac and you have [postgresapp](http://postgresapp.com) installed, just start the Postgres app (located in your Applications).
-* if you are on Ubuntu, in a shell/terminal, type: `pg_ctl start` (you may need to add `sudo`).
+* if you are on Ubuntu, in a shell/terminal, type: `service postgres start` (you may need to add `sudo`).
 * if you are on Fedora, CentOS, Red Hat Linux, Scientific Linix, follow these commands at [Configure PostgreSQL 8.4 Server](http://www.if-not-true-then-false.com/2010/howto-install-postgresql-8-4-database-server-on-centos-fedora-red-hat/) (you may have a different version of Postgres).
 * if you are on Windows, you will need to be running as the Administrator.  Launch the server (Start > All Programs > Postgres Plus * > Start Server).  More instructions [here](http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows).
 
