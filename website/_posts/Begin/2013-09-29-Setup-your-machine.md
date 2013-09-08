@@ -118,7 +118,7 @@ To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your ter
 	* `sudo yum install python-devel`
 * Ubuntu:
 	* you may need to run `sudo apt-get update` first.
-	* `sudo apt-get install build-essential python-dev`
+	* `sudo apt-get install build-essential python-dev libxml2-dev libxslt-dev`
 
 ### pip
 
