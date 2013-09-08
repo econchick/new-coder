@@ -110,19 +110,19 @@
 <span class="kn">from</span> <span class="nn">scraper_app.items</span> <span class="kn">import</span> <span class="n">LivingSocialDeal</span>
 
 <span class="k">class</span> <span class="nc">LivingSocialSpider</span><span class="p">(</span><span class="n">BaseSpider</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, New York Page&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Spider for regularly updated livingsocial.com site, San Francisco Page&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;livingsocial&quot;</span>
     <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;livingsocial.com&quot;</span><span class="p">]</span>
-    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;http://www.livingsocial.com/cities/1719-newyork-citywide&quot;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;http://www.livingsocial.com/cities/15-san-francisco&quot;</span><span class="p">]</span>
 
-    <span class="n">deals_list_xpath</span> <span class="o">=</span> <span class="s">&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</span>
-    <span class="n">item_fields</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/h1/text()&#39;</span><span class="p">,</span>
+    <span class="n">deals_list_xpath</span> <span class="o">=</span> <span class="s">&#39;//li[@dealid]&#39;</span>
+    <span class="n">item_fields</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-bottom&quot;]/h3[@itemprop]/text()&#39;</span><span class="p">,</span>
                    <span class="s">&#39;link&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/@href&#39;</span><span class="p">,</span>
-                   <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/h2/text()&#39;</span><span class="p">,</span>
-                   <span class="s">&#39;category&#39;</span><span class="p">:</span> <span class="s">&#39;.//@data-categories&#39;</span><span class="p">,</span>
-                   <span class="s">&#39;location&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;hd&quot;]/div[@class=&quot;meta&quot;]/span/text()&#39;</span><span class="p">,</span>
-                   <span class="s">&#39;original_price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/p[@class=&quot;meta&quot;]/span[@class=&quot;original-price&quot;]/del/text()&#39;</span><span class="p">,</span>
-                   <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;bd&quot;]/p[@class=&quot;meta&quot;]/span[@class=&quot;price&quot;]/text()&#39;</span><span class="p">}</span>
+                   <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-bottom&quot;]/p/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;category&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-top&quot;]/div[@class=&quot;deal-category&quot;]/span/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;location&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-top&quot;]/ul[@class=&quot;unstyled deal-info&quot;]/li/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;original_price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-bottom&quot;]/ul[@class=&quot;unstyled deal-info&quot;]/li[@class=&quot;deal-original&quot;]/del/text()&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="s">&#39;.//a/div[@class=&quot;deal-bottom&quot;]/ul[@class=&quot;unstyled deal-info&quot;]/li[@class=&quot;deal-price&quot;]/text()&#39;</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>I’ve chosen to not build out the scaffolding with comments, but to throw this at you instead.  Let’s walk it through.</p>
@@ -208,7 +208,7 @@
 <span class="sd">        Default callback used by Scrapy to process downloaded responses</span>
 
 <span class="sd">        Testing contracts:</span>
-<span class="sd">        @url http://www.livingsocial.com/cities/1719-newyork-citywide</span>
+<span class="sd">        @url http://www.livingsocial.com/cities/15-san-francisco</span>
 <span class="sd">        @returns items 1</span>
 <span class="sd">        @scrapes title link</span>
 
