@@ -487,7 +487,7 @@ def visualize_type():
     # in the parsed data, and count how many incidents happen by category
 
     # Set the labels which are based on the keys of our counter.
-    # Since order doesn't matter, we can just used counter.keys()
+    # Since order doesn't matter, we can just use counter.keys()
 
     # Set exactly where the labels hit the x-axis 
 
@@ -499,7 +499,7 @@ def visualize_type():
 
     # Give some more room so the x-axis labels aren't cut off in the graph
 
-    # Make the overall graph/figure is larger
+    # Make the overall graph/figure larger
 
     # Render the graph!
 ```
@@ -528,6 +528,16 @@ def visualize_type():
 
 * We have a new variable, `xlocations`, which will be used to help place the `plt.xticks()`. We're using the `numpy.numarray` (aka `na`) module to access the `array` function. This turns the list that `range(len(labels))` would make into an array that you can manipulate a bit differently. Here, we're adding `0.5`. If you were to `print xlocations`, you would see `[0.5, 1.5, 2.5, ... , 16.5, 17.5]` where `0.5` was added to each int of the list.  You'll see why we need the `0.5` a bit later.
 
+* TODO: Insert explanation of the below code.
+
+```python
+    # Width of each bar
+    width = 0.5
+    
+    # Assign data to a bar plot
+    plt.bar(xlocations, counter.values(), width=width)
+```
+
 * Now we assign our x- & y-ticks (should be familiar to visualize_days()):
 
 ```python
@@ -536,9 +546,9 @@ def visualize_type():
 ```
 * For the `plt.xticks()`, the first parameter should look similar to before, but here we're feeding three parameters: `xlocations + width / 2`, `labels`, and `rotation=90`. The first parameter will place the center of the bar in the middle of the xtick. `labels` we know already. `rotation=90` is, as you might have guess, rotates each label 90 degrees. This allows our x-axis to be more readable. You can try out another values.
 
-* Notice how we can pass `xticks()` more parameters than we did before. If you read the [documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks) of that function, you can pass it `*args` and `*kwargs`, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined [text properties](http://matplotlib.org/api/artist_api.html#matplotlib.text.Text) for the labels - so that would explain the `*kwargs` element there. If nothing is passed in for `rotation` then it's set to a default defined in their text properties documentation.
+* Notice how we can pass `xticks()` more parameters than we did before. If you read the [documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks) of that function, you can pass it `*args` and `**kwargs`, or arguments and keyword arguments. It mentions that you can pass matplotlib-defined [text properties](http://matplotlib.org/api/artist_api.html#matplotlib.text.Text) for the labels - so that would explain the `**kwargs` element there. If nothing is passed in for `rotation` then it's set to a default defined in their text properties documentation.
 
-* Next, we just add a little bit of spacing to the bottom of the graph so the labels (since some of them are long, like "Forgery/Counterfeiting"). We use the `.subplots_adjust()` function. In matplotlib, you have the ability to render multiple graphs on one window/function, called subplots. With one graph, subplots can be used to adjust the spacing around the graph itself.
+* Next, we just add a little bit of spacing to the bottom of the graph so the labels (like "Forgery/Counterfeiting") aren't too long. We use the `.subplots_adjust()` function. In matplotlib, you have the ability to render multiple graphs on one window/function, called subplots. With one graph, subplots can be used to adjust the spacing around the graph itself.
 
 ```python
     # Give some more room so the labels aren't cut off in the graph
