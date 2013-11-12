@@ -308,7 +308,7 @@ Play around with parse.py within your Python interpreter itself:
 	4. Grab the first row of the CSV file, the headers/column names, and assign them to the `fields` variable, which will be a list.
 	5. Iterate over each row in the CSV file, mapping column headers -> row values, and add to our list we initialized in step 3.
 	6. Return the `parsed_data` variable.
-- We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, importe it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
+- We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, import it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
 
 #### Visualize Functions
 Let's first take a look at a chunk of data that we just parsed to get a better idea of what sort of data we're working with:
