@@ -5,3 +5,4 @@
 htmlcov
 settings.ini
 twistd.pid
+website/_site/
