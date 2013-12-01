@@ -160,14 +160,14 @@ def main():
 	    # Let's see what the data looks like!
 	    print new_data
 ```
-We called our function `parse()` and gave it the `MY_FILE` global variable that we defined at the beginning, as well as the delimiter `","`.  We assign the function to the variable `new_data` since the `parse()` function will return a `parsed_data` object. Last - we print `new_data` to see our list of dictionaries!
+We called our function `parse()` and gave it the `MY_FILE` global variable that we defined at the beginning, as well as the delimiter `","`.  We assign the return value of the function to the variable `new_data` since the `parse()` function will return a list. Last - we print `new_data` to see our list of dictionaries!
 <br />
-One final bit - when running a Python file from the command line, Python will execute all of the code found on it. Since the following bit is True,
+One final bit - when running a Python file from the command line, Python will execute all of the code found on it. Since the expression in the if statement evaluates to True,
 ```python
 if __name__ == "__main__":
 		main()
 ```
-it will call the `main()` function. By doing the name == main check, you can have that code only execute when you want to run the module as a program (via the command line) and not have it execute when someone just wants to import the `parse()` function itself.
+it will call the `main()` function. By doing the __name__ == "__main__" check, you can have that code only execute when you want to run the module as a program (via the command line) and not have it execute when someone just wants to import the `parse()` function itself.
 
 #### Putting it to action
 So you've written the parse function and your `parse.py` file looks like [mine](https://github.com/econchick/new-coder/blob/master/dataviz/lib/tutorial_source/parse.py). Now what?  Let's run it and parse some d*mn files!
@@ -301,14 +301,14 @@ Play around with parse.py within your Python interpreter itself:
 #### Review: Parse Function
 
 - Once again, you see the `MY_FILE` as a global variable that points to the sample data file that's included in the repository. 
-- In a quick review of [Part I: Parse](#the-parse-function) - tutorial comments removed - we see that the `parse()` function still takes in two parameters: `raw_file` and `delimiter`. The process of the `parse()` function is as follows:
+- In a quick review of [Part I: Parse](#the-parse-function) we see that the `parse()` function still takes in two parameters: `raw_file` and `delimiter`. The process of the `parse()` function is as follows:
 	1. Open the raw file.
 	2. Read the CSV file with the appropriate delimiter.
 	3. Initialize an empty list which will be returned by the function.
 	4. Grab the first row of the CSV file, the headers/column names, and assign them to the `fields` variable, which will be a list.
 	5. Iterate over each row in the CSV file, mapping column headers -> row values, and add to our list we initialized in step 3.
 	6. Return the `parsed_data` variable.
-- We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, imported it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
+- We include the parse function here so we build on the process of parse -> plot.  We need to parse the data into the list of dictionaries so that we can easily tell matplotlib what and how to plot. We could, however, import it from parse.py. As a challenge to you, try editing away the parse function in `graph.py` and import it from `parse.py`.
 
 #### Visualize Functions
 Let's first take a look at a chunk of data that we just parsed to get a better idea of what sort of data we're working with:
@@ -335,26 +335,26 @@ By looking at a snippet of data, we can understand how we can play/visualize it.
 
 ##### Visualize Days Function
 * As we read from the docstring, this will give us a visualization of data by the day of the week.  For instance, are SF policy officers more likely to file incidents on Monday versus a Tuesday? Or, tongue-in-cheek, should you stay in your house Friday night versus Sunday morning?
-* You'll also notice that the `def visualize_days()` function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: `def visualize_days(parsed_data)`.
+* You'll also notice that the `visualize_days()` function does not take any parameters. An option to explore would be to pass this function already-parsed data. If you feel up to it after understanding this function, explore redefining the function like so: `def visualize_days(parsed_data)`.
 * Let's walk through this function like we did the parse function.  Below is the walk through of comments for the code that we will want to write:
 ```python
 def visualize_days():
     """Visualize data by day of week"""
-    # grab our parsed data that we parsed earlier
+    # Grab our parsed data that we parsed earlier
 
-    # make a new variable, 'counter', from iterating through each line of data in the parsed data, and count how many incidents happen on each day of the week
+    # Make a new variable, 'counter', from iterating through each line of data in the parsed data, and count how many incidents happen on each day of the week
 
-    # separate the x-axis data (the days of the week) from the 'counter' variable from the y-axis data (the number of incidents for each day)
+    # Separate the x-axis data (the days of the week) from the 'counter' variable from the y-axis data (the number of incidents for each day)
 
-    # with that y-axis data, assign it to a matplotlib plot instance
+    # With that y-axis data, assign it to a matplotlib plot instance
 
-    # make a tuple of labels to be assigned to the x-axis
+    # Make a tuple of labels to be assigned to the x-axis
 
-    # create the amount of ticks needed for our x-axis, and assign the tuple from earlier for labeling the x-axis
+    # Create the amount of ticks needed for our x-axis, and assign the tuple from earlier for labeling the x-axis
 
-    # show the plot!
+    # Show the plot!
 ```
-* Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our `graph.py` file so we can easily access it's parsing-abilities! Like so:
+* Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well, thankfully we still have the parse function in our `graph.py` file so we can easily access it's parsing-abilities! Like so:
 
 ```python
 def visualize_days():
@@ -365,7 +365,7 @@ def visualize_days():
 
 * Notice how we assign data_file to our parse function, and the parameters we feed through our parse functions are `MY_FILE` and a comma-delimiter. Because we know the parse function returns `parsed_data`, we can expect that `data_file` will be that exact return value.
 
-* This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported Counter from the module `collections`. This is demonstrative of Python's powerful standard library. Here, Counter behaves very similarly to Python's dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our `data_file` variable (since it's just a list of dictionaries), grabbing each key labelled "DayOfWeek". What the Counter does is everytime it sees the "DayOfWeek" key set to a value of "Monday", it will give it a tally; same with "DayOfWeek" key set to "Tuesday", etc. This works great for very well structured data.
+* This next one is a little tricky, and not very intuitive at all. Remember that earlier, we imported Counter from the module `collections`. This is demonstrative of Python's powerful standard library. Here, Counter behaves very similarly to Python's dictionary structure (because under the hood, the Counter class inherits from dictionary).  What we will do with Counter is iterate through each line item in our `data_file` variable (since it's just a list of dictionaries), grabbing each key labelled "DayOfWeek". What the Counter does is everytime it sees the "DayOfWeek" key set to a value of "Monday", it will give it a tally; same with "DayOfWeek" key set to "Tuesday", etc. This works great for very well structured data.
 
 ```python
 def visualize_days():
@@ -376,7 +376,7 @@ def visualize_days():
     #in the parsed data, and count how many incidents happen on each day of the week
     counter = Counter(item["DayOfWeek"] for item in data_file)
 ```
-* Notice, within Counter(...) we have an interesting loop construct, `item ["DayOfWeek"] for item in data_file`. This is called a list comprehension. You can read it as, "count every dictionary value of every dictionary key set to 'DayOfWeek' for every line item in data_file." A list comprehension just a for-loop put in a more elegant, "Pythonic" way. **Challenge yourself:** write out a for-loop for our `counter` variable.
+* Notice, within Counter(...) we have an interesting loop construct, `item ["DayOfWeek"] for item in data_file`. This is called a list comprehension. You can read it as, "count every dictionary value of every dictionary key set to 'DayOfWeek' for every line item in data_file." A list comprehension is just a for-loop put in a more elegant, "Pythonic" way. **Challenge yourself:** write out a for-loop for our `counter` variable.
 
 * The counter object is a dictionary with the keys as days of the week, and values as the count of incidents per day. In order for our visualization to make sense, we need to make sure the order that we plot the data makes sense.  For instance, it would make no sense to plot our data in alphabetical order rather than order of the days of the week. We can force our order by separating keys and values to lists:
 
@@ -481,9 +481,9 @@ The next function that we will walk through, `visualize_type()`, is constructed 
 ```python
 def visualize_type():
     """Visualize data by category in a bar graph"""
-    # grab our parsed data
+    # Grab our parsed data
 
-    # make a new variable, 'counter', from iterating through each line of data
+    # Make a new variable, 'counter', from iterating through each line of data
     # in the parsed data, and count how many incidents happen by category
 
     # Set the labels which are based on the keys of our counter.
@@ -556,7 +556,7 @@ def visualize_type():
 ```
 * I'll be honest, `0.4` was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.
 
-* Nearly there - before we render the graph, the actual size of the window can be played with too. `rcParams` dictionary, explained in their [docs](http://matplotlib.org/users/customizing.html#dynamic-rc-settings), allows us to dynamically play with matplotlibs global settings. In particular, the `'figure.figsize'` key is expecting two values: height + width:
+* Nearly there - before we render the graph, the actual size of the window can be played with too. `rcParams` dictionary, explained in their [docs](http://matplotlib.org/users/customizing.html#dynamic-rc-settings), allows us to dynamically play with matplotlib's global settings. In particular, the `'figure.figsize'` key is expecting two values: height + width:
 
 ```python
     # Make the overall graph/figure larger
@@ -632,18 +632,18 @@ import parse as iLoveParsingSoMuch
 
 * Library is a collection of packages. A package is a collection of modules. A module is one python file, so a library is a collection of python files.
 
-* Python has a standard library already build in (standard meaning that you don't have to download extra packages, it's default within the language and just have to import what you need), but that standard library contains many packages and modules. 
+* Python has a standard library already built in (standard meaning that you don't have to download extra packages, it's default within the language and you just have to import what you need), but that standard library contains many packages and modules. 
 
 * Python will follow your import statements like a file structure. For instance, we have `new-coder/dataviz/lib/tutorial_source` - `lib` is within `dataviz`. So within Python's standard library, `minidom` is defined within `dom`, and that within `xml`. 
 
-* A bit of a **warning**: if you try to run `map.py` outside of `new-coder/dataviz/lib/tutorial_source` without adjusting the `import parse`, you may see an `ImportError`. When making a package yourself for distribution, there are ways to void this issue, and you can read more in the Python [docs](http://docs.python.org/2/tutorial/modules.html#packages)
+* A bit of a **warning**: if you try to run `map.py` outside of `new-coder/dataviz/lib/tutorial_source` without adjusting the `import parse`, you may see an `ImportError`. When making a package yourself for distribution, there are ways to avoid this issue, and you can read more in the Python [docs](http://docs.python.org/2/tutorial/modules.html#packages)
 
 
 Back to the tutorial!
 
 #### Helper Functions
 
-We've defined two helper functions for our `create_gmap()` function: `create_document()` and `create_placemark`. I won't spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don't want `create_gmap()` to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debugging.
+We've defined two helper functions for our `create_gmap()` function: `create_document()` and `create_placemark`. I won't spend too much time on the detail of these two functions, but what I want you to understand is the concept of breaking out your code to have functions do one thing and one thing only. We don't want `create_gmap()` to get too muddled up, the main reasons being that it lends to code being far more readable, as well as testable and debuggable.
 
 * The `create_document(title, description='')` function essentially will create/initialize a KML document. It first makes an XML document, then defines it as KML, grabs common KML attributes that are defined at `www.opengis.net` (which catalogs web resources for anyone to refer to).  Lastly, it creates meta data that we want for our map: Title and Description.
 
@@ -677,7 +677,7 @@ def create_document(title, description=''):
 
 * The `createElement()` and `appendChild()` is specific to DOM functions that the `xml.dom.minidom` gives us access to.  We first create an element (either Document, name, or description), then assign that element a value if needed (title, and description, if given).  Finally, we return the initialized document.
 
-* The `create_placemark(address)` creates an initial XML document so we can build one placemark (equal to one piece of our data). The function actually creates the placemark data by doing the same process from earlier, `createElement` to create a type of DOM element, and assign it a value if needed (e.g. name, coordinates, description). This just returns one placemark in the correct format.
+* The `create_placemark(address)` function creates an initial XML document so we can build one placemark (equal to one piece of our data). The function actually creates the placemark data by doing the same process from earlier, `createElement` to create a type of DOM element, and assign it a value if needed (e.g. name, coordinates, description). This just returns one placemark in the correct format.
 
 ```python
 def create_placemark(address):
@@ -726,7 +726,7 @@ def create_gmap(data_file):
     # create_document() function
 
     # Get the specific DOM element that we created with create_document()
-    # Returns a list, so call the first one
+    # Returns a list, so get the first element
 
     # Iterate over our data to create KML document
     for line in data_file:
@@ -742,15 +742,15 @@ def create_gmap(data_file):
     # can upload it to maps.google.com
 ```
 
-* The first that we need to do is just to create a new KML document for us to work with. We'll use our helper function, `create_document` and pass in a title and description as parameters to create a new variable, `kml_doc`:
+* The first thing that we need to do is just to create a new KML document for us to work with. We'll use our helper function, `create_document` and pass in a title and description as parameters to create a new variable, `kml_doc`:
 
 ```python
     # Create a new KML doc with our previously-defined
     # create_document() function
-    kml_doc = create_document("Crime map", "Plots of Recent SF Crime")
+    kml_doc = create_document("Crime map", "Plots of Recent SF Crimes")
 ```
 
-* Next, we just want to get that specific DOM element, `"Document"` to build each placemark to. So we need to create the document, then grab the right element, coincidently named Docoment, so we can add placemarks to it.
+* Next, we just want to get that specific DOM element, `"Document"` to build each placemark to. So we need to create the document, then grab the right element, coincidently named Document, so we can add placemarks to it.
 
 ```python
     # Get the specific DOM element that we created with create_document()
@@ -758,7 +758,7 @@ def create_gmap(data_file):
     document = kml_doc.documentElement.getElementsByTagName("Document")[0]
 ```
 
-* Next, we iterate through the parsed data (`data_file`) that we fed the `create_gmap(data_file)` and make sure we build our dictionary of data, `placemark_info` so that `create_placemark` can build a placemark out of it.
+* Next, we iterate through the parsed data (`data_file`) that we fed the `create_gmap(data_file)` function and make sure we build our dictionary of data, `placemark_info` so that `create_placemark` can build a placemark out of it.
 
 ```python
     # Iterate over our data to create KML document
@@ -773,12 +773,6 @@ def create_gmap(data_file):
         # Avoid null values for lat/long
         if placemark_info['longitude'] == "0":
             continue
-
-        # Calls create_placemark() to parse line of data into KML-format
-        placemark = create_placemark(placemark_info)
-
-        # Adds the placemark we just created to the KML doc
-        document.appendChild(placemark.documentElement)
 ```
 
 * So for each line in our `data_file`, we take certain values of that line, `X`, `Y`, `Category`, etc, and assign it to a key.  If, for whatever instance, longitude is `0`, we'll skip over it.  The assumption is if the longitude is 0, then we can't plot it (or it will be plotted as 0,0 and screw with our map). This is a simple form of skipping over errors in the data.
@@ -792,7 +786,7 @@ def create_gmap(data_file):
         document.appendChild(placemark.documentElement)
 ```
 
-* So looping over each line item is done, we've built our KML document, now how to we _get_ that document so we can upload it to Google Maps?  We can do that with Python's file I/O - by opening a file (if it doesn't exist, it will be created for us), and writing to that file.
+* So looping over each line item is done, we've built our KML document, now how do we _get_ that document so we can upload it to Google Maps?  We can do that with Python's file I/O - by opening a file (if it doesn't exist, it will be created for us), and writing to that file.
 
 ```python
     # Now that all data is parsed in KML-format, write to a file so we
@@ -810,9 +804,9 @@ def create_gmap(data_file):
 * That's it! Now we just have that `main()` function: 
 ```python
 def main():
-    data = p.parse(p.my_file, ",")
+    data = p.parse(p.MY_FILE, ",")
 
-    return create_gmap(data)
+    create_gmap(data)
 
 if __name__ == "__main__":
     main()
