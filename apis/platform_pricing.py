@@ -1,10 +1,10 @@
 """
-This is a very example demonstrating how to combine multiple data sources (raw
+This example demonstrates how to combine multiple data sources (raw
 data and Web API). Here we generate a bar chart containing video game consoles
 of multiple generations and their respective prices.
 
-As data source for the available video game platforms we use the API provided
-by Giantbomb.com. But since prices there are only stored in the amount of money
+We use the API provided by Giantbomb.com as a data source for the available 
+video game platforms. Since prices there are only stored in the amount of money
 you had to put on the table back when the console was released, we also want
 to put those prices into perspective with the current value of the US Dollar.
 For this we use the CPI made available by the Federal Reserve Bank of St.
@@ -164,7 +164,7 @@ class GiantbombAPI(object):
     Very simple implementation of the Giantbomb API that only offers the
     GET /platforms/ call as a generator.
 
-    Note that this implementation only exposes of the API what we really need.
+    Note that this implementation only exposes what we really need of the API.
     """
 
     base_url = 'http://www.giantbomb.com/api'
