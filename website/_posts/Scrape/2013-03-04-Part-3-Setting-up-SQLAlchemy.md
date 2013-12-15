@@ -55,7 +55,7 @@ We first give our web scraper a name, and where our spider module is located.
 
 ```python
 
-BOT_NAME = 'livingsocialscraper'
+BOT_NAME = 'livingsocial'
 
 SPIDER_MODULES = ['scraper_app.spiders']
 ```

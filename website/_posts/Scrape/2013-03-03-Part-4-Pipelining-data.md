@@ -69,7 +69,7 @@ Nearly there – we need to add a variable to `settings.py` that tells scrapy wh
 So within `settings.py`, add another variable, `ITEM_PIPELINES`:
 
 ```python
-ITEM_PIPELINES = ['living_social.pipelines.LivingSocialPipeline']
+ITEM_PIPELINES = ['scraper_app.pipelines.LivingSocialPipeline']
 ```
 
 This is the directory/module path to the pipeline we just defined.
