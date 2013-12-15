@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -114,6 +114,62 @@
 <span class="o">(</span>DataVizProj<span class="o">)</span><span class="nv">$ </span>pip install matplotlib
 </pre></div>
 </td></tr></table></div></div>
+<ul>
+<li><strong>NOTE</strong> Sometimes, matplotlib is finicky as well. If you are on a Mac and &ldquo;pip install matplotlib&rdquo; did not work, you are probably missing the supporting packages freetype2 and libpng. Windows users do not need to worry about his as these packages are already included in the standard matplotlib Windows installers. For Mac users, below are detailed instructions on how to install them. 
+Note that libpng has a dependency on zlib library, so we have to install that first. So in total we install 3 supporting packages: </li>
+</ul>
+
+<p><strong>1. ZLIB</strong><br>
+   Go to <a href="http://www.zlib.net/">http://www.zlib.net/</a> and download the latest source code archive.<br>
+   Scroll down to zlib source code, and download version 1.2.7, tar.gz format<br>
+   Unpack the zip file<br>
+   Open a Terminal window, cd to the zlib source folder, and configure, make, and install the library as follows:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+<span class="nv">$ </span><span class="nb">cd </span>zlib-1.2.7
+<span class="nv">$ </span>./configure
+<span class="nv">$ </span>make
+<span class="nv">$ </span>sudo make install
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>2. LIBPNG</strong><br>
+   Go to <a href="http://www.libpng.org/pub/png/libpng.html">http://www.libpng.org/pub/png/libpng.html</a> and download the latest source code archive<br>
+   Scroll down and download by clicking the &ldquo;tar.gz&rdquo; link on the download.sourceforge.net row<br>
+   Unpack the zip file<br>
+   Open a Terminal window and type:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+<span class="nv">$ </span><span class="nb">cd </span>libpng-1.5.14
+<span class="nv">$ </span>./configure
+<span class="nv">$ </span>make
+<span class="nv">$ </span>make check
+<span class="nv">$ </span>sudo make install
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>3. FREETYPE</strong><br>
+   Go to <a href="http://sourceforge.net/projects/freetype/files/latest/download?source=files">http://sourceforge.net/projects/freetype/files/latest/download?source=files</a> and the download of the source file should shart automatically<br>
+   Unpack the zip file<br>
+   Open a Terminal window and type:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+<span class="nv">$ </span><span class="nb">cd </span>freetype-2.4.11
+<span class="nv">$ </span>./configure
+<span class="nv">$ </span>make
+<span class="nv">$ </span>sudo make install
+</pre></div>
+</td></tr></table></div></div>
+<p>After installing these three packages, type &ldquo;pip install matplotlib&rdquo; again and it should work. </p>
+
 <ul>
 <li>Test the installation real quick by starting up the Python interpreter:</li>
 </ul>

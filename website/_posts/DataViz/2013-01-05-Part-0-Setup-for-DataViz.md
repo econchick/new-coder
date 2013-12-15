@@ -58,6 +58,7 @@ $ sudo make install
    Scroll down and download by clicking the "tar.gz" link on the download.sourceforge.net row
    Unpack the zip file
    Open a Terminal window and type:
+
 ```bash
 $ cd ~/Downloads
 $ cd libpng-1.5.14

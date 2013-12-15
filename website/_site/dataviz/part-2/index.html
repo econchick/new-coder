@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -202,9 +202,9 @@
 
 <p>This next one is a little tricky, and not very intuitive at all.  Remember earlier, we imported <code>Counter</code> from the module <code>collections</code>. This is demonstrative of Python’s powerful standard library. </p>
 
-<p>Here, <code>Counter</code> behaves very similarly to Python&#39;s dictionary structure (because under the hood, the <code>Counter</code> class inherits from dictionary).  What we will do with Counter is iterate through each line item in our <code>data_file</code> variable (since it’s just a list of dictionaries), grabbing each key labelled &quot;DayOfWeek&quot;. </p>
+<p>Here, <code>Counter</code> behaves very similarly to Python&#39;s dictionary structure (because under the hood, the <code>Counter</code> class inherits from dictionary).  What we will do with Counter is iterate through each line item in our <code>data_file</code> variable (since it’s just a list of dictionaries), grabbing each key labelled &ldquo;DayOfWeek&rdquo;. </p>
 
-<p>What the Counter does is everytime it sees the &quot;DayOfWeek&quot; key set to a value of &quot;Monday&quot;, it will give it a tally; same with &quot;DayOfWeek&quot; key set to &quot;Tuesday&quot;, etc. This works great for very well structured data.</p>
+<p>What the Counter does is everytime it sees the &ldquo;DayOfWeek&rdquo; key set to a value of &ldquo;Monday&rdquo;, it will give it a tally; same with &ldquo;DayOfWeek&rdquo; key set to &ldquo;Tuesday&rdquo;, etc. This works great for very well structured data.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -286,7 +286,7 @@ item["DayOfWeek"] for item in data_file
 
 <p>The first parameter is <code>range(len(day_tuple))</code>.  Here, we call <code>len()</code> on our <code>day_tuple</code> variable — <code>len()</code> returns an integer, a count of the number of items in our tuple <code>day_tuple</code>. Since we have seven items in our <code>day_tuple</code> (<strong>pop quiz:</strong> why do we have seven items?), the <code>len()</code> will return 7. Now we have <code>range()</code> on our length of the <code>day_tuple</code>. If you feed <code>range()</code> one parameter <code>x</code>, it will produce a list of integers from <code>0</code> to <code>x</code> (not including <code>x</code>). So, deconstructed, we fed <code>plt.xticks()</code> the following: </p>
 <pre><code>parameter 1 = [0, 1, 2, 3, 4, 5, 6]
-parameter 2 = (&#34;Mon&#34;, &#34;Tues&#34;, &#34;Wed&#34;, &#34;Thurs&#34;, &#34;Fri&#34;, &#34;Sat&#34;, &#34;Sun&#34;)
+parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;)
 </code></pre>
 <p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
 

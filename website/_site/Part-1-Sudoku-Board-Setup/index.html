@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -107,43 +107,43 @@
 <h3 id="parsing-command-line-arguments">Parsing Command-line Arguments</h3>
 <p>Python&#39;s standard library has an <code>argparse</code> module that will help us capture command-line arguments and assign them to the appropriate variables.</p>
 
-<p>``python<br>
+<p>&ldquo;python<br>
 import argparse</p>
 
 <p>def parse_arguments():<br>
-    &quot;&quot;&quot;<br>
+    &rdquo;&ldquo;&rdquo;<br>
     Parses arguments of the form:<br>
         sudoku.py <level name> [board number]<br>
     Where <code>level name</code> must be in the LEVELS list and <code>board number</code> must be<br>
     a positive integer.<br>
-    &quot;&quot;&quot;<br>
+    &ldquo;&rdquo;&ldquo;<br>
     arg_parser = argparse.ArgumentParser()<br>
-    arg_parser.add_argument(&quot;--level&quot;,<br>
-                            help=&quot;Level name.&quot;,<br>
+    arg_parser.add_argument(&rdquo;&ndash;level&quot;,<br>
+                            help=&ldquo;Level name.&rdquo;,<br>
                             type=str,<br>
                             choices=LEVELS,<br>
                             required=True)<br>
-    arg_parser.add_argument(&quot;--board&quot;,<br>
-                            help=&quot;Board number. Must be a positive integer.&quot;,<br>
+    arg_parser.add_argument(&ldquo;&ndash;board&rdquo;,<br>
+                            help=&ldquo;Board number. Must be a positive integer.&rdquo;,<br>
                             type=check_negative,<br>
                             default=-1)</p>
 <pre><code># Returns a dictionary of keys = argument flag, and value = argument
 args = vars(arg_parser.parse_args())
 return args[&#39;level&#39;], args[&#39;board&#39;]
 </code></pre><pre><code>
-You can read more about Python&#39;s argparse module by working through this [howto](http://docs.python.org/2/howto/argparse.html). Basically, `argparse` allows us to define the usage of arguments for the command line, as well as setting up how many arguments to expect (`add_argument`), the flags for the arguments (`--level`), defaults (`default=-1`), etc, as well as returning the exact parsed argument we want, `args[&#39;level&#39;]` and `args[&#39;board&#39;]`.
+You can read more about Python&#39;s argparse module by working through this [howto](http:&#47;&#47;docs.python.org&#47;2&#47;howto&#47;argparse.html). Basically, `argparse` allows us to define the usage of arguments for the command line, as well as setting up how many arguments to expect (`add_argument`), the flags for the arguments (`--level`), defaults (`default=-1`), etc, as well as returning the exact parsed argument we want, `args[&#39;level&#39;]` and `args[&#39;board&#39;]`.
 
 You&#39;ll notice in the second argument, `--board`, callese the `check_negative` function. This is just to check in case a user passes a negative number for a board number (only positive numbers are allowed):
 
 ```python
 def check_negative(value):
-    &#34;&#34;&#34;
+    &quot;&quot;&quot;
     Checks if value is a positive integer.
     Throws ArgumentTypeError if not.
-    &#34;&#34;&#34;
+    &quot;&quot;&quot;
     ivalue = int(value)
     if ivalue &lt; 0:
-        raise argparse.ArgumentTypeError(&#34;%s is an invalid positive int value&#34;
+        raise argparse.ArgumentTypeError(&quot;%s is an invalid positive int value&quot;
                                          % value)
     return ivalue
 </code></pre><h3 id="user-interface-setup">User Interface Setup</h3>

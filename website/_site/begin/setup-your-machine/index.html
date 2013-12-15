@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -136,8 +136,8 @@ i686-apple-darwin11-llvm-gcc-4.2: no input files
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo curl -O http://python-distribute.org/distribute_setup.py | python
-<span class="nv">$ </span>sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>curl http://python-distribute.org/distribute_setup.py | sudo python
+<span class="nv">$ </span>curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
 <span class="nv">$ </span>pip
 Usage: pip COMMAND <span class="o">[</span>OPTIONS<span class="o">]</span>
 You must give a <span class="nb">command</span> <span class="o">(</span>use <span class="s2">&quot;pip help&quot;</span> to see a list of commands<span class="o">)</span>
@@ -191,7 +191,7 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 
 <ul>
 <li>you may need to run <code>sudo apt-get update</code> first.</li>
-<li><code>sudo apt-get install build-essential python-dev</code></li>
+<li><code>sudo apt-get install build-essential python-dev libxml2-dev libxslt-dev</code></li>
 </ul></li>
 </ul>
 <h3 id="pip-2">pip</h3>
@@ -200,8 +200,8 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo curl -O http://python-distribute.org/distribute_setup.py | python
-<span class="nv">$ </span>sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>curl http://python-distribute.org/distribute_setup.py | sudo python
+<span class="nv">$ </span>curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
 <span class="nv">$ </span>pip
 Usage: pip COMMAND <span class="o">[</span>OPTIONS<span class="o">]</span>
 You must give a <span class="nb">command</span> <span class="o">(</span>use <span class="s2">&quot;pip help&quot;</span> to see a list of commands<span class="o">)</span>
@@ -226,8 +226,8 @@ You must give a <span class="nb">command</span> <span class="o">(</span>use <spa
 <li>Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
 
 <ul>
-<li>On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on &quot;cmd&quot; in the search results above the Search field.</li>
-<li>On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on &quot;Run...&quot;, type cmd into the text box, and hit enter.</li>
+<li>On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on &ldquo;cmd&rdquo; in the search results above the Search field.</li>
+<li>On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on &ldquo;Run&hellip;&rdquo;, type cmd into the text box, and hit enter.</li>
 </ul></li>
 <li>At this <code>C:\</code> prompt that appears, test your Python install by typing <code>\Python27\python.exe</code> and hitting <code>enter</code>. You should see something like</li>
 </ol>
@@ -241,29 +241,29 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
 <ol>
 <li>You just started Python! The <code>&gt;&gt;&gt;</code> indicates that you are at a new type of prompt – a Python prompt. The command prompt lets you navigate your computer and run programs, and the Python prompt lets you write and run Python code interactively.</li>
 <li>To exit the Python prompt, type <code>exit()</code> and press Enter. This will take you back to the Windows command prompt (the <code>C:\</code> you saw earlier).</li>
-<li>Put Python on the PATH – You might have noticed that you typed a &quot;full path&quot; to the Python application above when launching Python (<code>python.exe</code> is the application, but we typed <code>\Python27\python.exe</code>). In this step, you will configure your computer so that you can run Python without typing the &#39;&#39;Python27&#39;&#39; directory name.
+<li>Put Python on the PATH – You might have noticed that you typed a &ldquo;full path&rdquo; to the Python application above when launching Python (<code>python.exe</code> is the application, but we typed <code>\Python27\python.exe</code>). In this step, you will configure your computer so that you can run Python without typing the &#39;&#39;Python27&#39;&#39; directory name.
 
 <ul>
 <li>Get to System Properties
 
 <ol>
-<li>Open up “My Computer” by clicking on the Start menu or the Windows logo in the lower-left hand corner, and navigate to &quot;My Computer&quot; (for Windows XP) or &quot;Computer&quot; (For Vista and Windows 7).</li>
+<li>Open up “My Computer” by clicking on the Start menu or the Windows logo in the lower-left hand corner, and navigate to &ldquo;My Computer&rdquo; (for Windows XP) or &ldquo;Computer&rdquo; (For Vista and Windows 7).</li>
 <li>Right-click on the empty space in the window, and choose “Properties”.
 
 <ul>
-<li>If you’re using XP: window labeled &quot;System Properties&quot; will pop up. Click the &quot;Advanced&quot; tab. A window with the title &quot;System Properties&quot; will appear.</li>
-<li>If you’re <strong>not</strong> using XP: A window labeled “View basic information about your computer” will appear. In this window, click &quot;Advanced system settings&quot;.  A window with the title &quot;System Properties&quot; will appear.</li>
+<li>If you’re using XP: window labeled &ldquo;System Properties&rdquo; will pop up. Click the &ldquo;Advanced&rdquo; tab. A window with the title &ldquo;System Properties&rdquo; will appear.</li>
+<li>If you’re <strong>not</strong> using XP: A window labeled “View basic information about your computer” will appear. In this window, click &ldquo;Advanced system settings&rdquo;.  A window with the title &ldquo;System Properties&rdquo; will appear.</li>
 </ul></li>
 </ol></li>
 <li>Edit the Path
 
 <ol>
 <li>Within System Properties, make sure you are in the tab labeled “Advanced’.</li>
-<li>Click the button labeled “Environment Variables”.  A window labeled &quot;Environment Variables&quot; will appear.</li>
-<li>In this window, the screen is split between “User variables” and “System variables”. Within “System variables’, scroll down and find the one labeled “Path’. Click the “Edit...” button A window with the &quot;Variable name&quot; and the &quot;Variable value&quot; should appear.  The “Variable value” will already have some text in it; click in the box to unhighlight it (we don&#39;t want to accidentally delete that text).</li>
+<li>Click the button labeled “Environment Variables”.  A window labeled &ldquo;Environment Variables&rdquo; will appear.</li>
+<li>In this window, the screen is split between “User variables” and “System variables”. Within “System variables’, scroll down and find the one labeled “Path’. Click the “Edit&hellip;” button A window with the &ldquo;Variable name&rdquo; and the &ldquo;Variable value&rdquo; should appear.  The “Variable value” will already have some text in it; click in the box to unhighlight it (we don&#39;t want to accidentally delete that text).</li>
 </ol></li>
-<li>In the &quot;Variable value&quot; box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! <code>;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts</code></li>
-<li>Hit &quot;OK&quot; to close out the system properties window.</li>
+<li>In the &ldquo;Variable value&rdquo; box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! <code>;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts</code></li>
+<li>Hit &ldquo;OK&rdquo; to close out the system properties window.</li>
 <li>Test your change:
 
 <ol>

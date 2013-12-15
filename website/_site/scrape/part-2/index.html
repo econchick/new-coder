@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -131,13 +131,13 @@
 
 <p>Next, scrapy uses XPath selectors to extract data from a website - they select certain parts of the HTML data based on a given XPath. As said in <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors">their documentation</a>, “XPath is a language for selecting nodes in XML documents, which can also be used with HTML.” You may read more about XPath selectors in <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors">their docs</a>.</p>
 
-<p>We basically tell scrapy where to start looking for information based on a defined Xpath.  Let’s navigate to our <a href="http://www.livingsocial.com/cities/1719-newyork-citywide">LivingSocial</a> site and right-click to &quot;View Source&quot;:</p>
+<p>We basically tell scrapy where to start looking for information based on a defined Xpath.  Let’s navigate to our <a href="http://www.livingsocial.com/cities/1719-newyork-citywide">LivingSocial</a> site and right-click to &ldquo;View Source&rdquo;:</p>
 
 <p><img src="/assets/images/scrape/view-source.png" alt="View Source of LivingSocial"></p>
 
 <p>I mean – look at that mess. We need to give the spider a little guidance.</p>
 
-<p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &quot;unstyled cities-items&quot;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>.</p>
+<p>You see that <code>deals_list_xpath = &#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code> sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their <a href="http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths">docs</a>. But essentially, the <code>&#39;//ul[@class=&quot;unstyled cities-items&quot;]/li[@dealid]&#39;</code>  is saying: within all <code>&lt;ul&gt;</code> elements, if a <code>&lt;ul class=</code> is defined as &ldquo;unstyled cities-items&rdquo;, then go within that <code>&lt;ul&gt;</code> element to find <code>&lt;li&gt;</code> elements that have a parameter called <code>dealid</code>.</p>
 
 <p>Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for <code>&quot;unstyled cities-items&quot;</code> - you will see:</p>
 
@@ -145,7 +145,7 @@
 
 <p>(highlighted with the portion of searched text). Scroll a few lines down to see something like <code>&lt;li dealid=&quot;123456&quot;&gt;</code>. BAM! those are where our deals are specifically located on the web site.</p>
 
-<p><strong>NOTE</strong> When scraping your own sites and trying to figure out XPaths, Chrome&#39;s <a href="https://developers.google.com/chrome-developer-tools/">Dev Tools</a> offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x(&quot;//img&quot;). While not explored when writing this tutorial, Firefox has an add-on, <a href="https://addons.mozilla.org/en-us/firefox/addon/firepath/">FirePath</a> that can edit, inspect, and generate XPaths as well.</p>
+<p><strong>NOTE</strong> When scraping your own sites and trying to figure out XPaths, Chrome&#39;s <a href="https://developers.google.com/chrome-developer-tools/">Dev Tools</a> offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x(&ldquo;//img&rdquo;). While not explored when writing this tutorial, Firefox has an add-on, <a href="https://addons.mozilla.org/en-us/firefox/addon/firepath/">FirePath</a> that can edit, inspect, and generate XPaths as well.</p>
 
 <p>Next – the <code>item_fields</code>. This should look similar – it’s a dictionary of all of our items we defined in <code>Items.py</code> earlier (and imported above), with the associated values as <em>their</em> XPaths, relative to <code>deals_list_xpath</code>.  The <code>.//</code> before the location means it is relative to <code>deals_list_xpath</code>. The Spider would only grab data from those paths if the <code>deals_list_xpath</code> preceded it.</p>
 
@@ -287,7 +287,7 @@
 
 <p>This is different than if we were to use <code>self.item_fields.items()</code>.  The <code>items()</code> method returns a list of (key, value) tuples, rather than an iterator object that <code>iteritems()</code> returns.  A list is an iterable, and a for-loop calls <code>iter()</code> on a list (or string, dictionary, tuple, etc) .</p>
 <h4 id="for-the-curious-2">For the curious</h4>
-<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &quot;if/else&quot; anymore.</p>
+<p>The <code>yield</code> keyword is similar to <code>return</code>. The <code>parse()</code> function, specifically the <code>for deal in selector</code> bit, we&#39;ve essentially built a Generator (it will generate data on the fly). StackOverflow has a good <a href="http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained">explanation</a> of what&#39;s happening in our function: The first time the function will run, it will run from the beginning until it hits yield, then it&#39;ll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.  The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to ends, or because you do not satisfy a &ldquo;if/else&rdquo; anymore.</p>
 
 <p>We’ve now implemented our Spider based off of our Items that we are seeking.</p>
 

@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -170,7 +170,7 @@
 <p>Nearly there – we need to add a variable to <code>settings.py</code> that tells scrapy where to find our pipeline when processing data.</p>
 
 <p>So within <code>settings.py</code>, add another variable, <code>ITEM_PIPELINES</code>:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;living_social.pipelines.LivingSocialPipeline&#39;</span><span class="p">]</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;scraper_app.pipelines.LivingSocialPipeline&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>This is the directory/module path to the pipeline we just defined.</p>

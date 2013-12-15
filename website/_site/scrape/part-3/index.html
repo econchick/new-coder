@@ -6,7 +6,7 @@
 
 <meta name="author" content="Lynn Root">
 <meta name="description" content="Five Life Jackets to Throw to the New Coder - Python tutorials">
-<meta name="generator" content="mynt v0.2.2">
+<meta name="generator" content="mynt v0.2.3">
 
 <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
@@ -108,7 +108,7 @@
 <span class="gp">postgres=#</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>For Windows, follow instructions <a href="http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows">here</a> under &quot;Starting the SQL Command Line Terminal&quot;.</p>
+<p>For Windows, follow instructions <a href="http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows">here</a> under &ldquo;Starting the SQL Command Line Terminal&rdquo;.</p>
 
 <p>With the client started, you should see the <code>postgres=#</code> is the postgres prompt.</p>
 
@@ -127,7 +127,7 @@
 <p>We first give our web scraper a name, and where our spider module is located.</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;livingsocialscraper&#39;</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s">&#39;livingsocial&#39;</span>
 
 <span class="n">SPIDER_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;scraper_app.spiders&#39;</span><span class="p">]</span>
 </pre></div>
@@ -184,7 +184,7 @@
 
 <p>Let’s be better developers and change our import statement to <code>from sqlalchemy import create_engine</code>. Here, we avoid importing everything from the <code>sqlalchemy</code> package, and we are more explicit with what we are using from <code>sqlalchemy</code>.</p>
 
-<p>We make a general <code>import settings</code> statement – it does not import every item in <code>settings.py</code>, but it gives us access to any item we want by later using <code>settings.DATABASE</code>.  You can think of the difference between <code>import settings</code> versus <code>from sqlalchemy import *</code> as &quot;take the basket&quot; versus &quot;take everything out of the basket.&quot;</p>
+<p>We make a general <code>import settings</code> statement – it does not import every item in <code>settings.py</code>, but it gives us access to any item we want by later using <code>settings.DATABASE</code>.  You can think of the difference between <code>import settings</code> versus <code>from sqlalchemy import *</code> as &ldquo;take the basket&rdquo; versus &ldquo;take everything out of the basket.&rdquo;</p>
 
 <p>Last item I want to point out before we move on is the usage of the double astricks within the <code>URL()</code> function: <code>**settings.DATABASE</code>. First, we are accessing the <code>DATABASE</code> variable within <code>settings.py</code>. The <code>**</code> actually unpacks all the values within the <code>DATABASE</code> dictionary.  The <code>URL</code> function, a constructor defined within SQLAlchemy, will map keys and values to a URL that SQLAlchemy can understand to make a connection to our database.</p>
 
