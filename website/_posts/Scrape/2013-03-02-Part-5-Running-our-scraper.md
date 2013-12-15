@@ -41,10 +41,10 @@ Within your terminal, with your ScrapeProj virtualenv activated:
 
 ```bash
 (ScrapeProj) $ cd my_scraper/scraper_app
-(ScrapeProj) $ scrapy crawl livingsocialscraper
+(ScrapeProj) $ scrapy crawl livingsocial
 ```
 
-Where `livingsocialscraper` is the `BOT_NAME` defined in `settings.py`.
+Where `livingsocial` is the `BOT_NAME` defined in `settings.py`.
 
 Next, to see the data that's saved into the database, start up Postgres and enter these commands:
 
