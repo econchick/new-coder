@@ -282,7 +282,7 @@
         <span class="n">FakePicker</span><span class="p">(</span><span class="n">QUOTE</span><span class="p">),</span>
         <span class="p">[</span><span class="s">&#39;twss&#39;</span><span class="p">],</span>
     <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">buildProtocol</span><span class="p">((</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">buildProtocol</span><span class="p">((</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fake_transport</span> <span class="o">=</span> <span class="n">proto_helpers</span><span class="o">.</span><span class="n">StringTransport</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fake_transport</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">signedOn</span><span class="p">()</span>
