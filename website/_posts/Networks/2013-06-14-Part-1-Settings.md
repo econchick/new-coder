@@ -40,13 +40,13 @@ Next, our bot-specific settings:
 
 ```
 [talkback]
-quotesFile = quotes.txt
+quotesFilename = quotes.txt
 # Trigger phrases, in lowercase
 triggers =
     that's what she said
 ```
 
-The `quotesFile` is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the `quotesFile`, you could but in a relative path, `../otherQuotesFile.txt`, or absolute path, `/Users/lynnroot/quotesForBots/otherQuotesFile.txt`.
+The `quotesFilename` is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the `quotesFilename`, you could but in a relative path, `../otherQuotesFile.txt`, or absolute path, `/Users/lynnroot/quotesForBots/otherQuotesFile.txt`.
 
 The `triggers` is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.  If you wanted to add another trigger, just add another line indented by 4 spaces, like so:
 
