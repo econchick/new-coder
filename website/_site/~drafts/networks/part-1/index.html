@@ -107,12 +107,12 @@ channel = #newcoder
 
 <p>Next, our bot-specific settings:</p>
 <pre><code>[talkback]
-quotesFile = quotes.txt
+quotesFilename = quotes.txt
 # Trigger phrases, in lowercase
 triggers =
     that&#39;s what she said
 </code></pre>
-<p>The <code>quotesFile</code> is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the <code>quotesFile</code>, you could but in a relative path, <code>../otherQuotesFile.txt</code>, or absolute path, <code>/Users/lynnroot/quotesForBots/otherQuotesFile.txt</code>.</p>
+<p>The <code>quotesFilename</code> is pretty self-explanatory.  Note that it is in the same directory level as the settings.ini.EXAMPLE file; if you had a different location for the <code>quotesFilename</code>, you could but in a relative path, <code>../otherQuotesFile.txt</code>, or absolute path, <code>/Users/lynnroot/quotesForBots/otherQuotesFile.txt</code>.</p>
 
 <p>The <code>triggers</code> is the phrase a user says to which the bot will respond.  It could be multiple phrases, but here, we only care about responding when someone says “that‘s what she said”.  If you wanted to add another trigger, just add another line indented by 4 spaces, like so:</p>
 <pre><code>triggers =
