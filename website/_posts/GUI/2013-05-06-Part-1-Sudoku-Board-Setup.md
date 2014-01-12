@@ -118,7 +118,7 @@ class SudokuUI(Frame):
 
 We inherit from Tkinter's `Frame` class, and initiallize the board.
 Why is parent an argument? What does it represent?
-We set self.row and self.col equal to -1 because initially no cell is selected. 
+We set self.row and self.col equal to -1 because initially no cell is selected. We other methods we check if self.row and self.col are >= 0. If so, a cell on the grid is selected. 
 
 
 ```python
@@ -144,12 +144,17 @@ We set self.row and self.col equal to -1 because initially no cell is selected.
 ```
 
 Sudoku is the title of the GUI. It appears on the grey top part
-The packer allows you to specify the appearance of your GUI. For example, where the elements are placed.
+
+The packer allows you to specify the relative positioning of widgets within their container. To make our lives easier it takes a qualitative relationship specification and determines the exact placement coordinates for us. A widget will appear only after its geometry is specified. In this case, when the packer’s pack() method is applied to it. We use the packer options fill, expand and side. 
+What does fill=BOTH mean?
+What does expand=1 mean?
+
 The Canvas widget is a rectangular area intended for drawing pictures or other complex layouts. On it you can place graphics, text, widgets, or frames.
-    What is a widget?
+
 We create a button widget with the text Clear Answers. When it is clicked, self.__clear_answers is called.
 We then call self.__draw_grid() and self.__draw_puzzle().
-You can learn more about bindings and events by reading this [howto](http://docs.python.org/2/library/tkinter.html#bindings-and-events). Basically....
+
+The last two lines use the concepts of bindings and events. Basically we specify an event (ex `"<Button-1>"`) that always triggers a certain function.`<Button-1>` corresponds to clicking on the mouse. Functions called in this way are commonly known as callbacks. You can learn more about bindings and events by reading this [howto](http://docs.python.org/2/library/tkinter.html#bindings-and-events). 
 
 ```python
 def __draw_grid(self):
@@ -172,7 +177,7 @@ def __draw_grid(self):
             self.canvas.create_line(x0, y0, x1, y1, fill=color)
 ```
 
-We draw Sudoku grid.
+We draw the Sudoku grid. 
 
 ```python
 def __draw_puzzle(self):
@@ -190,8 +195,10 @@ def __draw_puzzle(self):
                     )
 ```
 
-We add the provided numbers in black to the grid. The numbers the user inpus will be in grey.
-
+This adds the provided numbers in black to the grid. The numbers the user inputs will be in grey.
+why would answer == 0? does each cell have answer == 0 initially if its value is not supplied to the user?
+This deletes all the user submitted answers and and then iterates through the board, coloring the origional numbers in the board black and the user submitted answers slate gray. It then ....
+This is called when the board is initialized, when a key is pressed and when the user clears their answers. 
 
 ```python
 def __draw_cursor(self):
@@ -279,4 +286,4 @@ This sets the cell value equal to what the user types only when they type an int
 This deletes all user submitted answers....
 Uses set_answer_to_puzzle() from SudokuGame
 Deletes everything on the canvas with tag="victory" ????
-And then dras the puzzle
+And then draw the puzzle
