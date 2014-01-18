@@ -116,9 +116,7 @@ class SudokuUI(Frame):
         self.__initUI()
 ```
 
-We inherit from Tkinter's `Frame` class, and initiallize the board.
-Why is parent an argument? What does it represent?
-We set self.row and self.col equal to -1 because initially no cell is selected. We other methods we check if self.row and self.col are >= 0. If so, a cell on the grid is selected. 
+We inherit from Tkinter's `Frame` class, and initiallize the board. 
 
 
 ```python
@@ -143,18 +141,13 @@ We set self.row and self.col equal to -1 because initially no cell is selected. 
         self.canvas.bind("<Key>", self.__key_pressed)
 ```
 
-Sudoku is the title of the GUI. It appears on the grey top part
+We give our GUI the title Sudoku. 
 
-The packer allows you to specify the relative positioning of widgets within their container. To make our lives easier it takes a qualitative relationship specification and determines the exact placement coordinates for us. A widget will appear only after its geometry is specified. In this case, when the packer’s pack() method is applied to it. We use the packer options fill, expand and side. 
-What does fill=BOTH mean?
-What does expand=1 mean?
+The packer allows you to specify the relative positioning of widgets within their container. To make our lives easier it takes a qualitative relationship specification and determines the exact placement coordinates for us. A widget will appear only after its geometry is specified. In this case, when the packer’s `pack()` method is applied to it. We use the packer options fill, expand and side. You can learn more about the packer options [here](http://effbot.org/tkinterbook/pack.htm).
 
-The Canvas widget is a rectangular area intended for drawing pictures or other complex layouts. On it you can place graphics, text, widgets, or frames.
+We first create the `Canvas` widget, a rectangular area intended for drawing pictures or other complex layouts. On it we can place graphics, text, widgets, or frames. We then create a `Button` widget with the text Clear Answers. When it is clicked, `clear_answers()` is called. We then call `draw_grid()` and `draw_puzzle()`.
 
-We create a button widget with the text Clear Answers. When it is clicked, self.__clear_answers is called.
-We then call self.__draw_grid() and self.__draw_puzzle().
-
-The last two lines use the concepts of bindings and events. Basically we specify an event (ex `"<Button-1>"`) that always triggers a certain function.`<Button-1>` corresponds to clicking on the mouse. Functions called in this way are commonly known as callbacks. You can learn more about bindings and events by reading this [howto](http://docs.python.org/2/library/tkinter.html#bindings-and-events). 
+The last two lines use the concepts of bindings and events. We specify an event like `"<Button-1>"` that always triggers a certain function.`<Button-1>` corresponds to clicking on the mouse. Functions called in this way are commonly known as callbacks. You can learn more about bindings and events by reading the [documentation](http://docs.python.org/2/library/tkinter.html#bindings-and-events). 
 
 ```python
 def __draw_grid(self):
@@ -176,8 +169,7 @@ def __draw_grid(self):
             y1 = MARGIN + i * SIDE
             self.canvas.create_line(x0, y0, x1, y1, fill=color)
 ```
-
-We draw the Sudoku grid. 
+We draw the Sudoku grid. The method `create_line(x0, y0, x1, y1, ..., xn, yn, option, ...)` creates a line object that goes through a series of points on the Canvas.  You can read more about the different Canvas objects [here](http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/canvas.html)
 
 ```python
 def __draw_puzzle(self):
@@ -195,10 +187,9 @@ def __draw_puzzle(self):
                     )
 ```
 
-This adds the provided numbers in black to the grid. The numbers the user inputs will be in grey.
-why would answer == 0? does each cell have answer == 0 initially if its value is not supplied to the user?
-This deletes all the user submitted answers and and then iterates through the board, coloring the origional numbers in the board black and the user submitted answers slate gray. It then ....
-This is called when the board is initialized, when a key is pressed and when the user clears their answers. 
+We first delete all existing numbers on the board. We then iterate through all the cells in the board and find the ones whose value in the answer list is nonzero. You will find out later that the board files have zeros in the cells that are empty when the game starts. That is why the cell with nonzero values `black` text while the remaining cells have `slate gray` text. A `tag` is a string you can associate with objects on the `Canvas`. `Tags` are useful because they allow you to perform operations on all the objects with the same tag, such as changing their color or deleting them.
+
+`draw_puzzle()` is called when the board is initialized, when a key is pressed and when the user clears their answers. 
 
 ```python
 def __draw_cursor(self):
@@ -234,7 +225,7 @@ We highlight the curently selected box in red.
         )
 ```
 
-When the user solves the puzzle....
+When the user solves the puzzle an orange oval appears on the puzzle with the text "You win!".
 
 ```python
 def __cell_clicked(self, event):
@@ -259,7 +250,7 @@ def __cell_clicked(self, event):
         self.__draw_cursor()
 ```
 
-This ascertains which cell the user clicks on and calls self.__draw_cursor() if the cell was not already selected. It unselects the row if it was already selected. 
+We identify which cell the user clicks on and select the cell if it was not already selected. Otherwise we unselect the cell. 
 
 ```python
     def __key_pressed(self, event):
@@ -274,7 +265,7 @@ This ascertains which cell the user clicks on and calls self.__draw_cursor() if 
                 self.__draw_victory()
 ```
 
-This sets the cell value equal to what the user types only when they type an integer 1-9. It also sets the user input to self.game.answer[self.row][self.col] and redraws the puzzle with the selected curser. Now the Sudoku grid shows the new user input. Finally it checks to see if the user has now solved the puzzle. 
+We set the cell value equal to what the user inputs only when they type an integer 1-9. We then check to see if the user has solved the puzzle. If so, we call `draw_victory()`. 
 
 ```python
     def __clear_answers(self):
@@ -283,7 +274,4 @@ This sets the cell value equal to what the user types only when they type an int
         self.__draw_puzzle()
 ```
 
-This deletes all user submitted answers....
-Uses set_answer_to_puzzle() from SudokuGame
-Deletes everything on the canvas with tag="victory" ????
-And then draw the puzzle
+We call `set_answer_to_puzzle()` which creates a two dimensional array of the correct answers for all the cells in the board. We then deletes all objects on the canvas with the tag victory. In our case it's just the happy orange oval with the text "You win!". We then draw the puzzle. 
