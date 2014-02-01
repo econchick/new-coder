@@ -34,6 +34,7 @@ $ mkvirtualenv DataVizProj
 ```bash
 (DataVizProj)$ pip install numpy
 (DataVizProj)$ pip install matplotlib
+(DataVizProj)$ pip install geojson
 ```
 
 * **NOTE** Sometimes, matplotlib is finicky as well. If you are on a Mac and "pip install matplotlib" did not work, you are probably missing the supporting packages freetype2 and libpng. Windows users do not need to worry about his as these packages are already included in the standard matplotlib Windows installers. For Mac users, below are detailed instructions on how to install them. 
@@ -90,6 +91,7 @@ After installing these three packages, type "pip install matplotlib" again and i
 (DataVizProj)$ python
 >>> import numpy
 >>> import matplotlib
+>>> import geojson
 ```
 * If you have no errors (you would just see the `>>>` prompt), then you’re good to go. You can close out of the Python interpreter by pressing `CTRL+D`. If you do have errors, I’d try downloading [numpy](http://scipy.org/Download) and [matplotlib](http://matplotlib.org/downloads.html) manually.
 

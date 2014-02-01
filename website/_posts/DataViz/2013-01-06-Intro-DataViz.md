@@ -11,7 +11,7 @@ This tutorial is meant to push you out of the Excel mindset just a little bit, a
 
 ### The Project
 
-The project we will create takes the sample data from the repository that you will download (a.k.a. clone) in [Part 0: Setup]( {{ get_url("Part-0-Setup-for-DataViz")}}), parse the sample data from columns and rows to a list of dictionaries, then render that data in two different graphs and in [Google Maps](http://maps.google.com).
+The project we will create takes the sample data from the repository that you will download (a.k.a. clone) in [Part 0: Setup]( {{ get_url("Part-0-Setup-for-DataViz")}}), parse the sample data from columns and rows to a list of dictionaries, then render that data in two different graphs and in [GitHub](http://gist.github.com) as a map.
 
 The sample data that is included is a snapshot of public crime filings from the San Francisco police. Once you’ve gone through this tutorial, feel free to find other data that interests you, and rework our visualization functions.
 
@@ -23,7 +23,7 @@ Understand how to:
 * import a Python file
 * take a raw file and parse its data with Python’s data structures
 * make a simple graph
-* produce a Google Maps-readable file
+* produce a GeoJSON file for mapping
 
 What else you will be exposed to:
 
@@ -44,18 +44,12 @@ We won't be using much of NumPy, but it is required that we install this library
 
 [matplotlib](http://matplotlib.org/) is another popular scientific library that gives the developer tools to produce 2D figures. No longer do you need your [TI-89](http://www.amazon.com/Texas-Instruments-Titanium-Calculator-Packaging/dp/B0001EMLZ2) calculator where you must punch in long lines of formulas, waiting precious seconds for it to render a graph that may be too zoomed in to realize you are missing an important axis point. Packed with detailed [examples](http://matplotlib.org/examples/index.html), you are able to make publication/presentation-quality graphs from the comfort of your keyboard.
 
-### Intro to Google Mapping
+### Intro to GeoJSON
 
-It’d be kind of cool to place all the coordinates in our data on a map, wouldn’t it?  Google Maps allows folks to upload KML-type documents, which is essentially a type of an XML document for displaying geographic-related data.  
+[GeoJSON](http://en.wikipedia.org/wiki/GeoJSON) is a derivative of [JSON](http://en.wikipedia.org/wiki/JSON), and very similar to [TopoJSON](http://en.wikipedia.org/wiki/Topojson).  It’s a data format for simple geological feature, including coordinate points.
 
-Google has a great KML [intro](https://developers.google.com/kml/documentation/) and [tutorial](https://developers.google.com/kml/documentation/kml_tut) for those interested. 
+We’ll be using a third-party module to help us in creating GeoJSON files: [`geojson`](https://pypi.python.org/pypi/geojson/1.0).  
 
-Wikipedia has a pretty readable [explanation](http://en.wikipedia.org/wiki/XML) of XML, and w3 has a simple [tutorial](http://www.w3schools.com/xml/) if you want to learn more (_side comment_: w3 is not the greatest for learning front-end related web development, but fine for quick references). 
-
-Both KML and XML, as well as HTML and XHTML, follow the [DOM](http://en.wikipedia.org/wiki/Document_Object_Model) convention, Document Object Model. It’s basically how you interact with different objects through defined functions.
-
-As you are starting to realize the awesomeness of Python, you can assume there is an `xml` module in the standard library. How convenient!  Python’s `xml.dom` module uses the DOM convention and gives us access to functions that HTML, XML, and KML will understand when we build our own KML document.
-
-For the record, do not use Python’s `xml` library in production code until the core developers have implemented security fixes. For information, you can read [here](http://blog.python.org/2013/02/announcing-defusedxml-fixes-for-xml.html).
+[GitHub](https://github.com) has an awesome feature that allows folks to paste GeoJSON files into [Gists](https://gist.github.com), and it automatically renders as a map.
 
 [Continue on to the Setup for DataViz &rarr;]( {{ get_url("dataviz/part-0")}})
