@@ -2,124 +2,77 @@
 Data Visualization Project
 
 Parse data from an ugly CSV or Excel file, and render it in
-JSON-like form, visualize in graphs, and plot on Google Maps.
+JSON-like form, visualize in graphs, and plot as a map.
 
 Part III: Take the data we parsed earlier and create a different format
-for Google Maps. The first two functions are helper-functions.  First one
-creates a KML Document, and the second parses each data point into KML-
-format. The last function then uses these to helper-functions to create
-a KML file for upload.
+for rendering a map. Here, we parse through each line item of the
+CSV file and create a geojson object, to be collected into one geojson
+file for uploading to gist.github.com.
 """
 
-import xml.dom.minidom
+import geojson
 
 import parse as p
 
 
-def create_document(title, description=''):
-    """Create the overall KML document."""
+def create_map(data_file):
+    """Creates a GeoJSON file.
 
-    # Initialization of an XML doc
-    doc = xml.dom.minidom.Document()
-
-    # Define as a KML-type XML doc
-    kml = doc.createElement('kml')
-
-    # Pull in common attributes and set it for our doc
-    kml.setAttribute('xmlns', 'http://www.opengis.net/kml/2.2')
-    doc.appendChild(kml)
-
-    # Create common elements that Google will read/plot
-    document = doc.createElement('Document')
-    kml.appendChild(document)
-    docName = doc.createElement('title')
-    document.appendChild(docName)
-    docName_text = doc.createTextNode(title)
-    docName.appendChild(docName_text)
-    docDesc = doc.createElement('description')
-    document.appendChild(docDesc)
-    docDesc_text = doc.createTextNode(description)
-    docDesc.appendChild(docDesc_text)
-    return doc
-
-
-def create_placemark(address):
-    """Generate the KML Placemark for a given address.
-
-    This is the function that takes the info from the
-    file we parse at the end of this script.
-
+    Returns a GeoJSON file that can be rendered in a GitHub
+    Gist at gist.github.com.  Just copy the output file and
+    paste into a new Gist, then create either a public or
+    private gist.  GitHub will automatically render the GeoJSON
+    file as a map.
     """
 
-    # Create an initial XML document
-    doc = xml.dom.minidom.Document()
+    # Define type of GeoJSON we're creating
+    geo_map = {"type": "FeatureCollection"}
 
-    # Create elements for Placemark and add to our new doc
-    pm = doc.createElement("Placemark")
-    doc.appendChild(pm)
-    name = doc.createElement("name")
-    pm.appendChild(name)
-    name_text = doc.createTextNode('%(name)s' % address)
-    name.appendChild(name_text)
-    desc = doc.createElement("description")
-    pm.appendChild(desc)
-    desc_text = doc.createTextNode('Date: %(date)s, %(description)s' % address)
-    desc.appendChild(desc_text)
-    pt = doc.createElement("Point")
-    pm.appendChild(pt)
-    coords = doc.createElement("coordinates")
-    pt.appendChild(coords)
-    coords_text = doc.createTextNode('%(longitude)s,%(latitude)s' % address)
-    coords.appendChild(coords_text)
-    return doc
+    # Define empty list to collect each point to graph
+    item_list = []
 
+    # Iterate over our data to create GeoJSOn document.
+    # We're using enumerate() so we get the line, as well
+    # the index, which is the line number.
+    for index, line in enumerate(data_file):
 
-def create_gmap(data_file):
-    """Creates Google Maps KML Doc.
-
-    Returns a KML file to be uploaded at maps.google.com.
-    Navigate to 'My places' -> 'Create Map' -> 'Import' to
-    upload the file and see the data.
-    
-    """
-
-    # Create a new KML doc with our previously-defined
-    # create_document() function
-    kml_doc = create_document("Crime map", "Plots of Recent SF Crime")
-
-    # Get the specific DOM element that we created with create_document()
-    # Returns a list, so call the first one
-    document = kml_doc.documentElement.getElementsByTagName("Document")[0]
-
-    # Iterate over our data to create KML document
-    for line in data_file:
-        # Parses the data into a dictionary
-        placemark_info = {'longitude': line['X'],
-                       'latitude': line['Y'],
-                       'name': line['Category'],
-                       'description': line['Descript'],
-                       'date': line['Date']}
-
-        # Avoid null values for lat/long
-        if placemark_info['longitude'] == "0":
+        # Skip any zero coordinates as this will throw off
+        # our map.
+        if line['X'] == "0" or line['Y'] == "0":
             continue
 
-        # Calls create_placemark() to parse line of data into KML-format
-        placemark = create_placemark(placemark_info)
+        # Setup a new dictionary for each iteration.
+        data = {}
 
-        # Adds the placemark we just created to the KML doc
-        document.appendChild(placemark.documentElement)
+        # Assigne line items to appropriate GeoJSON fields.
+        data['type'] = 'Feature'
+        data['id'] = index
+        data['properties'] = {'title': line['Category'],
+                              'description': line['Descript'],
+                              'date': line['Date']}
+        data['geometry'] = {'type': 'Point',
+                            'coordinates': (line['X'], line['Y'])}
 
-    # Now that all data is parsed in KML-format, write to a file so we
-    # can upload it to maps.google.com
-    with open('file_sf.kml', 'w') as f:
-        f.write(kml_doc.toprettyxml(indent="  ", encoding='UTF-8'))
+        # Add data dictionary to our item_list
+        item_list.append(data)
+
+    # For each point in our item_list, we add the point to our
+    # dictionary.  setdefault creates a key called 'features' that
+    # has a value type of an empty list.  With each iteration, we
+    # are appending our point to that list.
+    for point in item_list:
+        geo_map.setdefault('features', []).append(point)
+
+    # Now that all data is parsed in GeoJSON write to a file so we
+    # can upload it to gist.github.com
+    with open('file_sf.geojson', 'w') as f:
+        f.write(geojson.dumps(geo_map))
 
 
 def main():
     data = p.parse(p.MY_FILE, ",")
 
-    return create_gmap(data)
+    return create_map(data)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
