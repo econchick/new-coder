@@ -183,7 +183,7 @@
     <span class="c"># create the amount of ticks needed for our x-axis, and assign</span>
     <span class="c"># the labels</span>
 
-    <span class="c"># show the plot!</span>
+    <span class="c"># save the plot!</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our <code>graph.py</code> file so we can easily access it’s parsing-abilities! Like so:</p>
@@ -290,10 +290,10 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 </code></pre>
 <p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
 
-<p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>show()</code> method:</p>
+<p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>savefig()</code> method:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Render the plot!</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Days.png&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Notice we didn’t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
@@ -350,8 +350,8 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
     <span class="c"># Assign labels to the plot</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">day_tuple</span><span class="p">)),</span> <span class="n">day_tuple</span><span class="p">)</span>
 
-    <span class="c"># Render the plot!</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c"># Save the plot!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Days.png&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>To actually see the visualization (and to test your code), add the following boilerplate code again:</p>
@@ -370,9 +370,9 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python graph.py
 </pre></div>
 </td></tr></table></div></div>
-<p>You should see a nice rendering of our graph:</p>
+<p>You should see a nice rendering of our graph that is saved in the same directory as this <code>graph.py</code> file:</p>
 
-<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_days.png" width="450" height="400"/></p>
+<p><img class="displayed" src="/assets/images/graph_days.png" width="450" height="400"/></p>
 
 <p>When you’re done marveling at your work, close the graph window and you should be back at your terminal.</p>
 
@@ -396,7 +396,7 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 17
 18
 19</pre></div></td><td class="code"><div class="highlight"><pre>&gt;&gt;&gt; from graph import visualize_days
-&gt;&gt;&gt; visualize_days<span class="o">()</span> <span class="c"># should see the graph pop up again</span>
+&gt;&gt;&gt; visualize_days<span class="o">()</span> <span class="c"># should see the graph saved again</span>
 &gt;&gt;&gt; MY_FILE
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;&lt;stdin&gt;&quot;</span>, line 1, in &lt;module&gt;
@@ -471,7 +471,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 
     <span class="c"># Make the overall graph/figure is larger</span>
 
-    <span class="c"># Render the graph!</span>
+    <span class="c"># Save the graph!</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>The first three lines of code should look familiar.  Here, we’re counting over “Category” rather than “DayOfWeek” data. And since order doesn’t matter to us here, we can just use <code>counter.keys()</code> and <code>counter.values()</code> to get the items we need for plotting:</p>
@@ -520,7 +520,7 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>I’ll be honest, <code>0.4</code> was a guess-and-check. When the graph shows up, the button on the bottom, one in from the right (right next to the Save button) will show you the Subplot Configuration Tool to play with spacing.</p>
+<p>I’ll be honest, <code>0.4</code> was a guess-and-check.</p>
 
 <p>Nearly there — before we render the graph, the actual size of the window can be played with too. The <code>rcParams</code> dictionary, explained in their <a href="http://matplotlib.org/users/customizing.html#dynamic-rc-settings">docs</a>, allows us to dynamically play with matplotlibs global settings. In particular, the <code>&#39;figure.figsize&#39;</code> key is expecting two values: <code>height + width</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -532,8 +532,8 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 
 <p>Finally, our favorite — rendering the graph!</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Render the graph!</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Type.png&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>A reiteration: notice we didn&#39;t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
@@ -600,8 +600,8 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="c"># Make the overall graph/figure larger</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span>
 
-    <span class="c"># Render the graph!</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c"># Save the plot!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Type.png&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>To actually see the visualization (and to test your code), add the following boilerplate code: </p>
@@ -622,9 +622,9 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">(</span>DataVizProj<span class="o">)</span> <span class="nv">$ </span>python graph.py
 </pre></div>
 </td></tr></table></div></div>
-<p>and you should see:</p>
+<p>and if you open <code>Type.png</code>, located in the same directory as the <code>graph.py</code> file, you should see:</p>
 
-<p><img class="displayed" src="http://dl.dropbox.com/u/15999054/newcoder/dataviz/graph_type.png" width="450" height="400" /></p>
+<p><img class="displayed" src="/assets/images/graph_type.png" width="450" height="400" /></p>
 
 <p>When you’re done marveling at your work, close the graph window and you should be back at your terminal.</p>
 
