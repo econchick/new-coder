@@ -110,7 +110,7 @@ def visualize_type():
 
 
 def main():
-    #visualize_days()  # once this window is closed, the next graph shows
+    visualize_days()
     visualize_type()
 
 
