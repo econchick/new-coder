@@ -69,8 +69,10 @@ def visualize_days():
     # Assign labels to the plot from day_list
     plt.xticks(range(len(day_tuple)), day_tuple)
 
-    # Render the plot!
-    plt.show()
+    # Save the graph!
+    # If you look at new-coder/dataviz/tutorial_source, you should see
+    # the PNG file, "Days.png".  This is our graph!
+    plt.savefig("Days.png")
 
 
 def visualize_type():
@@ -101,12 +103,14 @@ def visualize_type():
     # Make the overall graph/figure larger
     plt.rcParams['figure.figsize'] = 12, 8
 
-    # Render the graph!
-    plt.show()
+    # Save the graph!
+    # If you look at new-coder/dataviz/tutorial_source, you should see
+    # the PNG file, "Type.png".  This is our graph!
+    plt.savefig("Type.png")
 
 
 def main():
-    visualize_days()  # once this window is closed, the next graph shows
+    #visualize_days()  # once this window is closed, the next graph shows
     visualize_type()
 
 
