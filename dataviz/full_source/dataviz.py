@@ -65,8 +65,10 @@ def visualize_days(data_file):
     # Assign labels to the plot
     plt.xticks(range(len(day_tuple)), day_tuple)
 
-    # Render the plot!
-    plt.show()
+    # Save the graph!
+    # If you look at new-coder/dataviz/tutorial_source, you should see
+    # the PNG file, "Days.png".  This is our graph!
+    plt.savefig("Days.png")
 
 
 def visualize_type(data_file):
@@ -98,8 +100,10 @@ def visualize_type(data_file):
     # Make the overall graph/figure larger
     plt.rcParams['figure.figsize'] = 12, 8
 
-    # Render the graph!
-    plt.show()
+    # Save the graph!
+    # If you look at new-coder/dataviz/tutorial_source, you should see
+    # the PNG file, "Type.png".  This is our graph!
+    plt.savefig("Type.png")
 
 
 def create_document(title, description=''):
