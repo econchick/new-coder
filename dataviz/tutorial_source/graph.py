@@ -74,6 +74,9 @@ def visualize_days():
     # the PNG file, "Days.png".  This is our graph!
     plt.savefig("Days.png")
 
+    # Close figure
+    plt.clf()
+
 
 def visualize_type():
     """Visualize data by category in a bar graph"""
@@ -107,6 +110,9 @@ def visualize_type():
     # If you look at new-coder/dataviz/tutorial_source, you should see
     # the PNG file, "Type.png".  This is our graph!
     plt.savefig("Type.png")
+
+    # Close figure
+    plt.clf()
 
 
 def main():
