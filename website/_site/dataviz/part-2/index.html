@@ -165,7 +165,9 @@
 16
 17
 18
-19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
 
     <span class="c"># grab our parsed data that we parsed earlier</span>
@@ -184,6 +186,8 @@
     <span class="c"># the labels</span>
 
     <span class="c"># save the plot!</span>
+
+    <span class="c"># close plot file</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Working through the first in-line comment should force you to recall our parse function. How do we get a parsed data object that is returned from our parse function to a variable? Well thankfully we still have the parse function in our <code>graph.py</code> file so we can easily access it’s parsing-abilities! Like so:</p>
@@ -290,10 +294,16 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 </code></pre>
 <p>The first parameter is so <code>matplotlib</code> knows how many ticks it needs to place.  </p>
 
-<p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>savefig()</code> method:</p>
+<p>We’re nearly there! So far, we’ve assigned our <code>plt</code> instance data with just the y-axis variables through the <code>plot()</code> method, as well as the count and string labels for the x-axis with <code>xticks()</code>. Now all we need is to render the visualization! Here we use <code>plt</code>’s <code>savefig()</code> method, then close the <code>plt</code> figure:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Days.png&quot;</span><span class="p">)</span>
+
+    <span class="c"># Close figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Notice we didn’t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
@@ -325,7 +335,10 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 24
 25
 26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_days</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by day of week&quot;&quot;&quot;</span>
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
     <span class="c"># Returns a dict where it sums the total values for each key.</span>
@@ -352,6 +365,9 @@ parameter 2 = (&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&q
 
     <span class="c"># Save the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Days.png&quot;</span><span class="p">)</span>
+
+    <span class="c"># Close figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>To actually see the visualization (and to test your code), add the following boilerplate code again:</p>
@@ -446,7 +462,9 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 23
 24
 25
-26</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by category in a bar graph&quot;&quot;&quot;</span>
 
     <span class="c"># grab our parsed data</span>
@@ -472,6 +490,8 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
     <span class="c"># Make the overall graph/figure is larger</span>
 
     <span class="c"># Save the graph!</span>
+
+    <span class="c"># Close plot figure</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>The first three lines of code should look familiar.  Here, we’re counting over “Category” rather than “DayOfWeek” data. And since order doesn’t matter to us here, we can just use <code>counter.keys()</code> and <code>counter.values()</code> to get the items we need for plotting:</p>
@@ -530,10 +550,16 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 </td></tr></table></div></div>
 <p>Again — here I just played with the numbers until I got something I liked. I encourage you to put in different numbers to change the size of your graph.</p>
 
-<p>Finally, our favorite — rendering the graph!</p>
+<p>Finally, our favorite — rendering and closing the graph!</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># Save the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Type.png&quot;</span><span class="p">)</span>
+
+    <span class="c"># Close figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>A reiteration: notice we didn&#39;t finish with <code>return</code> — you can put a <code>return</code> call at the end of the function, but we aren’t returning anything, per se, and because we aren’t, we don’t need to have the <code>return</code> call in there.</p>
@@ -570,7 +596,10 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 29
 30
 31
-32</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">visualize_type</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Visualize data by category in a bar graph&quot;&quot;&quot;</span>
 
     <span class="n">data_file</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MY_FILE</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
@@ -602,6 +631,9 @@ TypeError: parse<span class="o">()</span> takes exactly 2 arguments <span class=
 
     <span class="c"># Save the plot!</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;Type.png&quot;</span><span class="p">)</span>
+
+    <span class="c"># Close figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>To actually see the visualization (and to test your code), add the following boilerplate code: </p>
