@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<dl class="archives">
+    {% for post in posts %}
+        {% if 'pyladiessf' in post.tags %}
+            {{ post.content }}
+        {% endif %}
+    {% endfor %}
+</dl>
+
+{% endblock %}
