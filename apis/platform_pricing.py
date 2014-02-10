@@ -3,7 +3,7 @@ This example demonstrates how to combine multiple data sources (raw
 data and Web API). Here we generate a bar chart containing video game consoles
 of multiple generations and their respective prices.
 
-We use the API provided by Giantbomb.com as a data source for the available 
+We use the API provided by Giantbomb.com as a data source for the available
 video game platforms. Since prices there are only stored in the amount of money
 you had to put on the table back when the console was released, we also want
 to put those prices into perspective with the current value of the US Dollar.
@@ -27,7 +27,6 @@ Written by Horst Gutmann (https://github.com/zerok)
 from __future__ import print_function
 
 import argparse
-import datetime
 import logging
 import os
 
@@ -144,6 +143,7 @@ class CPIData(object):
         This essentially is the calculated inflation for an item.
 
         """
+        # Currently there is no CPI data for 2014
         if current_year is None or current_year > 2013:
             current_year = 2013
 
