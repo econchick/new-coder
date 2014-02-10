@@ -144,8 +144,9 @@ class CPIData(object):
         This essentially is the calculated inflation for an item.
 
         """
-        if current_year is None:
-            current_year = datetime.datetime.now().year
+        if current_year is None or current_year > 2013:
+            current_year = 2013
+
         # If our data range doesn't provide a CPI for the given year, use
         # the edge data.
         if year < self.first_year:
