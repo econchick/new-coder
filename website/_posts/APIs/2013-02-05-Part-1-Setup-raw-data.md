@@ -260,8 +260,9 @@ def get_adjusted_price(self, price, year, current_year=None):
     This essentially is the calculated inflation for an item.
 
     """
-    if current_year is None:
-        current_year = datetime.datetime.now().year
+    # Currently there is no CPI data for 2014
+    if current_year is None or current_year > 2013:
+        current_year = 2013
     # If our data range doesn't provide a CPI for the given year, use
     # the edge data.
     if year < self.first_year:
