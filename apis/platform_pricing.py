@@ -22,6 +22,7 @@ To be able to use this script, you have to register for a Giantbomb API key
 and pass it to this script using the --giantbomb-api-key argument.
 
 Written by Horst Gutmann (https://github.com/zerok)
+- Some alterations provided by Peadar Coyle (https://github.com/springcoil)
 """
 
 from __future__ import print_function
@@ -30,11 +31,18 @@ import argparse
 import logging
 import os
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
+import seaborn as sns
 import tablib
 
+# Let's add in some of seaborn to this for better graphics
+# Notice how we have set the palette colour to 'Purples_r'
+# See the tutorial on http://nbviewer.ipython.org/github/mwaskom/seaborn/blob/master/examples/aesthetics.ipynb for more details
+sns.set(palette="Purples_r")
+mpl.rc("figure", figsize=(5, 5))
 
 CPI_DATA_URL = 'http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt'
 
