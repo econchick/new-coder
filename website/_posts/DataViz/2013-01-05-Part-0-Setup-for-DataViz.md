@@ -18,7 +18,7 @@ Initial setup for our Data Visualization Tutorial.
 $ cd new-coder/dataviz
 ```
 * Make sure you’ve installed [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) and followed the steps above from Initial Requirements to set up your terminal correctly.  More information can be find at virtualenvwrapper’s [docs](http://virtualenvwrapper.readthedocs.org/en/latest/).
-* To make a virtual environment specific to your Data Viz project, run the following command. You should see `(DataVizProject)` before your prompt.
+* To make a virtual environment specific to your Data Viz project, run the following command. You should see `(DataVizProj)` before your prompt.
 
 ```bash
 $ mkvirtualenv DataVizProj
@@ -27,7 +27,7 @@ $ mkvirtualenv DataVizProj
 * Now we will install the package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.
 
 ```bash
-(DataVizProject) $ pip install -r requirements.txt
+(DataVizProj) $ pip install -r requirements.txt
 ```
 * **NOTE** Sometimes, NumPy is finicky. If the previous step returns errors, try:
 
