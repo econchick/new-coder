@@ -101,7 +101,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 ### git
-You will need to install [git][5] either from commands below or through their [download page][6]. You can then follow the [Save your Progress]( {{ get_url("begin/Save-your-progress")}}) page to set it up.
+You will need to install [git][5] either from commands below or through their [download page][6]. You can then follow the [Save your Progress]( {{ get_url("begin/save-your-progress")}}) page to set it up.
 
 * Fedora: `sudo yum install git`
 * Ubuntu: `sudo apt-get install git`
