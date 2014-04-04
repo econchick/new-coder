@@ -420,7 +420,7 @@ You’re good to go with your setup! Go start on [dataviz]({{ get_url("dataviz")
 [1]: https://github.com/econchick/new-coder/issues/28
 [2]: http://www.python.org/images/terminal-in-finder.png
 [3]: http://www.python.org
-[4]: http://www.python.org/getit/mac/
+[4]: https://www.python.org/download/mac/
 [5]: http://git-scm.com
 [6]: http://git-scm.com/downloads
 [7]: http://gcc.gnu.org/
