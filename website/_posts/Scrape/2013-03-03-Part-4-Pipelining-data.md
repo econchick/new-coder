@@ -69,9 +69,9 @@ Nearly there – we need to add a variable to `settings.py` that tells scrapy wh
 So within `settings.py`, add another variable, `ITEM_PIPELINES`:
 
 ```python
-ITEM_PIPELINES = ['scraper_app.pipelines.LivingSocialPipeline']
+ITEM_PIPELINES = {'scraper_app.pipelines.LivingSocialPipeline': 1}
 ```
 
-This is the directory/module path to the pipeline we just defined.
+This variable defines the classes that will be used for pipelining. The integer value assigned to a particular class determine the order they are run in - items go through pipelines from order number low to high.
 
 [Part 5 puts the project all together &rarr;]( {{ get_url("/scrape/part-5/")}})

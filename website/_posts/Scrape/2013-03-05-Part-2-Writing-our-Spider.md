@@ -13,15 +13,15 @@ Create a file called `livingsocial_spider.py` in `my_scraper/scraper_app/spiders
 
 In the `livingsocial_spider.py` file, we will define one class, `LivingSocialSpider` with common attributes, like `name` and `url`. We'll also define one function within our `LivingSocialSpider` class.
 
-First we’ll setup our `LivingSocialSpider` class with attributes (variables that are defined within a class, also referred to as fields).  We’ll inherit from scrapy’s `BaseSpider`:
+First we’ll setup our `LivingSocialSpider` class with attributes (variables that are defined within a class, also referred to as fields).  We’ll inherit from scrapy’s `Spider`:
 
 ```python
 
-from scrapy.spider import BaseSpider
+from scrapy.spider import Spider
 
 from scraper_app.items import LivingSocialDeal
 
-class LivingSocialSpider(BaseSpider):
+class LivingSocialSpider(Spider):
 	"""Spider for regularly updated livingsocial.com site, San Francisco Page"""
 	name = "livingsocial"
 	allowed_domains = ["livingsocial.com"]
@@ -64,24 +64,24 @@ Next – the `item_fields`. This should look similar – it’s a dictionary of 
 Okay – next is the actual `parse()` function.  We have to add a few more import statements from scrapy to make use of XPaths.  Our import statements, including the new ones, are now:
 
 ```python
-from scrapy.spider import BaseSpider
-from scrapy.selector import HtmlXPathSelector
-from scrapy.contrib.loader import XPathItemLoader
+from scrapy.spider import Spider
+from scrapy.selector import Selector
+from scrapy.contrib.loader import ItemLoader
 from scrapy.contrib.loader.processor import Join, MapCompose
 
 from scraper_app.items import LivingSocialDeal
 ```
 
-We’re using the HtmlXPathSelector – this will handle the response of when we request a webpage, and give us the ability to select certain parts of that response, defined by our `deals_list_xpath` field.  For understanding of scrapy’s handling of responses, read [what happens under the hood](http://doc.scrapy.org/en/0.16/intro/tutorial.html#what-just-happened-under-the-hood).
+We’re using the `Selector` – this will handle the response of when we request a webpage, and give us the ability to select certain parts of that response, defined by our `deals_list_xpath` field.  For understanding of scrapy’s handling of responses, read [what happens under the hood](http://doc.scrapy.org/en/0.16/intro/tutorial.html#what-just-happened-under-the-hood).
 
-We’re also using XPathItemLoader to load data into our `item_fields`.
+We’re also using `ItemLoader` to load data into our `item_fields`.
 
 Lastly, we import `Join` and `MapCompose` for processing our data. `MapCompose()` will help the input processing of our data, and will be used to help clean up the data that we extract. The `Join()` will help the output processing of our data, and will join together the elements that we process.  A better explanation for these two functions can be found in their [documentation](http://doc.scrapy.org/en/0.16/topics/loaders.html#scrapy.contrib.loader.processor.Join).
 
 Here’s what our `parse()` function looks like:
 
 ```python
-class LivingSocialSpider(BaseSpider)
+class LivingSocialSpider(Spider)
 """Spider for regularly updated livingsocial.com site, New York page"""
 
 # <--snip-->
@@ -96,11 +96,11 @@ class LivingSocialSpider(BaseSpider)
         @scrapes title link
 
         """
-        selector = HtmlXPathSelector(response)
+        selector = Selector(response)
 
         # iterate over deals
-        for deal in selector.select(self.deals_list_xpath):
-            loader = XPathItemLoader(LivingSocialDeal(), selector=deal)
+        for deal in selector.xpath(self.deals_list_xpath):
+            loader = ItemLoader(LivingSocialDeal(), selector=deal)
 
             # define processors
             loader.default_input_processor = MapCompose(unicode.strip)
@@ -130,25 +130,25 @@ Hello!
 
 The `response` parameter is what the spider gets back in return after making a request to the Living Social site. We are parsing that response with our XPaths.
 
-First, we will instantiate `HtmlXPathSelector()` by giving it the parameter, `response` and assigning it to the variable `selector`.  We’ll be able access `HtmlXPathSelector()`’s method, `select()` to grab the exact data we want using the xpaths we defined before.
+First, we will instantiate `Selector()` by giving it the parameter, `response` and assigning it to the variable `selector`.  We’ll be able access `Selector()`’s method, `xpath()` to grab the exact data we want using the xpaths we defined before.
 
 Now, since there are multiple deals within one page,
 
 ```python
-for deal in selector.select(self.deals_list_xpath):
+for deal in selector.xpath(self.deals_list_xpath):
 ```
 
 we’ll iterate over each deal we find from the `deals_list_xpath`, and then we load them so we can process the data:
 
 ```python
-	loader = XPathItemLoader(LivingSocialDeal(), selector=deal)
+	loader = ItemLoader(LivingSocialDeal(), selector=deal)
 
 	# define processors
 	loader.default_input_processor = MapCompose(unicode.strip)
 	loader.default_output_processor = Join()
 ```
 
-Here we grab the deal and pass it into XPathItemLoader through the `selector` parameter, along with the `LivingSocialDeal()` class, and assign the `loader` variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within `Join()`, the data items are just joined by a space, and is helpful for when we have multi-line data.
+Here we grab the deal and pass it into `ItemLoader` through the `selector` parameter, along with the `LivingSocialDeal()` class, and assign the `loader` variable.  We then setup the process for deal data first by stripping out white-space of unicode strings, then join the data together. Since we did not define any separater within `Join()`, the data items are just joined by a space, and is helpful for when we have multi-line data.
 
 We then iterate over each key and value of `items_fields` and add a the specific data piece's xpath to the loader.
 
