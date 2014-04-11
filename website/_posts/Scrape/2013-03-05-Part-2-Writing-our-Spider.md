@@ -28,13 +28,13 @@ class LivingSocialSpider(BaseSpider):
 	start_urls = ["http://www.livingsocial.com/cities/15-san-francisco"]
 
     deals_list_xpath = '//li[@dealid]'
-    item_fields = {'title': './/a/div[@class="deal-bottom"]/h3[@itemprop]/text()',
+    item_fields = {'title': './/a/div[@class="deal-details"]/h2[@itemprop="name"]/text()',
                    'link': './/a/@href',
-                   'description': './/a/div[@class="deal-bottom"]/p/text()',
-                   'category': './/a/div[@class="deal-top"]/div[@class="deal-category"]/span/text()',
-                   'location': './/a/div[@class="deal-top"]/ul[@class="unstyled deal-info"]/li/text()',
-                   'original_price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-original"]/del/text()',
-                   'price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-price"]/text()'}
+                   'description': './/a/div[@class="deal-details"]/p/text()',
+                   'category': './/a/div[@class="deal-image"]/p[@data-category]/@data-category',
+                   'location': './/a/div[@class="deal-details"]/p[@class="location"]/text()',
+                   'original_price': './/a/div[@class="deal-prices"]/div[@class="deal-strikethrough-price"]/text()',
+                   'price': './/a/div[@class="deal-prices"]/div[@class="deal-price"]/text()'}
 ```
 
 I’ve chosen to not build out the scaffolding with comments, but to throw this at you instead.  Let’s walk it through.
@@ -43,19 +43,19 @@ The first few variables are self-explanatory: the `name` defines the name of the
 
 Next, scrapy uses XPath selectors to extract data from a website - they select certain parts of the HTML data based on a given XPath. As said in [their documentation](http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors), “XPath is a language for selecting nodes in XML documents, which can also be used with HTML.” You may read more about XPath selectors in [their docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#topics-selectors).
 
-We basically tell scrapy where to start looking for information based on a defined Xpath.  Let’s navigate to our [LivingSocial](http://www.livingsocial.com/cities/1719-newyork-citywide) site and right-click to "View Source":
+We basically tell scrapy where to start looking for information based on a defined Xpath.  Let’s navigate to our [LivingSocial](http://www.livingsocial.com/cities/15-san-francisco) site and right-click to "View Source":
 
 ![View Source of LivingSocial]({{ get_asset('/images/scrape/view-source.png')}})
 
 I mean – look at that mess. We need to give the spider a little guidance.
 
-You see that `deals_list_xpath = '//ul[@class="unstyled cities-items"]/li[@dealid]'` sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their [docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths). But essentially, the `'//ul[@class="unstyled cities-items"]/li[@dealid]'`  is saying: within all `<ul>` elements, if a `<ul class=` is defined as "unstyled cities-items", then go within that `<ul>` element to find `<li>` elements that have a parameter called `dealid`.
+You see that `deals_list_xpath = '//li[@dealid]'` sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their [docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths). But essentially, the `'//li[@dealid]'` is saying: find all `<li>` elements that have a parameter called `dealid`. To make this more clear, if we were to use a more restrictive approach, we could have said: `deals_list_xpath = //ul[contains(@class, "deal-browse")]/li[@dealid]`, which is saying: within all `<ul>` elements, if a `<ul class=` contains "deal-browse", then go within that `<ul>` element to find `<li>` elements that have a parameter called `dealid`.
 
-Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for `"unstyled cities-items"` - you will see:
+Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for `"deal-browse"` - you will see:
 
 ![screenshot]( {{ get_asset('/images/scrape/highlight.png')}})
 
-(highlighted with the portion of searched text). Scroll a few lines down to see something like `<li dealid="123456">`. BAM! those are where our deals are specifically located on the web site.
+(highlighted with the portion of searched text). In the next line, you can see something like `<li dealid="1073747">`. BAM! those are where our deals are specifically located on the web site.
 
 **NOTE** When scraping your own sites and trying to figure out XPaths, Chrome's [Dev Tools](https://developers.google.com/chrome-developer-tools/) offers the ability to inspect html elements, allowing you to just copy xpath of any element you want.  It also gives the ability to test xpaths just in the JavaScript console by using $x, for example $x("//img"). While not explored when writing this tutorial, Firefox has an add-on, [FirePath](https://addons.mozilla.org/en-us/firefox/addon/firepath/) that can edit, inspect, and generate XPaths as well.
 
