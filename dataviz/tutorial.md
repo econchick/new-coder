@@ -26,7 +26,7 @@ Within your terminal
 * `$ git clone https://github.com/econchick/new-coder.git` This clones the New Coder project into the directory you're currently in, which is Projects (unless you named it something else).
 * `$ cd new-coder/dataviz` Change into the Data Viz project.
 * Make sure you've installed [virtualenv-wrapper](http://pypi.python.org/pypi/virtualenvwrapper) and followed the steps above from [Initial Requirements](#initial-requirements) to set up your Terminal correctly.  More information can be find at virtualenv-wrapper's [docs](http://virtualenvwrapper.readthedocs.org/en/latest/).
-* `$ mkvirtualenv DataVizProj` Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.
+* `$ mkvirtualenv DataVizProject` Make a virtual environment specific to your Data Viz project. You should see (DataVizProject) before your prompt, now.
 * `(DataVizProject) $ pip install -r requirements.txt` Now installing package requirements for this project. Your virtual environment will store the required packages in a self-contained area to not mess up with other Python projects.
 
 ### Part I: Parsing
