@@ -43,7 +43,7 @@ Once the compiler is set up:
 CONTRIBUTING
 ============
 
-PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `website` folder (and vis-versa.
+PLEASE – When editing tutorial or full source code, please edit the documentation to go along with it within the `website` folder (and vice-versa).
 
 When writing documentation, please use [smart quotes](http://en.wikipedia.org/wiki/Quotation_mark_glyphs).
 
@@ -55,4 +55,4 @@ TODOs
 2. Sudoku/GUI tutorial language
 5. Add better tags for subjects that are covered in tutorial parts (e.g. Generators, Iterators, classes, etc).
 6. Learn anchoring for Mynt/Markdown
-7. Remove the opening of the dataviz files in the tutorial to not "give away the answers"!
+7. Remove the opening of the dataviz files in the tutorial to not give away the answers!
