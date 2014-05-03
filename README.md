@@ -1,4 +1,4 @@
-new-coder
+new-coder - http://newcoder.io/
 =========
 
 New Coder tutorials: 5 life jackets to throw the new coder
