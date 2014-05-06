@@ -37,7 +37,7 @@ $ mkvirtualenv DataVizProj
 (DataVizProj)$ pip install geojson
 ```
 
-* **NOTE** Sometimes, matplotlib is finicky as well. If you are on a Mac and "pip install matplotlib" did not work, you are probably missing the supporting packages freetype2 and libpng. Windows users do not need to worry about his as these packages are already included in the standard matplotlib Windows installers. For Mac users, below are detailed instructions on how to install them. 
+* **NOTE** Sometimes, matplotlib is finicky as well. If you are on a Mac and "pip install matplotlib" did not work, you are probably missing the supporting packages freetype2 and libpng. Windows users do not need to worry about this as these packages are already included in the standard matplotlib Windows installers. For Mac users, below are detailed instructions on how to install them. 
 Note that libpng has a dependency on zlib library, so we have to install that first. So in total we install 3 supporting packages: 
 
    **1. ZLIB**
