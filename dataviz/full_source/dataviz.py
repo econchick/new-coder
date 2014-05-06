@@ -57,7 +57,7 @@ def visualize_days(data_file):
                  counter["Saturday"],
                  counter["Sunday"]
                  ]
-    day_tuple = ("Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun")
+    day_tuple = tuple(["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"])
 
     # Assign the data to a plot
     plt.plot(data_list)
