@@ -76,7 +76,7 @@ The `username` is _your_ username for your machine.  The `password` may not be n
 
 The `database` is the name of the database we created earlier, `postgres=#  create database scrape;`.
 
-We will return to our `settings.py` file to add a fifth variable, `ITEM_PIPELINES`, once we setup our pipelines (how we handle the scraped & parsed data – e.g. we save them to the database).
+We will return to our `settings.py` file to add a fourth variable, `ITEM_PIPELINES`, once we setup our pipelines (how we handle the scraped & parsed data – e.g. we save them to the database).
 
 ### Models.py
 
