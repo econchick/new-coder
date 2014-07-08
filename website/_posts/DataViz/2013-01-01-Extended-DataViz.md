@@ -11,7 +11,7 @@ How Data Visualization is used in real life, and where to go after finishing the
 
 * Bit.ly’s Chief Dat Scientist, Hilary Mason, [speaks](http://www.youtube.com/watch?v=zwtg2yOCdpM) about understanding the world in real time with data science.
 * [Hans Rosling](http://www.ted.com/speakers/hans_rosling.html) has given many great [TED](http://www.ted.com) talks about stunning ways to present data.
-* Even websites like [Mint.com](www.mint.com) use visualization to help folks understand their spending.
+* Even websites like [Mint.com](https://www.mint.com/) use visualization to help folks understand their spending.
 
 
 ### Where to go from here
