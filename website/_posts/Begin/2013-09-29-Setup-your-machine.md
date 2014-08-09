@@ -61,8 +61,7 @@ i686-apple-darwin11-llvm-gcc-4.2: no input files
 [pip][9], stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading `$` as that is your terminal prompt) for downloading & installing. It may prompt you for your computer login password.
 
 ```bash
-$ curl http://python-distribute.org/distribute_setup.py | sudo python
-$ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+$ curl https://bootstrap.pypa.io/get-pip.py -o - | sudo python
 $ pip
 Usage: pip COMMAND [OPTIONS]
 You must give a command (use "pip help" to see a list of commands)
@@ -125,8 +124,7 @@ To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your ter
 [pip][9], stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading `$` as that is your terminal prompt) for downloading & installing. It may prompt you for your computer login password.
 
 ```bash
-$ curl http://python-distribute.org/distribute_setup.py | sudo python
-$ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+$ curl https://bootstrap.pypa.io/get-pip.py -o - | sudo python
 $ pip
 Usage: pip COMMAND [OPTIONS]
 You must give a command (use "pip help" to see a list of commands)
