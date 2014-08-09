@@ -51,11 +51,11 @@ i686-apple-darwin11-llvm-gcc-4.2: no input files
 pip\[8], stands for “python install python”, is a tool for installing and managing Python packages. Within your Terminal application, use the following commands (ignore the leading `$` as that is your terminal prompt) for downloading & installing. It may prompt you for your computer login password.
 
 ```bash
-$ sudo curl -O http://python-distribute.org/distribute_setup.py | python 
-$ sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python
 $ pip
 Usage: pip COMMAND [OPTIONS]
 You must give a command (use "pip help" to see a list of commands)
+$ sudo pip install --upgrade setuptools
 ```
 
 <h5 style="text-align:center"><span style="color:#8c8c8c">virtualenv & virtualenvwrapper</span></h5>
