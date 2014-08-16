@@ -11,7 +11,7 @@ This tutorial is meant to push you out of the Excel mindset just a little bit, a
 
 ### The Project
 
-The project we will create takes the sample data from the repository that you will download (a.k.a. clone) in [Part 0: Setup]( {{ get_url("Part-0-Setup-for-DataViz")}}), parse the sample data from columns and rows to a list of dictionaries, then render that data in two different graphs and in [GitHub](http://gist.github.com) as a map.
+The project we will create takes the sample data from the repository that you will download (a.k.a. clone) in [Part 0: Setup]( {{ get_url("dataviz/part-0")}}), parse the sample data from columns and rows to a list of dictionaries, then render that data in two different graphs and in [GitHub](http://gist.github.com) as a map.
 
 The sample data that is included is a snapshot of public crime filings from the San Francisco police. Once you’ve gone through this tutorial, feel free to find other data that interests you, and rework our visualization functions.
 
