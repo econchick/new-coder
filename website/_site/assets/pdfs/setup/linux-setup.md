@@ -79,9 +79,9 @@ virtualenvwrapper\[18] is a great (but not required) tool for using virtualenv b
 
 ```bash
 $ sudo pip install virtualenvwrapper
-$ export WORKON_HOME=~/Envs
+$ echo -e 'export WORKON_HOME=~/Envs\nsource /usr/local/bin/virtualenvwrapper.sh' >> ~/.bash_profile
+$ source ~/.bash_profile
 $ mkdir -p $WORKON_HOME
-$ source /usr/local/bin/virtualenvwrapper.sh
 ```
 
 ## Text Editor
