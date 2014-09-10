@@ -44,7 +44,7 @@ Notice I had to include the semicolon there.  This is pretty much all the raw SQ
 
 ### Settings.py
 
-Create `settings.py` within `my_scraper/scraper_app/`.  Our `settings.py` file will only have 5 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
+Create `settings.py` within `my_scraper/scraper_app/`.  Our `settings.py` file will only have 4 variables defined (pop quiz: these variables are all caps, do you remember why? Refer to the Data Viz tutorial for a refresher).
 
 If you were walking through the scrapy [tutorial](http://doc.scrapy.org/en/0.16/intro/tutorial.html#creating-a-project) on your own, it would create a `settings.py` file for you with a few variables that you should define.
 
