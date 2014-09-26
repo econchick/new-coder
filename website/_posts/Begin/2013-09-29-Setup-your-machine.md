@@ -196,7 +196,18 @@ Download git [here](http://msysgit.github.io/).  This installs git for Windows, 
 
 1. You’ll first need to install setuptools, and use `ez_setup.py` to run it.  Download [ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) and run it.
 2. Once installation is complete, you will find an `easy_install.exe` program in your Python `Scripts` subdirectory. For simple invocation and best results, add this directory to your `PATH` environment variable, if it is not already present.
-3. Next, run `easy_install pip` to install [pip](https://pypi.python.org/pypi/pip).
+3. Next, run the following command to install [pip](https://pypi.python.org/pypi/pip):
+
+	```bash
+	$ easy_install pip
+	```
+
+	or, if you get a permission error:
+
+	```bash
+	$ sudo easy_install pip
+	```
+
 4. Open/run the Git Bash program. **NOTE**:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.
 5. Run the following command to install [virtualenv](http://www.virtualenv.org/en/latest/#installation):
 
