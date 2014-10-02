@@ -382,16 +382,17 @@ When you clone a repo with the above command, git creates a directory.  Here, gi
 ```bash
 .
 └── Projects/
-    ├── AUTHORS.md
-    ├── CONTRIBUTING.md
-    ├── LICENSE
-    ├── README.md
-    ├── apis/     # sample code for tutorial #2
-    ├── dataviz/  # sample code for tutorial #1
-    ├── gui/      # sample code for tutorial #5
-    ├── network/  # sample code for tutorial #4
-    ├── scrape/   # sample code for tutorial #3
-    └── website/  # files that make newcoder.io
+    └── new-coder/
+	    ├── AUTHORS.md
+	    ├── CONTRIBUTING.md
+	    ├── LICENSE
+	    ├── README.md
+	    ├── apis/     # sample code for tutorial #2
+	    ├── dataviz/  # sample code for tutorial #1
+	    ├── gui/      # sample code for tutorial #5
+	    ├── network/  # sample code for tutorial #4
+	    ├── scrape/   # sample code for tutorial #3
+	    └── website/  # files that make newcoder.io
 ```
 
 When you work through each project, make a new directory within `Projects` to keep your code away from the sample code.  For example:
@@ -399,18 +400,19 @@ When you work through each project, make a new directory within `Projects` to ke
 ```bash
 .
 └── Projects/
-	# <-- snip -->
-    ├── apis/     # sample code for tutorial #2
-    ├── apis_workspace/ # your code for tutorial #2
-    ├── dataviz/  # sample code for tutorial #1
-    ├── dataviz_workspace/ # your code for tutorial #1
-    ├── gui/      # sample code for tutorial #5
-    ├── gui_workspace/ # your code for tutorial #5
-    ├── network/  # sample code for tutorial #4
-    ├── network_workspace/ # your code for tutorial #4
-    ├── scrape/   # sample code for tutorial #3
-    ├── scrape_workspace/ # your code for tutorial #3
-    └── website/  # files that make newcoder.io
+    └── new-coder/
+		# <-- snip -->
+	    ├── apis/     # sample code for tutorial #2
+	    ├── apis_workspace/ # your code for tutorial #2
+	    ├── dataviz/  # sample code for tutorial #1
+	    ├── dataviz_workspace/ # your code for tutorial #1
+	    ├── gui/      # sample code for tutorial #5
+	    ├── gui_workspace/ # your code for tutorial #5
+	    ├── network/  # sample code for tutorial #4
+	    ├── network_workspace/ # your code for tutorial #4
+	    ├── scrape/   # sample code for tutorial #3
+	    ├── scrape_workspace/ # your code for tutorial #3
+	    └── website/  # files that make newcoder.io
 ```
 
 
