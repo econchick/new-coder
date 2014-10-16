@@ -12,7 +12,7 @@ import argparse
 import csv
 import geojson
 import matplotlib.pyplot as plt
-import numpy.numarray as na
+import numpy as np
 
 
 def parse(raw_file, delimiter):
@@ -85,7 +85,7 @@ def visualize_type(data_file):
     labels = tuple(counter.keys())
 
     # Set where the labels hit the x-axis
-    xlocations = na.array(range(len(labels))) + 0.5
+    xlocations = np.arange(len(labels)) + 0.5
 
     # Width of each bar
     width = 0.5
