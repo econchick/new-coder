@@ -12,7 +12,7 @@ from collections import Counter
 
 import csv
 import matplotlib.pyplot as plt
-import numpy.numarray as na
+import numpy as np
 
 
 MY_FILE = "../data/sample_sfpd_incident_all.csv"
@@ -89,7 +89,7 @@ def visualize_type():
     labels = tuple(counter.keys())
 
     # Set where the labels hit the x-axis
-    xlocations = na.array(range(len(labels))) + 0.5
+    xlocations = np.arange(len(labels)) + 0.5
 
     # Width of each bar
     width = 0.5
