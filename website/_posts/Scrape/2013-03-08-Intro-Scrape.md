@@ -58,11 +58,11 @@ Postgres is a very popular database that is free and open source. Other popular 
 
 To learn why Postgres is go great, [Craig Kerstiens](http://twitter.com/craigkerstiens) of Heroku wrote up a nice [explanation](http://www.craigkerstiens.com/2012/04/30/why-postgres/).
 
-As an aside: when I first started learning how to code, the concept of having a database _on_ my computer blew me away. I assumed databases lived in headless computers that could handle the ubiquitous data. Turns out, it’s just like a simple program on your comptuer. Sure, if you’re a company, you’d want machines dedicated for serving up production-level data. But we’re not heavy-duty number crunching (yet!).
+As an aside: when I first started learning how to code, the concept of having a database _on_ my computer blew me away. I assumed databases lived in headless computers that could handle the ubiquitous data. Turns out, it’s just like a simple program on your computer. Sure, if you’re a company, you’d want machines dedicated for serving up production-level data. But we’re not heavy-duty number crunching (yet!).
 
 ### What is a cronjob?
 
-A cron is a job scheduler for Unix-like computers. It basis its schedule off of a crontab (cron table), of which each line on the table is a job (cron job).
+A cron is a job scheduler for Unix-like computers. It bases its schedule off of a crontab (cron table), of which each line on the table is a job (cron job).
 
 You can schedule a cron job to go every minute, every hour, every day, etc. Wiki has an [overview](http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions) of the actual syntax to use for a cron job.
 
