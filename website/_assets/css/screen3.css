@@ -539,3 +539,19 @@ img.displayed {
   font-family: 'Glyphicons';
   font-style: normal;
   speak: none; }
+
+.button-xsmall {
+    font-size: 70%;
+}
+
+.button-small {
+    font-size: 85%;
+}
+
+.button-large {
+    font-size: 110%;
+}
+
+.button-xlarge {
+    font-size: 125%;
+}
