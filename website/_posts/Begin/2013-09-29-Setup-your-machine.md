@@ -152,96 +152,109 @@ $ source /usr/local/bin/virtualenvwrapper.sh
 
 ## Windows
 
+### powershell
+
+1. This step depends on the version of Windows you are running.
+	*	For Windows 8: To run it, press the Windows key (bottom row 	on the keyboard, third key from left) to navigate to the 		Start Screen. Type `powershell`, right click on the Windows 	Powershell tile bar and select 'Run as Administrator'. 
+	*	For Windows 7: To run it, click on the Start menu (the 			Windows logo in the lower left of the screen), type 			`powershell` into the Search field directly above the Start 	menu button, right click on Powershell in the search results 	 above the Search field, select 'Run as Administrator'. 
+	*	For Windows Vista: Go [here](https://www.microsoft.com/en-us/	 download/details.aspx?id=9864), click 'run' if given the 		option. Otherwise, save it to your Desktop, then minimize 		windows to see your desktop, and double click on it to start 	 the installer. Follow the installer instructions to 			completion. Restart your computer. 
+	* 	For Windows XP: Go [here](http://www.microsoft.com/en-us/		download/details.aspx?id=16818), click 'run' if given the 		option. Otherwise, save it to your Desktop, then minimize 		windows to see your desktop, and double click on it to start 	 the installer. Follow the installer instructions to 			completion. Restart your computer. 
+
 ### python
 
-1. Go [here](http://python.org/ftp/python/2.7.5/python-2.7.5.msi) and click “run” if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
-2. Open a command prompt (we will be doing this multiple times, so make a note of how to do this!):
-	- On Windows Vista or Windows 7: click on the Start menu (the Windows logo in the lower left of the screen), type cmd into the Search field directly above the Start menu button, and click on "cmd" in the search results above the Search field.
-	- On Windows XP: click on the Start menu (the Windows logo in the lower left of the screen), click on "Run...", type cmd into the text box, and hit enter.
-3. At this `C:\` prompt that appears, test your Python install by typing `\Python27\python.exe` and hitting `enter`. You should see something like
+1. Go [here](http://python.org/ftp/python/2.7.5/python-2.7.5.msi) and click 'run' if given the option. Otherwise, save it to your Desktop, then minimize windows to see your desktop, and double click on it to start the installer. Follow the installer instructions to completion.
+2. Open up a Powershell prompt (we will be doing this multiple times, so make a note of how to do this!):
+	* 	On Windows 8: Press the Windows key (bottom row on the 			keyboard, third key from left) to navigate to the Start 		Screen. Type `powershell`, right click on the Windows 			Powershell tile bar and select 'Run as Administrator'.
+	* 	On Windows Vista and Windows 7: click on the Start menu (the 
+		Windows logo in the lower left of the screen), type `powershell` into the Search field directly above the Start menu button, and right click on 'powershell' in the search results above the Search field, and select 'Run as Administrator'. 
+	*	On Windows XP: click on the Start menu (the Windows logo in 	the lower left of the screen), navigate to Programs, then to 	 Accessories, then to Windows PowerShell and right click on 	'Windows PowerShell' and select 'Run as Administrator'.
+3. At this `C:\>` prompt that appears, test your Python install by typing `python` and hitting `enter`. You should see something like
 
-```bash
+```powershell
 Python 2.7.3 (r271:86832,...) on win32
 Type "help", "copyright", "credits" or "license" for more information
 >>>
 ```
-4. You just started Python! The `>>>` indicates that you are at a new type of prompt – a Python prompt. The command prompt lets you navigate your computer and run programs, and the Python prompt lets you write and run Python code interactively.
-5. To exit the Python prompt, type `exit()` and press Enter. This will take you back to the Windows command prompt (the `C:\` you saw earlier).
-6. Put Python on the PATH – You might have noticed that you typed a "full path" to the Python application above when launching Python (`python.exe` is the application, but we typed `\Python27\python.exe`). In this step, you will configure your computer so that you can run Python without typing the ''Python27'' directory name.
+4. You just started Python! The `>>>` indicates that you are at a new type of prompt – a Python prompt. The Powershell prompt lets you navigate your computer and run programs, and the Python prompt lets you write and run Python code interactively.
+5. To exit the Python prompt, type `quit()` and press Enter. This will take you back to the Windows command prompt (the `C:\>` you saw earlier).
+6. If you do not see the above specified return message, Put Python on the PATH. In this step, you will configure your computer so that you can run Python without typing the Python full path. 
 	* Get to System Properties
-		1. Open up “My Computer” by clicking on the Start menu or the Windows logo in the lower-left hand corner, and navigate to "My Computer" (for Windows XP) or "Computer" (For Vista and Windows 7).
-		2. Right-click on the empty space in the window, and choose “Properties”.
-			* If you’re using XP: window labeled "System Properties" will pop up. Click the "Advanced" tab. A window with the title "System Properties" will appear.
-			* If you’re **not** using XP: A window labeled “View basic information about your computer” will appear. In this window, click "Advanced system settings".  A window with the title "System Properties" will appear.
+		1. Windows 8: 
+			* Get to the Start screen(see above steps), search for Control Panel and select the Control Panel app tile from the results. 
+			* Within Control Panel, search (upper right corner) for and open System. 
+			* In the dialog box, select "Advanced Settings". 
+			* In the next dialog box, select "Environment Variables". 
+		2. Windows 7, Vista, XP: 
+			* Open up “My Computer” by clicking on the Start menu or the Windows logo in the lower-left hand corner, and navigate to "My Computer" (for Windows XP) or "Computer" (For Vista and Windows 7).
+			* Right-click on the empty space in the window, and choose “Properties”.
+				1.	If you’re using XP: window labeled "System 			Properties" will pop up. Click the "Advanced" 		tab. A window with the title "System Properties" 	 will appear.
+				2.	If you’re **not** using XP: A window labeled 		“View basic information about your computer” 		will appear. In this window, click "Advanced 		system settings".  A window with the title 			"System Properties" will appear.
 	* Edit the Path
-		1. Within System Properties, make sure you are in the tab labeled “Advanced’.
-		2. Click the button labeled “Environment Variables”.  A window labeled "Environment Variables" will appear.
-		3. In this window, the screen is split between “User variables” and “System variables”. Within “System variables’, scroll down and find the one labeled “Path’. Click the “Edit...” button A window with the "Variable name" and the "Variable value" should appear.  The “Variable value” will already have some text in it; click in the box to unhighlight it (we don't want to accidentally delete that text).
-	* In the "Variable value" box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! `;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts`
+		1. Within System Properties, make sure you are in the tab labeled "Advanced". [Windows 7/XP/Vista]
+		2. Click the button labeled “Environment Variables”.  A window labeled "Environment Variables" will appear. [Windows 7/XP/Vista]
+		3. In the "Environment Variables" window, the screen is 	split between “User variables” and “System variables”. 
+		4. Within “System variables", scroll down and find the one labeled “Path". Click the “Edit...” button.
+			*	A window with the "Variable name" and the "Variable 	value" should appear.  The “Variable value” should 		already have some text in it; click in the box to 		unhighlight it (we don't want to accidentally delete 	 that text).
+			* In the "Variable value" box, scroll to the end. Add the following text, and hit OK. Make sure to include the semicolon at the start! 
+			`;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts`
+		5. If within 'System variables' you do not find 'Path', click on New. It will bring up a dialog box, type in "Path" in the first section, and then in the second section labelled "Variable value", type in the following text and 	hit OK. 
+		`;c:\python27\;c:\python27\scripts;c:\python27\tools\scripts`
 	* Hit "OK" to close out the system properties window.
 	* Test your change:
-		1. Open up a new command prompt: you do this the same way you did above when installing python. This needs to be a new command prompt because the changes you just made didn't take affect in prompts that were already open.
-		2. Type python into the command prompt to start Python
+		1. Open up a new Powershell prompt: you do this the same way you did above when installing python. This needs to be a new Powershell prompt because the changes you just made didn't take affect in prompts that were already open.
+		2. Type `python` into the Powershell prompt to start Python
 		3. Notice that you now get a Python interpreter, indicated by the change to a `>>>` prompt.
-		4. Exit the Python prompt by typing `exit()` and hitting enter. Now you're back at the Windows command prompt (`C:\`).
+		4. Exit the Python prompt by typing `quit()` and hitting enter. Now you're back at the Powershell prompt (`PS C:\>`).
+	
 
 Success! You have installed Python!
 
 ### git
 
-Download git [here](http://msysgit.github.io/).  This installs git for Windows, as well as Msys, a Unix-like shell, that also includes a GCC compiler, [MinGW](http://mingw.org/).
+1.	Download git [here](http://msysgit.github.io/).  This installs git for Windows, as well as Msys, a Unix-like shell, that also includes a GCC compiler, [MinGW](http://mingw.org/).
+2.	Go back into Sytem Properties and add the below text to the end of PATH in "System Variables" (see above Python Installation instructions). Make sure to click in the box to unhighlight before adding this new text.												
+`;C:\Program Files\Git\bin`
+3. Test your change:
+	*	Open up a new Powershell prompt: you do this the same way 		you did above when installing python. This needs to be a new 	 Powershell prompt because the changes you just made didn't 	take affect in prompts that were already open.
+	*	Type `git --version` into the Powershell prompt.
+	*	Notice that you now get some information about the version 		of Git you have installed. 
+4. Within your reopened PowerShell prompt, type in this text and hit 	enter. 
+	`Set-ExecutionPolicy RemoteSigned`
+	*	When you see the Execution Policy Change prompt, type in `Y` 	 and hit enter. 
+
+Git is ready to go!
 
 
 ### pip, virtualenv + virtualenvwrapper
 
-1. You’ll first need to install setuptools, and use `ez_setup.py` to run it.  Download [ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) and run it.
-2. Once installation is complete, you will find an `easy_install.exe` program in your Python `Scripts` subdirectory. For simple invocation and best results, add this directory to your `PATH` environment variable, if it is not already present.
-3. Next, run `easy_install pip` to install [pip](https://pypi.python.org/pypi/pip).
-4. Open/run the Git Bash program. **NOTE**:  Windows users: We will use this Git Bash program for whenever the “terminal”, “shell”, or “command line” is referred to.
-5. Run the following command to install [virtualenv](http://www.virtualenv.org/en/latest/#installation):
+1.	Setuptools + Pip
+	*	You’ll first need to install Setuptools and use `ez_setup.py` 	 to run it. Go [here](https://bootstrap.pypa.io/ez_setup.py)
+	*	Right click within the webpage, select 'Save As', make sure 	that you are in your Desktop folder. If not navigate then. 		Then type in "ez_setup" as the filename, make sure it's 		saved as a .py file, and click Save. 
+	*	Go back into the PowerShell prompt and run the ez_setup 		file. Type in this text and hit enter. 						
+	`python ~\desktop\ez_setup.py`
+	*	Now Install Pip. Go [here](https://bootstrap.pypa.io/get-pip.py)
+	*	Right click within the webpage, select 'Save As', once again 	 make sure you are saving within the Desktop folder or else 	go there. Then type in "get_pip" as the filename, ensure 		it's being saved as a .py file and click Save. 
+	*	Once again within the PowerShell prompt, type in this text 		and hit enter. 
+		`python ~\desktop\get_pip.py`
+2.	Virtualenv + Virtualenvwrapper
+	*	With pip installed we can now eaily install virtualenv, and 	then virtualenvwrapper-powershell. Within your PowerShell 		prompt, type in this text and hit enter.					
+		`pip install virtualenv`
+	*	After it is done setting up, type in this text and hit 			enter. 
+		`pip install virtualenvwrapper-powershell`
+	*	Type this in:
+		`mkdir ~/.virtualenvs`
+	*	You should see some result that reads something like;		
+		`Directory: C:\Users` and some other stuff
+	*	To check if all is installed well, type in each of these 		texts and hit Enter.										
+		`Import-Module virtualenvwrapper`							
+		`Get-Command *virtualenv*`
 
-	```bash
-	$ pip install virtualenv
-	```
-
-	or, if you get a permission error:
-
-	```bash
-	$ sudo pip install virtualenv
-	```
-
-4. Next, run the command to install [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/install.html):
-
-	```bash
-	$ pip install virtualenvwrapper
-	```
-
-	or, if you get a permission error:
-
-	```bash
-	$ sudo pip install virtualenvwrapper
-	```
-
-5. And now setup virtualenvwrapper:
-
-	```bash
-	$ export WORKON_HOME=$HOME/.virtualenvs
-	$ export MSYS_HOME=/c/msys/1.0
-	$ source /usr/local/bin/virtualenvwrapper.sh
-	```
-
-	or,
-
-	```bash
-	$ export WORKON_HOME=$HOME/.virtualenvs
-	$ export MSYS_HOME=C:\msys\1.0
-	$ source /usr/local/bin/virtualenvwrapper.sh
-	```
-
+Success! You have installed Virtualenvwrapper!
 
 
 ## Test your setup
 
+## Mac-OS-X and Linux
 
 Now let’s test our installation and get familiar with creating & using virtual environments, let’s return to our terminal:
 
@@ -352,6 +365,119 @@ Here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper.
 * `deactivate` – deactivates the virtual environment that is currently active
 * within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
 * within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
+
+
+## Windows
+
+Now let’s test our installation and get familiar with creating & using virtual environments, let’s return to our terminal:
+
+
+```powershell
+C:\> mkvirtualenv TestEnv
+Installing
+distribute..........................................
+....................................................
+....................................................
+...............................done.
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/predeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postdeactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/preactivate
+virtualenvwrapper.user_scripts Creating /Users/lynnroot/Envs/TestEnv/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/lynnroot/Envs/TestEnv/bin/get_env_details
+```
+
+
+Now that you made a virtual environment called `TestEnv`, you should see `(TestEnv)` before your prompt:
+
+```powershell
+(TestEnv) C:\>
+```
+
+Let’s play around with commands for virtualenv:
+
+
+```powershell
+# deactivate the TestEnv
+(TestEnv) C:\> deactivate
+C:\>
+# reactivate the TestEnv
+C:\> workon TestEnv
+(TestEnv) C:\>
+```
+
+Next, we’ll practice installing a package into the virtualenv:
+
+```bash
+# install the Django package in your TestEnv environment
+(TestEnv) C:\> pip install django
+Downloading/unpacking django
+  Downloading Django-1.1.1.tar.gz (5.6Mb): 5.6Mb downloaded
+  Running setup.py egg_info for package django
+Installing collected packages: django
+  Running setup.py install for django
+    changing mode of build/scripts-2.6/django-admin.py from 644 to 755
+    changing mode of /Users/lynnroot/Envs/TestEnv/bin/django-admin.py to 755
+Successfully installed django
+(TestEnv) C:\>
+```
+
+
+```powershell
+# test the installation of Django
+(TestEnv) C:\> python
+Python 2.7.2 (default, Jun 20 2012, 16:23:33)
+[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import django
+>>> quit()
+# deactivate the TestEnv virtual environment
+(TestEnv) C:\> deactivate
+C:\>
+```
+
+```powershell
+# try to import Django again
+# we should get an error because we deactivated the virtualenv
+C:\> python
+Python 2.7.2 (default, Jun 20 2012, 16:23:33)
+[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import django
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named django
+>>> quit()
+C:\>
+```
+
+```powershell
+# reactivate the TestEnv virtual environment
+C:\> workon TestEnv
+(TestEnv) C:\>
+# try again to import Django
+(TestEnv) C:\> python
+Python 2.7.2 (default, Jun 20 2012, 16:23:33)
+[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import django
+>>> quit()
+(TestEnv) C:\>
+```
+
+```powershell
+# see what libraries are installed in the TestEnv virtual environment:
+(TestEnv) C:\> pip freeze
+django==1.5
+(TestEnv) C:\>
+```
+
+For Powershell:
+		* `pwd` : Get and display the current location
+		* `cd <path>` :  Move to a different directory/location
+		* `cd ..`: Move to the parent location 
+		* `ls <path>` :List all objects in that directory
+		* `ls`:List all objects in current directory
+		* `mkdir` : create a new directory 
 
 
 ## Get the Tutorial Code
