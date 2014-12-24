@@ -35,7 +35,7 @@ def generate_plot(platforms, output_file):
     values = []
     for platform in platforms:
         name = platform['name']
-        adapted_price = platform['adjusted_price']
+        adjusted_price = platform['adjusted_price']
         price = platform['original_price']
 
         # Skip prices higher than 2000 USD simply because it would make the
@@ -50,7 +50,7 @@ def generate_plot(platforms, output_file):
             name = platform['abbreviation']
         labels.insert(0, u"{0}\n$ {1}\n$ {2}".format(name, price,
                                                      round(adjusted_price, 2)))
-        values.insert(0, adapted_price)
+        values.insert(0, adjusted_price)
 
     # Let's define the width of each bar and the size of the resulting graph.
     width = 0.3

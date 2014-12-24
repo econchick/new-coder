@@ -211,17 +211,20 @@ def load_from_file(self, fp):
     """
     # When iterating over the data file we will need a handful of temporary
     # variables:
+    reached_dataset = False
     current_year = None
     year_cpi = []
     for line in fp:
         # The actual content of the file starts with a header line
         # starting with the string "DATE ". Until we reach this line
         # we can skip ahead.
-        while not line.startswith("DATE "): 
-            pass
+        if not reached_dataset:
+            if line.startswith("DATE "):
+                reached_dataset = True
+            continue
 
         # Each line ends with a new-line character which we strip here
-        # to make the data easier usable.
+        # to make the data easier to use.
         data = line.rstrip().split()
 
         # While we are dealing with calendar data the format is simple

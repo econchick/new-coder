@@ -43,6 +43,12 @@ def parse_args():
 
 The `ArgumentParser` class implicitly gives us an argument for free, the `-h` and `--help` flags for showing the usage of the script, `python platform_pricing.py [options] [args]`, as well as a list of available commands and their `help` strings we assign. 
 
+We will need the os module.
+
+```python
+import os
+```
+
 Now we should add all the arguments that could possibly be passed through from the command line with the `add_argument` method that `ArgumentParser` class gives us:
 
 ```python
@@ -101,6 +107,12 @@ The Python docs have a great [tutorial](http://docs.python.org/2/howto/argparse.
 ### Main function
 
 The `CPIData` and `GiantbombAPI` classes have been defined with their methods, as well as functions `generate_plot`, `generate_csv`, and `is_valid_dataset`.  Let’s now make one `main()` function that runs whenever we call our `platform_pricing.py` file (with arguments) that instantiates (uses) everything.
+
+We will be needing the logging module.
+
+```python
+import logging
+```
 
 We’ll first want to take care of the arguments passed through the command line by calling our `parse_args` function.
 
