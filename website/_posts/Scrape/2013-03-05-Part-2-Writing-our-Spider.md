@@ -22,19 +22,19 @@ from scrapy.spider import BaseSpider
 from scraper_app.items import LivingSocialDeal
 
 class LivingSocialSpider(BaseSpider):
-	"""Spider for regularly updated livingsocial.com site, San Francisco Page"""
-	name = "livingsocial"
-	allowed_domains = ["livingsocial.com"]
-	start_urls = ["http://www.livingsocial.com/cities/15-san-francisco"]
+    """Spider for regularly updated livingsocial.com site, San Francisco page"""
+    name = "livingsocial"
+    allowed_domains = ["livingsocial.com"]
+    start_urls = ["http://www.livingsocial.com/cities/15-san-francisco"]
 
     deals_list_xpath = '//li[@dealid]'
-    item_fields = {'title': './/a/div[@class="deal-bottom"]/h3[@itemprop]/text()',
+    item_fields = {'title': './/a/div[@class="deal-details"]/h2/text()',
                    'link': './/a/@href',
-                   'description': './/a/div[@class="deal-bottom"]/p/text()',
+                   'description': './/a/div[@class="deal-details"]/p[@class="description"]/text()',
                    'category': './/a/div[@class="deal-top"]/div[@class="deal-category"]/span/text()',
-                   'location': './/a/div[@class="deal-top"]/ul[@class="unstyled deal-info"]/li/text()',
-                   'original_price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-original"]/del/text()',
-                   'price': './/a/div[@class="deal-bottom"]/ul[@class="unstyled deal-info"]/li[@class="deal-price"]/text()'}
+                   'location': './/a/div[@class="deal-details"]/p[@class="location"]/text()',
+                   'original_price': './/a/div[@class="deal-prices"]/div[@class="deal-strikethrough-price"]/text()',
+                   'price': './/a/div[@class="deal-prices"]/div[@class="deal-price"]/text()'}
 ```
 
 I’ve chosen to not build out the scaffolding with comments, but to throw this at you instead.  Let’s walk it through.
@@ -49,7 +49,7 @@ We basically tell scrapy where to start looking for information based on a defin
 
 I mean – look at that mess. We need to give the spider a little guidance.
 
-You see that `deals_list_xpath = '//ul[@class="unstyled cities-items"]/li[@dealid]'` sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their [docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths). But essentially, the `'//ul[@class="unstyled cities-items"]/li[@dealid]'`  is saying: within all `<ul>` elements, if a `<ul class=` is defined as "unstyled cities-items", then go within that `<ul>` element to find `<li>` elements that have a parameter called `dealid`.
+You see that `deals_list_xpath = '//li[@dealid]'` sort of looks like the code we see with HTML.  You can read about how to contruct an XPath and working with relative XPaths in their [docs](http://doc.scrapy.org/en/0.16/topics/selectors.html#working-with-relative-xpaths). But essentially, the `deals_list_xpath = '//li[@dealid]'`  is saying: within all `<li>` elements that have a parameter called `dealid`.
 
 Try it out: within your “View Source” page of the Living Social website, search within the source itself (either pressing CMD+F or CTRL+F within the page) and search for `"unstyled cities-items"` - you will see:
 
