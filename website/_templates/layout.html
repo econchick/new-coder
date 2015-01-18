@@ -8,34 +8,46 @@
 </head>
 
 <body>
-    <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a>
-    <div id="container">
-        <div id="nav">
-            <ul>
-                <li><a href="{{ get_url('/') }}">Home</a></li>
-                <li><a href="{{ get_url('About/') }}">About</a></li>
-                <li><a href="{{ get_url('tutorials/') }}">Tutorials</a></li>
-                <li><a href="{{ get_url('workshop/')}}">Workshop Kit</a></li>
-                <li><a href="{{ get_url('Contact/') }}">Contact</a></li>
-                <li><a data-ct-checkout="newcoder.newcoder-io">Donate</a></li>
-            </ul>
-
-        </div>
-
-        <div id="header">
-            <h1><a href="{{ get_url() }}">New C<span aria-hidden="true" class="icon" data-icon="&#xe308;">der</a></h1>
-            {% if site.subtitle %}<h2>{{ site.subtitle }}</h2>{% endif %}
-        </div>
-
-        <div id="content">
-            {% block content %}
-            {% endblock %}
-        </div>
-
-        <div id="footer">
-            <p>{% if site.author %}The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+    <!-- <a href="https://github.com/econchick/new-coder" class="github-ribbon">Contribute on GitHub</a> -->
+    <div class="navbar navbar-default navbar-fixed-top">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{{ get_url('/') }}"><span aria-hidden="true" class="icon" data-icon="&#xe308;"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ get_url('About/') }}">About</a></li>
+                    <li><a href="{{ get_url('tutorials/') }}">Tutorials</a></li>
+                    <li><a href="{{ get_url('workshop/')}}">Workshop Kits</a></li>
+                    <li><a href="{{ get_url('Contact/') }}">Contact</a></li>
+                    <li><a data-ct-checkout="newcoder.newcoder-io">Donate</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/econchick/new-coder">Contribute on GitHub</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <div class="container">
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <hr/>
+        <div class="container">
+            <p>{% if site.author %}The written tutorials are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+    </footer>
 <script type="text/javascript" src="https://open.tilt.com/checkout.js"></script>
 </body>
 </html>

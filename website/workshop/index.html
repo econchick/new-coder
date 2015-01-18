@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<dl class="archives">
+<div class="container">
     {% for item in containers.workshop %}
         {{ item.content }}
     {% endfor %}
-</dl>
+</div>
 
 {% endblock %}

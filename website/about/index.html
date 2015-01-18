@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<dl class="archives">
+<div class="container">
     {% for post in posts %}
         {% if 'about' in post.tags %}
             {{ post.content }}
         {% endif %}
     {% endfor %}
-</dl>
+</div>
 
 {% endblock %}

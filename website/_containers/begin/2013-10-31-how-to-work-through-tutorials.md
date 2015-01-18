@@ -41,3 +41,10 @@ Each tutorial is meant to be worked through in the order presented, but can be s
 Each tutorial can stand on its own, but gently advances in development topics that a new coder may not be exposed to when trying to learn on his/her own.  It‘s okay to get bored, frustrated, distracted, etc. Life happens. The tutorials will still be here for when you return – just be sure to [save your progress]( {{ get_url('begin/save-your-progress') }}).
 
 Code for these tutorials may not be the most Pythonic — it’s meant to teach.
+
+
+<nav>
+  <ul class="pager">
+    <li class="next"><a href="{{ get_url('/begin/setup-your-machine/') }}">Setup Your Machine <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>

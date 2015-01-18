@@ -1,7 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<dl class="archives">
+<div class="container">
+    <div class="page-header">
+        <h1>Networks</h1>
+        <hr/>
+    </div>
+</div>
+<div class="container">
     {% for item in containers.networks %}
         {% if item.category == 'intro' %}
             <p><a href="{{ item.url }}">{{ item.title }}</a></p>
@@ -9,6 +15,6 @@
             <p><a href="{{ item.url }}">{{ item.title }}</a> – {{ item.excerpt }}</p>
         {% endif %}
     {% endfor %}
-</dl>
+</div>
 
 {% endblock %}

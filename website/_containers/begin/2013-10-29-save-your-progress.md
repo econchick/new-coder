@@ -255,3 +255,11 @@ When you have code up on GitHub and/or BitBucket, not only do they implicitly pr
 As you work through these tutorials, I encourage you to use GitHub or BitBucket (or any other service that allows you to publicly share repositories) to “push” your code so others can see your progress. While I suggest you locally commit often and commit happily, only push code to GitHub/BitBucket when there is a good completion point (e.g. when you've finished a tutorial).
 
 [git]: "http://en.wikipedia.org/wiki/Git_(software)#History"
+
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><a href="{{ get_url('/begin/setup-your-machine/') }}"><span aria-hidden="true">&larr;</span> Setup Your Machine</a></li>
+    <li class="next"><a href="{{ get_url('/tutorials/') }}">Tutorial List <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>

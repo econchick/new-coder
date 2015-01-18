@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Glyphicons';
+  src: url('../fonts/glyphicons/glyphicons-regular.eot');
+  src: url('../fonts/glyphicons/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons/glyphicons-regular.woff') format('woff'), url('../fonts/glyphicons/glyphicons-regular.ttf') format('truetype'), url('../fonts/glyphicons/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.glyphicons {
+  display: inline-block;
+  position: relative;
+  padding: 5px 0 5px 35px;
+  color: rgb(0, 84, 132);
+  text-decoration: none;
+  *display: inline;
+  *zoom: 1;
+}
+.glyphicons i:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font: 24px/1em 'Glyphicons';
+  font-style: normal;
+  color: rgb(0, 84, 132);
+}
+
+.glyphicons.life_preserver i:before {
+  content: "\e308";
+}
+
+.icon {
+  margin: 0.5em 0; }
+  .icon:before {
+    font-family: 'Glyphicons';
+    font-size: 20px;
+    content: attr(data-icon); }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: 'Glyphicons';
+  font-style: normal;
+  speak: none; }
+
+.new-coder-jumbo a:hover{
+  text-decoration: none;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+body {
+  font-size: 18px;
+  padding-top: 85px;
+}
+
+img.displayed {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border:5px solid #f8f8f8;
+}
+
+ul.pagination-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*pre {
+  overflow: scroll;
+  white-space: pre;
+  word-wrap: normal;
+  display: inline-block;
+}
+*/
+pre {
+    white-space: pre;
+    overflow-x: scroll;
+    word-break: inherit;
+    word-wrap: inherit;
+}
+
+table.highlighttable {
+  table-layout: fixed;
+  white-space: nowrap;
+  width: 100%;
+}
+
+td.code {
+  width: 96%;
+}

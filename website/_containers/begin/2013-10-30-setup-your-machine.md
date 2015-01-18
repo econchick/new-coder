@@ -576,3 +576,12 @@ You’re good to go with your setup! Go start on [dataviz]({{ get_url("dataviz")
 [virtualenv]: http://pypi.python.org/pypi/virtualenv
 [install]: http://www.mingw.org/wiki/InstallationHOWTOforMinGW
 [gitwin]: http://git-scm.com/download/win
+
+
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><a href="{{ get_url('/begin/how-to-work-through-tutorials/') }}"><span aria-hidden="true">&larr;</span> How to Work through Tutorials</a></li>
+    <li class="next"><a href="{{ get_url('/begin/save-your-progress/') }}">Save Your Progress <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
