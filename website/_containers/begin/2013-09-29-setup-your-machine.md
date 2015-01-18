@@ -80,6 +80,8 @@ $ sudo pip install virtualenv
 ```bash
 $ sudo pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
+$ echo 'export WORKON_HOME=~/Envs' >> ~/.bash_profile
+$ echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bash_profile
 $ mkdir -p $WORKON_HOME
 $ source /usr/local/bin/virtualenvwrapper.sh
 ```
@@ -115,7 +117,7 @@ To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your ter
 * Fedora:
     * `sudo yum groupinstall "Developer Tools"`
     * `sudo yum install python-devel`
-* Ubuntu:
+* Ubuntu/Debian:
     * you may need to run `sudo apt-get update` first.
     * `sudo apt-get install build-essential python-dev libxml2-dev libxslt-dev`
 
@@ -141,13 +143,28 @@ $ sudo pip install virtualenv
 
 [virtualenvwrapper][11] is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use `pip` again to install it:
 
+For Fedora/RHEL/CentOS:
+
 ```bash
 $ sudo pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
+$ echo 'export WORKON_HOME=~/Envs' >> ~/.bash_profile
+$ echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bash_profile
 $ mkdir -p $WORKON_HOME
-$ source /usr/local/bin/virtualenvwrapper.sh
+$ source ~/.bash_profile
 ```
 
+For Debian/Ubuntu:
+
+
+```bash
+$ sudo pip install virtualenvwrapper
+$ export WORKON_HOME=~/Envs
+$ echo 'export WORKON_HOME=~/Envs' >> ~/.bash_profile
+$ echo 'source /etc/bash_completion.d/virtualenvwrapper' >> ~/.bash_profile
+$ mkdir -p $WORKON_HOME
+$ source ~/.bash_profile
+```
 
 ## Windows
 
@@ -168,11 +185,11 @@ $ source /usr/local/bin/virtualenvwrapper.sh
     * **Windows XP**: Click on the Start menu (the Windows logo in the lower left of the screen), navigate to Programs, then to Accessories, then to Windows PowerShell and right click on “Windows PowerShell” and select “Run as Administrator”.
 3. At this `C:\>` prompt that appears, test your Python install by typing `python` and hitting `enter`. You should see something like
 
-```python
-Python 2.7.3 (r271:86832,...) on win32
-Type "help", "copyright", "credits" or "license" for more information
->>>
-```
+    ```python
+    Python 2.7.3 (r271:86832,...) on win32
+    Type "help", "copyright", "credits" or "license" for more information
+    >>>
+    ```
 
 4. You just started Python! The `>>>` indicates that you are at a new type of prompt – a Python prompt. The Powershell prompt lets you navigate your computer and run programs, and the Python prompt lets you write and run Python code interactively.
 5. To exit the Python prompt, type `quit()` and press Enter. This will take you back to the Windows command prompt (the `C:\>` you saw earlier).
@@ -406,7 +423,7 @@ C:\> workon TestEnv
 
 Next, we’ll practice installing a package into the virtualenv:
 
-```bash
+```powershell
 # install the Django package in your TestEnv environment
 (TestEnv) C:\> pip install django
 Downloading/unpacking django
@@ -471,12 +488,13 @@ django==1.5
 ```
 
 For Powershell:
-        * `pwd` : Get and display the current location
-        * `cd <path>` :  Move to a different directory/location
-        * `cd ..`: Move to the parent location
-        * `ls <path>` :List all objects in that directory
-        * `ls`:List all objects in current directory
-        * `mkdir` : create a new directory
+
+* `pwd` : Get and display the current location
+* `cd <path>` :  Move to a different directory/location
+* `cd ..`: Move to the parent location
+* `ls <path>` :List all objects in that directory
+* `ls`:List all objects in current directory
+* `mkdir` : create a new directory
 
 
 ## Get the Tutorial Code
