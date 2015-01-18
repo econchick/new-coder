@@ -45,8 +45,9 @@ You will need to install [git][5] on your machine through their [download page][
 
 ### C compiler
 
+For Mac OS X 10.9 and higher (Mavericks and later): Within your terminal, run `xcode-select --install`. A pop-up will ask you to install command line developer tools.
 
-You will need the [XCode](http://developer.apple.com/xcode) application. Once you have XCode on your machine, you will need to navigate to Preferences &rarr; Downloads, then select **Command Line Tools** to download & install (this may take a while, get some coffee, go take a shower).
+For Mac OS X 10.8 and lower (Mountain Lion and earlier), you will need to download the Command Line Tools from Apple [here](https://developer.apple.com/downloads/index.action#).  A (free) developer’s account is required.  Search for your OS version (which can be found by clicking on the Apple in the top left of your menu bar, and selecting “About this Mac”) and select “Command Line Tools for XCode”.
 
 This gives you the [GCC][7] or the GNU Compiler Collection. To test installation, within the Terminal application, type `gcc` and you should get the following:
 
