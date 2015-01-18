@@ -1,16 +1,16 @@
 {% extends 'layout.html' %}
 
 
-{% set title = post.title %}
+{% set title = item.title %}
 
 {% block content %}
     <div class="item">
         <div class="header">
-            <h2>{{ post.title }}</h2>
+            <h2>{{ item.title }}</h2>
         </div>
-        
+
         <div class="body">
-            {{ post.content }}
+            {{ item.content }}
         </div>
     </div>
 {% endblock %}

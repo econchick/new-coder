@@ -12,8 +12,6 @@ social:
     github: econchick
     twitter: roguelynn
 
-archive_layout: archive.html
-archives_url: /archives/
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
@@ -22,3 +20,18 @@ misaka:
         toc: true
 tag_layout: tag.html
 tags_url: /tags/
+containers:
+    apis:
+        url: /api/<slug>/
+    dataviz:
+        url: /dataviz/<slug>/
+    scrape:
+        url: /scrape/<slug>/
+    networks:
+        url: /networks/<slug>/
+    gui:
+        url: /gui/<slug>/
+    begin:
+        url: /begin/<slug>/
+    workshop:
+        url: /workshop/<slug>/

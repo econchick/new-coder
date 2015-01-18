@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<dl class="archives">
+    {% for item in containers.begin %}
+        <p><a href="{{ item.url }}">{{ item.title }}</a> – {{ item.excerpt }}</p>
+
+    {% endfor %}
+</dl>
+
+{% endblock %}

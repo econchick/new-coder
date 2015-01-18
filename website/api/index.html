@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<dl class="archives">
+    {% for item in containers.apis %}
+        {% if item.category == 'intro' %}
+            <p><a href="{{ item.url }}">{{ item.title }}</a></p>
+        {% else %}
+            <p><a href="{{ item.url }}">{{ item.title }}</a> – {{ item.excerpt }}</p>
+        {% endif %}
+    {% endfor %}
+</dl>
+
+{% endblock %}
