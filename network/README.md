@@ -1,55 +1,8 @@
-TalkBackBot
-===========
+## Networks
 
-Are you tired of “That’s what she said” jokes? Then this bot is for you!
-It will join a specified channel and respond to the configured trigger phrases
-with what she really said, i.e. a quotation from a notable woman. It will also
-respond to any direct message with a quotation.
+### Project
+This tutorial walks you through how to make an [IRC bot](http://en.wikipedia.org/wiki/Internet_Relay_Chat_bot) with [Twisted](http://twistedmatrix.com).  You will be introduced to testing, logging, an overview of how the internet works, as well as event-driven programming, different internet protocols, and making a portable application.
 
-Many quotes taken from this excellent resource:
-http://womenshistory.about.com/library/qu/blqulist.htm
+The project’s code is based off of [Jessamyn Smith](https://twitter.com/jessamynsmith)’s IRC bot – the [talkbackbot](https://github.com/jessamynsmith/talkbackbot), where if anyone says “That’s what she said” in an IRC channel, the bot replies with a notable quote from a woman (that’s what she really said!).
 
-Setup
------
-
-I highly recommend both virtualenv and virtualenvwrapper to manage the
-environments for your different python projects.
-
-::
-
-    # Create a virtualenv
-    mkvirtualenv talkbackbot
-
-    # Install requirements
-    workon talkbackbot
-    pip install -r requirements.txt
-
-Usage
------
-
-::
-
-    # Activate your virtualenv
-    workon talkbackbot
-
-    # Copy settings.ini.EXAMPLE to settings.ini and edit to suit yourself
-    cp settings.ini.EXAMPLE settings.ini
-    vim settings.ini
-
-    # Run the bot
-    twistd -n twsrs
-
-    # OR if you have 'make' installed
-    make run
-
-    # Optionally, you can set the config file
-    twistd -n twsrs -c some-other-file.ini
-
-    # Stop the bot
-    <Ctrl-C>
-
-    # Run unit tests
-    trial tests
-
-    # OR if you have 'make' installed
-    make cov
+Follow the complete tutorial [here](http://newcoder.io/networks)
