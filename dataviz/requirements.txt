@@ -1,4 +1,4 @@
 # numpy needs to be before matplotlib
-numpy
-matplotlib
+numpy==1.9.1
+matplotlib==1.4.2
 geojson==1.0.6
