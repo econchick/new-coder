@@ -32,7 +32,8 @@
                 <div class="panel-body">
                 {% for post in posts %}
                     {% if 'intro-dataviz' in post.tags %}
-                        <p>{{ post.excerpt }}  <a href="{{ get_url('dataviz/')}}">With Python, you can do better. &rarr;</a></p>
+                        <p>{{ post.excerpt }}</p>
+                        <p><a href="{{ get_url('dataviz/')}}">With Python, you can do better. &rarr;</a></p>
                     {% endif %}
                 {% endfor %}
                 </div>
@@ -46,7 +47,8 @@
                 <div class="panel-body">
                     {% for post in posts %}
                         {% if 'intro-api' in post.tags %}
-                            <p>{{ post.excerpt }}  <a href="{{ get_url('api/')}}">Let’s see how we can with Python. &rarr;</a></p>
+                            <p>{{ post.excerpt }}</p>
+                            <p><a href="{{ get_url('api/')}}">Let’s see how we can with Python. &rarr;</a></p>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -62,7 +64,8 @@
                 <div class="panel-body">
                     {% for post in posts %}
                         {% if 'intro-scrape' in post.tags %}
-                            <p>{{ post.excerpt }} <a href="{{ get_url('scrape/')}}">Learn to scrape with Python. &rarr;</a></p>
+                            <p>{{ post.excerpt }}</p>
+                            <p><a href="{{ get_url('scrape/')}}">Learn to scrape with Python. &rarr;</a></p>
 
                         {% endif %}
                     {% endfor %}
@@ -77,7 +80,8 @@
                 <div class="panel-body">
                     {% for post in posts %}
                         {% if 'intro-network' in post.tags %}
-                            <p>{{ post.excerpt }} <a href="{{ get_url('networks/')}}">Learn how to create an IRC bot with Python. &rarr;</a></p>
+                            <p>{{ post.excerpt }}</p>
+                            <p><a href="{{ get_url('networks/')}}">Learn how to create an IRC bot with Python. &rarr;</a></p>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -88,12 +92,13 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ get_url('gui/') }}" class="panel-title">GUI</a> <span class="label label-default label-as-badge pull-right">advanced</span>
+                    <a href="{{ get_url('gui/') }}" class="panel-title">GUI</a> <span class="label label-default label-as-badge pull-right">advanced</span> <span class="label label-primary label-as-badge pull-right">new!</span>
                 </div>
                 <div class="panel-body">
                     {% for post in posts %}
                         {% if 'intro-gui' in post.tags %}
-                            <p>{{ post.excerpt }} <a href="{{ get_url('gui/')}}">Learn how to make a Sudoku game with Python. &rarr;</a></p>
+                            <p>{{ post.excerpt }}</p>
+                            <p><a href="{{ get_url('gui/')}}">Learn how to make a Sudoku game with Python. &rarr;</a></p>
                         {% endif %}
                     {% endfor %}
                 </div>
