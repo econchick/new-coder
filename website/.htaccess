@@ -2,5 +2,6 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^newcoder.io[nc]
 RewriteRule ^(.*)$ http://www.newcoder.io/$1 [r=301,nc]
 RedirectMatch 301 /~drafts/networks/(.*) /networks/$1
+RedirectMatch 301 /Begin/(.*) /begin/$1
 
 ErrorDocument 404 /404.html
