@@ -66,13 +66,7 @@ ul.pagination-center {
   margin-right: auto;
 }
 
-/*pre {
-  overflow: scroll;
-  white-space: pre;
-  word-wrap: normal;
-  display: inline-block;
-}
-*/
+
 pre {
     white-space: pre;
     overflow-x: scroll;
@@ -92,4 +86,8 @@ td.code {
 
 h4 {
   font-size: 22px;
+}
+
+.label-request {
+  background-color: #009800;
 }
