@@ -3,7 +3,7 @@ endpoint = ssl:host=irc.freenode.net:port=7000
 nickName = whatshereallysaid
 realName = bot: provides quotations from notable women
 
-channel = #channel_name
+channel = #newcoder
 
 [talkback]
 quotesFilename = quotes.txt
