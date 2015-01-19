@@ -35,3 +35,4 @@ containers:
         url: /begin/<slug>/
     workshop:
         url: /workshop/<slug>/
+include: [".htaccess"]
