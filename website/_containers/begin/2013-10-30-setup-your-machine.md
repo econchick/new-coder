@@ -28,7 +28,7 @@ The installation will depend on your operating system, but overall, you will nee
 ## Mac OS X
 
 ### Python
-Macs come with Python pre-installed.  To check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like [so][2]), then type `python`:
+Macs come with Python pre-installed.  To double-check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like [so][2]), then type `python`:
 
 ```bash
 $ python
@@ -37,6 +37,8 @@ Python 2.7.2 (default, Jun 20 2012, 16:23:33)
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
+
+This is the Python shell.  To close out, press `CTRL`+`D`, or type `exit()`.
 
 [Python.org][3] has a good [Python on the Mac][4] page if the above does not work for you.
 
@@ -62,9 +64,8 @@ i686-apple-darwin11-llvm-gcc-4.2: no input files
 
 ```bash
 $ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python
-$ pip
-Usage: pip COMMAND [OPTIONS]
-You must give a command (use "pip help" to see a list of commands)
+$ pip --version
+pip 1.5.6 from /Users/lynn/.virtualenvs/gui/lib/python2.7/site-packages (python 2.7)
 $ sudo pip install --upgrade setuptools
 ```
 
@@ -77,6 +78,10 @@ $ sudo pip install virtualenv
 ```
 
 [virtualenvwrapper][11] is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use `pip` again to install it:
+
+<div class="well">
+<b>NOTE</b>: If you use <code>zsh</code> instead of <code>bash</code> (the default), then replace all instances below of <code>~/.bash_profile</code> with <code>~/.zshrc</code>
+</div>
 
 ```bash
 $ sudo pip install virtualenvwrapper
@@ -92,7 +97,7 @@ $ source /usr/local/bin/virtualenvwrapper.sh
 ## Linux
 
 ### Python
-Linux come with Python pre-installed.  To check, open up the Terminal application, then type `python`:
+Linux come with Python pre-installed.  To double-check, open up the Terminal application, then type `python`:
 
 ```bash
 $ python
@@ -101,6 +106,8 @@ Python 2.7.3 (default, Aug  9 2012, 17:23:57)
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
+
+This is the Python shell.  To close out, press `CTRL`+`D`, or type `exit()`.
 
 ### git
 You will need to install [git][5] either from commands below or through their [download page][6]. You can then follow the [Save your Progress]( {{ get_url("begin/save-your-progress")}}) page to set it up.
@@ -128,9 +135,8 @@ To test if you have either GCC or clang, type `$ gcc` or `$ clang` into your ter
 
 ```bash
 $ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python
-$ pip
-Usage: pip COMMAND [OPTIONS]
-You must give a command (use "pip help" to see a list of commands)
+$ pip --version
+pip 1.5.6 from /Users/lynn/.virtualenvs/gui/lib/python2.7/site-packages (python 2.7)
 $ sudo pip install --upgrade setuptools
 ```
 
@@ -142,7 +148,11 @@ $ sudo pip install --upgrade setuptools
 $ sudo pip install virtualenv
 ```
 
-[virtualenvwrapper][11] is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use `pip` again to install it:
+[virtualenvwrapper][11] is a great (but not required) tool for using virtualenv by simplifying the commands that virtualenv needs.  We’ll use `pip` again to install it.
+
+<div class="well">
+<b>NOTE</b>: If you use <code>zsh</code> instead of <code>bash</code> (the default), then replace all instances below of <code>~/.bash_profile</code> with <code>~/.zshrc</code>
+</div>
 
 For Fedora/RHEL/CentOS:
 
