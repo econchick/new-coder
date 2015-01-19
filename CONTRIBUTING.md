@@ -38,15 +38,23 @@ The New Coder repository has the following layout:
 │   └── # code
 └── website/
     ├── _assets/  # all css, images, etc
-    ├── _posts/  # all posts, grouped by project type/chapter
+    ├── _posts/  # all posts in markdown that are not a part of a tutorial
+    ├── _containers/  # all posts in markdown that are a part of a tutorial
     ├── _templates/  # html templates
     ├── about/  # newcoder.io/about
     ├── contact/  # newcoder.io/contact
     ├── tutorials/  # newcoder.io/tutorials
-    ├── _local.sh  # mynt script to run newcoder.io locally
+    ├── api/  # newcoder.io/api
+    ├── begin/  # newcoder.io/begin
+    ├── dataviz/  # newcoder.io/dataviz
+    ├── gui/  # newcoder.io/gui
+    ├── networks/  # newcoder.io/networks
+    ├── scrape/  # newcoder.io/scrape
+    ├── workshop/  # newcoder.io/workshop
     ├── config.yml  # mynt configuration
     ├── index.html  # main landing page
-    └── requirements.txt  # requirements for running newcoder.io locally
+    ├── requirements.txt  # requirements for running newcoder.io locally
+    └── _local.sh  # mynt script to run newcoder.io locally
 ```
 
 ### Setup
