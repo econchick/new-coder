@@ -15,7 +15,7 @@ social:
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
-misaka:
+hoep:
     render_flags:
         toc: true
 tag_layout: tag.html

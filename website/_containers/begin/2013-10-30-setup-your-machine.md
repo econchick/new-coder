@@ -8,12 +8,13 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 
 1. [Overview](#overview-of-requirements)
 2. Install:
-    * [Mac OS X](#mac-os-x)
-    * [Linux](#linux)
-    * [Windows](#windows)
+    1. [Mac OS X](#mac-os-x)
+    2. [Linux](#linux)
+    3. [Windows](#windows)
 3. [Test your setup](#test-your-setup)
 4. [Get the Tutorial Code](#get-the-tutorial-code)
 
+<br/><br/><hr/>
 ## Overview of requirements
 
 The installation will depend on your operating system, but overall, you will need:
@@ -26,7 +27,7 @@ The installation will depend on your operating system, but overall, you will nee
 * virtualenvwrapper
 
 ## Mac OS X
-
+<p/>
 ### Python
 Macs come with Python pre-installed.  To double-check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like [so][2]), then type `python`:
 
@@ -92,9 +93,11 @@ $ mkdir -p $WORKON_HOME
 $ source /usr/local/bin/virtualenvwrapper.sh
 ```
 
-
+<hr/>
 
 ## Linux
+
+<p/>
 
 ### Python
 Linux come with Python pre-installed.  To double-check, open up the Terminal application, then type `python`:
@@ -177,8 +180,10 @@ $ mkdir -p $WORKON_HOME
 $ source ~/.bash_profile
 ```
 
-## Windows
+<hr/>
 
+## Windows
+<p/>
 ### powershell
 
 1. This step depends on the version of Windows you are running.
@@ -278,12 +283,13 @@ git is ready to go!
 
 Success! You have installed Virtualenvwrapper!
 
+<hr/>
 
 ## Test your setup
 
-## Mac-OS-X and Linux
-
 Now let’s test our installation and get familiar with creating & using virtual environments, let’s return to our terminal:
+
+### Mac OS X and Linux
 
 
 ```bash
@@ -396,8 +402,6 @@ Here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper.
 
 ## Windows
 
-Now let’s test our installation and get familiar with creating & using virtual environments, let’s return to our terminal:
-
 
 ```powershell
 C:\> mkvirtualenv TestEnv
@@ -507,6 +511,7 @@ For Powershell:
 * `ls`:List all objects in current directory
 * `mkdir` : create a new directory
 
+<hr/>
 
 ## Get the Tutorial Code
 
