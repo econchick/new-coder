@@ -278,22 +278,23 @@ Success! You have installed Python!
 
 git is ready to go!
 
-
 ### pip, virtualenv + virtualenvwrapper
+
+Now, let's create a Python environment using `pip` with `virtualenv` and `virtualenvwrapper`.
 
 ####  Setuptools + Pip
 1. You’ll first need to install Setuptools and use `ez_setup.py` to run it:
     1. Navigate [here](https://bootstrap.pypa.io/ez_setup.py).
     2. Right click within the webpage, select “Save As” to your Desktop folder. Then type in `ez_setup` as the filename, make sure it’s saved as a `.py` file, and click “Save”.
     3. Go back into the PowerShell prompt and run the `ez_setup` file by typing the following and hitting enter `python ~\Desktop\ez_setup.py`
-2. Now Install Pip:
+2. Now install Pip:
     1. Navigate [here](https://bootstrap.pypa.io/get-pip.py)
     2. Right click within the webpage, select “Save As” and save to the Desktop folder or else Then type in `get_pip` as the filename, ensure it’s being saved as a `.py` file and click “Save”.
     3. Within the PowerShell prompt, type the followng text and hit enter: `python ~\desktop\get_pip.py`
 
 #### Virtualenv + Virtualenvwrapper
 
-1. With pip installed we can now eaily install virtualenv, and  then virtualenvwrapper-powershell. Within your PowerShell prompt, type the following:
+1. With pip installed we can now easily install virtualenv, and  then virtualenvwrapper-powershell. Within your PowerShell prompt, type the following:
     1. `pip install virtualenv`
     2. `pip install virtualenvwrapper-powershell`
     3. `mkdir ~/.virtualenvs`
@@ -302,7 +303,7 @@ git is ready to go!
     1. `Import-Module virtualenvwrapper`
     2. `Get-Command *virtualenv*`
 
-Success! You have installed Virtualenvwrapper!
+Success! You have installed virtualenvwrapper!
 
 <hr/>
 
