@@ -19,7 +19,9 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 
 The installation will depend on your operating system, but overall, you will need:
 
-* Python 2.x – there are [plans][1] to update/include Python 3.x
+* Python 2.x
+ * For Mac users, there are also instructions for Python 3.x.
+ * There are [plans][1] to update/include other platforms.
 * git – an intro given [here]( {{get_url("begin/save-your-progress")}})
 * A C compiler
 * pip
@@ -48,7 +50,7 @@ The version of Python that comes pre-installed on a Mac is Python 2.7. Most of t
 
 If you would like to use Python 3, download it from [Python.org's download page][5]. When the .pkg file finishes downloading, double-click it and press 'Continue' to get through the installer.
 
-When you're finished installing Python 3, it will be installed to a different location on your computer than the Python 2 that was pre-installed. It will help to know where it was installed. Within your terminal, type:
+When you're finished installing Python 3, it will be installed to a different location on your computer than the Python 2 that was pre-installed. Within your terminal, type:
 
 ```bash
 $ which python3
