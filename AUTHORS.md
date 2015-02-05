@@ -16,3 +16,4 @@
 * [Ana Krivokapić](https://github.com/infraredgirl)
 * [Hynek Schlawack](https://github.com/hynek)
 * [Jair Trejo](https://github.com/jairtrejo)
+* [Ari Lacenski](https://github.com/tensory)
