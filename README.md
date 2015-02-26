@@ -8,7 +8,7 @@ New Coder tutorials: 5 life jackets to throw the new coder
 * Networking
 * GUI
 
-Genearl directory layout:
+General directory layout:
 
 	├── <Project>/
 	│   ├── README.md
