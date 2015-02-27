@@ -12,7 +12,7 @@ git is software. You use git to help manage your source code. While you still �
 
 Instead of “Save” and “Save As”, you “commit” your code to your local repository. A repository (a.k.a. repo) can be thought of as the main, root directory for a project or a package.
 
-A bit of context, git was initially designed and developed by Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – [“git” is British slang for a stupid person](http://en.wikipedia.org/wiki/Git_(software\)#History).
+A bit of context, git was initially designed and developed by Linus Torvalds for the development of Linux. Linus has a tendency to name things after himself (for instance, he’s the dude behind the Linux kernel); he named git after himself – [“git” is British slang for a stupid person](http://en.wikipedia.org/wiki/Git_(software)#History).
 
 ### Git and GitHub
 **Do not confuse git and GitHub!***  git is software, [GitHub](http://github.com) is a company that offers remote hosting for your git repositories (rather than just having a local copy on your machine). [BitBucket](http://bitbucket.org) is also a company that offers remote hosting for your git repositories (as well as Mercurial repositories). Simply put, they offer a social aspect to coding – allowing you to connect to other developers.
