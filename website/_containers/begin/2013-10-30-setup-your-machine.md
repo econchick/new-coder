@@ -52,11 +52,16 @@ For Mac OS X 10.9 and higher (Mavericks and later): Within your terminal, run `x
 
 For Mac OS X 10.8 and lower (Mountain Lion and earlier), you will need to download the Command Line Tools from Apple [here](https://developer.apple.com/downloads/index.action#).  A (free) developer’s account is required.  Search for your OS version (which can be found by clicking on the Apple in the top left of your menu bar, and selecting “About this Mac”) and select “Command Line Tools for XCode”.
 
-This gives you the [GCC][7] or the GNU Compiler Collection. To test installation, within the Terminal application, type `gcc` and you should get the following:
+This gives you the [GCC][7] or the GNU Compiler Collection. To test installation, within the Terminal application, type `gcc` and you should get one of the following outputs (depending upon whether your machine defaults gcc to clang):
 
 ```bash
 $ gcc
 i686-apple-darwin11-llvm-gcc-4.2: no input files
+```
+
+```bash
+$ gcc
+clang: error: no input files no input files
 ```
 
 ### pip
