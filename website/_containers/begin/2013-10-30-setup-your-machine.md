@@ -162,8 +162,8 @@ For Fedora/RHEL/CentOS:
 ```bash
 $ sudo pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
-$ echo 'export WORKON_HOME=~/Envs' >> ~/.bash_profile
-$ echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bash_profile
+$ echo 'export WORKON_HOME=~/Envs' >> ~/.bashrc
+$ echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc
 $ mkdir -p $WORKON_HOME
 $ source ~/.bash_profile
 ```
@@ -174,8 +174,8 @@ For Debian/Ubuntu:
 ```bash
 $ sudo pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
-$ echo 'export WORKON_HOME=~/Envs' >> ~/.bash_profile
-$ echo 'source /etc/bash_completion.d/virtualenvwrapper' >> ~/.bash_profile
+$ echo 'export WORKON_HOME=~/Envs' >> ~/.bashrc
+$ echo 'source /etc/bash_completion.d/virtualenvwrapper' >> ~/.bashrc
 $ mkdir -p $WORKON_HOME
 $ source ~/.bash_profile
 ```
