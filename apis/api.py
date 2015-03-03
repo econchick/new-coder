@@ -73,22 +73,31 @@ class CPIData(object):
         # at all times. Since python-requests supports gzip-compression by
         # default and decoding these chunks on their own isn't that easy,
         # we just disable gzip with the empty "Accept-Encoding" header.
-        fp = requests.get(url, stream=True,
-                          headers={'Accept-Encoding': None}).raw
+        response = requests.get(url, stream=True,
+                                headers={'Accept-Encoding': None})
 
         # If we did not pass in a save_as_file parameter, we just return the
         # raw data we got from the previous line.
         if save_as_file is None:
-            return self.load_from_file(fp)
+            return self.load_from_file(response.raw)
 
         # Else, we write to the desired file.
         else:
+            # In general, when you work with data which size you can only guess
+            # you should never read the whole dataset into memory. Instead, you
+            # should split it up into chunks you are comfortable working with
+            # in order to keep the memory consumption under control. In this
+            # case we read at most 4 KiB.
+            #
+            # In this example this size is quite arbitrary but depending on
+            # your use-case choosing the right buffer size can be very
+            # important. You want to find the right balance between memory
+            # consumption and the overhead involved with not working with the
+            # whole dataset.
+            buffer_size = 4 * 1024
             with open(save_as_file, 'wb+') as out:
-                while True:
-                    buffer = fp.read(81920)
-                    if not buffer:
-                        break
-                    out.write(buffer)
+                for chunk in response.iter_content(buffer_size):
+                    out.write(chunk)
             with open(save_as_file) as fp:
                 return self.load_from_file(fp)
 
