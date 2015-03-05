@@ -165,7 +165,7 @@ $ export WORKON_HOME=~/Envs
 $ echo 'export WORKON_HOME=~/Envs' >> ~/.bashrc
 $ echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc
 $ mkdir -p $WORKON_HOME
-$ source ~/.bash_profile
+$ source ~/.bashrc
 ```
 
 For Debian/Ubuntu:
@@ -177,7 +177,7 @@ $ export WORKON_HOME=~/Envs
 $ echo 'export WORKON_HOME=~/Envs' >> ~/.bashrc
 $ echo 'source /etc/bash_completion.d/virtualenvwrapper' >> ~/.bashrc
 $ mkdir -p $WORKON_HOME
-$ source ~/.bash_profile
+$ source ~/.bashrc
 ```
 
 <hr/>
