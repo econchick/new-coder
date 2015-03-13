@@ -15,6 +15,7 @@ If at any time you have issues installing anything, don't hesitate to [contact m
 	* Windows does not automatically come with Python installed, and must be downloaded from the [website](http://www.python.org/download/releases/2.7.3/).
 * A text editor.  Some options include:
 	* [Sublime Text 2](http://www.sublimetext.com/2) for Mac, Linux, or Windows
+	* [Atom](https://atom.io/) for Mac, Linux or Windows
 	* [gEdit](http://projects.gnome.org/gedit/) for Linux
 	* [NotePad++](http://notepad-plus-plus.org/) for Windows
 	* [TextMate](http://macromates.com/) for Mac
