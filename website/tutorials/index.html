@@ -9,7 +9,7 @@
                 <a href="{{ get_url('/begin') }}" class="panel-title">Read me first!</a>
             </div>
             <div class="panel-body">
-                {% for post in posts %}
+                {% for post in containers.intro %}
                     {% if 'begin-intro' in post.tags %}
                         <dd>
                             <dl>
@@ -30,7 +30,7 @@
                     <a href="{{ get_url('dataviz/') }}" class="panel-title">Data Visualization</a> <span class="label label-default label-as-badge pull-right">beginner</span>
                 </div>
                 <div class="panel-body">
-                {% for post in posts %}
+                {% for post in containers.intro %}
                     {% if 'intro-dataviz' in post.tags %}
                         <p>{{ post.excerpt }}</p>
                         <p><a href="{{ get_url('dataviz/')}}">With Python, you can do better. &rarr;</a></p>
@@ -45,7 +45,7 @@
                     <a href="{{ get_url('api/') }}" class="panel-title">APIs</a> <span class="label label-default label-as-badge pull-right">intermediate</span>
                 </div>
                 <div class="panel-body">
-                    {% for post in posts %}
+                    {% for post in containers.intro %}
                         {% if 'intro-api' in post.tags %}
                             <p>{{ post.excerpt }}</p>
                             <p><a href="{{ get_url('api/')}}">Let’s see how we can with Python. &rarr;</a></p>
@@ -62,7 +62,7 @@
                     <a href="{{ get_url('scrape/') }}" class="panel-title">Web Scraping</a> <span class="label label-default label-as-badge pull-right">intermediate</span>
                 </div>
                 <div class="panel-body">
-                    {% for post in posts %}
+                    {% for post in containers.intro %}
                         {% if 'intro-scrape' in post.tags %}
                             <p>{{ post.excerpt }}</p>
                             <p><a href="{{ get_url('scrape/')}}">Learn to scrape with Python. &rarr;</a></p>
@@ -78,7 +78,7 @@
                     <a href="{{ get_url('networks/') }}" class="panel-title">Networks</a> <span class="label label-default label-as-badge pull-right">advanced</span>
                 </div>
                 <div class="panel-body">
-                    {% for post in posts %}
+                    {% for post in containers.intro %}
                         {% if 'intro-network' in post.tags %}
                             <p>{{ post.excerpt }}</p>
                             <p><a href="{{ get_url('networks/')}}">Learn how to create an IRC bot with Python. &rarr;</a></p>
@@ -95,7 +95,7 @@
                     <a href="{{ get_url('gui/') }}" class="panel-title">GUI</a> <span class="label label-default label-as-badge pull-right">advanced</span> <span class="label label-primary label-as-badge pull-right">new!</span>
                 </div>
                 <div class="panel-body">
-                    {% for post in posts %}
+                    {% for post in containers.intro %}
                         {% if 'intro-gui' in post.tags %}
                             <p>{{ post.excerpt }}</p>
                             <p><a href="{{ get_url('gui/')}}">Learn how to make a Sudoku game with Python. &rarr;</a></p>
