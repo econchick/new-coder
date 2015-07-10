@@ -72,7 +72,7 @@ $ sudo pip install --upgrade setuptools
 
 ### virtualenv & virtualenvwrapper
 
-[virtualenv][10] creates isolated environments for each of your Python projects. It helps to solve version & dependency problems with multple Python installations and/or multiple versions of different Python packages.  We’ll use `pip` to install it:
+[virtualenv][10] creates isolated environments for each of your Python projects. It helps to solve version & dependency problems with multiple Python installations and/or multiple versions of different Python packages.  We’ll use `pip` to install it:
 
 ```bash
 $ sudo pip install virtualenv
