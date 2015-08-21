@@ -117,7 +117,7 @@ class CPIData(object):
                     reached_dataset = True
                 continue
             # Each line ends with a new-line character which we strip here
-            # to make the data easier usable.
+            # to make the data easier to use.
             data = line.rstrip().split()
 
             # While we are dealing with calendar data the format is simple
@@ -296,7 +296,7 @@ def generate_plot(platforms, output_file):
     ax.bar(ind, values, width, align='center')
 
     # Format the X and Y axis labels. Also set the ticks on the x-axis slightly
-    # farther apart and give then a slight tilting effect.
+    # farther apart and give them a slight tilting effect.
     plt.ylabel('Adjusted price')
     plt.xlabel('Year / Console')
     ax.set_xticks(ind + 0.3)
@@ -424,9 +424,8 @@ def main():
         platform['adjusted_price'] = adjusted_price
         platforms.append(platform)
 
-        # We limit the resultset on this end since we can only here check
-        # if the dataset actually contains all the data we need and therefor
-        # can't filter on the API level.
+        # We can't filter on the API level, so we limit the dataset here to
+        # check if it contains all of the data we need.
         if opts.limit is not None and counter + 1 >= opts.limit:
             break
         counter += 1
