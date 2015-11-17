@@ -66,7 +66,7 @@ def visualize_days():
     # Assign the data to a plot
     plt.plot(data_list)
 
-    # Assign labels to the plot from day_list
+    # Assign labels to the plot from day_tuple
     plt.xticks(range(len(day_tuple)), day_tuple)
 
     # Save the graph!
