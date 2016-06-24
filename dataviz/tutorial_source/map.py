@@ -10,7 +10,7 @@ CSV file and create a geojson object, to be collected into one geojson
 file for uploading to gist.github.com.
 """
 
-import geojson
+import geojson as g
 
 import parse as p
 
@@ -66,7 +66,7 @@ def create_map(data_file):
     # Now that all data is parsed in GeoJSON write to a file so we
     # can upload it to gist.github.com
     with open('file_sf.geojson', 'w') as f:
-        f.write(geojson.dumps(geo_map))
+        f.write(g.dumps(geo_map))
 
 
 def main():
