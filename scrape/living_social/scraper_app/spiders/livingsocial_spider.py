@@ -27,7 +27,7 @@ class LivingSocialSpider(BaseSpider):
 
     deals_list_xpath = '//li[@dealid]'
     item_fields = {
-        'title': './/span[@itemscope]/meta[@itemprop="name"]/@content',
+        'title': './/a/div[@class="deal-details"]/h2/text()',
         'link': './/a/@href',
         'location': './/a/div[@class="deal-details"]/p[@class="location"]/text()',
         'original_price': './/a/div[@class="deal-prices"]/div[@class="deal-strikethrough-price"]/div[@class="strikethrough-wrapper"]/text()',
