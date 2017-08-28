@@ -8,7 +8,7 @@ How should a new coder approach these tutorials?
 
 ### Tech Requirements
 
-If at any time you have issues installing anything, don't hesitate to [contact me]( {{ get_url('Contact')}}).
+If at any time you have issues installing anything, don't hesitate to [contact me]( {{ get_url('contact/')}}).
 
 * [Python 2.x](http://www.python.org/download/releases/2.7.3/)
 	* Mac OS X and Linux often ship with Python installed. To check, open up a terminal, type `python --version`, and if you get an error message, or if your version is older than 2.7, go ahead and [install or update](http://www.python.org/download/releases/2.7.3/).
