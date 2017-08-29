@@ -31,7 +31,7 @@ def parse(raw_file, delimiter):
     parsed_data = []
 
     # Skip over the first line of the file for the headers
-    fields = csv_data.next()
+    fields = next(csv_data)
 
     # Iterate over each row of the csv file, zip together field -> value
     for row in csv_data:
