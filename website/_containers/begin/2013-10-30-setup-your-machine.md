@@ -19,7 +19,9 @@ All the needed dependencies for setting up your Mac, Linux, or Windows machine f
 
 The installation will depend on your operating system, but overall, you will need:
 
-* Python 2.x – there are [plans][1] to update/include Python 3.x
+* Python 2.x
+ * For Mac users, there are also instructions for Python 3.x.
+ * There are [plans][1] to update/include other platforms.
 * git – an intro given [here]( {{get_url("begin/save-your-progress")}})
 * A C compiler
 * pip
@@ -29,7 +31,7 @@ The installation will depend on your operating system, but overall, you will nee
 ## Mac OS X
 <p/>
 ### Python
-Macs come with Python pre-installed.  To double-check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like [so][2]), then type `python`:
+Macs come with Python 2 pre-installed.  To double-check, open up the Terminal application (Applications &rarr; Utilities &rarr; Terminal like [so][2]), then type `python`:
 
 ```bash
 $ python
@@ -42,6 +44,25 @@ Type "help", "copyright", "credits" or "license" for more information.
 This is the Python shell.  To close out, press `CTRL`+`D`, or type `exit()`.
 
 [Python.org][3] has a good [Python on the Mac][4] page if the above does not work for you.
+
+### Getting started with Python 3
+The version of Python that comes pre-installed on a Mac is Python 2.7. Most of the differences between Python 2 and 3 won't pose a problem if you are just getting started. But you may be reading a book or online tutorial that calls for installing Python 3.
+
+If you would like to use Python 3, download it from [Python.org's download page][5]. When the .pkg file finishes downloading, double-click it and press 'Continue' to get through the installer.
+
+When you're finished installing Python 3, it will be installed to a different location on your computer than the Python 2 that was pre-installed. Within your terminal, type:
+
+```bash
+$ which python3
+```
+
+You should get a result starting with a `/` that looks something like this:
+
+```bash
+/Library/Frameworks/Python.framework/Versions/3.4/bin/python3
+```
+
+Knowing where Python 3 is installed can be helpful in later steps, since your system default is still Python 2.7.
 
 ### git
 You will need to install [git][5] on your machine through their [download page][6]. You can then follow the [Save your Progress]({{ get_url("begin/save-your-progress")}}) page to set it up.
@@ -257,22 +278,23 @@ Success! You have installed Python!
 
 git is ready to go!
 
-
 ### pip, virtualenv + virtualenvwrapper
+
+Now, let's create a Python environment using `pip` with `virtualenv` and `virtualenvwrapper`.
 
 ####  Setuptools + Pip
 1. You’ll first need to install Setuptools and use `ez_setup.py` to run it:
     1. Navigate [here](https://bootstrap.pypa.io/ez_setup.py).
     2. Right click within the webpage, select “Save As” to your Desktop folder. Then type in `ez_setup` as the filename, make sure it’s saved as a `.py` file, and click “Save”.
     3. Go back into the PowerShell prompt and run the `ez_setup` file by typing the following and hitting enter `python ~\Desktop\ez_setup.py`
-2. Now Install Pip:
+2. Now install Pip:
     1. Navigate [here](https://bootstrap.pypa.io/get-pip.py)
     2. Right click within the webpage, select “Save As” and save to the Desktop folder or else Then type in `get_pip` as the filename, ensure it’s being saved as a `.py` file and click “Save”.
     3. Within the PowerShell prompt, type the followng text and hit enter: `python ~\desktop\get_pip.py`
 
 #### Virtualenv + Virtualenvwrapper
 
-1. With pip installed we can now eaily install virtualenv, and  then virtualenvwrapper-powershell. Within your PowerShell prompt, type the following:
+1. With pip installed we can now easily install virtualenv, and  then virtualenvwrapper-powershell. Within your PowerShell prompt, type the following:
     1. `pip install virtualenv`
     2. `pip install virtualenvwrapper-powershell`
     3. `mkdir ~/.virtualenvs`
@@ -281,7 +303,7 @@ git is ready to go!
     1. `Import-Module virtualenvwrapper`
     2. `Get-Command *virtualenv*`
 
-Success! You have installed Virtualenvwrapper!
+Success! You have installed virtualenvwrapper!
 
 <hr/>
 
@@ -291,6 +313,7 @@ Now let’s test our installation and get familiar with creating & using virtual
 
 ### Mac OS X and Linux
 
+You can use virtualenv to make a Python 2.7 virtual environment. If you installed Python 3 and would like to use it in your project, scroll down to `virtualenv with Python 3`.
 
 ```bash
 $ mkvirtualenv TestEnv
@@ -399,6 +422,30 @@ Here’s a run-down of useful commands for pip, virtualenv & virtualenvwrapper.
 * within an activated virtualenv, `pip install [PACKAGE_NAME]` installs a package into the virtualenv
 * within an activated virtualenv, `pip freeze` lists the packages that is installed & accessible within the virtualenv
 
+### virtualenv with Python 3
+Your computer has a default Python path. If your computer came with Python 2, that path is for Python 2, not Python 3.
+
+virtualenv uses your system Python path by default when it's creating virtual environments. If you've installed Python 3 from a download, you will need to tell virtualenv to use it.
+
+Use the `which python3` command to find out where Python 3 was installed, and then write your `mkvirtualenv` command. The `mkvirtualenv` command should include the name of your new environment, then `--python`, and finally the Python 3 path.
+
+It's OK if your Python 3 path does not match this example, as long as the result of `which python3` is not blank.
+
+```bash
+$ which python3
+/Library/Frameworks/Python.framework/Versions/3.4/bin/python3
+$ mkvirtualenv Python3TestEnv --python /Library/Frameworks/Python.framework/Versions/3.4/bin/python3
+Running virtualenv with interpreter /Library/Frameworks/Python.framework/Versions/3.4/bin/python3
+Using base prefix '/Library/Frameworks/Python.framework/Versions/3.4'
+New python executable in Python3TestEnv/bin/python3
+Also creating executable in Python3TestEnv/bin/python
+Installing setuptools, pip...done.
+(Python3TestEnv) $ python
+Python 3.4.1 (v3.4.1:c0e311e010fc, May 18 2014, 00:54:21)
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
 
 ## Windows
 
@@ -589,6 +636,7 @@ You’re good to go with your setup! Go start on [dataviz]({{ get_url("dataviz")
 [9]: http://www.pip-installer.org/en/latest/
 [10]: https://pypi.python.org/pypi/virtualenv
 [11]: http://virtualenvwrapper.readthedocs.org/en/latest/
+[12]: https://www.python.org/downloads/release/python-3
 [mingw]: http://sourceforge.net/projects/mingw/files/latest/download?source=files
 [virtualenv]: http://pypi.python.org/pypi/virtualenv
 [install]: http://www.mingw.org/wiki/InstallationHOWTOforMinGW
