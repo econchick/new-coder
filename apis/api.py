@@ -231,6 +231,7 @@ class GiantbombAPI(object):
             # certain number of items.
             params['offset'] = num_fetched_results
             result = requests.get(self.base_url + '/platforms/',
+                                  headers={'User-agent':'new-coder-tutorial'},
                                   params=params)
             result = result.json()
             if num_total_results is None:
