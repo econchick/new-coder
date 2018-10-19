@@ -68,8 +68,8 @@ class SudokuUI(Frame):
         """
         Draws grid divided with blue lines into 3x3 squares
         """
-        for i in xrange(10):
-            color = "blue" if i % 3 == 0 else "gray"
+        for i in range(10):
+            color = "blue" if i % 3 == 0 else "grey"
 
             x0 = MARGIN + i * SIDE
             y0 = MARGIN
@@ -85,8 +85,8 @@ class SudokuUI(Frame):
 
     def __draw_puzzle(self):
         self.canvas.delete("numbers")
-        for i in xrange(9):
-            for j in xrange(9):
+        for i in range(9):
+            for j in range(9):
                 answer = self.game.puzzle[i][j]
                 if answer != 0:
                     x = MARGIN + j * SIDE + SIDE / 2
@@ -125,6 +125,21 @@ class SudokuUI(Frame):
             fill="white", font=("Arial", 32)
         )
 
+    def __draw_loose(self):
+        # create a oval (which will be a circle)
+        x0 = y0 = MARGIN + SIDE * 2
+        x1 = y1 = MARGIN + SIDE * 7
+        self.canvas.create_oval(
+            x0, y0, x1, y1,
+            tags="victory", fill="yellow", outline="yellow"
+        )
+        # create text
+        x = y = MARGIN + 4 * SIDE + SIDE / 2
+        self.canvas.create_text(
+            x, y,
+            text="You loose!", tags="victory",
+            fill="white", font=("Arial", 32)
+        )
     def __cell_clicked(self, event):
         if self.game.game_over:
             return
@@ -133,12 +148,12 @@ class SudokuUI(Frame):
             self.canvas.focus_set()
 
             # get row and col numbers from x,y coordinates
-            row, col = (y - MARGIN) / SIDE, (x - MARGIN) / SIDE
+            row, col = (y - MARGIN) // SIDE, (x - MARGIN) // SIDE
 
             # if cell was selected already - deselect it
             if (row, col) == (self.row, self.col):
                 self.row, self.col = -1, -1
-            elif self.game.puzzle[row][col] == 0:
+            elif self.game.check[row][col] == 0:
                 self.row, self.col = row, col
         else:
             self.row, self.col = -1, -1
@@ -153,7 +168,12 @@ class SudokuUI(Frame):
             self.col, self.row = -1, -1
             self.__draw_puzzle()
             self.__draw_cursor()
-            if self.game.check_win():
+            a=self.game.check_win()
+            # print(a)
+            if a==0:
+                self.__draw_loose()
+                return 0
+            elif a==1:    
                 self.__draw_victory()
 
     def __clear_answers(self):
@@ -173,6 +193,7 @@ class SudokuBoard(object):
         board = []
         for line in board_file:
             line = line.strip()
+            # print(line,len(line))
             if len(line) != 9:
                 raise SudokuError(
                     "Each line in the sudoku puzzle must be 9 chars long."
@@ -199,28 +220,35 @@ class SudokuGame(object):
     def __init__(self, board_file):
         self.board_file = board_file
         self.start_puzzle = SudokuBoard(board_file).board
+        self.check=self.start_puzzle
+        # print(self.check)
 
     def start(self):
         self.game_over = False
         self.puzzle = []
-        for i in xrange(9):
+        for i in range(9):
             self.puzzle.append([])
-            for j in xrange(9):
+            for j in range(9):
                 self.puzzle[i].append(self.start_puzzle[i][j])
 
     def check_win(self):
-        for row in xrange(9):
+        for i in  range(9):
+            for j in range(9):
+                if self.puzzle[i][j]==0:
+                    return -1
+        # print(self.puzzle)
+        for row in range(9):
             if not self.__check_row(row):
-                return False
-        for column in xrange(9):
+                return 0
+        for column in range(9):
             if not self.__check_column(column):
-                return False
-        for row in xrange(3):
-            for column in xrange(3):
+                return 0
+        for row in range(3):
+            for column in range(3):
                 if not self.__check_square(row, column):
-                    return False
-        self.game_over = True
-        return True
+                    return 0
+        self.game_over = 1
+        return 1
 
     def __check_block(self, block):
         return set(block) == set(range(1, 10))
@@ -230,15 +258,15 @@ class SudokuGame(object):
 
     def __check_column(self, column):
         return self.__check_block(
-            [self.puzzle[row][column] for row in xrange(9)]
+            [self.puzzle[row][column] for row in range(9)]
         )
 
     def __check_square(self, row, column):
         return self.__check_block(
             [
                 self.puzzle[r][c]
-                for r in xrange(row * 3, (row + 1) * 3)
-                for c in xrange(column * 3, (column + 1) * 3)
+                for r in range(row * 3, (row + 1) * 3)
+                for c in range(column * 3, (column + 1) * 3)
             ]
         )
 
