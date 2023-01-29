@@ -66,7 +66,7 @@ def create_map(data_file):
     # Now that all data is parsed in GeoJSON write to a file so we
     # can upload it to gist.github.com
     with open('file_sf.geojson', 'w') as f:
-        f.write(geojson.dumps(geo_map))
+        geojson.dump(geo_map, f, indent=6)
 
 
 def main():
