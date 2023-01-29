@@ -46,7 +46,7 @@ def create_map(data_file):
 
         # Assign line items to appropriate GeoJSON fields.
         data['type'] = 'Feature'
-        data['id'] = index
+        data['id'] = str(index)
         data['properties'] = {'title': line['Category'],
                               'description': line['Descript'],
                               'date': line['Date']}
